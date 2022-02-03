@@ -13,6 +13,7 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
+SPUC/Logs*
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
