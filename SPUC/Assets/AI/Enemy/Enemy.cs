@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     //[Header("Debuging")]
     //[SerializeField] 
-    //GameObject target;
+    GameObject target;
 
     public void TakeDamage (float damage) {
         hp -= Mathf.CeilToInt(damage - defense);
