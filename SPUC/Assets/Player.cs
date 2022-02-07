@@ -11,20 +11,23 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        if (healthBar == null) {
+            healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+        }
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar?.SetMaxHealth(maxHealth);
     }
 
     void Update()
     {
         // TESTING
         int amountPerClick = 10;
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.M)) {
             if (currentHealth >= amountPerClick) {
                 TakeDamage(amountPerClick);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.B)) {
+        else if (Input.GetKeyDown(KeyCode.L)) {
             if (currentHealth <= maxHealth - amountPerClick) {
                 GainHealth(amountPerClick);
             }
@@ -34,12 +37,12 @@ public class Player : MonoBehaviour
     void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        healthBar.SetHealth(currentHealth);
+        healthBar?.SetHealth(currentHealth);
     }
 
     void GainHealth(int amount)
     {
         currentHealth += amount;
-        healthBar.SetHealth(currentHealth);
+        healthBar?.SetHealth(currentHealth);
     }
 }
