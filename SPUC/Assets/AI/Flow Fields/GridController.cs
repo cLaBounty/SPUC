@@ -17,4 +17,15 @@ public class GridController : MonoBehaviour
         if(Input.GetMouseButton(0)) InitializeFlowField();
 
     }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+
+        for(int x = 0; x < gridSize.x; ++x){
+            for(int y = 0; y < gridSize.y; ++y){
+                Vector3 worldPos = new Vector3(cellRadius * 2 * x + cellRadius, 0, cellRadius * 2 * y + cellRadius);
+                Gizmos.DrawWireCube(worldPos, new Vector3(cellRadius * 2, cellRadius * 2, cellRadius * 2));
+            }
+        }
+    }
 }
