@@ -22,12 +22,12 @@ public class Player : MonoBehaviour
     {
         // TESTING
         int amountPerClick = 10;
-        if (Input.GetKeyDown(KeyCode.M)) {
+        if (Input.GetKeyDown(KeyCode.L)) {
             if (currentHealth >= amountPerClick) {
                 TakeDamage(amountPerClick);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.L)) {
+        else if (Input.GetKeyDown(KeyCode.M)) {
             if (currentHealth <= maxHealth - amountPerClick) {
                 GainHealth(amountPerClick);
             }
