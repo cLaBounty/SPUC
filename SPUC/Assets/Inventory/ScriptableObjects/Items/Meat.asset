@@ -9,6 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 003709521d3230f438880b439733998e, type: 3}
-  m_Name: Inventory
+  m_Script: {fileID: 11500000, guid: 8e9c019c2ad643849853adb60908ee47, type: 3}
+  m_Name: Meat
   m_EditorClassIdentifier: 
+  prefab: {fileID: 5157682830617756117, guid: ca3b6f2856428264d99469644df6b6a3, type: 3}
+  type: 1
+  name: Meat
+  description: Meat Description
+  healthIncreaseValue: 15
