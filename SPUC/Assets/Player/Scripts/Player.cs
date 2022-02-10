@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 
     public HealthBar healthBar;
 
+    public InventoryObject inventory;
+
     void Start()
     {
         if (healthBar == null) {
@@ -44,5 +46,19 @@ public class Player : MonoBehaviour
     {
         currentHealth += amount;
         healthBar?.SetHealth(currentHealth);
+    }
+
+    // Inventory
+    public void OnTriggerEnter(Collider other) {
+        var item = other.GetComponent<Item>();
+        if (item != null) {
+            inventory.AddItem(item.item, 1);
+            Destroy(other.gameObject);
+            Debug.Log($"{item.item.name} collected!");
+        }
+    }
+
+    private void OnApplicationQuit() {
+        inventory.Container.Clear();
     }
 }
