@@ -30,18 +30,25 @@ public class MouseLook : MonoBehaviour
 		transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 		playerBody.Rotate(Vector3.up * mouseX);
 
+		//FOV increase for sprinting
         if (Input.GetKey(KeyCode.LeftShift)) 
         {
-            cam.fieldOfView = 65.0f;
+			if (cam.fieldOfView != 70.0f)
+			{
+				cam.fieldOfView += 1.0f;
+			}
         }
         else
         {
-            cam.fieldOfView = 60.0f;
+            if (cam.fieldOfView != 60.0f)
+			{
+				cam.fieldOfView -= 1.0f;
+			}
         }
 
-        if (Input.GetKey(KeyCode.LeftControl)) 
-        {
-            //transform.localPosition
-        }
+        // if (Input.GetKey(KeyCode.LeftControl)) 
+        // {
+
+        // }
     }
 }
