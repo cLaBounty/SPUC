@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // TESTING
+        // TESTING HEALTH BAR
         int amountPerClick = 10;
         if (Input.GetKeyDown(KeyCode.L)) {
             if (currentHealth >= amountPerClick) {
@@ -50,15 +50,15 @@ public class Player : MonoBehaviour
 
     // Inventory
     public void OnTriggerEnter(Collider other) {
-        var item = other.GetComponent<Item>();
-        if (item != null) {
-            inventory.AddItem(item.item, 1);
+        var groundItem = other.GetComponent<GroundItem>();
+        if (groundItem != null) {
+            inventory.AddItem(new Item(groundItem.item), 1);
             Destroy(other.gameObject);
-            Debug.Log($"{item.item.name} collected!");
+            Debug.Log($"{groundItem.item.name} collected!");
         }
     }
 
     private void OnApplicationQuit() {
-        inventory.Container.Clear();
+        inventory.container.items.Clear();
     }
 }
