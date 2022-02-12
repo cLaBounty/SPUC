@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Credit: https://www.youtube.com/watch?v=kdckcSwPkrg
 public class HotBarButton : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
