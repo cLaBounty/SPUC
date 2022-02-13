@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
     [SerializeField] int hp = 1;
-    [SerializeField] float moveSpeed = 1f;
+    [SerializeField] protected float moveSpeed = 1f;
     [SerializeField] float attackSpeed = 1;
     [SerializeField] float attackPower = 1;
     [SerializeField] float defense = 0;
