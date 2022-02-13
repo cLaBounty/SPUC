@@ -7,20 +7,21 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	public CharacterController controller;
-	public float speed = 12f;
-	public float baseSpeed = 12f;
-	public float sprintSpeed;
-	public float gravity = -9.81f * 2;
-	public float jumpHeight = 3f;
 
-	public Transform groundCheck;
-	public float groundDistance = 0.4f;
-	public LayerMask groundMask;
-
-	public float spritingMultiplier = 1.75f;
-
+	[Header("Player Stats")]
+	[SerializeField] float speed = 12f;
+	[SerializeField] float baseSpeed = 12f;
+	[SerializeField] float sprintSpeed;
+	[SerializeField] float gravity = -9.81f * 2;
+	[SerializeField] float jumpHeight = 3f;
+	[SerializeField] float spritingMultiplier = 1.75f;
 	Vector3 velocity;
-	bool isGrounded;
+
+	// Ground Check
+	public Transform groundCheck;
+	public LayerMask groundMask;
+	private float groundDistance = 0.4f;
+	private bool isGrounded;
 
     // Update is called once per frame
     void Update()
