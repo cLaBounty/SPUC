@@ -19,8 +19,4 @@ public class Target : MonoBehaviour
 		Destroy(gameObject);
 	}
 
-	void harvest(float amount)
-	{
-		
-	}
 }
