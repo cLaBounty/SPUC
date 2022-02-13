@@ -17,8 +17,7 @@
 
 Logs/**
 Assets/AssetStoreTools*
-Assets/Sci-Fi\ Weapons/*
-Sci-Fi\ Weapons.meta
+Sci-Fi\ Weapons*
 
 # Visual Studio cache directory
 *.vs/
