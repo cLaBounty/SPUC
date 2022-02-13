@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Diamond
   m_EditorClassIdentifier: 
   id: 3
-  uiDisplay: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  uiDisplay: {fileID: 21300000, guid: c0a21c2828f86c94991aa1d028382195, type: 3}
   type: 0
   name: Diamond
   description: 
