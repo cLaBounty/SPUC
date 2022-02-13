@@ -25,7 +25,7 @@ public class Item
 {
     public int id;
     public string name;
-    public Sprite uiDisplay; // TODO - remove
+    public Sprite uiDisplay;
 
     public Item(ItemObject item) {
         id = item.id;
