@@ -26,8 +26,13 @@ public class ResourceBeam : MonoBehaviour
 			Debug.Log(hit.transform.name);
 
 			ResourceNode rNode = hit.transform.GetComponent<ResourceNode>();
-			inventory.AddItem(new Item(rNode.item), rNode.harvest(damage));
-            Debug.Log($"{rNode.item.name} collected!");
+			int amount = rNode.harvest(damage);
+			if (amount > 0)
+			{
+				inventory.AddItem(new Item(rNode.item), amount);
+				Debug.Log($"{rNode.item.name} collected!");
+			}
+            
 		}
 	}
 }

@@ -7,14 +7,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	public CharacterController controller;
-
 	[Header("Player Stats")]
 	[SerializeField] float speed = 12f;
 	[SerializeField] float baseSpeed = 12f;
 	[SerializeField] float sprintSpeed;
 	[SerializeField] float gravity = -9.81f * 2;
 	[SerializeField] float jumpHeight = 3f;
-	[SerializeField] float spritingMultiplier = 1.75f;
+	[SerializeField] float spritMultiplier = 1.75f;
+	private bool isSprinting;
 	Vector3 velocity;
 
 	// Ground Check
@@ -22,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask groundMask;
 	private float groundDistance = 0.4f;
 	private bool isGrounded;
+
+	// Crouching
+	private bool isCrouching = false;
+	[SerializeField] float crouchMultiplier = 0.75f;
+	[SerializeField] float crouchSpeed;
 
     // Update is called once per frame
     void Update()
@@ -36,13 +41,17 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 
-		if(Input.GetKey(KeyCode.LeftShift))
-		{
-			sprintSpeed = baseSpeed * spritingMultiplier;
-			speed = sprintSpeed;
-		} else
+
+		if (isSprinting && !isCrouching)
 		{
 			speed = baseSpeed;
+			isSprinting = false;
+		} 
+		else if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+		{
+			sprintSpeed = baseSpeed * spritMultiplier;
+			speed = sprintSpeed;
+			isSprinting = true;
 		}
 
 		Vector3 move = transform.right * x + transform.forward * z;
@@ -51,6 +60,20 @@ public class PlayerMovement : MonoBehaviour
 		if(Input.GetButtonDown("Jump") && isGrounded)
 		{
 			velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+		}
+		
+		if(Input.GetKeyDown(KeyCode.LeftControl) & !isCrouching)
+		{
+			crouchSpeed = baseSpeed * crouchMultiplier;
+			controller.height *= 0.75f;
+			speed = crouchSpeed;
+			isCrouching = true;
+		}
+		else if (Input.GetKeyDown(KeyCode.LeftControl) & isCrouching)
+		{
+			controller.height /= 0.75f;
+			speed = baseSpeed;
+			isCrouching = false;
 		}
 
 		velocity.y += gravity * Time.deltaTime;
