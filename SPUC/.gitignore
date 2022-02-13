@@ -17,6 +17,8 @@
 
 Logs/**
 Assets/AssetStoreTools*
+Assets/Sci-Fi\ Weapons/*
+Sci-Fi\ Weapons.meta
 
 # Visual Studio cache directory
 *.vs/
@@ -67,3 +69,4 @@ sysinfo.txt
 
 # GNU/Linux specials
 .directory
+
