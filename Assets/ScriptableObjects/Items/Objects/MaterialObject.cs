@@ -6,7 +6,6 @@ using UnityEngine;
 public class MaterialObject : ItemObject
 {
     private void Awake() {
-        //prefab = GameObject.Find("Blue Item Slot");
         type = ItemType.Material;
     }
 }
