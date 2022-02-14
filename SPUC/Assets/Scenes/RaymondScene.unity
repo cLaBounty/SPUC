@@ -1194,7 +1194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6593226642972475007, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
       propertyPath: m_Name
-      value: Target
+      value: FirstPersonPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 6593226643698451820, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
       propertyPath: m_Height
