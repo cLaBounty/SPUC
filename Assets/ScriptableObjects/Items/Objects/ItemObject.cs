@@ -23,11 +23,16 @@ public abstract class ItemObject : ScriptableObject
 [System.Serializable]
 public class Item
 {
+    // TODO: remove this layer of abstraction
+    public ItemObject itemObject;
+
     public int id;
     public string name;
     public Sprite uiDisplay;
 
     public Item(ItemObject item) {
+        itemObject = item;
+
         id = item.id;
         name = item.name;
         uiDisplay = item.uiDisplay;

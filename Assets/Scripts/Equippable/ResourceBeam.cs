@@ -23,7 +23,7 @@ public class ResourceBeam : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
 		{
-			Debug.Log(hit.transform.name);
+			//Debug.Log(hit.transform.name);
 
 			ResourceNode rNode = hit.transform.GetComponent<ResourceNode>();
 			if (rNode == null) return;
