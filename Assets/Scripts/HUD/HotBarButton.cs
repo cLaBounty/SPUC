@@ -8,10 +8,10 @@ public class HotBarButton : MonoBehaviour
     [SerializeField] private GameObject image;
     [SerializeField] private TMP_Text amountText;
     [SerializeField] private TMP_Text slotText;
-    
-    InventorySlot slot = null;
 
-    public event Action<int> OnButtonClicked;
+    public event Action<int, InventorySlot> OnButtonClicked;
+
+    InventorySlot slot = null;
 
     private KeyCode keyCode;
     private int keyNumber;
@@ -32,27 +32,25 @@ public class HotBarButton : MonoBehaviour
     }
 
     private void Update() {
-        UpdateDisplay();
+        UpdateAmount();
 
-        if (Input.GetKeyDown(keyCode)) {
+        if (Input.GetKeyDown(keyCode) && slot != null) {
             HandleClick();
         }
     }
 
-    private void UpdateDisplay() {
-        if (slot != null) {
-            image.GetComponent<Image>().sprite = slot.item.uiDisplay;
-            amountText.text = slot.amount.ToString("n0");
-        }
+    private void UpdateAmount() {
+        amountText.text = slot?.amount.ToString("n0");
     }
 
     private void HandleClick() {
-        OnButtonClicked?.Invoke(keyNumber);
+        OnButtonClicked?.Invoke(keyNumber - 1, slot);
     }
 
     public void Assign(InventorySlot slot) {
         this.slot = slot;
-        UpdateDisplay();
+        image.GetComponent<Image>().sprite = slot.item.uiDisplay;
+        UpdateAmount();
 
         image.SetActive(true);
         amountText.gameObject.SetActive(true);

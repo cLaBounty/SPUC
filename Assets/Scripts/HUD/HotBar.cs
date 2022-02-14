@@ -14,10 +14,16 @@ public class HotBar : MonoBehaviour
         }
     }
 
+    private void Start() {
+        SlotSelector.SelectedIndex = -1; // TODO: change to resouce beam
+        SlotSelector.SelectedSlot = null; // TODO: change to resouce beam
+    }
+
     private void Update() {
         // TESTING AUTO HOTBAR FILL
         for (int i = 0; i < SLOTS; i++) {
             HotBarButton button = transform.GetChild(i).GetComponent<HotBarButton>();
+
             if (!button.IsAssigned() && inventory.container.items.Count > i) {
                 InventorySlot slot = inventory.container.items[i];
                 button.Assign(slot);
@@ -25,13 +31,25 @@ public class HotBar : MonoBehaviour
         }
     }
 
-    private void ButtonOnButtonClicked(int buttonNumber) {
-        ItemSelector.SelectedItemIndex = buttonNumber - 1;
-        Debug.Log($"Button {buttonNumber} clicked!");
+    private void ButtonOnButtonClicked(int index, InventorySlot slot) {
+        SlotSelector.SelectedIndex = index;
+        SlotSelector.SelectedSlot = slot;
+        Debug.Log($"{slot.item.name} is active!");
+    }
+
+    public void ResetSelectedButton() {
+        transform.GetChild(SlotSelector.SelectedIndex).GetComponent<HotBarButton>().Reset();
+        SelectNewSlot();
+    }
+
+    private void SelectNewSlot() {
+        SlotSelector.SelectedIndex = -1;
+        SlotSelector.SelectedSlot = null;
     }
 }
 
-public static class ItemSelector
+public static class SlotSelector
 {
-    public static int SelectedItemIndex { get; set; }
+    public static int SelectedIndex { get; set; }
+    public static InventorySlot SelectedSlot { get; set; }
 }
