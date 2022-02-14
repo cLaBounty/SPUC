@@ -26,6 +26,8 @@ public class ResourceBeam : MonoBehaviour
 			Debug.Log(hit.transform.name);
 
 			ResourceNode rNode = hit.transform.GetComponent<ResourceNode>();
+			if (rNode == null) return;
+
 			int amount = rNode.harvest(damage);
 			if (amount > 0)
 			{

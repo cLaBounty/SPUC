@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         currentHealth -= amount;
         healthBar?.SetHealth(currentHealth);
