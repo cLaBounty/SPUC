@@ -9,13 +9,14 @@ public class CrawlerEnemy : Enemy
     [SerializeField]float attackDistance = 1f;
 
     Rigidbody rb;
-    GameObject target;
     GridController flowField = null;
     PlayerMovement player = null;
     Player playerStats = null;
 
     float agroRangeSqr = 0;
     float attackRangeSqr = 0;
+    float coolDown = 0;
+    float coolDownMax = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,35 +33,47 @@ public class CrawlerEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        float range = (player.transform.position - transform.position).sqrMagnitude;
-
         if (player != null){
+            float range = (player.transform.position - transform.position).sqrMagnitude;
+            
+            //Debug.Log("agroRangeSqr " + agroRangeSqr);
+            //Debug.Log("attackRangeSqr " + attackRangeSqr);
+            //Debug.Log("range " + range);
+
             if (range < attackRangeSqr) Attack();
-            else if (range < agroRangeSqr) MoveTowardsTarget();
+            else if (range < agroRangeSqr) MoveTowardsPlayer(new Vector2(player.transform.position.x, player.transform.position.z));
             else MoveTowardsTarget();
         }
         else MoveTowardsTarget();
+
+        if (coolDown >= 0)
+            coolDown -= Time.deltaTime;
     }
 
     void Attack(){
-        //attack player here
+        if (coolDown < 0){
+            playerStats.TakeDamage(4);
+            coolDown = coolDownMax;
+        }
     }
 
     void MoveTowardsTarget(){
         if (flowField.initialized){
+            //Debug.Log("Target");
             Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
-            //Debug.Log("Cell: " + occupideCell.gridIndex);
+            //float ySpeed = rb.velocity.y;
             Vector3 moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
-            //Debug.Log("Dir: " + moveDirection);
             rb.velocity = moveDirection * moveSpeed;
+            //rb.velocity = new Vector3(rb.velocity.x, ySpeed, rb.velocity.y);
         }
         else{
             Debug.Log("Flow Field not Initialized");
         }
     }
 
-    void MoveTowardsPlayer(){
-        Vector2 direction = new Vector2(target.transform.position.x - transform.position.x, target.transform.position.z - transform.position.z);
-        rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.y) * moveSpeed;
+    void MoveTowardsPlayer(Vector2 playerTarget){
+        //Debug.Log("Player");
+        Vector2 direction = new Vector2(playerTarget.x - transform.position.x, playerTarget.y - transform.position.z);
+        rb.velocity = new Vector3(direction.x, 0, direction.y) * moveSpeed;
     }
 }

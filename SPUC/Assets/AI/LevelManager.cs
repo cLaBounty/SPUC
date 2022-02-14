@@ -14,14 +14,14 @@ public class LevelManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        StartCoroutine(spawnEnemyTimer(timer));
         grid = GameObject.FindObjectOfType<GridController>();
         centerPos = (Vector2) grid.gridSize * grid.cellRadius;
+        StartCoroutine(spawnEnemyTimer(timer));
     }
 
     IEnumerator spawnEnemyTimer(float time){
-        yield return new WaitForSeconds(time);
         SpawnEnemies();
+        yield return new WaitForSeconds(time);
         StartCoroutine(spawnEnemyTimer(timer));
     }
 
@@ -33,8 +33,10 @@ public class LevelManager : MonoBehaviour
             inst.transform.parent = null;
 
             float randomDirection = Random.Range(0, 2 * Mathf.PI);
-            inst.transform.position = new Vector3(Mathf.Cos(randomDirection) + centerPos.x, 0, Mathf.Sin(randomDirection) + centerPos.y);
-            inst.transform.position = new Vector3(inst.transform.position.x, 5f, inst.transform.position.y);
+            inst.transform.position =   new Vector3(Mathf.Cos(randomDirection) * centerPos.x, 0, Mathf.Sin(randomDirection) * centerPos.y) +
+                                        new Vector3(centerPos.x, 5, centerPos.y);
+
+            //inst.transform.position = new Vector3(inst.transform.position.x, 5f, inst.transform.position.y);
         }
     }
 }
