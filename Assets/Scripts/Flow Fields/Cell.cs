@@ -9,13 +9,14 @@ public class Cell
     public Vector2Int bestDirection;
     public ushort bestCost;
     public byte cost; 
-
+    public byte baseCost;
 
 
     public Cell(Vector3 _worldPos, Vector2Int _gridIndex){
         worldPos = _worldPos;
         gridIndex = _gridIndex;
         cost = 1;
+        baseCost = 0;
         bestCost = ushort.MaxValue;
         bestDirection = Vector2Int.right;
     }
