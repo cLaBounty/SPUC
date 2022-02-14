@@ -24,6 +24,7 @@ public class FlowField
         for (int x = 0; x < gridSize.x; ++x){
             for(int y = 0; y < gridSize.y; ++y){
                 Vector3 worldPos = new Vector3(cellDiameter * x + cellRadius, 0, cellDiameter * y + cellRadius);
+                //worldPos += new Vector3(cellDiameter, 0, cellDiameter);
                 grid[x, y] = new Cell(worldPos, new Vector2Int(x, y));
             }
         }
