@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2316,7 +2316,6 @@ GameObject:
   - component: {fileID: 635304510}
   - component: {fileID: 635304509}
   - component: {fileID: 635304508}
-  - component: {fileID: 635304513}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Untagged
@@ -2415,21 +2414,6 @@ Transform:
   m_Father: {fileID: 361892933}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &635304513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635304507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c26162a0158304a4abc88468201eaa77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
-  health: 50
-  resources: 1
 --- !u!1 &649341891
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,9 +3197,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2108146854}
     m_Modifications:
+    - target: {fileID: 100000, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
       propertyPath: m_Name
       value: Pistol (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: cc34ae6a7e465584aa9e4dcc48852048, type: 3}
       propertyPath: m_IsActive
@@ -4277,6 +4297,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6593226642876305475, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593226642963843385, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593226642963843525, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: mouseSensitivity
+      value: 420
+      objectReference: {fileID: 0}
     - target: {fileID: 6593226642972475001, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4324,6 +4356,50 @@ PrefabInstance:
     - target: {fileID: 6593226642972475007, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
       propertyPath: m_Name
       value: FirstPersonPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593226642972475007, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593226643698451810, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304518, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304528, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304530, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304532, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304534, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304536, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304538, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304540, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907904347836304542, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cfc3ba41215e549b0f5c8aa5a54658, type: 3}
