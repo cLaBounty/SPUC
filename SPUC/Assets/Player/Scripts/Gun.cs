@@ -6,7 +6,13 @@ public class Gun : MonoBehaviour
 	[SerializeField] float damage = 10f;
 	[SerializeField] float range = 100f;
 
+	private int layers;
+
 	public Camera fpsCam;
+
+	private void Start() {
+		layers = LayerMask.GetMask("Player");
+	}
 
     // Update is called once per frame
     void Update()
@@ -20,7 +26,7 @@ public class Gun : MonoBehaviour
 	void shoot()
 	{
 		RaycastHit hit;
-		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range, ~layers))
 		{
 			Debug.Log(hit.transform.name);
 
