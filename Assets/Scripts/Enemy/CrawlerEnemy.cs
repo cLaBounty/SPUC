@@ -7,11 +7,13 @@ public class CrawlerEnemy : Enemy
 {
     [SerializeField]float agroDistance = 10f;
     [SerializeField]float attackDistance = 1f;
+    [SerializeField]float damping = 0.98f;
 
     Rigidbody rb;
     GridController flowField = null;
     PlayerMovement player = null;
     Player playerStats = null;
+    Vector3 acculmulatedSpeed = Vector3.zero;
 
     float agroRangeSqr = 0;
     float attackRangeSqr = 0;
@@ -31,8 +33,7 @@ public class CrawlerEnemy : Enemy
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    private void FixedUpdate() {
         if (player != null){
             float range = (player.transform.position - transform.position).sqrMagnitude;
             
@@ -48,6 +49,8 @@ public class CrawlerEnemy : Enemy
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
+
+        Debug.Log("Enemy Speed" + acculmulatedSpeed);
     }
 
     void Attack(){
@@ -61,10 +64,20 @@ public class CrawlerEnemy : Enemy
         if (flowField.initialized){
             //Debug.Log("Target");
             Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
-            //float ySpeed = rb.velocity.y;
-            Vector3 moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
-            rb.velocity = moveDirection * moveSpeed;
-            //rb.velocity = new Vector3(rb.velocity.x, ySpeed, rb.velocity.y);
+            Vector3 moveDirection;
+
+            if (occupideCell.cost == 255){
+                moveDirection = occupideCell.worldPos - transform.position;
+                moveDirection = new Vector3(moveDirection.x, 0, moveDirection.y);
+            }
+            else{
+                moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
+            }
+
+            acculmulatedSpeed *= damping;
+            acculmulatedSpeed += moveDirection * moveSpeed * Time.fixedDeltaTime;
+            acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
+            rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
         }
         else{
             Debug.Log("Flow Field not Initialized");
@@ -74,6 +87,7 @@ public class CrawlerEnemy : Enemy
     void MoveTowardsPlayer(Vector2 playerTarget){
         //Debug.Log("Player");
         Vector2 direction = new Vector2(playerTarget.x - transform.position.x, playerTarget.y - transform.position.z);
-        rb.velocity = new Vector3(direction.x, 0, direction.y) * moveSpeed;
+        acculmulatedSpeed = new Vector3(direction.x, 0, direction.y).normalized * maxMoveSpeed;
+        rb.velocity = new Vector3(direction.x, 0, direction.y).normalized * maxMoveSpeed * Time.fixedDeltaTime * 50;
     }
 }
