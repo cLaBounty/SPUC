@@ -5,9 +5,8 @@ using UnityEngine;
 // Source: https://www.youtube.com/watch?v=_QajrabyTJc
 public class MouseLook : MonoBehaviour
 {
-
-	public Transform playerBody;
-    public Camera cam;
+	[SerializeField] Transform playerBody;
+    [SerializeField] Camera cam;
 	[SerializeField] float mouseSensitivity = 300f;
 	private float xRotation = 0f;
 
