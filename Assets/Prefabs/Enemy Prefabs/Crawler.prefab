@@ -50,11 +50,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   moveSpeed: 3
+  maxMoveSpeed: 12
   attackSpeed: 1
   attackPower: 1
   defense: 0
   agroDistance: 15
   attackDistance: 5
+  damping: 0.98
 --- !u!54 &7279199722365421926
 Rigidbody:
   m_ObjectHideFlags: 0
