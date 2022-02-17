@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container:
     items: []
+  startItems:
+  - {fileID: 11400000, guid: 1bc7e27ed7c84b64c922fb08c501942c, type: 2}

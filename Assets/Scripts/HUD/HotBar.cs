@@ -15,18 +15,19 @@ public class HotBar : MonoBehaviour
     }
 
     private void Start() {
-        SlotSelector.SelectedIndex = -1; // TODO: change to resouce beam
-        SlotSelector.SelectedSlot = null; // TODO: change to resouce beam
+        inventory.Init();
+
+        // Select Resource Beam
+        ButtonOnButtonClicked(0, transform.GetChild(0).GetComponent<HotBarButton>().GetSlot());
     }
 
-    private void Update() {
-        // TESTING AUTO HOTBAR FILL
+    public void AutoAssign(InventorySlot slot) {
         for (int i = 0; i < SLOTS; i++) {
             HotBarButton button = transform.GetChild(i).GetComponent<HotBarButton>();
 
-            if (!button.IsAssigned() && inventory.container.items.Count > i) {
-                InventorySlot slot = inventory.container.items[i];
+            if (button.GetSlot() == null) {
                 button.Assign(slot);
+                return;
             }
         }
     }
@@ -37,14 +38,32 @@ public class HotBar : MonoBehaviour
         Debug.Log($"{slot.item.name} is active!");
     }
 
-    public void ResetSelectedButton() {
-        transform.GetChild(SlotSelector.SelectedIndex).GetComponent<HotBarButton>().Reset();
-        SelectNewSlot();
+    public void ResetButton(int index) {
+        transform.GetChild(index).GetComponent<HotBarButton>().Reset();
+        SelectNewSlot(index);
     }
 
-    private void SelectNewSlot() {
-        SlotSelector.SelectedIndex = -1;
-        SlotSelector.SelectedSlot = null;
+    // Find closest filled slot
+    private void SelectNewSlot(int prevIndex) {
+        for (int i = 1; i < SLOTS; i++) {
+            int low = prevIndex - i;
+            int high = prevIndex + i;
+            if (low >= 0) {
+                InventorySlot slot = transform.GetChild(low).GetComponent<HotBarButton>().GetSlot();
+                if (slot != null) {
+                    ButtonOnButtonClicked(low, slot);
+                    return;
+                }
+            }
+
+            if (high < SLOTS) {
+                InventorySlot slot = transform.GetChild(high).GetComponent<HotBarButton>().GetSlot();
+                if (slot != null) {
+                    ButtonOnButtonClicked(high, slot);
+                    return;
+                }
+            }
+        }
     }
 }
 
