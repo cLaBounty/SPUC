@@ -11,10 +11,14 @@ public class HotBarButton : MonoBehaviour
 
     public event Action<int, InventorySlot> OnButtonClicked;
 
-    InventorySlot slot = null;
+    private InventorySlot slot;
 
     private KeyCode keyCode;
     private int keyNumber;
+
+    public InventorySlot GetSlot() {
+        return slot;
+    }
 
     private void OnValidate() {
         keyNumber = transform.GetSiblingIndex() + 1;
@@ -51,7 +55,7 @@ public class HotBarButton : MonoBehaviour
         this.slot = slot;
         image.GetComponent<Image>().sprite = slot.item.uiDisplay;
         UpdateAmount();
-
+        
         image.SetActive(true);
         amountText.gameObject.SetActive(true);
         slotText.gameObject.SetActive(false);

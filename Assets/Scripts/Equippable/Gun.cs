@@ -3,6 +3,8 @@ using UnityEngine;
 // Source: https://www.youtube.com/watch?v=THnivyG0Mvo
 public class Gun : MonoBehaviour
 {
+	//public ItemObject item;
+
 	[SerializeField] float damage = 10f;
 	[SerializeField] float range = 100f;
 
