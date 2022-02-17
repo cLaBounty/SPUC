@@ -50,7 +50,7 @@ public class CrawlerEnemy : Enemy
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
 
-        Debug.Log("Enemy Speed" + acculmulatedSpeed);
+        //Debug.Log("Enemy Speed" + acculmulatedSpeed);
     }
 
     void Attack(){
@@ -80,7 +80,7 @@ public class CrawlerEnemy : Enemy
             rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
         }
         else{
-            Debug.Log("Flow Field not Initialized");
+            //Debug.Log("Flow Field not Initialized");
         }
     }
 
