@@ -33,11 +33,11 @@ public class MouseLook : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX);
-        }
 
 			transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 			playerBody.Rotate(Vector3.up * mouseX);
 		}
+        
 		//FOV increase for sprinting
         if (Input.GetKey(KeyCode.LeftShift)) 
         {
