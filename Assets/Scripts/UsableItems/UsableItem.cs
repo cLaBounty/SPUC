@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundItem : MonoBehaviour
+public abstract class UsableItem : MonoBehaviour
 {
     public ItemObject item;
+    public abstract void Use();
 }

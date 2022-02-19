@@ -8,6 +8,9 @@ public class HotBar : MonoBehaviour
     private int SLOTS = 7;
     public InventoryObject inventory;
 
+    private int currentIndex;
+    private InventorySlot currentSlot;
+
     private void Awake() {
         foreach(var button in GetComponentsInChildren<HotBarButton>()) {
             button.OnButtonClicked += ButtonOnButtonClicked;
@@ -33,14 +36,28 @@ public class HotBar : MonoBehaviour
     }
 
     private void ButtonOnButtonClicked(int index, InventorySlot slot) {
-        SlotSelector.SelectedIndex = index;
-        SlotSelector.SelectedSlot = slot;
+        currentIndex = index;
+        currentSlot = slot;
+        ItemSelector.SetItem(slot.item);
         Debug.Log($"{slot.item.name} is active!");
+
+        // ToDo: swtich between items on screen with animations
+        // transform.GetChild(0).gameObject.SetActive(true);
+		// transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void ResetButton(int index) {
         transform.GetChild(index).GetComponent<HotBarButton>().Reset();
         SelectNewSlot(index);
+    }
+
+    public void HandleItemUse() {
+        if (currentSlot.amount <= 1) {
+            inventory.Remove(currentSlot);
+            ResetButton(currentIndex);
+        } else {
+            currentSlot.amount = currentSlot.amount - 1;
+        }
     }
 
     // Find closest filled slot
@@ -67,8 +84,24 @@ public class HotBar : MonoBehaviour
     }
 }
 
-public static class SlotSelector
+public static class ItemSelector
 {
-    public static int SelectedIndex { get; set; }
-    public static InventorySlot SelectedSlot { get; set; }
+    private static UsableItem Item;
+
+    public static void SetItem(ItemObject item) {
+        UsableItem[] usableItems = GameObject.FindObjectsOfType<UsableItem>();
+
+        foreach(var usable in usableItems) {
+            if (usable.item == item) {
+                Item = usable;
+                return;
+            }
+        }
+
+        Item = null; // Not Usable
+    }
+
+    public static UsableItem GetItem() {
+        return Item;
+    }
 }
