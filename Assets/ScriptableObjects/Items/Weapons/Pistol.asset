@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   name: Pistol
-  uiDisplay: {fileID: 21300000, guid: 37569b1dc2eddf647a1e90355581ab97, type: 3}
+  uiDisplay: {fileID: 21300000, guid: b7a18182cb008c6449a0a941974d07d5, type: 3}
   description: 
   isDroppable: 1
-  enemyDamagePerHit: 10
-  materialDamagePerHit: 0
-  range: 100

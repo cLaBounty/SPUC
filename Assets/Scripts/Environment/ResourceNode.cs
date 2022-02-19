@@ -24,7 +24,6 @@ public class ResourceNode : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		Debug.Log(amount);
 		resources -= amount;
 		return amount;
 	}
