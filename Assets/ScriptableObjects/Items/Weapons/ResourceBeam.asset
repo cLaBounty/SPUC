@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   name: Resource Beam
-  uiDisplay: {fileID: 21300000, guid: b7a18182cb008c6449a0a941974d07d5, type: 3}
+  uiDisplay: {fileID: 21300000, guid: a744f0ee05e0eb043ba423adee95e5df, type: 3}
   description: 
   isDroppable: 0
-  enemyDamagePerHit: 0
-  materialDamagePerHit: 10
-  range: 100
