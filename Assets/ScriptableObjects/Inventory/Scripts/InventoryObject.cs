@@ -36,7 +36,13 @@ public class InventoryObject : ScriptableObject
 
     public void Remove(InventorySlot slot) {
         container.items.Remove(slot);
-        GameObject.FindObjectOfType<DisplayInventory>().Remove(slot);
+
+        // ToDo: Fix. Cannot find DisplayInventory object when it is closed
+        if (InventoryScreenStatus.isOpen) {
+            GameObject.FindObjectOfType<DisplayInventory>().Remove(slot);
+        } else {
+            Debug.Log("Would've crashed");
+        }
     }
 }
 
