@@ -36,6 +36,7 @@ public class HotBar : MonoBehaviour
     }
 
     private void ButtonOnButtonClicked(int index, InventorySlot slot) {
+        if (InventoryScreenStatus.isOpen) return; // Can't switch items when inventory screen is open
         currentIndex = index;
         currentSlot = slot;
         ItemSelector.SetItem(slot.item);
