@@ -15,9 +15,6 @@ public class MouseLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         cam.fieldOfView = 60.0f;
-
-		cam.GetComponent<Gun>().enabled = true;
-		cam.GetComponent<ResourceBeam>().enabled = false;
     }
 
     // Update is called once per frame
@@ -47,21 +44,5 @@ public class MouseLook : MonoBehaviour
 				cam.fieldOfView -= 1.0f;
 			}
         }
-
-		// SWITCHING GUN MODES
-		// if (Input.GetKeyDown(KeyCode.Alpha1)) 
-		// {
-		// 	cam.GetComponent<Gun>().enabled = true;
-		// 	cam.GetComponent<ResourceBeam>().enabled = false;
-		// 	transform.GetChild(0).gameObject.SetActive(true);
-		// 	transform.GetChild(1).gameObject.SetActive(false);
-		// }
-		// else if (Input.GetKeyDown(KeyCode.Alpha2))
-		// {
-		// 	cam.GetComponent<Gun>().enabled = false;
-		// 	cam.GetComponent<ResourceBeam>().enabled = true;
-		// 	transform.GetChild(0).gameObject.SetActive(false);
-		// 	transform.GetChild(1).gameObject.SetActive(true);
-		// }
     }
 }
