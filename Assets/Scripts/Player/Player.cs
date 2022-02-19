@@ -14,9 +14,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        healthBar = GameObject.FindObjectOfType<HealthBar>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
-
         currentHealth = maxHealth;
         healthBar?.SetMaxHealth(maxHealth);
     }
@@ -66,6 +63,7 @@ public class Player : MonoBehaviour
 
     // HotBar
     public void UseItem() {
+        if (InventoryScreenStatus.isOpen) return; // Can't use item when inventory screen is open
         UsableItem usable = ItemSelector.GetItem();
         if (usable == null) return; // Can't be used
         usable.Use();
