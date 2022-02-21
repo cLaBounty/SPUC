@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))] 
 public class CrawlerEnemy : Enemy
@@ -9,6 +10,7 @@ public class CrawlerEnemy : Enemy
     [SerializeField]float attackDistance = 1f;
     [SerializeField]float damping = 0.98f;
 
+    NavMeshAgent navMeshAgent;
     Rigidbody rb;
     GridController flowField = null;
     PlayerMovement player = null;
@@ -30,6 +32,10 @@ public class CrawlerEnemy : Enemy
         playerStats     = GameObject.FindObjectOfType<Player>();
         agroRangeSqr    = agroDistance * agroDistance;
         attackRangeSqr  = attackDistance * attackDistance;
+        
+        //set navmeshagent
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -67,8 +73,8 @@ public class CrawlerEnemy : Enemy
             Vector3 moveDirection;
 
             if (occupideCell.cost == 255){
-                moveDirection = occupideCell.worldPos - transform.position;
-                moveDirection = new Vector3(moveDirection.x, 0, moveDirection.y);
+                navMeshAgent.destination = target.transform.position;
+                return;
             }
             else{
                 moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
@@ -86,8 +92,9 @@ public class CrawlerEnemy : Enemy
 
     void MoveTowardsPlayer(Vector2 playerTarget){
         //Debug.Log("Player");
-        Vector2 direction = new Vector2(playerTarget.x - transform.position.x, playerTarget.y - transform.position.z);
-        acculmulatedSpeed = new Vector3(direction.x, 0, direction.y).normalized * maxMoveSpeed;
-        rb.velocity = new Vector3(direction.x, 0, direction.y).normalized * maxMoveSpeed * Time.fixedDeltaTime * 50;
+        //Vector2 direction = new Vector2(playerTarget.x - transform.position.x, playerTarget.y - transform.position.z);
+        //acculmulatedSpeed = new Vector3(direction.x, 0, direction.y).normalized * maxMoveSpeed;
+        //rb.velocity = new Vector3(direction.x, 0, direction.y).normalized * maxMoveSpeed * Time.fixedDeltaTime * 50;
+        navMeshAgent.destination = player.transform.position;
     }
 }
