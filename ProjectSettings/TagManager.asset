@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - target
+  - Resource Beam
+  - Pistol
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Rough Terrain
   - 
   - Player
-  - 
+  - FPSCam
   - 
   - 
   - 

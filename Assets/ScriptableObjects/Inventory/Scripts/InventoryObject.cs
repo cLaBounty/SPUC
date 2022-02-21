@@ -7,11 +7,18 @@ using UnityEngine;
 public class InventoryObject : ScriptableObject
 {
     public Inventory container;
+    public List<ItemObject> startItems = new List<ItemObject>();
 
-    public void AddItem(Item item, int amount) {
+    public void Init() {
+        for (int i = 0; i < startItems.Count; i++) {
+            AddItem(startItems[i], 1);
+        }
+    }
+
+    public void AddItem(ItemObject item, int amount) {
         bool hasItem = false;
         for (int i = 0; i < container.items.Count; i++) {
-            if (container.items[i].item.id == item.id) {
+            if (container.items[i].item.name == item.name) {
                 container.items[i].AddAmount(amount);
                 hasItem = true;
                 break;
@@ -19,7 +26,22 @@ public class InventoryObject : ScriptableObject
         }
 
         if (!hasItem) {
-            container.items.Add(new InventorySlot(item.id, item, amount));
+            InventorySlot slot = new InventorySlot(item, amount);
+            container.items.Add(slot);
+
+            HotBar hotBar = GameObject.FindObjectOfType<HotBar>();
+            hotBar.AutoAssign(slot);
+        }
+    }
+
+    public void Remove(InventorySlot slot) {
+        container.items.Remove(slot);
+
+        // ToDo: Fix. Cannot find DisplayInventory object when it is closed
+        if (InventoryScreenStatus.isOpen) {
+            GameObject.FindObjectOfType<DisplayInventory>().Remove(slot);
+        } else {
+            Debug.Log("Would've crashed");
         }
     }
 }
@@ -33,12 +55,10 @@ public class Inventory
 [System.Serializable]
 public class InventorySlot
 {
-    public int id;
-    public Item item;
+    public ItemObject item;
     public int amount;
 
-    public InventorySlot(int id, Item item, int amount) {
-        this.id = id;
+    public InventorySlot(ItemObject item, int amount) {
         this.item = item;
         this.amount = amount;
     }

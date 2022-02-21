@@ -8,6 +8,9 @@ public class HotBar : MonoBehaviour
     private int SLOTS = 7;
     public InventoryObject inventory;
 
+    private int currentIndex;
+    private InventorySlot currentSlot;
+
     private void Awake() {
         foreach(var button in GetComponentsInChildren<HotBarButton>()) {
             button.OnButtonClicked += ButtonOnButtonClicked;
@@ -15,41 +18,91 @@ public class HotBar : MonoBehaviour
     }
 
     private void Start() {
-        SlotSelector.SelectedIndex = -1; // TODO: change to resouce beam
-        SlotSelector.SelectedSlot = null; // TODO: change to resouce beam
+        inventory.Init();
+
+        // Select Resource Beam
+        ButtonOnButtonClicked(0, transform.GetChild(0).GetComponent<HotBarButton>().GetSlot());
     }
 
-    private void Update() {
-        // TESTING AUTO HOTBAR FILL
+    public void AutoAssign(InventorySlot slot) {
         for (int i = 0; i < SLOTS; i++) {
             HotBarButton button = transform.GetChild(i).GetComponent<HotBarButton>();
 
-            if (!button.IsAssigned() && inventory.container.items.Count > i) {
-                InventorySlot slot = inventory.container.items[i];
+            if (button.GetSlot() == null) {
                 button.Assign(slot);
+                return;
             }
         }
     }
 
     private void ButtonOnButtonClicked(int index, InventorySlot slot) {
-        SlotSelector.SelectedIndex = index;
-        SlotSelector.SelectedSlot = slot;
+        if (InventoryScreenStatus.isOpen) return; // Can't switch items when inventory screen is open
+        currentIndex = index;
+        currentSlot = slot;
+        ItemSelector.SetItem(slot.item);
         Debug.Log($"{slot.item.name} is active!");
+
+        // ToDo: swtich between items on screen with animations
+        // transform.GetChild(0).gameObject.SetActive(true);
+		// transform.GetChild(1).gameObject.SetActive(false);
     }
 
-    public void ResetSelectedButton() {
-        transform.GetChild(SlotSelector.SelectedIndex).GetComponent<HotBarButton>().Reset();
-        SelectNewSlot();
+    public void ResetButton(int index) {
+        transform.GetChild(index).GetComponent<HotBarButton>().Reset();
+        SelectNewSlot(index);
     }
 
-    private void SelectNewSlot() {
-        SlotSelector.SelectedIndex = -1;
-        SlotSelector.SelectedSlot = null;
+    public void HandleItemUse() {
+        if (currentSlot.amount <= 1) {
+            inventory.Remove(currentSlot);
+            ResetButton(currentIndex);
+        } else {
+            currentSlot.amount = currentSlot.amount - 1;
+        }
+    }
+
+    // Find closest filled slot
+    private void SelectNewSlot(int prevIndex) {
+        for (int i = 1; i < SLOTS; i++) {
+            int low = prevIndex - i;
+            int high = prevIndex + i;
+            if (low >= 0) {
+                InventorySlot slot = transform.GetChild(low).GetComponent<HotBarButton>().GetSlot();
+                if (slot != null) {
+                    ButtonOnButtonClicked(low, slot);
+                    return;
+                }
+            }
+
+            if (high < SLOTS) {
+                InventorySlot slot = transform.GetChild(high).GetComponent<HotBarButton>().GetSlot();
+                if (slot != null) {
+                    ButtonOnButtonClicked(high, slot);
+                    return;
+                }
+            }
+        }
     }
 }
 
-public static class SlotSelector
+public static class ItemSelector
 {
-    public static int SelectedIndex { get; set; }
-    public static InventorySlot SelectedSlot { get; set; }
+    private static UsableItem Item;
+
+    public static void SetItem(ItemObject item) {
+        UsableItem[] usableItems = GameObject.FindObjectsOfType<UsableItem>();
+
+        foreach(var usable in usableItems) {
+            if (usable.item == item) {
+                Item = usable;
+                return;
+            }
+        }
+
+        Item = null; // Not Usable
+    }
+
+    public static UsableItem GetItem() {
+        return Item;
+    }
 }

@@ -4,40 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    public float maxHealth = 100f;
+    public float currentHealth;
 
     public HealthBar healthBar;
     public HotBar hotBar;
     
     public InventoryObject inventory;
 
-    void Start()
+    private void Start()
     {
-        healthBar = GameObject.FindObjectOfType<HealthBar>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
-
         currentHealth = maxHealth;
         healthBar?.SetMaxHealth(maxHealth);
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("Fire1")) {
             UseItem();
         }
-
-        // TESTING HEALTH BAR
-        int amountPerClick = 10;
-        if (Input.GetKeyDown(KeyCode.L)) {
-            TakeDamage(amountPerClick);
-        }
-        else if (Input.GetKeyDown(KeyCode.M)) {
-            GainHealth(amountPerClick);
-        }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         currentHealth -= amount;
 
@@ -48,7 +36,7 @@ public class Player : MonoBehaviour
         healthBar?.SetHealth(currentHealth);
     }
 
-    void GainHealth(int amount)
+    public void GainHealth(float amount)
     {
         currentHealth += amount;
 
@@ -63,7 +51,7 @@ public class Player : MonoBehaviour
     public void OnTriggerEnter(Collider other) {
         var groundItem = other.GetComponent<GroundItem>();
         if (groundItem != null) {
-            inventory.AddItem(new Item(groundItem.item), 1);
+            inventory.AddItem(groundItem.item, 1);
             Destroy(other.gameObject);
             Debug.Log($"{groundItem.item.name} collected!");
         }
@@ -75,54 +63,11 @@ public class Player : MonoBehaviour
 
     // HotBar
     public void UseItem() {
-        if (SlotSelector.SelectedSlot == null) return; // TODO: remove. should be resource beam by default
-
-        InventorySlot slot = SlotSelector.SelectedSlot;
-        ItemObject item = slot.item.itemObject;
-
-        switch(item.type) {
-            case ItemType.Barricade:
-                PlaceBarricade(item as BarricadeObject);
-                break;
-            case ItemType.Consumable:
-                UseConsumable(item as ConsumableObject);
-                break;
-            case ItemType.Deployable:
-                PlaceDeployable(item as DeployableObject);
-                break;
-            case ItemType.Weapon:
-                UseWeapon(item as WeaponObject);
-                break;
-            case ItemType.Material:
-                Debug.Log("Can't use a material");
-                return;
-        }
-
-        if (slot.amount <= 1) {
-            // Remove from inventory
-            //inventory.container.items.Remove(slot);
-            
-            // Reset hot bar button
-            hotBar.ResetSelectedButton();
-        } else {
-            slot.amount = slot.amount - 1;
-        }
-    }
-
-    public void PlaceBarricade(BarricadeObject item) {
-        Debug.Log($"{item.name} placed!");
-    }
-
-    public void UseConsumable(ConsumableObject item) {
-        Debug.Log($"{item.name} consumed!");
-        GainHealth(item.healthIncreaseValue);
-    }
-
-    public void PlaceDeployable(DeployableObject item) {
-        Debug.Log($"{item.name} deployed!");
-    }
-
-    public void UseWeapon(WeaponObject item) {
-        Debug.Log($"{item.name} used!");
+        if (InventoryScreenStatus.isOpen) return; // Can't use item when inventory screen is open
+        UsableItem usable = ItemSelector.GetItem();
+        if (usable == null) return; // Can't be used
+        usable.Use();
+        if (usable.item.type == ItemType.Weapon) return; // ToDo: reduce ammo instead
+        hotBar.HandleItemUse();
     }
 }

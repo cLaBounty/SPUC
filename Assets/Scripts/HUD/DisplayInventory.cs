@@ -14,8 +14,8 @@ public class DisplayInventory : MonoBehaviour
 
     public GameObject inventoryPrefab;
     public InventoryObject inventory;
-    Dictionary<InventorySlot, GameObject> inventoryItems = new Dictionary<InventorySlot, GameObject>();
-    
+    public Dictionary<InventorySlot, GameObject> inventoryItems = new Dictionary<InventorySlot, GameObject>();
+
     void Update()
     {
         UpdateDisplay();
@@ -36,6 +36,19 @@ public class DisplayInventory : MonoBehaviour
                 inventoryItems.Add(slot, obj);
             }
         }
+    }
+
+    public void UpdatePositions() {
+        for (int i = 0; i < inventory.container.items.Count; i++) {
+            InventorySlot slot = inventory.container.items[i];
+            inventoryItems[slot].GetComponent<RectTransform>().localPosition = GetPosition(i);
+        }
+    }
+
+    public void Remove(InventorySlot slot) {
+        Destroy(inventoryItems[slot]);
+        inventoryItems.Remove(slot);
+        UpdatePositions();
     }
 
     private Vector3 GetPosition(int i) {
