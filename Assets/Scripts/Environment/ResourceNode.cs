@@ -6,8 +6,6 @@ public class ResourceNode : MonoBehaviour
     public ItemObject item;
 	[SerializeField] float health = 50f;
 	[SerializeField] int resources = 10;
-	
-	
 
 	public int harvest(float damage)
 	{
@@ -26,7 +24,6 @@ public class ResourceNode : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		Debug.Log(amount);
 		resources -= amount;
 		return amount;
 	}

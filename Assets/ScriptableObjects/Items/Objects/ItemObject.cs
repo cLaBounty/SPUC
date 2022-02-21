@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum ItemType
 {
@@ -11,30 +12,11 @@ public enum ItemType
     Barricade
 }
 
-public abstract class ItemObject : ScriptableObject
+public class ItemObject : ScriptableObject
 {
-    public int id;
-    public Sprite uiDisplay;
     public ItemType type;
     public string name;
-    [TextArea(15,20)] public string description;
-}
-
-[System.Serializable]
-public class Item
-{
-    // TODO: remove this layer of abstraction
-    public ItemObject itemObject;
-
-    public int id;
-    public string name;
     public Sprite uiDisplay;
-
-    public Item(ItemObject item) {
-        itemObject = item;
-
-        id = item.id;
-        name = item.name;
-        uiDisplay = item.uiDisplay;
-    }
+    [TextArea(15,20)] public string description;
+    public bool isDroppable = true;
 }
