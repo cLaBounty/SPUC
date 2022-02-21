@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Rigidbody))] 
+//[RequireComponent(typeof(Rigidbody))] 
 public class CrawlerEnemy : Enemy
 {
     [SerializeField]float agroDistance = 10f;
@@ -34,12 +34,12 @@ public class CrawlerEnemy : Enemy
         attackRangeSqr  = attackDistance * attackDistance;
         
         //set navmeshagent
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         navMeshAgent.speed = moveSpeed;
     }
 
     // Update is called once per frame
-    private void FixedUpdate() {
+    private void Update() {
         if (player != null){
             float range = (player.transform.position - transform.position).sqrMagnitude;
             
