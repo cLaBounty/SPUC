@@ -21,6 +21,15 @@ public class DisplayInventory : MonoBehaviour
         UpdateDisplay();
     }
 
+    // Fixes issue of display not updating when hiden
+    private void OnEnable() {
+        inventoryItems.Clear();
+        for (int i = transform.childCount - 1; i >= 0; i--) {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        UpdateDisplay();
+    }
+
     private void UpdateDisplay() {
         for (int i = 0; i < inventory.container.items.Count; i++) {
             InventorySlot slot = inventory.container.items[i];
