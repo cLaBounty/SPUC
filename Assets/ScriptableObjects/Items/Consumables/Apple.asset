@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9c019c2ad643849853adb60908ee47, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  id: 0
-  uiDisplay: {fileID: 21300000, guid: a6ff6495f8c8af147ac6591a4d6460d0, type: 3}
   type: 1
   name: Apple
+  uiDisplay: {fileID: 21300000, guid: a6ff6495f8c8af147ac6591a4d6460d0, type: 3}
   description: 
-  healthIncreaseValue: 5
+  isDroppable: 1
+  prefab: {fileID: 4413477487601138616, guid: c4030b8813bc0284f9c78415e775413b, type: 3}
