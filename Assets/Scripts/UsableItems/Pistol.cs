@@ -11,10 +11,13 @@ public class Pistol : UsableItem
 	private int layers;
 
 	private void Start() {
+		fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 	}
     
     public override void Use() {
+		Start(); // ToDo: move to an on create function
+
         Shoot();
     }
 
