@@ -90,16 +90,19 @@ public static class ItemSelector
     private static UsableItem Item;
 
     public static void SetItem(ItemObject item) {
-        UsableItem[] usableItems = GameObject.FindObjectsOfType<UsableItem>();
+        Item = item.prefab.gameObject.GetComponent<UsableItem>();
+        GameObject.FindObjectOfType<ItemSwitching>().SwitchToItem(item);
+        // UsableItem[] usableItems = GameObject.FindObjectsOfType<UsableItem>();
 
-        foreach(var usable in usableItems) {
-            if (usable.item == item) {
-                Item = usable;
-                return;
-            }
-        }
+        // foreach(var usable in usableItems) {
+        //     if (usable.item == item) {
+        //         Item = usable;
+        //         return;
+        //     }
+        // }
 
-        Item = null; // Not Usable
+        // Item = null; // Not Usable
+
     }
 
     public static UsableItem GetItem() {

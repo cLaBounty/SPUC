@@ -19,4 +19,6 @@ public class ItemObject : ScriptableObject
     public Sprite uiDisplay;
     [TextArea(15,20)] public string description;
     public bool isDroppable = true;
+
+    public GameObject prefab;
 }
