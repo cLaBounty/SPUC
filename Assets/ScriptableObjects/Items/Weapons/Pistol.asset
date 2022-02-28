@@ -17,3 +17,4 @@ MonoBehaviour:
   uiDisplay: {fileID: 21300000, guid: b7a18182cb008c6449a0a941974d07d5, type: 3}
   description: 
   isDroppable: 1
+  prefab: {fileID: 4706028995140985593, guid: 9194db54cdb6e05468a9eebd037fbb3a, type: 3}

@@ -11,15 +11,20 @@ public class ResourceBeam : UsableItem
 	private int layers;
 
 	private void Start() {
+		inventory = Resources.Load<InventoryObject>("PlayerInventory");
+		fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 	}
     
     public override void Use() {
+		Start(); // ToDo: move to an on create function
+
         Shoot();
     }
 
     void Shoot() {
 		RaycastHit hit;
+		Debug.Log(fpsCam != null);
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range, ~layers))
 		{
 			//Debug.Log(hit.transform.name);
