@@ -8,8 +8,6 @@ public class ItemSwitching : MonoBehaviour
         if (transform.childCount > 0) {
             Destroy(transform.GetChild(0).gameObject);
         }
-
-        // Create Prefab
         Instantiate(item.prefab, transform, false);
     }
 }
