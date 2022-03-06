@@ -153,7 +153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 90969727}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4626686
 Camera:
@@ -4046,7 +4046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4248214650303288789, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 2999
+      value: 3063
       objectReference: {fileID: 0}
     - target: {fileID: 4248214650303288789, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
       propertyPath: m_projectionMatrixMode
