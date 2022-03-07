@@ -44,7 +44,7 @@ public class HotBarButton : MonoBehaviour
     }
 
     private void UpdateAmount() {
-        amountText.text = slot?.amount.ToString("n0");
+        amountText.text = slot?.amount == 1 ? "" : slot?.amount.ToString("n0");
     }
 
     private void HandleClick() {

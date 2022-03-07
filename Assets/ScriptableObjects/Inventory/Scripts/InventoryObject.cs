@@ -17,8 +17,8 @@ public class InventoryObject : ScriptableObject
 
     public void AddItem(ItemObject item, int amount) {
         bool hasItem = false;
-        for (int i = 0; i < container.items.Count; i++) {
-            if (container.items[i].item.name == item.name) {
+        for (int i = 0; i < container.items.Length; i++) {
+            if (container.items[i].item?.name == item.name) {
                 container.items[i].AddAmount(amount);
                 hasItem = true;
                 break;
@@ -26,24 +26,38 @@ public class InventoryObject : ScriptableObject
         }
 
         if (!hasItem) {
-            InventorySlot slot = new InventorySlot(item, amount);
-            container.items.Add(slot);
+            InventorySlot slot = GetFirstEmptySlot();
+            slot.Update(item, amount);
 
             HotBar hotBar = GameObject.FindObjectOfType<HotBar>();
             hotBar.AutoAssign(slot);
         }
     }
 
+    public void SwapItems(InventorySlot item1, InventorySlot item2) {
+        InventorySlot tmp = new InventorySlot(item2.item, item2.amount);
+        item2.Update(item1.item, item1.amount);
+        item1.Update(tmp.item, tmp.amount);
+    }
+
+    private InventorySlot GetFirstEmptySlot() {
+        for (int i = 0; i < container.items.Length; i++) {
+            if (container.items[i].item == null) {
+                return container.items[i];
+            }
+        }
+        return null; // Inventory is full
+    }
+
     public void Remove(InventorySlot slot) {
-        container.items.Remove(slot);
-        GameObject.FindObjectOfType<DisplayInventory>()?.Remove(slot);
+        slot.Update(null, 0);
     }
 }
 
 [System.Serializable]
 public class Inventory
 {
-    public List<InventorySlot> items = new List<InventorySlot>();
+    public InventorySlot[] items = new InventorySlot[28];
 }
 
 [System.Serializable]
@@ -52,7 +66,17 @@ public class InventorySlot
     public ItemObject item;
     public int amount;
 
+    public InventorySlot() {
+        this.item = null;
+        this.amount = 0;
+    }
+
     public InventorySlot(ItemObject item, int amount) {
+        this.item = item;
+        this.amount = amount;
+    }
+
+    public void Update(ItemObject item, int amount) {
         this.item = item;
         this.amount = amount;
     }

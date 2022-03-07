@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98cfe57618ab6824f8fb83867c939d41, type: 3}
   m_Name: Campfire
   m_EditorClassIdentifier: 
-  id: 2
-  uiDisplay: {fileID: 21300000, guid: 1143fe88ac964c548b7d3037092de3fd, type: 3}
   type: 3
   name: Campfire
+  uiDisplay: {fileID: 21300000, guid: 1143fe88ac964c548b7d3037092de3fd, type: 3}
   description: 
+  isDroppable: 1
+  groundPrefab: {fileID: 6573688572695703079, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
+  usablePrefab: {fileID: 4413477487601138616, guid: 8f6266bbcf36b6544b32dd09f89e2338, type: 3}
