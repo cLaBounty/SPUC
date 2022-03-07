@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12160d1b01a6dac4da4510ed6e89d769, type: 3}
   m_Name: Ruby
   m_EditorClassIdentifier: 
-  id: 10
-  uiDisplay: {fileID: 21300000, guid: 4232f0d7b274b5d4f963e06fd50d67ce, type: 3}
   type: 0
   name: Ruby
+  uiDisplay: {fileID: 21300000, guid: 4232f0d7b274b5d4f963e06fd50d67ce, type: 3}
   description: 
+  isDroppable: 1
+  groundPrefab: {fileID: 5787606042660169598, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
+  usablePrefab: {fileID: 4413477487601138616, guid: 4baa0cc21f0a5bf4da01b662d4efff22, type: 3}
