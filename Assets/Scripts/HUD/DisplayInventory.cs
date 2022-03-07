@@ -18,10 +18,12 @@ public class DisplayInventory : MonoBehaviour
     public InventoryObject inventory;
     public Dictionary<GameObject, InventorySlot> inventoryItems = new Dictionary<GameObject, InventorySlot>();
 
+    private Player player;
     private MouseItem mouseItem = new MouseItem();
 
     private void Start()
     {
+        player = GameObject.FindObjectOfType<Player>();
         CreateSlots();
     }
 
@@ -96,15 +98,14 @@ public class DisplayInventory : MonoBehaviour
 
     public void OnDragEnd(GameObject obj) {
         InventorySlot slot = inventoryItems[obj];
-        if (mouseItem.hoverObj != null) {
-            inventory.SwapItems(slot, inventoryItems[mouseItem.hoverObj]);
-        } else {
-            if (slot.item.isDroppable) {
-                // ToDo: fix
-                // var inst = Instantiate(slot.item.groundPrefab);
-                // inst.transform.parent = null;
-                // inst.transform.position = GameObject.FindObjectOfType<Player>().transform.position + new Vector3(5, 0, 0);
 
+        if (mouseItem.hoverObj != null) { // Swap Item
+            if (slot.item?.isMoveable != false && inventoryItems[mouseItem.hoverObj].item?.isMoveable != false) { // Cannot move an immovable item
+                inventory.SwapItems(slot, inventoryItems[mouseItem.hoverObj]);
+            }
+        } else { // Drop Item
+            if (slot.item?.isMoveable != false) { // Cannot drop an immovable item
+                player.DropItem(slot);
                 inventory.Remove(slot);
             }
         }
