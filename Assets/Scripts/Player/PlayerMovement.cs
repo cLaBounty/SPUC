@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 
 // Source: https://www.youtube.com/watch?v=_QajrabyTJc
 public class PlayerMovement : MonoBehaviour
 {
-	public CharacterController controller;
+	[SerializeField] CharacterController controller;
 	[Header("Player Stats")]
 	[SerializeField] float speed = 12f;
 	[SerializeField] float baseSpeed = 12f;
@@ -55,6 +56,11 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		Vector3 move = transform.right * x + transform.forward * z;
+		if (Mathf.Abs(move.x) > 0 || Mathf.Abs(move.y) > 0 || Mathf.Abs(move.z) > 0)
+			PlayerStatus.isMoving = true;
+		else
+			PlayerStatus.isMoving = false;
+
 		controller.Move(move * speed * Time.deltaTime);
 
 		if(Input.GetButtonDown("Jump") && isGrounded)
@@ -80,3 +86,4 @@ public class PlayerMovement : MonoBehaviour
 		controller.Move(velocity * Time.deltaTime);
 	}
 }
+
