@@ -9,16 +9,12 @@ public class HotBarButton : MonoBehaviour
     [SerializeField] private TMP_Text amountText;
     [SerializeField] private TMP_Text slotText;
 
-    public event Action<int, InventorySlot> OnButtonClicked;
+    public InventoryObject inventory;
 
-    private InventorySlot slot;
+    public event Action<int> OnButtonClicked;
 
     private KeyCode keyCode;
     private int keyNumber;
-
-    public InventorySlot GetSlot() {
-        return slot;
-    }
 
     private void OnValidate() {
         keyNumber = transform.GetSiblingIndex() + 1;
@@ -36,38 +32,32 @@ public class HotBarButton : MonoBehaviour
     }
 
     private void Update() {
-        UpdateAmount();
-
-        if (Input.GetKeyDown(keyCode) && slot != null) {
-            HandleClick();
-        }
+        UpdateDisplay();
+        if (Input.GetKeyDown(keyCode)) { HandleClick(); }
     }
 
-    private void UpdateAmount() {
-        amountText.text = slot?.amount == 1 ? "" : slot?.amount.ToString("n0");
+    private void UpdateDisplay() {
+        InventorySlot slot = inventory.container.items[keyNumber - 1];
+
+        if (slot.item != null) {
+            image.GetComponent<Image>().sprite = slot.item.uiDisplay;
+            amountText.text = slot.amount == 1 ? "" : slot.amount.ToString("n0");
+        } else {
+            image.GetComponent<Image>().sprite = null;
+            amountText.text = "";
+        }
+        
+        image.SetActive(slot.item != null);
+        amountText.gameObject.SetActive(slot.item != null);
+        slotText.gameObject.SetActive(slot.item == null);
     }
 
     private void HandleClick() {
-        OnButtonClicked?.Invoke(keyNumber - 1, slot);
+        if (IsAssigned()) { OnButtonClicked?.Invoke(keyNumber - 1); }
     }
 
-    public void Assign(InventorySlot slot) {
-        this.slot = slot;
-        image.GetComponent<Image>().sprite = slot.item.uiDisplay;
-        UpdateAmount();
-        
-        image.SetActive(true);
-        amountText.gameObject.SetActive(true);
-        slotText.gameObject.SetActive(false);
+    private bool IsAssigned() {
+        InventorySlot slot = inventory.container.items[keyNumber - 1];
+        return slot.item != null;
     }
-
-    public void Reset() {
-        slot = null;
-
-        image.SetActive(false);
-        amountText.gameObject.SetActive(false);
-        slotText.gameObject.SetActive(true);
-    }
-
-    public bool IsAssigned() { return slot != null; }
 }

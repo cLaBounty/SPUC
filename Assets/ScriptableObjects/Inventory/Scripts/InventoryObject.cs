@@ -28,9 +28,6 @@ public class InventoryObject : ScriptableObject
         if (!hasItem) {
             InventorySlot slot = GetFirstEmptySlot();
             slot.Update(item, amount);
-
-            HotBar hotBar = GameObject.FindObjectOfType<HotBar>();
-            hotBar.AutoAssign(slot);
         }
     }
 
