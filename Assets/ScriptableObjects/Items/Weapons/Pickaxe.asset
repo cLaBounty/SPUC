@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfc35655996b4a4882d2bfdea16787a, type: 3}
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
-  id: 8
-  uiDisplay: {fileID: 21300000, guid: a744f0ee05e0eb043ba423adee95e5df, type: 3}
   type: 2
   name: Pickaxe
+  uiDisplay: {fileID: 21300000, guid: a744f0ee05e0eb043ba423adee95e5df, type: 3}
   description: 
-  enemyDamagePerHit: 10
-  materialDamagePerHit: 20
+  isDroppable: 1
+  groundPrefab: {fileID: 3638492700490586215, guid: 33356a6c06211e3469a0bd98ee4ebb8f, type: 3}
+  usablePrefab: {fileID: 4413477487601138616, guid: 16409f99d43b5084a8ea02a2bc5d8113, type: 3}
