@@ -12,7 +12,6 @@ public class CameraSystem : MonoBehaviour
         for (int i = 0; i < camArr.Length; i++)
         {
             addCamera(camArr[i].gameObject.name, camArr[i]);
-            Debug.Log(camArr[i].gameObject.name);
         }
     }
 

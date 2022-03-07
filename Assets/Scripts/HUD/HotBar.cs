@@ -8,8 +8,7 @@ public class HotBar : MonoBehaviour
     private int SLOTS = 7;
     public InventoryObject inventory;
 
-    private int currentIndex;
-    private InventorySlot currentSlot;
+    private int activeIndex;
 
     private void Awake() {
         foreach(var button in GetComponentsInChildren<HotBarButton>()) {
@@ -21,59 +20,41 @@ public class HotBar : MonoBehaviour
         inventory.Init();
 
         // Select Resource Beam
-        ButtonOnButtonClicked(0, transform.GetChild(0).GetComponent<HotBarButton>().GetSlot());
+        ButtonOnButtonClicked(0);
     }
 
-    public void AutoAssign(InventorySlot slot) {
-        for (int i = 0; i < SLOTS; i++) {
-            HotBarButton button = transform.GetChild(i).GetComponent<HotBarButton>();
-
-            if (button.GetSlot() == null) {
-                button.Assign(slot);
-                return;
-            }
-        }
-    }
-
-    private void ButtonOnButtonClicked(int index, InventorySlot slot) {
+    private void ButtonOnButtonClicked(int index) {
         if (InventoryScreenStatus.isOpen) return; // Can't switch items when inventory screen is open
-        currentIndex = index;
-        currentSlot = slot;
-        ItemSelector.SetItem(slot.item);
-        Debug.Log($"{slot.item.name} is active!");
-    }
-
-    public void ResetButton(int index) {
-        transform.GetChild(index).GetComponent<HotBarButton>().Reset();
-        SelectNewSlot(index);
+        activeIndex = index;
+        ItemSelector.SetItem(inventory.container.items[index].item);
     }
 
     public void HandleItemUse() {
-        if (currentSlot.amount <= 1) {
-            inventory.Remove(currentSlot);
-            ResetButton(currentIndex);
+        InventorySlot activeSlot = inventory.container.items[activeIndex];
+
+        if (activeSlot.amount <= 1) {
+            inventory.Remove(activeSlot);
+            SelectNewSlot();
         } else {
-            currentSlot.amount = currentSlot.amount - 1;
+            activeSlot.amount = activeSlot.amount - 1;
         }
     }
 
     // Find closest filled slot
-    private void SelectNewSlot(int prevIndex) {
+    private void SelectNewSlot() {
         for (int i = 1; i < SLOTS; i++) {
-            int low = prevIndex - i;
-            int high = prevIndex + i;
+            int low = activeIndex - i;
+            int high = activeIndex + i;
             if (low >= 0) {
-                InventorySlot slot = transform.GetChild(low).GetComponent<HotBarButton>().GetSlot();
-                if (slot != null) {
-                    ButtonOnButtonClicked(low, slot);
+                if (inventory.container.items[low].item != null) {
+                    ButtonOnButtonClicked(low);
                     return;
                 }
             }
 
             if (high < SLOTS) {
-                InventorySlot slot = transform.GetChild(high).GetComponent<HotBarButton>().GetSlot();
-                if (slot != null) {
-                    ButtonOnButtonClicked(high, slot);
+                if (inventory.container.items[high].item != null) {
+                    ButtonOnButtonClicked(high);
                     return;
                 }
             }

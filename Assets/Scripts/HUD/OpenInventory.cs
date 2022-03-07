@@ -20,12 +20,7 @@ public class OpenInventory : MonoBehaviour
         InventoryScreenStatus.isOpen = !InventoryScreenStatus.isOpen;
         InventoryCanvas?.SetActive(InventoryScreenStatus.isOpen);
         Cursor.visible = InventoryScreenStatus.isOpen;
-
-        if (InventoryScreenStatus.isOpen) {
-            Cursor.lockState = CursorLockMode.None;
-        } else {
-            Cursor.lockState = CursorLockMode.Locked;
-        }        
+        Cursor.lockState = InventoryScreenStatus.isOpen ? CursorLockMode.None : CursorLockMode.Locked;      
     }
 }
 
