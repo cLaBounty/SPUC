@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfc35655996b4a4882d2bfdea16787a, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  id: 6
-  uiDisplay: {fileID: 21300000, guid: 3fe12be232eb2b94e88810c2bab11434, type: 3}
   type: 2
   name: Knife
+  uiDisplay: {fileID: 21300000, guid: 3fe12be232eb2b94e88810c2bab11434, type: 3}
   description: 
-  enemyDamagePerHit: 15
-  materialDamagePerHit: 0
+  isDroppable: 1
+  groundPrefab: {fileID: 6396843402673147002, guid: 9d3daf13340e7f74c834e4dd386cfcfc, type: 3}
+  usablePrefab: {fileID: 4413477487601138616, guid: 7a24e2fdf8a46f94c94d45610ac22002, type: 3}

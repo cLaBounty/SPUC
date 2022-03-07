@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12160d1b01a6dac4da4510ed6e89d769, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: 
-  id: 3
-  uiDisplay: {fileID: 21300000, guid: c0a21c2828f86c94991aa1d028382195, type: 3}
   type: 0
   name: Diamond
+  uiDisplay: {fileID: 21300000, guid: c0a21c2828f86c94991aa1d028382195, type: 3}
   description: 
+  isDroppable: 1
+  groundPrefab: {fileID: 4667764712016054193, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
+  usablePrefab: {fileID: 4413477487601138616, guid: 4462e20dca9d73c4a874aa83c36cba40, type: 3}

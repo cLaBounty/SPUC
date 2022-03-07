@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9c019c2ad643849853adb60908ee47, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  id: 1
-  uiDisplay: {fileID: 21300000, guid: e3820e17f2929af43803ce832cc66813, type: 3}
   type: 1
   name: Water
+  uiDisplay: {fileID: 21300000, guid: e3820e17f2929af43803ce832cc66813, type: 3}
   description: 
-  healthIncreaseValue: 10
+  isDroppable: 1
+  groundPrefab: {fileID: 1052928627642125529, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+  usablePrefab: {fileID: 4413477487601138616, guid: 5c7879cf1191e6043a1f7e09e363b684, type: 3}

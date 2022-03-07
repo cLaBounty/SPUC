@@ -41,10 +41,6 @@ public class HotBar : MonoBehaviour
         currentSlot = slot;
         ItemSelector.SetItem(slot.item);
         Debug.Log($"{slot.item.name} is active!");
-
-        // ToDo: swtich between items on screen with animations
-        // transform.GetChild(0).gameObject.SetActive(true);
-		// transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void ResetButton(int index) {
@@ -90,7 +86,7 @@ public static class ItemSelector
     private static UsableItem Item;
 
     public static void SetItem(ItemObject item) {
-        Item = item.prefab.gameObject.GetComponent<UsableItem>();
+        Item = item.usablePrefab.gameObject.GetComponent<UsableItem>();
         GameObject.FindObjectOfType<ItemSwitching>().SwitchToItem(item);
     }
 
