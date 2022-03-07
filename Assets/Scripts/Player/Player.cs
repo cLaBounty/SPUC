@@ -11,11 +11,15 @@ public class Player : MonoBehaviour
     public HotBar hotBar;
     
     public InventoryObject inventory;
+    private CameraSystem cameraSystem;
+
+    const float ITEM_DROP_DISTANCE = 5f;
 
     private void Start()
     {
         currentHealth = maxHealth;
         healthBar?.SetMaxHealth(maxHealth);
+        cameraSystem = GameObject.FindObjectOfType<CameraSystem>();
     }
 
     private void Update()
@@ -48,12 +52,22 @@ public class Player : MonoBehaviour
     }
 
     // Inventory
+    public void DropItem(InventorySlot slot) {
+        for (int i = 0; i < slot.amount; i++) {
+            var inst = Instantiate(slot.item.groundPrefab);
+            inst.transform.parent = null;
+            
+            Vector3 cameraDirection = cameraSystem.getMainCamera().transform.forward;
+            cameraDirection.y = 0; // Fixes issue of items dropping underground
+            inst.transform.position = transform.position + (ITEM_DROP_DISTANCE * cameraDirection);
+        }
+    }
+
     public void OnTriggerEnter(Collider other) {
         var groundItem = other.GetComponent<GroundItem>();
         if (groundItem != null) {
             inventory.AddItem(groundItem.item, 1);
             Destroy(other.gameObject);
-            Debug.Log($"{groundItem.item.name} collected!");
         }
     }
 

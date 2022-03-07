@@ -18,7 +18,7 @@ public class ItemObject : ScriptableObject
     public string name;
     public Sprite uiDisplay;
     [TextArea(15,20)] public string description;
-    public bool isDroppable = true;
+    public bool isMoveable = true;
 
     public GameObject groundPrefab;
     public GameObject usablePrefab;
