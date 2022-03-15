@@ -8,6 +8,7 @@ public class InventoryObject : ScriptableObject
 {
     public Inventory container;
     public List<ItemObject> startItems = new List<ItemObject>();
+    public CraftingObject crafting;
 
     public void Init() {
         for (int i = 0; i < startItems.Count; i++) {
@@ -29,6 +30,8 @@ public class InventoryObject : ScriptableObject
             InventorySlot slot = GetFirstEmptySlot();
             slot.Update(item, amount);
         }
+
+        crafting.Update();
     }
 
     public void SwapItems(InventorySlot item1, InventorySlot item2) {
@@ -48,6 +51,36 @@ public class InventoryObject : ScriptableObject
 
     public void Remove(InventorySlot slot) {
         slot.Update(null, 0);
+        crafting.Update();
+    }
+
+    public void Reduce(InventorySlot slot, int amount) {
+        slot.ReduceAmount(amount);
+        crafting.Update();
+    }
+
+    public void RemoveItems(Ingredient[] recipe) {
+        foreach (Ingredient ingredient in recipe) {
+            foreach (InventorySlot slot in container.items) {
+                if (slot.item == ingredient.item) {
+                    if (slot.amount > ingredient.amount) {
+                        Reduce(slot, ingredient.amount);
+                    } else {
+                        Remove(slot);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    public bool Has(ItemObject item, int amount) {
+        foreach (InventorySlot slot in container.items) {
+            if (slot.item == item && slot.amount >= amount) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
@@ -80,5 +113,9 @@ public class InventorySlot
 
     public void AddAmount(int value) {
         amount += value;
+    }
+
+    public void ReduceAmount(int value) {
+        amount -= value;
     }
 }

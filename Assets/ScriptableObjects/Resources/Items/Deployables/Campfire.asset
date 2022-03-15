@@ -16,6 +16,7 @@ MonoBehaviour:
   name: Campfire
   uiDisplay: {fileID: 21300000, guid: 1143fe88ac964c548b7d3037092de3fd, type: 3}
   description: 
-  isDroppable: 1
+  isMoveable: 1
+  recipe: []
   groundPrefab: {fileID: 6573688572695703079, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
   usablePrefab: {fileID: 4413477487601138616, guid: 8f6266bbcf36b6544b32dd09f89e2338, type: 3}
