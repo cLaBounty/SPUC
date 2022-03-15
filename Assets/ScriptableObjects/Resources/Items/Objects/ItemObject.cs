@@ -19,7 +19,14 @@ public class ItemObject : ScriptableObject
     public Sprite uiDisplay;
     [TextArea(15,20)] public string description;
     public bool isMoveable = true;
+    public Ingredient[] recipe;
 
     public GameObject groundPrefab;
     public GameObject usablePrefab;
+}
+
+[Serializable]
+public struct Ingredient {
+    public ItemObject item;
+    public int amount;
 }
