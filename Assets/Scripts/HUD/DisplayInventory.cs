@@ -61,6 +61,10 @@ public class DisplayInventory : MonoBehaviour
         }
     }
 
+    private Vector3 GetPosition(int i) {
+        return new Vector3(X_START + (X_SPACE_BETWEEN_ITEMS * (i % NUMBER_OF_COLUMNS)), Y_START + (-Y_SPACE_BETWEEN_ITEMS * (i / NUMBER_OF_COLUMNS)), 0f);
+    }
+
     private void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action) {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
         var eventTrigger = new EventTrigger.Entry();
@@ -118,10 +122,6 @@ public class DisplayInventory : MonoBehaviour
         if (mouseItem.obj != null) {
             mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
         }
-    }
-
-    private Vector3 GetPosition(int i) {
-        return new Vector3(X_START + (X_SPACE_BETWEEN_ITEMS * (i % NUMBER_OF_COLUMNS)), Y_START + (-Y_SPACE_BETWEEN_ITEMS * (i / NUMBER_OF_COLUMNS)), 0f);
     }
 }
 

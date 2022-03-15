@@ -11,7 +11,7 @@ public class ResourceBeam : UsableItem
 	private int layers;
 
 	private void Start() {
-		inventory = Resources.Load<InventoryObject>("PlayerInventory");
+		inventory = Resources.Load<InventoryObject>("Inventory/PlayerInventory");
 		fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 	}

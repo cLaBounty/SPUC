@@ -17,10 +17,7 @@ public class HotBar : MonoBehaviour
     }
 
     private void Start() {
-        inventory.Init();
-
-        // Select Resource Beam
-        ButtonOnButtonClicked(0);
+        ButtonOnButtonClicked(0); // Select Resource Beam
     }
 
     private void ButtonOnButtonClicked(int index) {
