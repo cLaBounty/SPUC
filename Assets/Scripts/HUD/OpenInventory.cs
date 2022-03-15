@@ -7,11 +7,12 @@ public class OpenInventory : MonoBehaviour
     public GameObject InventoryCanvas;
 
     private void Start() {
-        InventoryScreenStatus.isOpen = false;
+        InventoryScreenStatus.isOpen = true;
+        Toggle();
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.I)) {
+        if (Input.GetKeyDown(KeyCode.E)) {
             Toggle();
         }
     }

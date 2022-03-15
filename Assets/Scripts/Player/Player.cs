@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public HotBar hotBar;
     
     public InventoryObject inventory;
+    public CraftingObject crafting;
     private CameraSystem cameraSystem;
 
     const float ITEM_DROP_DISTANCE = 5f;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         healthBar?.SetMaxHealth(maxHealth);
         cameraSystem = GameObject.FindObjectOfType<CameraSystem>();
+        inventory.Init();
     }
 
     private void Update()
@@ -71,10 +73,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit() {
-        inventory.container.items = new InventorySlot[28];
-    }
-
     // HotBar
     public void UseItem() {
         if (InventoryScreenStatus.isOpen) return; // Can't use item when inventory screen is open
@@ -82,5 +80,10 @@ public class Player : MonoBehaviour
         usable.Use();
         if (usable.item.type == ItemType.Weapon) return; // ToDo: reduce ammo instead
         hotBar.HandleItemUse();
+    }
+
+    private void OnApplicationQuit() {
+        inventory.container.items = new InventorySlot[28];
+        crafting.container.items = new InventorySlot[28];
     }
 }
