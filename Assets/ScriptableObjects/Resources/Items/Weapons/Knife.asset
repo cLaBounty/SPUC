@@ -15,7 +15,6 @@ MonoBehaviour:
   type: 2
   name: Knife
   uiDisplay: {fileID: 21300000, guid: 3fe12be232eb2b94e88810c2bab11434, type: 3}
-  description: 
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}

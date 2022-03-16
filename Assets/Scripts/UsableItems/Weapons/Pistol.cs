@@ -7,29 +7,26 @@ public class Pistol : UsableItem
 	[SerializeField] private float damage = 10f;
 	[SerializeField] private float range = 100f;
 
-	public Camera fpsCam;
+	private Camera fpsCam;
 	private int layers;
 
-	private void Start() {
-		fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
+	public override void Init() {
+        fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
-	}
+		IsInitted = true;
+    }
     
     public override void Use() {
-		Start(); // ToDo: move to an on create function
-
+		if (!IsInitted) { Init(); }
         Shoot();
     }
 
-    void Shoot() {
+    private void Shoot() {
 		RaycastHit hit;
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range, ~layers))
 		{
-			//Debug.Log(hit.transform.name);
-
 			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-
 			target?.TakeDamage(damage);
 			enemy?.TakeDamage(damage);
 		}

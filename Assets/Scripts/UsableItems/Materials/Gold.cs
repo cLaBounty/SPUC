@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Gold : UsableItem
 {
+    public override void Init() {
+        // ToDo: implement
+        IsInitted = true;
+    }
+
     public override void Use() {
-        Debug.Log("Used Gold");
+        if (!IsInitted) { Init(); }
+        // ToDo: implement
     }
 }

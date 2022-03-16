@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Diamond : UsableItem
 {
+    public override void Init() {
+        // ToDo: implement
+        IsInitted = true;
+    }
+
     public override void Use() {
-        Debug.Log("Used Diamond");
+        if (!IsInitted) { Init(); }
+        // ToDo: implement
     }
 }
