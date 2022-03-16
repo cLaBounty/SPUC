@@ -8,6 +8,7 @@ public class ItemSwitching : MonoBehaviour
         if (transform.childCount > 0) {
             Destroy(transform.GetChild(0).gameObject);
         }
-        Instantiate(item.usablePrefab, transform, false);
+        var obj = Instantiate(item.usablePrefab, transform, false);
+        obj.GetComponent<UsableItem>().Init();
     }
 }

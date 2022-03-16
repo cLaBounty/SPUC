@@ -15,7 +15,9 @@ MonoBehaviour:
   type: 0
   name: Ruby
   uiDisplay: {fileID: 21300000, guid: 4232f0d7b274b5d4f963e06fd50d67ce, type: 3}
-  description: 
-  isDroppable: 1
+  isMoveable: 1
+  recipe:
+  - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
+    amount: 1
   groundPrefab: {fileID: 5787606042660169598, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
   usablePrefab: {fileID: 4413477487601138616, guid: 4baa0cc21f0a5bf4da01b662d4efff22, type: 3}

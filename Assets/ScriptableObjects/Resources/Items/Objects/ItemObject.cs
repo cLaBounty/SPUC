@@ -17,10 +17,8 @@ public class ItemObject : ScriptableObject
     public ItemType type;
     public string name;
     public Sprite uiDisplay;
-    [TextArea(15,20)] public string description;
     public bool isMoveable = true;
     public Ingredient[] recipe;
-
     public GameObject groundPrefab;
     public GameObject usablePrefab;
 }
