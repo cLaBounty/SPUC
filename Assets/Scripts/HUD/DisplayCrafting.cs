@@ -14,7 +14,9 @@ public class DisplayCrafting : MonoBehaviour
     [SerializeField] private int Y_SPACE_BETWEEN_ITEMS;
     [SerializeField] private int NUMBER_OF_COLUMNS;
     
-    public GameObject inventoryPrefab;
+    public GameObject craftingPrefab;
+    public GameObject itemInfoPrefab;
+    private GameObject currentItemInfo = null;
     public CraftingObject crafting;
     public Dictionary<GameObject, InventorySlot> craftingItems = new Dictionary<GameObject, InventorySlot>();
 
@@ -30,7 +32,7 @@ public class DisplayCrafting : MonoBehaviour
 
     private void CreateSlots() {
         for (int i = 0; i < crafting.container.items.Length; i++) {
-            GameObject obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+            GameObject obj = Instantiate(craftingPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
 
             AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
@@ -46,11 +48,9 @@ public class DisplayCrafting : MonoBehaviour
             if (slot.Value.item != null) {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.Value.item.uiDisplay;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
-                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
             } else {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
-                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
             }
         }
     }
@@ -69,16 +69,25 @@ public class DisplayCrafting : MonoBehaviour
 
     public void OnEnter(GameObject obj) {
         if (craftingItems[obj].item == null) return; // Empty slot
-        // ToDo: show stats and recipe
+        CleanUp();
+        currentItemInfo = Instantiate(itemInfoPrefab, obj.transform.position + new Vector3(105, -17, 0), Quaternion.identity, transform);
+        currentItemInfo.GetComponent<DisplayCraftingItemInfo>().SetUp(craftingItems[obj].item);
     }
 
     public void OnExit(GameObject obj) {
         if (craftingItems[obj].item == null) return; // Empty slot
-        // ToDo: hide stats and recipe
+        CleanUp();
     }
 
     public void OnClick(GameObject obj) {
         if (craftingItems[obj].item == null) return; // Empty slot
+        CleanUp();
         crafting.CraftItem(craftingItems[obj]);
+    }
+
+    public void CleanUp() {
+        if (currentItemInfo != null) {
+            Destroy(currentItemInfo.gameObject);
+        }
     }
 }

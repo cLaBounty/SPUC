@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class OpenInventory : MonoBehaviour
 {
-    public GameObject InventoryCanvas;
+    [SerializeField] private GameObject InventoryCanvas;
+    private DisplayInventory InventoryDisplay;
+    private DisplayCrafting CraftingDisplay;
 
     private void Start() {
+        InventoryDisplay = GameObject.FindObjectOfType<DisplayInventory>();
+        CraftingDisplay = GameObject.FindObjectOfType<DisplayCrafting>();
+
         InventoryScreenStatus.isOpen = true;
         Toggle();
     }
@@ -21,7 +26,13 @@ public class OpenInventory : MonoBehaviour
         InventoryScreenStatus.isOpen = !InventoryScreenStatus.isOpen;
         InventoryCanvas?.SetActive(InventoryScreenStatus.isOpen);
         Cursor.visible = InventoryScreenStatus.isOpen;
-        Cursor.lockState = InventoryScreenStatus.isOpen ? CursorLockMode.None : CursorLockMode.Locked;      
+        Cursor.lockState = InventoryScreenStatus.isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+
+        // Remove info popups and drag sprites
+        if (!InventoryScreenStatus.isOpen) {
+            InventoryDisplay.CleanUp();
+            CraftingDisplay.CleanUp();
+        }
     }
 }
 
