@@ -923,7 +923,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1754733579}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -948,6 +948,7 @@ MonoBehaviour:
   Y_SPACE_BETWEEN_ITEMS: 37
   NUMBER_OF_COLUMNS: 7
   inventoryPrefab: {fileID: 6842017591744777254, guid: d6610100e5e7bb94f9da5db72edd2300, type: 3}
+  itemInfoPrefab: {fileID: 6185593502870295591, guid: 963517b4272360d4a9674086bdd82406, type: 3}
   inventory: {fileID: 11400000, guid: a5e9cecb9c354224a862093b2c27e37a, type: 2}
 --- !u!114 &397977384
 MonoBehaviour:
@@ -1442,7 +1443,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1754733579}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1504,7 +1505,8 @@ MonoBehaviour:
   X_SPACE_BETWEEN_ITEMS: 37
   Y_SPACE_BETWEEN_ITEMS: 37
   NUMBER_OF_COLUMNS: 7
-  inventoryPrefab: {fileID: 6842017591744777254, guid: d6610100e5e7bb94f9da5db72edd2300, type: 3}
+  craftingPrefab: {fileID: 6842017591744777254, guid: d6610100e5e7bb94f9da5db72edd2300, type: 3}
+  itemInfoPrefab: {fileID: 6185593502870295591, guid: 8ea8b8863d6c2714b824f0fa3fd518cf, type: 3}
   crafting: {fileID: 11400000, guid: a91d1872c531e524e915748f14703a53, type: 2}
 --- !u!1001 &968463605
 PrefabInstance:
@@ -3628,8 +3630,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1220036507}
-  - {fileID: 397977382}
   - {fileID: 967975772}
+  - {fileID: 397977382}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

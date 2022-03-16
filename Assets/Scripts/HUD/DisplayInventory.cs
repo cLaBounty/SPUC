@@ -15,6 +15,8 @@ public class DisplayInventory : MonoBehaviour
     [SerializeField] private int NUMBER_OF_COLUMNS;
     
     public GameObject inventoryPrefab;
+    public GameObject itemInfoPrefab;
+    private GameObject currentItemInfo = null;
     public InventoryObject inventory;
     public Dictionary<GameObject, InventorySlot> inventoryItems = new Dictionary<GameObject, InventorySlot>();
 
@@ -77,15 +79,23 @@ public class DisplayInventory : MonoBehaviour
         mouseItem.hoverObj = obj;
         if (inventoryItems.ContainsKey(obj)) {
             mouseItem.hoverItem = inventoryItems[obj];
+
+            // Display info, if not dragging an item and not empty
+            if (mouseItem.obj == null && mouseItem.item == null && inventoryItems[obj].item != null) {
+                currentItemInfo = Instantiate(itemInfoPrefab, obj.transform.position + new Vector3(105, 0, 0), Quaternion.identity, transform);
+                currentItemInfo.GetComponent<DisplayInventoryItemInfo>().SetUp(inventoryItems[obj].item);
+            }
         }
     }
 
     public void OnExit(GameObject obj) {
+        ClearInfo();
         mouseItem.hoverObj = null;
         mouseItem.hoverItem = null;
     }
 
     public void OnDragStart(GameObject obj) {
+        ClearInfo();
         var mouseObject = new GameObject();
         var rt = mouseObject.AddComponent<RectTransform>();
         rt.sizeDelta = new Vector2(35, 35);
@@ -121,6 +131,20 @@ public class DisplayInventory : MonoBehaviour
     public void OnDrag(GameObject obj) {
         if (mouseItem.obj != null) {
             mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
+        }
+    }
+
+    public void CleanUp() {
+        mouseItem.hoverObj = null;
+        mouseItem.hoverItem = null;
+        Destroy(mouseItem.obj);
+        mouseItem.item = null;
+        ClearInfo();
+    }
+
+    private void ClearInfo() {
+        if (currentItemInfo != null) {
+            Destroy(currentItemInfo.gameObject);
         }
     }
 }

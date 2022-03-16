@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Ruby : UsableItem
 {
+    public override void Init() {
+        // ToDo: implement
+        IsInitted = true;
+    }
+
     public override void Use() {
-        Debug.Log("Used Ruby");
+        if (!IsInitted) { Init(); }
+        // ToDo: implement
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   name: Gold
   uiDisplay: {fileID: 21300000, guid: c30862273303a8a4094b66ed9a712189, type: 3}
-  description: 
-  isDroppable: 1
+  isMoveable: 1
+  recipe: []
   groundPrefab: {fileID: 7525457710395568995, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
   usablePrefab: {fileID: 4413477487601138616, guid: 5e6088618a4de5a4584973cfef9f43bd, type: 3}

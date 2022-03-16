@@ -76,9 +76,9 @@ public class Player : MonoBehaviour
     // HotBar
     public void UseItem() {
         if (InventoryScreenStatus.isOpen) return; // Can't use item when inventory screen is open
-        UsableItem usable = ItemSelector.GetItem();
+        UsableItem usable = ItemSelector.GetUsableItem();
         usable.Use();
-        if (usable.item.type == ItemType.Weapon) return; // ToDo: reduce ammo instead
+        if (ItemSelector.GetItem().type == ItemType.Weapon) return; // ToDo: reduce ammo instead
         hotBar.HandleItemUse();
     }
 

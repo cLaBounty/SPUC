@@ -7,7 +7,13 @@ public class Axe : UsableItem
     [SerializeField] private float damage = 10f;
 	[SerializeField] private float range = 5f;
 
+    public override void Init() {
+        // ToDo: implement
+        IsInitted = true;
+    }
+
     public override void Use() {
-        // Todo: implement
+        if (!IsInitted) { Init(); }
+        // ToDo: implement
     }
 }

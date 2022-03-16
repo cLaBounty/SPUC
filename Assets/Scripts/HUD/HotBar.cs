@@ -61,14 +61,18 @@ public class HotBar : MonoBehaviour
 
 public static class ItemSelector
 {
-    private static UsableItem Item;
+    private static ItemObject currentItem;
 
     public static void SetItem(ItemObject item) {
-        Item = item.usablePrefab.gameObject.GetComponent<UsableItem>();
+        currentItem = item;
         GameObject.FindObjectOfType<ItemSwitching>().SwitchToItem(item);
     }
 
-    public static UsableItem GetItem() {
-        return Item;
+    public static ItemObject GetItem() {
+        return currentItem;
+    }
+
+    public static UsableItem GetUsableItem() {
+        return currentItem.usablePrefab.gameObject.GetComponent<UsableItem>();
     }
 }
