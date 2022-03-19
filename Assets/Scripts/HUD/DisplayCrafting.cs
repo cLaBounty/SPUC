@@ -17,6 +17,7 @@ public class DisplayCrafting : MonoBehaviour
     public GameObject craftingPrefab;
     public GameObject itemInfoPrefab;
     private GameObject currentItemInfo = null;
+
     public CraftingObject crafting;
     public Dictionary<GameObject, InventorySlot> craftingItems = new Dictionary<GameObject, InventorySlot>();
 
@@ -55,6 +56,11 @@ public class DisplayCrafting : MonoBehaviour
         }
     }
 
+    public void SetDisplayAvailableOnly(bool value) {
+        crafting.displayAvailableOnly = value;
+        crafting.Update();
+    }
+
     private Vector3 GetPosition(int i) {
         return new Vector3(X_START + (X_SPACE_BETWEEN_ITEMS * (i % NUMBER_OF_COLUMNS)), Y_START + (-Y_SPACE_BETWEEN_ITEMS * (i / NUMBER_OF_COLUMNS)), 0f);
     }
@@ -71,7 +77,7 @@ public class DisplayCrafting : MonoBehaviour
         if (craftingItems[obj].item == null) return; // Empty slot
         CleanUp();
         currentItemInfo = Instantiate(itemInfoPrefab, obj.transform.position + new Vector3(105, -17, 0), Quaternion.identity, transform);
-        currentItemInfo.GetComponent<DisplayCraftingItemInfo>().SetUp(craftingItems[obj].item);
+        currentItemInfo.GetComponent<DisplayCraftingItemInfo>().SetUp(craftingItems[obj].item, crafting.playerInventory);
     }
 
     public void OnExit(GameObject obj) {
@@ -83,6 +89,7 @@ public class DisplayCrafting : MonoBehaviour
         if (craftingItems[obj].item == null) return; // Empty slot
         CleanUp();
         crafting.CraftItem(craftingItems[obj]);
+        OnEnter(obj); // re-show info if item is still there
     }
 
     public void CleanUp() {

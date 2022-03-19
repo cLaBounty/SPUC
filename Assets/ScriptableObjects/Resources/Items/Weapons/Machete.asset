@@ -15,12 +15,7 @@ MonoBehaviour:
   type: 2
   name: Machete
   uiDisplay: {fileID: 21300000, guid: 8abfcc843022ba646920dbe91a705842, type: 3}
-  description: 
   isMoveable: 1
-  recipe:
-  - item: {fileID: 11400000, guid: fbd003a6a7065c24cbd325ef2ad84d78, type: 2}
-    amount: 1
-  - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
-    amount: 5
+  recipe: []
   groundPrefab: {fileID: 2131778361675672114, guid: e81642f4070fd73468f59f035abac0c8, type: 3}
   usablePrefab: {fileID: 4413477487601138616, guid: 810b9cbf4f35a9243aa937eaddb85d38, type: 3}
