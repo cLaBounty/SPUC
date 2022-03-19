@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewCraftingSystem", menuName = "CraftingSystem/Crafting")]
 public class CraftingObject : ScriptableObject
 {
+    public bool displayAvailableOnly = false;
     public InventoryObject playerInventory;
     public Inventory container;
 
@@ -15,15 +16,22 @@ public class CraftingObject : ScriptableObject
 
         ItemObject[] allItems = Resources.LoadAll<ItemObject>("Items");
         foreach (ItemObject item in allItems) {
-            bool shouldAdd = true;
-            foreach (Ingredient ingredient in item.recipe) {
-                if (!playerInventory.Has(ingredient.item, ingredient.amount)) {
-                    shouldAdd = false;
-                    break;
-                }
+            if (displayAvailableOnly) { // Available
+                if (IsCraftable(item)) { AddItem(item); }
+            } else { // All Items
+                if (item.recipe.Length > 0) { AddItem(item); }
             }
-            if (shouldAdd && item.recipe.Length > 0) { AddItem(item); }
         }
+    }
+
+    private bool IsCraftable(ItemObject item) {
+        if (item.recipe.Length <= 0) return false; // can't craft item without recipe
+        foreach (Ingredient ingredient in item.recipe) {
+            if (!playerInventory.Has(ingredient.item, ingredient.amount)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void AddItem(ItemObject item) {
@@ -32,6 +40,7 @@ public class CraftingObject : ScriptableObject
     }
 
     public void CraftItem(InventorySlot slot) {
+        if (!IsCraftable(slot.item)) return;
         ItemObject newItem = slot.item;
         playerInventory.RemoveItems(slot.item.recipe);
         playerInventory.AddItem(newItem, 1);

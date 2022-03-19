@@ -15,7 +15,13 @@ MonoBehaviour:
   type: 2
   name: Sniper Rifle
   uiDisplay: {fileID: 21300000, guid: 3f4ae3f6568330a439e46b5bd87085c2, type: 3}
-  description: 
-  isDroppable: 1
+  isMoveable: 1
+  recipe:
+  - item: {fileID: 11400000, guid: 474d6dfc4ea081a4eb7832d6abb2b491, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
+    amount: 4
+  - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
+    amount: 2
   groundPrefab: {fileID: 3638492700490586215, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
   usablePrefab: {fileID: 4413477487601138616, guid: 2a325be4e5e0dda44a1cb5c70a663cd4, type: 3}
