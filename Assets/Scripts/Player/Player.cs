@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        healthBar?.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
         cameraSystem = GameObject.FindObjectOfType<CameraSystem>();
         inventory.Init();
     }
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
             currentHealth = 0;
         }
 
-        healthBar?.SetHealth(currentHealth);
+        healthBar.SetHealth(currentHealth);
     }
 
     public void GainHealth(float amount)
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
         }
         
-        healthBar?.SetHealth(currentHealth);
+        healthBar.SetHealth(currentHealth);
     }
 
     // Inventory

@@ -42,12 +42,10 @@ public class CrawlerEnemy : Enemy
     private void Update() {
         if (player != null){
             float range = (player.transform.position - transform.position).sqrMagnitude;
-            
-            //Debug.Log("agroRangeSqr " + agroRangeSqr);
-            //Debug.Log("attackRangeSqr " + attackRangeSqr);
-            //Debug.Log("range " + range);
 
-            if (range < attackRangeSqr) Attack();
+            // ToDo: attack oil drill
+            
+            if (range < attackRangeSqr) AttackPlayer();
             else if (range < agroRangeSqr) MoveTowardsPlayer(new Vector2(player.transform.position.x, player.transform.position.z));
             else MoveTowardsTarget();
         }
@@ -55,13 +53,19 @@ public class CrawlerEnemy : Enemy
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
-
-        //Debug.Log("Enemy Speed" + acculmulatedSpeed);
     }
 
-    void Attack(){
-        if (coolDown < 0){
+    void AttackPlayer(){
+        if (coolDown < 0) {
             playerStats.TakeDamage(4);
+            coolDown = coolDownMax;
+        }
+    }
+
+    void AttackOilDrill(){
+        if (coolDown < 0) {
+            OilDrill oilDrill = target.GetComponent<OilDrill>();
+            oilDrill.TakeDamage(4);
             coolDown = coolDownMax;
         }
     }
@@ -86,7 +90,7 @@ public class CrawlerEnemy : Enemy
             rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
         }
         else{
-            //Debug.Log("Flow Field not Initialized");
+            Debug.Log("Flow Field not Initialized");
         }
     }
 
