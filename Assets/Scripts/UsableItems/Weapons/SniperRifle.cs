@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SniperRifle : UsableItem
 {
-	[SerializeField] private float damage = 100f;
-	[SerializeField] private float range = 150f;
+	private const float DAMAGE = 100f;
+    private const float RANGE = 150f;
 
 	private Camera fpsCam;
 	private int layers;
@@ -24,12 +24,12 @@ public class SniperRifle : UsableItem
     // ToDo: implement... currently same as pistol
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range, ~layers))
+		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, RANGE, ~layers))
 		{
 			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			target?.TakeDamage(damage);
-			enemy?.TakeDamage(damage);
+			target?.TakeDamage(DAMAGE);
+			enemy?.TakeDamage(DAMAGE);
 		}
 	}
 }

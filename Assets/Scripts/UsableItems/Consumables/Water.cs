@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Water : UsableItem
 {
-	[SerializeField] private float healthIncrease = 15f;
+	private const float HEALTH_INCREASE = 15f;
     
     private Player player;
 
@@ -14,7 +14,7 @@ public class Water : UsableItem
     }
 
     public override void Use() {
-        if (!IsInitted) { Init(); }
-        player.GainHealth(healthIncrease);
+        Init();
+        player.GainHealth(HEALTH_INCREASE);
     }
 }
