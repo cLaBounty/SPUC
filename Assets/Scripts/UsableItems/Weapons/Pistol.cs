@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Pistol : UsableItem
 {
-	[SerializeField] private float damage = 10f;
-	[SerializeField] private float range = 100f;
+	private const float DAMAGE = 10f;
+	private const float RANGE = 100f;
 
 	private Camera fpsCam;
 	private int layers;
@@ -23,12 +23,12 @@ public class Pistol : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range, ~layers))
+		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, RANGE, ~layers))
 		{
 			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			target?.TakeDamage(damage);
-			enemy?.TakeDamage(damage);
+			target?.TakeDamage(DAMAGE);
+			enemy?.TakeDamage(DAMAGE);
 		}
 	}
 }

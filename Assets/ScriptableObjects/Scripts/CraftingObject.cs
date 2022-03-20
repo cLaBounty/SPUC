@@ -56,4 +56,13 @@ public class CraftingObject : ScriptableObject
         }
         return null; // Crafting Menu is full
     }
+
+    public int GetIndex(ItemObject item) {
+        for (int i = 0; i < container.items.Length; i++) {
+            if (container.items[i].item == item) {
+                return i;
+            }
+        }
+        return -1; // not found
+    }
 }
