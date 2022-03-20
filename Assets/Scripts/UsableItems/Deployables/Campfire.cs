@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class Campfire : UsableItem
 {
-	[SerializeField] private float healthIncreasePerSecond = 5f;
-    [SerializeField] private float timeLimit = 20f;
+    private const float PLACE_DISTANCE = 5f;
+
+    private Player player;
+    private Camera fpsCam;
+
+    public GameObject placedPrefab;
     
     public override void Init() {
-        // ToDo: implement
+        player = GameObject.FindObjectOfType<Player>();
+        fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
         IsInitted = true;
     }
 
     public override void Use() {
         if (!IsInitted) { Init(); }
-        // ToDo: implement
+        Deploy();
+    }
+
+    private void Deploy() {
+        var inst = Instantiate(placedPrefab);
+        Vector3 placePosition = player.transform.position + (PLACE_DISTANCE * fpsCam.transform.forward);
+        placePosition.y = 0.2f;
+        inst.transform.position = placePosition;
     }
 }
