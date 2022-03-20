@@ -19,9 +19,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar?.SetMaxHealth(maxHealth);
         cameraSystem = GameObject.FindObjectOfType<CameraSystem>();
-        inventory.Init();
     }
 
     private void Update()
@@ -39,7 +38,7 @@ public class Player : MonoBehaviour
             currentHealth = 0;
         }
 
-        healthBar.SetHealth(currentHealth);
+        healthBar?.SetHealth(currentHealth);
     }
 
     public void GainHealth(float amount)
@@ -50,25 +49,23 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
         }
         
-        healthBar.SetHealth(currentHealth);
+        healthBar?.SetHealth(currentHealth);
     }
 
     // Inventory
     public void DropItem(InventorySlot slot) {
-        for (int i = 0; i < slot.amount; i++) {
-            var inst = Instantiate(slot.item.groundPrefab);
-            inst.transform.parent = null;
-            
-            Vector3 cameraDirection = cameraSystem.getMainCamera().transform.forward;
-            cameraDirection.y = 0; // Fixes issue of items dropping underground
-            inst.transform.position = transform.position + (ITEM_DROP_DISTANCE * cameraDirection);
-        }
+        var inst = Instantiate(slot.item.groundPrefab);
+        inst.GetComponent<GroundItem>().amount = slot.amount;
+        
+        Vector3 dropPosition = transform.position + (ITEM_DROP_DISTANCE * cameraSystem.getMainCamera().transform.forward);
+        dropPosition.y = 0.5f; // Fixes issue of items dropping underground
+        inst.transform.position = dropPosition;
     }
 
     public void OnTriggerEnter(Collider other) {
         var groundItem = other.GetComponent<GroundItem>();
         if (groundItem != null) {
-            inventory.AddItem(groundItem.item, 1);
+            inventory.AddItem(groundItem.item, groundItem.amount);
             Destroy(other.gameObject);
         }
     }
@@ -77,9 +74,14 @@ public class Player : MonoBehaviour
     public void UseItem() {
         if (InventoryScreenStatus.isOpen) return; // Can't use item when inventory screen is open
         UsableItem usable = ItemSelector.GetUsableItem();
-        usable.Use();
-        if (ItemSelector.GetItem().type == ItemType.Weapon) return; // ToDo: reduce ammo instead
-        hotBar.HandleItemUse();
+        if (usable != null) {
+            usable.Use();
+            if (ItemSelector.GetItem().type != ItemType.Weapon) {
+                hotBar.HandleItemUse();
+            } else {
+                // ToDo: reduce ammo instead
+            }
+        }
     }
 
     private void OnApplicationQuit() {

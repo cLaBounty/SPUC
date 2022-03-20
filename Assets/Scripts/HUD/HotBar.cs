@@ -17,11 +17,16 @@ public class HotBar : MonoBehaviour
     }
 
     private void Start() {
-        ButtonOnButtonClicked(0); // Select Resource Beam
+        inventory.Init();
+        SelectSlot(0); // Select Resource Beam
     }
 
     private void ButtonOnButtonClicked(int index) {
         if (InventoryScreenStatus.isOpen) return; // Can't switch items when inventory screen is open
+        SelectSlot(index);
+    }
+
+    private void SelectSlot(int index) {
         activeIndex = index;
         ItemSelector.SetItem(inventory.container.items[index].item);
     }
@@ -44,17 +49,37 @@ public class HotBar : MonoBehaviour
             int high = activeIndex + i;
             if (low >= 0) {
                 if (inventory.container.items[low].item != null) {
-                    ButtonOnButtonClicked(low);
+                    SelectSlot(low);
                     return;
                 }
             }
 
             if (high < SLOTS) {
                 if (inventory.container.items[high].item != null) {
-                    ButtonOnButtonClicked(high);
+                    SelectSlot(high);
                     return;
                 }
             }
+        }
+    }
+
+    public void NotifySwap(ItemObject item1, ItemObject item2) {
+        bool isItem1 = (item1 == ItemSelector.GetItem());
+        bool isItem2 = (item2 == ItemSelector.GetItem());
+        if (isItem1 || isItem2) {
+            int newIndex = inventory.GetIndex(ItemSelector.GetItem());
+            if (newIndex < SLOTS) {
+                activeIndex = newIndex;
+            } else {
+                if ((isItem1 && item2 != null) || (isItem2 && item1 != null)) { activeIndex++; }
+                SelectNewSlot();
+            }
+        }
+    }
+
+    public void NotifyDrop(ItemObject item) {
+        if (item == ItemSelector.GetItem()) {
+            SelectNewSlot();
         }
     }
 }
@@ -73,6 +98,6 @@ public static class ItemSelector
     }
 
     public static UsableItem GetUsableItem() {
-        return currentItem.usablePrefab.gameObject.GetComponent<UsableItem>();
+        return currentItem.holdPrefab.gameObject.GetComponent<UsableItem>();
     }
 }

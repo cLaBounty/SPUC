@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -93,7 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 7621040343930383446}
   recipeObject: {fileID: 7460875731754258159}
-  typeText: {fileID: 0}
   ingredientPrefab: {fileID: 6842017591744777254, guid: d6610100e5e7bb94f9da5db72edd2300, type: 3}
 --- !u!1 &7460875731754258159
 GameObject:
