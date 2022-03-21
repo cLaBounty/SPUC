@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4162592394793791360}
   - component: {fileID: 2170885599370533706}
   - component: {fileID: 5424979517674332253}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HoldSniperRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,5 +96,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8b4dcdcd1531641b8d4ab70e8e7043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
-  range: 150

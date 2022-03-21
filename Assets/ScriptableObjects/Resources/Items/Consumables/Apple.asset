@@ -17,5 +17,5 @@ MonoBehaviour:
   uiDisplay: {fileID: 21300000, guid: a6ff6495f8c8af147ac6591a4d6460d0, type: 3}
   isMoveable: 1
   recipe: []
-  groundPrefab: {fileID: 4420864822446944072, guid: d39b3542e9b71094a917821e51f66f0e, type: 3}
-  holdPrefab: {fileID: 4413477487601138616, guid: c4030b8813bc0284f9c78415e775413b, type: 3}
+  groundPrefab: {fileID: 5805869648998080909, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+  holdPrefab: {fileID: 4034937464797930276, guid: c4030b8813bc0284f9c78415e775413b, type: 3}
