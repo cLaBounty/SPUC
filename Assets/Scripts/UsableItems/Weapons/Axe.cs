@@ -13,11 +13,10 @@ public class Axe : UsableItem
     public override void Init() {
         fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
-        IsInitted = true;
     }
     
     public override void Use() {
-        if (!IsInitted) { Init(); }
+        if (fpsCam == null) { Init(); }
         Melee();
     }
 
