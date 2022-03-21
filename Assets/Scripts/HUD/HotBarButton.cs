@@ -17,6 +17,17 @@ public class HotBarButton : MonoBehaviour
     private int keyNumber;
 
     private void OnValidate() {
+        //keyNumber = transform.GetSiblingIndex() + 1;
+        //keyCode = KeyCode.Alpha0 + keyNumber;
+
+        //image.SetActive(false);
+        //amountText.gameObject.SetActive(false);
+
+        //slotText.SetText(keyNumber.ToString());
+        //gameObject.name = "HotBar Button " + keyNumber;
+    }
+
+    private void Awake() {
         keyNumber = transform.GetSiblingIndex() + 1;
         keyCode = KeyCode.Alpha0 + keyNumber;
 
@@ -25,9 +36,6 @@ public class HotBarButton : MonoBehaviour
 
         slotText.SetText(keyNumber.ToString());
         gameObject.name = "HotBar Button " + keyNumber;
-    }
-
-    private void Awake() {
         GetComponent<Button>().onClick.AddListener(HandleClick);
     }
 
