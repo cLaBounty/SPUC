@@ -14,11 +14,10 @@ public class Campfire : UsableItem
     public override void Init() {
         player = GameObject.FindObjectOfType<Player>();
         fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
-        IsInitted = true;
     }
 
     public override void Use() {
-        if (!IsInitted) { Init(); }
+        if (fpsCam == null) { Init(); }
         Deploy();
     }
 
