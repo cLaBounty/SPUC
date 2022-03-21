@@ -34,6 +34,10 @@ public class EnemyCrawlerAnimation : MonoBehaviour
             animator.SetInteger("Variation", ran);
         }
 
+        else {
+            int ran = Random.Range(0, 2);
+            animator.SetInteger("Variation", ran);
+        }
     }
 
     public void AttackKeyFrame(){
