@@ -16,9 +16,9 @@ public class FlyingEnemy : Enemy
 
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
-    GridController flowField = null;
-    PlayerMovement player = null;
-    Player playerStats = null;
+    //GridController flowField = null;
+    //PlayerMovement player = null;
+    //Player playerStats = null;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
     float agroRangeSqr = 0;
@@ -32,10 +32,6 @@ public class FlyingEnemy : Enemy
     void Start()
     {
         rb              = GetComponent<Rigidbody>();
-        target          = GameObject.FindGameObjectWithTag("target");
-        flowField       = GameObject.FindObjectOfType<GridController>();
-        player          = GameObject.FindObjectOfType<PlayerMovement>();
-        playerStats     = GameObject.FindObjectOfType<Player>();
         agroRangeSqr    = agroDistance * agroDistance;
         attackRangeSqr  = attackDistance * attackDistance;
         

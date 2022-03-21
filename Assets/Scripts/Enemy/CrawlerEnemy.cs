@@ -12,24 +12,21 @@ public class CrawlerEnemy : Enemy
 
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
-    GridController flowField = null;
-    PlayerMovement player = null;
-    Player playerStats = null;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
     float agroRangeSqr = 0;
     float attackRangeSqr = 0;
-    float coolDown = 0;
-    float coolDownMax = 2f;
+    public float coolDown = 0;
+    public float coolDownMax = 2f;
+
+    public float currentTargetDist = 0;
+    float currentPlayerDist = 0;
+    bool isOil;
 
     // Start is called before the first frame update
     void Start()
     {
         rb              = GetComponent<Rigidbody>();
-        target          = GameObject.FindGameObjectWithTag("target");
-        flowField       = GameObject.FindObjectOfType<GridController>();
-        player          = GameObject.FindObjectOfType<PlayerMovement>();
-        playerStats     = GameObject.FindObjectOfType<Player>();
         agroRangeSqr    = agroDistance * agroDistance;
         attackRangeSqr  = attackDistance * attackDistance;
         
@@ -40,47 +37,83 @@ public class CrawlerEnemy : Enemy
 
     // Update is called once per frame
     private void Update() {
-        if (player != null){
-            float range = (player.transform.position - transform.position).sqrMagnitude;
+        //update distances
+        currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
+        currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
 
-            // ToDo: attack oil drill
-            
-            if (range < attackRangeSqr) AttackPlayer();
-            else if (range < agroRangeSqr) MoveTowardsPlayer(new Vector2(player.transform.position.x, player.transform.position.z));
-            else MoveTowardsTarget();
+        if (player == null && ((state == STATE.AGRO_PLAYER) || (state == STATE.ATTACKING_PLAYER))){
+            state = STATE.AGRO_OIL;
         }
-        else MoveTowardsTarget();
+
+        //Debug.Log(state);
+
+        //state machine
+        switch(state){
+            case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
+            case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
+            case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
+            case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
+        }
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
     }
 
     void AttackPlayer(){
+        //stop
+        Stop();
+        isOil = false;
+
         if (coolDown < 0) {
-            playerStats.TakeDamage(4);
-            coolDown = coolDownMax;
+            //exit condition first
+            if (currentPlayerDist > attackRangeSqr && currentPlayerDist < agroRangeSqr)
+                state = STATE.AGRO_PLAYER;
+            else if (currentPlayerDist > agroRangeSqr)
+                state = STATE.AGRO_OIL;
         }
+        
+        
+        Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void AttackOilDrill(){
+        Stop();
+
+        isOil = true;
+
         if (coolDown < 0) {
-            OilDrill oilDrill = target.GetComponent<OilDrill>();
-            oilDrill.TakeDamage(4);
-            coolDown = coolDownMax;
+            //exit condition first
+            if (currentTargetDist > agroRangeSqr)
+                state = STATE.AGRO_OIL;
         }
+
+        Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void MoveTowardsTarget(){
-        if (flowField.initialized){
+        //exit condition
+        if (currentPlayerDist < agroRangeSqr)
+            state = STATE.AGRO_PLAYER;
+
+        else if (target != null && currentTargetDist < attackRangeSqr)
+            state = STATE.ATTACKING_OIL;
+
+        else if (flowField != null && flowField.initialized){
             //Debug.Log("Target");
             Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
             Vector3 moveDirection;
 
             if (occupideCell.cost == 255){
+                navMeshAgent.speed = moveSpeed;
                 navMeshAgent.destination = target.transform.position;
+                rb.velocity = Vector3.zero;
+                acculmulatedSpeed = Vector3.zero;
                 return;
             }
             else{
+                navMeshAgent.speed = 0;
                 moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
             }
 
@@ -88,17 +121,48 @@ public class CrawlerEnemy : Enemy
             acculmulatedSpeed += moveDirection * moveSpeed * Time.fixedDeltaTime;
             acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
             rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
+
+            Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
         }
         else{
             Debug.Log("Flow Field not Initialized");
         }
     }
 
-    void MoveTowardsPlayer(Vector2 playerTarget){
-        //Debug.Log("Player");
-        //Vector2 direction = new Vector2(playerTarget.x - transform.position.x, playerTarget.y - transform.position.z);
-        //acculmulatedSpeed = new Vector3(direction.x, 0, direction.y).normalized * maxMoveSpeed;
-        //rb.velocity = new Vector3(direction.x, 0, direction.y).normalized * maxMoveSpeed * Time.fixedDeltaTime * 50;
-        navMeshAgent.destination = player.transform.position;
+    void MoveTowardsPlayer(){
+        //exit condition
+        if (currentPlayerDist > agroRangeSqr)
+            state = STATE.AGRO_OIL;
+        
+        else if (currentPlayerDist < attackRangeSqr)
+            state = STATE.ATTACKING_PLAYER;
+
+        else{
+            navMeshAgent.speed = moveSpeed;
+            navMeshAgent.destination = player.transform.position;
+            rb.velocity = Vector3.zero;
+            acculmulatedSpeed = Vector3.zero;
+
+            Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
+            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+        }
+    }
+
+    public void DealDamage(){
+        if (isOil && target != null){
+            target.TakeDamage(attackPower);
+        }
+        else if (!isOil && player != null && currentPlayerDist < attackRangeSqr){
+            playerStats.TakeDamage(attackPower);
+        }
+
+        coolDown = coolDownMax;
+    }
+
+    void Stop(){
+        rb.velocity = Vector3.zero;
+        acculmulatedSpeed = Vector3.zero;
+        navMeshAgent.speed = 0;
     }
 }

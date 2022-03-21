@@ -5,16 +5,29 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    [SerializeField] int hp = 1;
+    [SerializeField] protected int hp = 1;
     [SerializeField] protected float moveSpeed = 1f;
     [SerializeField] protected float maxMoveSpeed = 1f;
-    [SerializeField] float attackSpeed = 1;
-    [SerializeField] float attackPower = 1;
-    [SerializeField] float defense = 0;
+    [SerializeField] protected float attackSpeed = 1;
+    [SerializeField] protected float attackPower = 1;
+    [SerializeField] protected float defense = 0;
 
     //[Header("Debuging")]
     //[SerializeField] 
-    protected GameObject target;
+    public OilDrill target;
+    public GridController flowField = null;
+    public PlayerMovement player = null;
+    public Player playerStats = null;
+
+    public enum STATE {
+        AGRO_OIL = 0,
+        AGRO_PLAYER,
+        ATTACKING_OIL,
+        ATTACKING_PLAYER,
+        DEAD,
+    }
+
+    public STATE state = STATE.AGRO_OIL;
 
     public void TakeDamage (float damage) {
         hp -= Mathf.CeilToInt(damage - defense);
@@ -23,7 +36,7 @@ public class Enemy : MonoBehaviour
 
     void KillEnemy(){
         if (hp < 1){
-            Destroy(gameObject);
+            state = STATE.DEAD;//Destroy(gameObject);
         }
     }
 }
