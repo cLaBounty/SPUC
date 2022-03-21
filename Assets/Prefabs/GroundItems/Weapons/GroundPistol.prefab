@@ -100,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 474d6dfc4ea081a4eb7832d6abb2b491, type: 2}
   amount: 1
+  hoverRate: 1
+  highestOffset: 1
 --- !u!135 &-2150292933466304806
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -224,7 +226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3696467043973636144
 Transform:
   m_ObjectHideFlags: 0

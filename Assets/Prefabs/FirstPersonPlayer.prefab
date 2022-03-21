@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 4248214650345464470}
   - component: {fileID: 4248214650345464468}
   - component: {fileID: 5862226166126504024}
+  - component: {fileID: 1248899512}
   m_Layer: 11
   m_Name: FirstPersonPlayer
   m_TagString: Player
@@ -246,7 +247,20 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   hotBar: {fileID: 0}
   inventory: {fileID: 11400000, guid: a5e9cecb9c354224a862093b2c27e37a, type: 2}
-  crafting: {fileID: 0}
+  crafting: {fileID: 11400000, guid: a91d1872c531e524e915748f14703a53, type: 2}
+--- !u!114 &1248899512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248214650345464465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb1457946b35034eb1b39ba8016611e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryCanvas: {fileID: 0}
 --- !u!1 &6606268005737706884
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +315,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1926551186661714190}
   - component: {fileID: 5898553401035254321}
-  - component: {fileID: 343704283124502774}
   m_Layer: 11
   m_Name: FPSCam
   m_TagString: Untagged
@@ -367,14 +380,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &343704283124502774
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8777305031802533938}
-  m_Enabled: 1
 --- !u!1001 &6850314203375662712
 PrefabInstance:
   m_ObjectHideFlags: 0
