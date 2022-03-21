@@ -58,9 +58,9 @@ public class LevelManager : MonoBehaviour
     }
 
     IEnumerator spawnEnemyTimer(float time){
-        SpawnEnemies();
-        
         yield return new WaitForSeconds(time);
+        
+        SpawnEnemies();
 
         if (WaveSpawnAmmount > 0) StartCoroutine(spawnEnemyTimer(timer));
     }
