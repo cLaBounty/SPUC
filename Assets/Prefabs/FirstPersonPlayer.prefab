@@ -99,7 +99,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3063
+    m_Bits: 4087
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   groundCheck: {fileID: 4248214650240945314}
   groundMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   crouchMultiplier: 0.75
   crouchSpeed: 0
 --- !u!114 &5862226166126504024

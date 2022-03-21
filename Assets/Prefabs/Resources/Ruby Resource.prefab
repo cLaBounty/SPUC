@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 461827980555074646}
   - component: {fileID: 627448618719100308}
   - component: {fileID: 4806930812415640051}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ruby Resource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedCrystal09 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1376381bdad68174b8e538762d8d95f0, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1376381bdad68174b8e538762d8d95f0, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -145,6 +149,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 20b50cde428e8a14b87a3f09a9025d3e, type: 3}
       propertyPath: m_Name
       value: RedCrystal10 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 20b50cde428e8a14b87a3f09a9025d3e, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 20b50cde428e8a14b87a3f09a9025d3e, type: 3}
       propertyPath: m_RootOrder
@@ -220,6 +228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedCrystal10 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 20b50cde428e8a14b87a3f09a9025d3e, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 20b50cde428e8a14b87a3f09a9025d3e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -282,6 +294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock003 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6b14efe779947f94c86aed3169771d2f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6b14efe779947f94c86aed3169771d2f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -343,6 +359,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 20b50cde428e8a14b87a3f09a9025d3e, type: 3}
       propertyPath: m_Name
       value: RedCrystal10 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 20b50cde428e8a14b87a3f09a9025d3e, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 20b50cde428e8a14b87a3f09a9025d3e, type: 3}
       propertyPath: m_RootOrder
@@ -413,6 +433,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: debc3d5841a96934a93fb5dd6e419912, type: 3}
       propertyPath: m_Name
       value: RedCrystal08 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: debc3d5841a96934a93fb5dd6e419912, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: debc3d5841a96934a93fb5dd6e419912, type: 3}
       propertyPath: m_RootOrder
@@ -488,6 +512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedCrystal08 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: debc3d5841a96934a93fb5dd6e419912, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: debc3d5841a96934a93fb5dd6e419912, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -549,6 +577,10 @@ PrefabInstance:
     - target: {fileID: 117434, guid: c17da0b4ec4a77246b34c9dbc146ded7, type: 3}
       propertyPath: m_Name
       value: RedGlow
+      objectReference: {fileID: 0}
+    - target: {fileID: 117434, guid: c17da0b4ec4a77246b34c9dbc146ded7, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 403012, guid: c17da0b4ec4a77246b34c9dbc146ded7, type: 3}
       propertyPath: m_RootOrder

@@ -27,6 +27,11 @@ public class FlyingEnemy : Enemy
     float coolDownMax = 2f;
     
     int impassableMask;
+    [SerializeField] LayerMask groundMask;
+
+    public float currentTargetDist = 0;
+    float currentPlayerDist = 0;
+    bool isOil;
 
     // Start is called before the first frame update
     void Start()
@@ -38,77 +43,130 @@ public class FlyingEnemy : Enemy
         //set navmeshagent
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         navMeshAgent.speed = moveSpeed;
-        
+        navMeshAgent.enabled = false;
+
         //impassable mask
         impassableMask = LayerMask.GetMask("Impassible Terrain");
     }
 
     // Update is called once per frame
     private void Update() {
-        if (player != null){
-            float range = (player.transform.position - transform.position).sqrMagnitude;
-            
-            //Debug.Log("agroRangeSqr " + agroRangeSqr);
-            //Debug.Log("attackRangeSqr " + attackRangeSqr);
-            //Debug.Log("range " + range);
+        //update distances
+        currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
+        currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
 
-            if (range < attackRangeSqr) Attack();
-            else if (range < agroRangeSqr) MoveTowardsPlayer();
-            else MoveTowardsTarget();
+        if (player == null && ((state == STATE.AGRO_PLAYER) || (state == STATE.ATTACKING_PLAYER))){
+            state = STATE.AGRO_OIL;
         }
-        else MoveTowardsTarget();
+
+        //Debug.Log(state);
+
+        //state machine
+        switch(state){
+            case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
+            case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
+            case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
+            case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
+            case STATE.DEAD:                Stop(); break;
+        }
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
-
-        //Debug.Log("Enemy Speed" + acculmulatedSpeed);
     }
 
-    void Attack(){
-        Vector3 dir =  (player.transform.position - transform.position);
-        float distSqr = dir.magnitude; 
+    void AttackPlayer(){
+        //stop
+        Stop();
+        isOil = false;
 
-        if (coolDown < 0 &&
-            !Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask)){
-            playerStats.TakeDamage(4);
-            coolDown = coolDownMax;
+        if (coolDown < 0) {
+            //exit condition first
+            if (currentPlayerDist > attackRangeSqr && currentPlayerDist < agroRangeSqr)
+                state = STATE.AGRO_PLAYER;
+            else if (currentPlayerDist > agroRangeSqr)
+                state = STATE.AGRO_OIL;
         }
-        else{
-            MoveTowardsPlayer();
+        
+        
+        Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+    }
+
+    void AttackOilDrill(){
+        Stop();
+
+        isOil = true;
+
+        if (coolDown < 0) {
+            //exit condition first
+            if (currentTargetDist > agroRangeSqr)
+                state = STATE.AGRO_OIL;
         }
+
+        Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void MoveTowardsTarget(){
         Vector3 dir =  (target.transform.position - transform.position).normalized;
         RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
 
-        if (Physics.Raycast(transform.position, dir, out hit, startUpwardDist, impassableMask)){
+        if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight){
             dir.y = 1f;
-
-            if (hit.distance < useNavMeshDist){
-                navMeshAgent.destination = target.transform.position;
-                return;
-            }
+            Debug.Log("Flying Up");
+        }
+        else if (hit.distance > maxFlyHeight){
+            dir.y = -1f;
         }
 
+        navMeshAgent.speed = 0;
         acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
+        acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
+        Debug.Log(acculmulatedSpeed);
         rb.velocity = acculmulatedSpeed;
+
+        Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void MoveTowardsPlayer(){
         Vector3 dir =  (player.transform.position - transform.position).normalized;
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, dir, out hit, startUpwardDist, impassableMask)){
-            dir.y = 1f;
+        Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
 
-            if (hit.distance < useNavMeshDist){
-                navMeshAgent.destination = target.transform.position;
-                return;
-            }
+        if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight){
+            dir.y = 1f;
+            Debug.Log("Flying Up");
+        }
+        else if (hit.distance > maxFlyHeight){
+            dir.y = -1f;
         }
 
+        navMeshAgent.speed = 0;
         acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
+        acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
         rb.velocity = acculmulatedSpeed;
+
+        Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+    }
+
+    public void DealDamage(){
+        if (isOil && target != null){
+            target.TakeDamage(attackPower);
+        }
+        else if (!isOil && player != null && currentPlayerDist < attackRangeSqr){
+            playerStats.TakeDamage(attackPower);
+        }
+
+        coolDown = coolDownMax;
+    }
+
+    void Stop(){
+        rb.velocity = Vector3.zero;
+        acculmulatedSpeed = Vector3.zero;
+        navMeshAgent.speed = 0;
     }
 }

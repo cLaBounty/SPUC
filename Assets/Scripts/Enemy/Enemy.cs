@@ -36,7 +36,10 @@ public class Enemy : MonoBehaviour
     }
 
     void KillEnemy(){
-        if (hp < 1){
+        if (hp <= 0){
+            Collider collider = GetComponent<Collider>();
+            if (collider != null ) collider.enabled = false;
+
             state = STATE.DEAD;//Destroy(gameObject);
         }
     }
