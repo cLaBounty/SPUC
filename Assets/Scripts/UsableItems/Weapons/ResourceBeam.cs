@@ -14,11 +14,10 @@ public class ResourceBeam : UsableItem
 		inventory = Resources.Load<InventoryObject>("Inventory/PlayerInventory");
 		fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
-		IsInitted = true;
 	}
     
     public override void Use() {
-		if (!IsInitted) { Init(); }
+		if (fpsCam == null) { Init(); }
 		Shoot();
     }
 
