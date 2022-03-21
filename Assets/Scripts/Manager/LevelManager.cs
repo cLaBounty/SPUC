@@ -42,14 +42,17 @@ public class LevelManager : MonoBehaviour
     void Update(){
         if (enemyCount == 0 && WaveSpawnAmmount <= 0){
             //win
+            playerStats.CleanUp(); // ToDo: only if last level
             SceneManager.LoadScene(winScreen);
         }
         else if (playerStats.currentHealth <= 0){
             //lose
+            playerStats.CleanUp();
             SceneManager.LoadScene(playerLossScreen);
         }
         else if (target.currentHealth <= 0){
             //lose
+            playerStats.CleanUp();
             SceneManager.LoadScene(drillLossScreen);
         }
 
