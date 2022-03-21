@@ -10,6 +10,8 @@ public class Pistol : UsableItem
 	private Camera fpsCam;
 	private int layers;
 
+	// [SerializeField] ParticleSystem muzzleFlash;
+
 	public override void Init() {
         fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
@@ -18,6 +20,7 @@ public class Pistol : UsableItem
     
     public override void Use() {
 		if (!IsInitted) { Init(); }
+		//muzzleFlash.Play();
         Shoot();
     }
 
