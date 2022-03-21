@@ -82,7 +82,9 @@ public class DisplayInventory : MonoBehaviour
 
             // Display info, if not dragging an item and not empty
             if (mouseItem.obj == null && mouseItem.item == null && inventoryItems[obj].item != null) {
-                Vector3 offset = new Vector3(215, 0, 0);
+                float ratioX = 210f / 1920f;
+                Vector3 offset = new Vector3(ratioX * Screen.width, 0, 0);
+
                 currentItemInfo = Instantiate(itemInfoPrefab, obj.transform.position + offset, Quaternion.identity, transform);
                 currentItemInfo.GetComponent<DisplayInventoryItemInfo>().SetUp(inventoryItems[obj].item);
             }
