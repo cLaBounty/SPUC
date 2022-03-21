@@ -7,7 +7,7 @@ using UnityEngine;
 public class InventoryObject : ScriptableObject
 {
     public Inventory container;
-    public List<ItemObject> startItems = new List<ItemObject>();
+    public List<ItemObject> startItems;
     public CraftingObject crafting;
 
     public void Init() {
