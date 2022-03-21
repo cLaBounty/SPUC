@@ -19,5 +19,5 @@ MonoBehaviour:
   recipe:
   - item: {fileID: 11400000, guid: ed9e9b5f7225b8549927b40be9ab79ff, type: 2}
     amount: 2
-  groundPrefab: {fileID: 919132149155446097, guid: 143e6b78495a55e4497abd1bf4d3bee8, type: 3}
-  holdPrefab: {fileID: 919132149155446097, guid: 4bbcb4182e1f387448049096aa52ee7b, type: 3}
+  groundPrefab: {fileID: 3471971709797638843, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+  holdPrefab: {fileID: 1327631899784223376, guid: 5c7879cf1191e6043a1f7e09e363b684, type: 3}

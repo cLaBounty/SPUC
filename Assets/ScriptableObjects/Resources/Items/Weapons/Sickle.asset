@@ -20,4 +20,4 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: fbd003a6a7065c24cbd325ef2ad84d78, type: 2}
     amount: 1
   groundPrefab: {fileID: 6396843402673147002, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
-  holdPrefab: {fileID: 2823609385828974908, guid: 083808eda3b3f024089c33a380fcb75d, type: 3}
+  holdPrefab: {fileID: 4068300616983952392, guid: 083808eda3b3f024089c33a380fcb75d, type: 3}

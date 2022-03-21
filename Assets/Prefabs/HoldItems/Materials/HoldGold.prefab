@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4413477487601138620}
   - component: {fileID: 4413477487601138623}
   - component: {fileID: 4413477487601138622}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: HoldGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4413477487601138623}
   - component: {fileID: 4413477487601138622}
   - component: {fileID: 1304831795474186365}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: HoldCampfire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
