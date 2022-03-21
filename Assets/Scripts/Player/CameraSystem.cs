@@ -7,8 +7,8 @@ public class CameraSystem : MonoBehaviour
 
     void Start()
     {
-        Camera[] camArr =  GameObject.FindObjectsOfType<Camera>();
-
+        Camera[] camArr = GameObject.FindObjectsOfType<Camera>();
+        
         for (int i = 0; i < camArr.Length; i++)
         {
             addCamera(camArr[i].gameObject.name, camArr[i]);

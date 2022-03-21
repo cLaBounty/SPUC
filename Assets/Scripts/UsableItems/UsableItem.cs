@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class UsableItem : MonoBehaviour
 {
-    protected bool IsInitted = false;
     public abstract void Init();
     public abstract void Use();
+    private void Start() { Init(); }
 }

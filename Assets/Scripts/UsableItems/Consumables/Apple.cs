@@ -10,11 +10,10 @@ public class Apple : UsableItem
 
     public override void Init() {
         player = GameObject.FindObjectOfType<Player>();
-        IsInitted = true;
     }
 
     public override void Use() {
-        Init();
+        if (player == null) { Init(); }
         player.GainHealth(HEALTH_INCREASE);
     }
 }
