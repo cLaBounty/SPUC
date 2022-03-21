@@ -53,6 +53,7 @@ public class CrawlerEnemy : Enemy
             case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
             case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
             case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
+            case STATE.DEAD:                Stop(); break;
         }
 
         if (coolDown >= 0)
