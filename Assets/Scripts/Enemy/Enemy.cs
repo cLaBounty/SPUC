@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public GridController flowField = null;
     public PlayerMovement player = null;
     public Player playerStats = null;
+    public LevelManager levelManager = null;
 
     public enum STATE {
         AGRO_OIL = 0,
@@ -38,5 +39,9 @@ public class Enemy : MonoBehaviour
         if (hp < 1){
             state = STATE.DEAD;//Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy() {
+        if (levelManager != null) levelManager.EnemyKilled();
     }
 }
