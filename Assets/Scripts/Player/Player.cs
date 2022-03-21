@@ -84,8 +84,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit() {
+    public void CleanUp() {
         inventory.container.items = new InventorySlot[28];
         crafting.container.items = new InventorySlot[28];
+    }
+
+    private void OnApplicationQuit() {
+        CleanUp();
     }
 }

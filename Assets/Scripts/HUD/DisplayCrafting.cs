@@ -77,9 +77,9 @@ public class DisplayCrafting : MonoBehaviour
         if (craftingItems[obj].item == null) return; // Empty slot
         CleanUp();
 
-        Vector3 offset = new Vector3(100, Mathf.RoundToInt(-35/2), 0);
+        Vector3 offset = new Vector3(215, Mathf.RoundToInt(-35/2), 0);
         if (crafting.GetIndex(craftingItems[obj].item) % NUMBER_OF_COLUMNS > 4) {
-            offset.x = -100;
+            offset.x = -215;
         }
         currentItemInfo = Instantiate(itemInfoPrefab, obj.transform.position + offset, Quaternion.identity, transform);
         currentItemInfo.GetComponent<DisplayCraftingItemInfo>().SetUp(craftingItems[obj].item, crafting.playerInventory);
