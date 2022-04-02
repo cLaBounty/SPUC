@@ -7,12 +7,14 @@ public class OilDrill : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
 
-    public HealthBar healthBar;
+    public HealthBar billboardHealthBar;
+    public HealthBar hudHealthBar;
 
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        billboardHealthBar.SetMaxHealth(maxHealth);
+        hudHealthBar.SetMaxHealth(maxHealth);
     }
 
     public void TakeDamage(float amount)
@@ -23,7 +25,8 @@ public class OilDrill : MonoBehaviour
             currentHealth = 0;
         }
 
-        healthBar.SetHealth(currentHealth);
+        billboardHealthBar.SetHealth(currentHealth);
+        hudHealthBar.SetHealth(currentHealth);
     }
 
     public void GainHealth(float amount)
@@ -34,6 +37,7 @@ public class OilDrill : MonoBehaviour
             currentHealth = maxHealth;
         }
         
-        healthBar.SetHealth(currentHealth);
+        billboardHealthBar.SetHealth(currentHealth);
+        hudHealthBar.SetHealth(currentHealth);
     }
 }
