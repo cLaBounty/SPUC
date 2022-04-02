@@ -37,6 +37,7 @@ public class GroundItem : MonoBehaviour
 
             // E to Pickup
             if (Input.GetKeyDown(KeyCode.E)) {
+                if (PauseMenu.GameIsPaused) return;
                 player.PickUpItem(this);
                 Destroy(transform.gameObject);
             }

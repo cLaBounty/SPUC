@@ -56,8 +56,8 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(drillLossScreen);
         }
 
-        Debug.Log("enemyCount: " + enemyCount);
-        Debug.Log("WaveSpawnAmmount: " + WaveSpawnAmmount);
+        //Debug.Log("enemyCount: " + enemyCount);
+        //Debug.Log("WaveSpawnAmmount: " + WaveSpawnAmmount);
     }
 
     IEnumerator spawnEnemyTimer(float time){

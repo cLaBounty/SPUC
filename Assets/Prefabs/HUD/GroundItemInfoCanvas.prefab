@@ -703,5 +703,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac8c062c95ebbc489bf7fe8329a1bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconPrefab: {fileID: 4001374901878963358}
+  iconObject: {fileID: 4001374901878963358}
   nameText: {fileID: 100643082893478203}

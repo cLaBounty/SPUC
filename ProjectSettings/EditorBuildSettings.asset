@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: edf41ea073a81064887b1ad92832f5e5
   - enabled: 1
     path: Assets/Scenes/Main Scene.unity
-    guid: 05e2b459a5ba04f448138c31a4c92539
+    guid: eec9d9fb1d4fb3b40ba7fa0305b15926
   - enabled: 1
     path: Assets/Scenes/OilDrillDied.unity
     guid: ca5cd1bb28f3ec24c933e982bd0b2277
