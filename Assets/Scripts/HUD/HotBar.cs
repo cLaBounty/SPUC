@@ -31,14 +31,15 @@ public class HotBar : MonoBehaviour
         ItemSelector.SetItem(inventory.container.items[index].item);
     }
 
-    public void HandleItemUse() {
-        InventorySlot activeSlot = inventory.container.items[activeIndex];
+    public void HandleItemUse(ItemObject item) {
+        int index = inventory.GetIndex(item);
+        InventorySlot slot = inventory.container.items[index];
 
-        if (activeSlot.amount <= 1) {
-            inventory.Remove(activeSlot);
-            SelectNewSlot();
+        if (slot.amount <= 1) {
+            inventory.Remove(slot);
+            if (index == activeIndex) { SelectNewSlot(); }
         } else {
-            activeSlot.amount = activeSlot.amount - 1;
+            slot.amount = slot.amount - 1;
         }
     }
 

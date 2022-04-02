@@ -6,8 +6,9 @@ public class GroundItem : MonoBehaviour
 {
     public ItemObject item;
     public int amount = 1;
-    [SerializeField] float hoverRate = 1f;
-    [SerializeField] float highestOffset = 1f;
+    
+    float hoverRate = 0.5f;
+    float highestOffset = 0.6f;
     float startingZ;
     float time = 0;
 
