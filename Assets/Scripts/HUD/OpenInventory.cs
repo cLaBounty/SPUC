@@ -17,7 +17,7 @@ public class OpenInventory : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.C)) {
             Toggle();
         }
     }

@@ -53,6 +53,10 @@ public class Player : MonoBehaviour
     }
 
     // Inventory
+    public void PickUpItem(GroundItem groundItem) {
+        inventory.AddItem(groundItem.item, groundItem.amount);
+    }
+
     public void DropItem(InventorySlot slot) {
         var inst = Instantiate(slot.item.groundPrefab);
         inst.GetComponent<GroundItem>().amount = slot.amount;
@@ -63,9 +67,9 @@ public class Player : MonoBehaviour
     }
 
     public void OnTriggerEnter(Collider other) {
-        var groundItem = other.GetComponent<GroundItem>();
+        GroundItem groundItem = other.GetComponent<GroundItem>();
         if (groundItem != null) {
-            inventory.AddItem(groundItem.item, groundItem.amount);
+            PickUpItem(groundItem);
             Destroy(other.gameObject);
         }
     }

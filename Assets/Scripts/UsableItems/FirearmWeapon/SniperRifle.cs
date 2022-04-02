@@ -21,7 +21,7 @@ public class SniperRifle : UsableItem
     
     public override void Use() {
 		if (hotBar == null) { Init(); }
-		if (hotBar.inventory.Has(ammo, 2)) {
+		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			hotBar.HandleItemUse(ammo);
 		} else {
