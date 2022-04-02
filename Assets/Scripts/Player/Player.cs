@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (Input.GetButtonDown("Fire1")) {
+            if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) return;
             UseItem();
         }
     }
@@ -76,7 +77,6 @@ public class Player : MonoBehaviour
 
     // HotBar
     public void UseItem() {
-        if (InventoryScreenStatus.isOpen) return; // Can't use item when inventory screen is open
         ItemObject item = ItemSelector.GetItem();
         UsableItem usable = ItemSelector.GetUsableItem();
         if (usable != null) {

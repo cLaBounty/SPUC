@@ -22,7 +22,7 @@ public class HotBar : MonoBehaviour
     }
 
     private void ButtonOnButtonClicked(int index) {
-        if (InventoryScreenStatus.isOpen) return; // Can't switch items when inventory screen is open
+        if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) return;
         SelectSlot(index);
     }
 
