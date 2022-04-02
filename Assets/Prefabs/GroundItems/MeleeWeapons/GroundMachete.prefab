@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8084d9a381b724990a0d5fef802d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoPrefab: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
   item: {fileID: 11400000, guid: cd6a982fa40f180408963ff0468ba6a9, type: 2}
   amount: 1
 --- !u!135 &-5364648395694381797
