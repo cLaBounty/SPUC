@@ -18,10 +18,7 @@ public class DisplayCraftingItemInfo : MonoBehaviour
             obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite = ingredient.item.uiDisplay;
             obj.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = ingredient.amount == 1 ? "" : ingredient.amount.ToString("n0");
-
-            if (!playerInventory.Has(ingredient.item, ingredient.amount)) { // light background if still needed
-                obj.GetComponent<Image>().color = new Color32(178, 138, 96, 255);
-            }
+            obj.transform.GetChild(2).gameObject.SetActive(!playerInventory.Has(ingredient.item, ingredient.amount)); // overlay if still needed
         }
     }
 }
