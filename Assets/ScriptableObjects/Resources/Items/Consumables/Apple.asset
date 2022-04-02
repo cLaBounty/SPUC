@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9c019c2ad643849853adb60908ee47, type: 3}
+  m_Script: {fileID: 11500000, guid: fb3d46271139c9d4a919b0baf65d25f8, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  type: 1
+  type: 3
   name: Apple
+  description: 
   uiDisplay: {fileID: 21300000, guid: a6ff6495f8c8af147ac6591a4d6460d0, type: 3}
   isMoveable: 1
   recipe: []
