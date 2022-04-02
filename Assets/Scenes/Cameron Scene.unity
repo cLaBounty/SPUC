@@ -256,6 +256,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2580538703311872111, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 2580538703311872111, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -322,6 +326,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6573688572695703078, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 6573688572695703078, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -347,6 +355,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -1131,6 +1143,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2232505321185171486, guid: 14ae1d1edf13bf54dbb26b964e2ea030, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 2232505321185171486, guid: 14ae1d1edf13bf54dbb26b964e2ea030, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -1282,6 +1298,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -1540,6 +1560,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8299639547241831181, guid: e81642f4070fd73468f59f035abac0c8, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 8299639547241831181, guid: e81642f4070fd73468f59f035abac0c8, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -2185,6 +2209,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4914048327650285511, guid: ab62d27970baf734eb43f22376116f87, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 4914048327650285511, guid: ab62d27970baf734eb43f22376116f87, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -2328,6 +2356,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -2444,6 +2476,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -2970,6 +3006,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -3422,6 +3462,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -3438,6 +3482,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -3610,6 +3658,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -3722,6 +3774,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8299639547241831181, guid: e81642f4070fd73468f59f035abac0c8, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 8299639547241831181, guid: e81642f4070fd73468f59f035abac0c8, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -3845,6 +3901,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4914048327650285511, guid: ab62d27970baf734eb43f22376116f87, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 4914048327650285511, guid: ab62d27970baf734eb43f22376116f87, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -4625,6 +4685,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2580538703311872111, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 2580538703311872111, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -5236,6 +5300,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -5487,6 +5555,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -5613,6 +5685,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -5754,6 +5830,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -6201,6 +6281,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3358170688432558604, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 3358170688432558604, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -6600,6 +6684,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3358170688432558604, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 3358170688432558604, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -6851,6 +6939,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -7028,6 +7120,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6396843402673147003, guid: 9d3daf13340e7f74c834e4dd386cfcfc, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 6396843402673147003, guid: 9d3daf13340e7f74c834e4dd386cfcfc, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -7341,6 +7437,10 @@ PrefabInstance:
       propertyPath: amount
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6573688572695703078, guid: 398d0e0b838f1914c99193bace954b20, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 6573688572695703079, guid: 398d0e0b838f1914c99193bace954b20, type: 3}
       propertyPath: m_Name
       value: GroundMediumAmmo
@@ -7412,6 +7512,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -7591,6 +7695,10 @@ PrefabInstance:
       propertyPath: amount
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6573688572695703078, guid: f45bdad71f60de84f8dc6879ad47c985, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 6573688572695703079, guid: f45bdad71f60de84f8dc6879ad47c985, type: 3}
       propertyPath: m_Name
       value: GroundHeavyAmmo
@@ -7785,6 +7893,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -7973,6 +8085,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -8041,6 +8157,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4914048327650285511, guid: ab62d27970baf734eb43f22376116f87, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 4914048327650285511, guid: ab62d27970baf734eb43f22376116f87, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -8289,6 +8409,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -8407,6 +8531,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -8856,6 +8984,10 @@ PrefabInstance:
       propertyPath: amount
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6573688572695703078, guid: b3f4a4d358df0e1458bbc2b6788abacc, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 6573688572695703079, guid: b3f4a4d358df0e1458bbc2b6788abacc, type: 3}
       propertyPath: m_Name
       value: GroundLightAmmo
@@ -9612,6 +9744,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2232505321185171486, guid: 14ae1d1edf13bf54dbb26b964e2ea030, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 2232505321185171486, guid: 14ae1d1edf13bf54dbb26b964e2ea030, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -10297,6 +10433,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -10390,6 +10530,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -10994,6 +11138,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -11957,6 +12105,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -12134,6 +12286,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -12809,6 +12965,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 1082136818001218569, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -12932,6 +13092,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -13052,6 +13216,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2580538703311872111, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 2580538703311872111, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -13265,6 +13433,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -13372,6 +13544,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -13691,6 +13867,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6573688572695703078, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 6573688572695703078, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -13980,6 +14160,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 8892690790921709463, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -14187,6 +14371,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2232505321185171486, guid: 14ae1d1edf13bf54dbb26b964e2ea030, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 2232505321185171486, guid: 14ae1d1edf13bf54dbb26b964e2ea030, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -15046,6 +15234,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6396843402673147003, guid: 9d3daf13340e7f74c834e4dd386cfcfc, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 6396843402673147003, guid: 9d3daf13340e7f74c834e4dd386cfcfc, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -15771,6 +15963,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 7525457710395568996, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -15948,6 +16144,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6573688572695703078, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 6573688572695703078, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -15968,6 +16168,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -16033,6 +16237,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -16445,6 +16653,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4914048327650285511, guid: ab62d27970baf734eb43f22376116f87, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 4914048327650285511, guid: ab62d27970baf734eb43f22376116f87, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -16741,6 +16953,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6396843402673147003, guid: 9d3daf13340e7f74c834e4dd386cfcfc, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 6396843402673147003, guid: 9d3daf13340e7f74c834e4dd386cfcfc, type: 3}
       propertyPath: highestOffset
       value: 0.6
@@ -17239,6 +17455,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+    - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
       propertyPath: highestOffset
       value: 0.6
       objectReference: {fileID: 0}
@@ -17303,6 +17523,10 @@ PrefabInstance:
       propertyPath: hoverRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+      propertyPath: infoPrefab
+      value: 
+      objectReference: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
     - target: {fileID: 14018475113922217, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
       propertyPath: highestOffset
       value: 0.6
