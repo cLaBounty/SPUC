@@ -9661,7 +9661,7 @@ MonoBehaviour:
   X_SPACE_BETWEEN_ITEMS: 37
   Y_SPACE_BETWEEN_ITEMS: 37
   NUMBER_OF_COLUMNS: 7
-  craftingPrefab: {fileID: 6842017591744777254, guid: d6610100e5e7bb94f9da5db72edd2300, type: 3}
+  craftingPrefab: {fileID: 6842017591744777254, guid: f748219db07b36e459cadd82d94ad4c2, type: 3}
   itemInfoPrefab: {fileID: 6185593502870295591, guid: 8ea8b8863d6c2714b824f0fa3fd518cf, type: 3}
   crafting: {fileID: 11400000, guid: a91d1872c531e524e915748f14703a53, type: 2}
 --- !u!1001 &968463605

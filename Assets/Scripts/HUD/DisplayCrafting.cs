@@ -49,9 +49,12 @@ public class DisplayCrafting : MonoBehaviour
             if (slot.Value.item != null) {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.Value.item.uiDisplay;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+                slot.Key.transform.GetChild(2).gameObject.SetActive(!crafting.IsCraftable(slot.Value.item)); // overlay if not craftable
+
             } else {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+                slot.Key.transform.GetChild(2).gameObject.SetActive(false);
             }
         }
     }
