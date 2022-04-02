@@ -7,18 +7,21 @@ public class Campfire : UsableItem
     private const float PLACE_DISTANCE = 5f;
 
     private Player player;
+    private HotBar hotBar;
     private Camera fpsCam;
 
     public GameObject placedPrefab;
     
     public override void Init() {
         player = GameObject.FindObjectOfType<Player>();
+        hotBar = GameObject.FindObjectOfType<HotBar>();
         fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
     }
 
     public override void Use() {
-        if (fpsCam == null) { Init(); }
+        if (hotBar == null) { Init(); }
         Deploy();
+        hotBar.HandleItemUse(itemObject);
     }
 
     private void Deploy() {

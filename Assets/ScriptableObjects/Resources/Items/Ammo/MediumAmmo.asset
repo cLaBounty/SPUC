@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3d46271139c9d4a919b0baf65d25f8, type: 3}
+  m_Name: MediumAmmo
+  m_EditorClassIdentifier: 
+  type: 0
+  name: Medium Ammo
+  description: 
+  uiDisplay: {fileID: 21300000, guid: 06a95a21c36cfc24fa203a1ea148982e, type: 3}
+  isMoveable: 1
+  recipe:
+  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
+    amount: 1
+  groundPrefab: {fileID: 6573688572695703079, guid: 398d0e0b838f1914c99193bace954b20, type: 3}
+  holdPrefab: {fileID: 4413477487601138616, guid: aee946d9cbfd7c0488f92bae133fb556, type: 3}
