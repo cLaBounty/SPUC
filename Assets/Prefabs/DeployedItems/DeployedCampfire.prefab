@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1603735791878693033}
   - component: {fileID: 7700488519324875723}
   m_Layer: 0
-  m_Name: PlaceCampfire
+  m_Name: DeployedCampfire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7df582633550346adc34208219dfbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
 --- !u!1 &2253608011224255793
 GameObject:
   m_ObjectHideFlags: 0

@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: 382bb484b79cd78488873cd47ee162c5, type: 2}
-  placedPrefab: {fileID: 2092570293006645779, guid: 08164107055392440af31129f4118856, type: 3}
+  deployedPrefab: {fileID: 2092570293006645779, guid: 08164107055392440af31129f4118856, type: 3}

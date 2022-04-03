@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class Campfire : UsableItem
 {
-    private const float PLACE_DISTANCE = 5f;
+    private const float PLACE_DISTANCE = 6f;
 
     private Player player;
     private HotBar hotBar;
     private Camera fpsCam;
 
-    public GameObject placedPrefab;
+    public GameObject deployedPrefab;
+    private GameObject deployedPreview = null;
     
+    private void Start() {
+        Init();
+        deployedPreview = Instantiate(deployedPrefab);
+        foreach (MeshRenderer renderer in deployedPreview.GetComponentsInChildren<MeshRenderer>()) {
+            renderer.material.color = new Color(1f, 1f, 1f, 0.5f);
+        }
+        UpdatePosition(deployedPreview);
+    }
+
+    private void Update() {
+        if (deployedPreview != null) { UpdatePosition(deployedPreview); }
+    }
+
     public override void Init() {
         player = GameObject.FindObjectOfType<Player>();
         hotBar = GameObject.FindObjectOfType<HotBar>();
@@ -25,9 +39,19 @@ public class Campfire : UsableItem
     }
 
     private void Deploy() {
-        var inst = Instantiate(placedPrefab);
+        if (deployedPreview != null) { Destroy(deployedPreview); }
+        GameObject inst = Instantiate(deployedPrefab);
+        UpdatePosition(inst);
+        inst.GetComponent<DeployedCampfire>().isActive = true;
+    }
+
+    private void UpdatePosition(GameObject inst) {
         Vector3 placePosition = player.transform.position + (PLACE_DISTANCE * fpsCam.transform.forward);
         placePosition.y = 0.2f;
         inst.transform.position = placePosition;
+    }
+
+    private void OnDestroy() {
+        if (deployedPreview != null) { Destroy(deployedPreview); }
     }
 }

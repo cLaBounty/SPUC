@@ -24,7 +24,7 @@ public class CraftingObject : ScriptableObject
         }
     }
 
-    private bool IsCraftable(ItemObject item) {
+    public bool IsCraftable(ItemObject item) {
         if (item.recipe.Length <= 0) return false; // can't craft item without recipe
         foreach (Ingredient ingredient in item.recipe) {
             if (!playerInventory.Has(ingredient.item, ingredient.amount)) {

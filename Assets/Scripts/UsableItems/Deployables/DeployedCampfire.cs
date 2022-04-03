@@ -8,6 +8,7 @@ public class DeployedCampfire : MonoBehaviour
     private const float TIME_LIMIT = 20f;
     private const float RANGE = 25f;
 
+    public bool isActive = false;
     private float totalTime = 0;
     private float coolDownTime = 0;
 
@@ -20,6 +21,8 @@ public class DeployedCampfire : MonoBehaviour
 
     void Update()
     {
+        if (!isActive) { return; }
+
         coolDownTime += Time.deltaTime;
         if (coolDownTime >= 1f) {
             coolDownTime = 0;
