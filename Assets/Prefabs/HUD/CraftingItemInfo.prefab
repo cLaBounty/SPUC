@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 7621040343930383446}
   recipeObject: {fileID: 7460875731754258159}
-  ingredientPrefab: {fileID: 6842017591744777254, guid: d6610100e5e7bb94f9da5db72edd2300, type: 3}
+  ingredientPrefab: {fileID: 6842017591744777254, guid: f748219db07b36e459cadd82d94ad4c2, type: 3}
 --- !u!1 &7460875731754258159
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000043869, y: -17.499992}
-  m_SizeDelta: {x: 140, y: 35}
+  m_SizeDelta: {x: 130, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7057967341304218296
 MonoBehaviour:
@@ -193,7 +193,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000025875, y: 17.5}
-  m_SizeDelta: {x: 140, y: 35}
+  m_SizeDelta: {x: 130, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2977386399028427287
 CanvasRenderer:

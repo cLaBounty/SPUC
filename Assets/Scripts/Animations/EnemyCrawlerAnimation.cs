@@ -10,8 +10,7 @@ public class EnemyCrawlerAnimation : MonoBehaviour
 
     bool attacking = false;
     bool dying = false;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,7 +18,6 @@ public class EnemyCrawlerAnimation : MonoBehaviour
         state = (int)enemy.state;
     }
 
-    // Update is called once per frame
     void LateUpdate() {
         state = (int)enemy.state;
 

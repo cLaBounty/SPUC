@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
-    [SerializeField] string settingsScene = "SettingsScene";
+    private string settingsScene = "SettingsMenu";
 
     public GameObject pauseMenuUI;
 
@@ -39,8 +39,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void LoadSettings() {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(settingsScene);
+        SceneManager.LoadScene(settingsScene, LoadSceneMode.Additive);
     }
 
     public void Quit() {

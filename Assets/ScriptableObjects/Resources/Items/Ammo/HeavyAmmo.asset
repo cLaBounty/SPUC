@@ -18,9 +18,9 @@ MonoBehaviour:
   uiDisplay: {fileID: 21300000, guid: 06a95a21c36cfc24fa203a1ea148982e, type: 3}
   isMoveable: 1
   recipe:
-  - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
+  - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
     amount: 1
-  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
+  - item: {fileID: 11400000, guid: 21f0753102f5fd344a9598f040aa14d3, type: 2}
     amount: 1
   groundPrefab: {fileID: 6573688572695703079, guid: f45bdad71f60de84f8dc6879ad47c985, type: 3}
   holdPrefab: {fileID: 4413477487601138616, guid: 296f60e69f347844588450d9a027997f, type: 3}
