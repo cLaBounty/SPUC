@@ -7,7 +7,7 @@ public class MouseLook : MonoBehaviour
 {
 	[SerializeField] Transform playerBody;
     [SerializeField] Camera cam;
-	[SerializeField] float mouseSensitivity = 300.0f;
+	public static float Sensitivity = 250f;
 
 	private float xRotation = 0f;
 
@@ -23,8 +23,8 @@ public class MouseLook : MonoBehaviour
     {
         if (Cursor.lockState == CursorLockMode.Locked)
         {
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            float mouseX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime;
 
             xRotation -=mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -35,6 +35,5 @@ public class MouseLook : MonoBehaviour
 			transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 			playerBody.Rotate(Vector3.up * mouseX);
 		}
-        
     }
 }
