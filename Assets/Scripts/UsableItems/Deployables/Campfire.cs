@@ -12,28 +12,27 @@ public class Campfire : UsableItem
 
     public GameObject deployedPrefab;
     private GameObject deployedPreview = null;
-    
-    private void Start() {
-        Init();
+
+    private void Update() {
+        base.Update();
+        if (deployedPreview != null) { UpdatePosition(deployedPreview); }
+    }
+
+    protected override void Init() {
+        player = GameObject.FindObjectOfType<Player>();
+        hotBar = GameObject.FindObjectOfType<HotBar>();
+        fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
+
         deployedPreview = Instantiate(deployedPrefab);
         foreach (MeshRenderer renderer in deployedPreview.GetComponentsInChildren<MeshRenderer>()) {
             renderer.material.color = new Color(1f, 1f, 1f, 0.5f);
         }
         UpdatePosition(deployedPreview);
+        
+        HideCrosshair();
     }
 
-    private void Update() {
-        if (deployedPreview != null) { UpdatePosition(deployedPreview); }
-    }
-
-    public override void Init() {
-        player = GameObject.FindObjectOfType<Player>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
-        fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
-    }
-
-    public override void Use() {
-        if (hotBar == null) { Init(); }
+    protected override void Use() {
         Deploy();
         hotBar.HandleItemUse(itemObject);
     }
