@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum Phase {
+    Prep,
+    Wave
+}
+
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] float prepTime = 90f;
@@ -13,7 +18,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int enemyMax = 20; 
     [SerializeField] string winScreen = "Victory"; 
     [SerializeField] string playerLossScreen = "PlayerDied"; 
-    [SerializeField] string drillLossScreen = "OilDrillDied"; 
+    [SerializeField] string drillLossScreen = "OilDrillDied";
 
     GridController grid = null;
     Vector2 centerPos = Vector2.zero;
@@ -24,7 +29,9 @@ public class LevelManager : MonoBehaviour
     PlayerMovement player;
     Player playerStats;
 
-    int enemyCount = 0; 
+    public Phase currentPhase = Phase.Prep;
+    public int waveCount = 0;
+    public int enemyCount = 0;
 
     // Start is called before the first frame update
     void Start(){
@@ -55,13 +62,14 @@ public class LevelManager : MonoBehaviour
             playerStats.CleanUp();
             SceneManager.LoadScene(drillLossScreen);
         }
-
-        //Debug.Log("enemyCount: " + enemyCount);
-        //Debug.Log("WaveSpawnAmmount: " + WaveSpawnAmmount);
     }
 
     IEnumerator spawnEnemyTimer(float time){
+        // ToDo: fix
+        //currentPhase = Phase.Prep;
         yield return new WaitForSeconds(time);
+        waveCount = waveCount + 1;
+        currentPhase = Phase.Wave;
         
         SpawnEnemies();
 
