@@ -9,13 +9,13 @@ public class Apple : UsableItem
     private Player player;
     private HotBar hotBar;
 
-    public override void Init() {
+    protected override void Init() {
         player = GameObject.FindObjectOfType<Player>();
         hotBar = GameObject.FindObjectOfType<HotBar>();
+        HideCrosshair();
     }
 
-    public override void Use() {
-        if (hotBar == null) { Init(); }
+    protected override void Use() {
         player.GainHealth(HEALTH_INCREASE);
         hotBar.HandleItemUse(itemObject);
     }

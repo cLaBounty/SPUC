@@ -10,14 +10,14 @@ public class ResourceBeam : UsableItem
 	private Camera fpsCam;
 	private int layers;
 
-	public override void Init() {
+	protected override void Init() {
 		inventory = Resources.Load<InventoryObject>("Inventory/PlayerInventory");
 		fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
+		ShowCrosshair();
 	}
     
-    public override void Use() {
-		if (fpsCam == null) { Init(); }
+    protected override void Use() {
 		Shoot();
     }
 

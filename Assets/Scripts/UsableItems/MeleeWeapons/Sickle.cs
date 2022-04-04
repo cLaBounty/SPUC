@@ -10,13 +10,13 @@ public class Sickle : UsableItem
     private Camera fpsCam;
 	private int layers;
 
-    public override void Init() {
+    protected override void Init() {
         fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
+		ShowCrosshair();
     }
     
-    public override void Use() {
-        if (fpsCam == null) { Init(); }
+    protected override void Use() {
         Melee();
     }
 

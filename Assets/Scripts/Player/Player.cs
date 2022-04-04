@@ -23,14 +23,6 @@ public class Player : MonoBehaviour
         cameraSystem = GameObject.FindObjectOfType<CameraSystem>();
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire1")) {
-            if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) return;
-            UseItem();
-        }
-    }
-
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
@@ -72,15 +64,6 @@ public class Player : MonoBehaviour
         if (groundItem != null) {
             PickUpItem(groundItem);
             Destroy(other.gameObject);
-        }
-    }
-
-    // HotBar
-    public void UseItem() {
-        ItemObject item = ItemSelector.GetItem();
-        UsableItem usable = ItemSelector.GetUsableItem();
-        if (usable != null) {
-            usable.Use();
         }
     }
 
