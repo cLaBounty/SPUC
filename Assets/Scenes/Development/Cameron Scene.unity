@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 96367262}
   m_Layer: 5
   m_Name: Crosshair
-  m_TagString: Untagged
+  m_TagString: Crosshair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -908,7 +908,7 @@ RectTransform:
   m_GameObject: {fileID: 96367260}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9039548, y: 0.9039548, z: 0.9039548}
+  m_LocalScale: {x: 0.90395474, y: 0.90395474, z: 0.90395474}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1367868294}
@@ -916,7 +916,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000045776367}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96367262
@@ -932,7 +932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.50980395}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6499,15 +6499,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2373742650399715887, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.645195
+      value: 68.73
       objectReference: {fileID: 0}
     - target: {fileID: 2373742650399715887, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.122157216
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 2373742650399715887, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 85.00932
+      value: 87.84
       objectReference: {fileID: 0}
     - target: {fileID: 2373742650399715887, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18695,7 +18695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f4149faa4deaa4396134cb4ca28c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsScene: SettingsScene
   pauseMenuUI: {fileID: 738104307}
 --- !u!4 &2027500448 stripped
 Transform:

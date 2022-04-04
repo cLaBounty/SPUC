@@ -7,6 +7,7 @@ TagManager:
   - target
   - Resource Beam
   - Pistol
+  - Crosshair
   layers:
   - Default
   - TransparentFX
