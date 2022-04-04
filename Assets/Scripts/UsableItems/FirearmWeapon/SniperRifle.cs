@@ -13,14 +13,18 @@ public class SniperRifle : UsableItem
 	private Camera fpsCam;
 	private int layers;
 
-	public override void Init() {
+	protected override void Init() {
 		hotBar = GameObject.FindObjectOfType<HotBar>();
         fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
+		HideCrosshair();
     }
+
+	protected override void Focus() {
+		// ToDo: toggle sniper rifle scope
+	}
     
-    public override void Use() {
-		if (hotBar == null) { Init(); }
+    protected override void Use() {
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			hotBar.HandleItemUse(ammo);
