@@ -38,7 +38,7 @@ public class DisplayCrafting : MonoBehaviour
 
             AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
             AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
-            AddEvent(obj, EventTriggerType.PointerClick, delegate { OnClick(obj); });
+            AddEvent(obj, EventTriggerType.PointerClick, delegate { /* Called from button OnPointerClick */ });
 
             craftingItems.Add(obj, crafting.container.items[i]);
         }
@@ -93,11 +93,43 @@ public class DisplayCrafting : MonoBehaviour
         CleanUp();
     }
 
-    public void OnClick(GameObject obj) {
+    public void OnClick(GameObject obj, PointerEventData data) {
         if (craftingItems[obj].item == null) return; // Empty slot
         CleanUp();
-        crafting.CraftItem(craftingItems[obj]);
+
+        switch(data.button) {
+            case PointerEventData.InputButton.Left:
+                CraftOnce(obj);
+                break;
+            case PointerEventData.InputButton.Right:
+                CraftFiveTimes(obj);
+                break;
+            case PointerEventData.InputButton.Middle:
+                CraftAll(obj);
+                break;
+        }
+
         OnEnter(obj); // re-show info if item is still there
+    }
+
+    private void CraftOnce(GameObject obj) {
+        crafting.CraftItem(craftingItems[obj]);
+    }
+
+    private void CraftFiveTimes(GameObject obj) {
+        ItemObject item = craftingItems[obj].item;
+        int i = 0;
+        while(i < 5 && crafting.IsCraftable(item)) {
+            crafting.CraftItem(craftingItems[obj]);
+            i++;
+        }
+    }
+
+    private void CraftAll(GameObject obj) {
+        ItemObject item = craftingItems[obj].item;
+        while(crafting.IsCraftable(item)) {
+            crafting.CraftItem(craftingItems[obj]);
+        }
     }
 
     public void CleanUp() {
