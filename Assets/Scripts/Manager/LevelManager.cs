@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Phase {
-    Prep,
-    Wave
-}
-
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] float prepTime = 90f;
-    [SerializeField] float timer = 60f;
-    [SerializeField] int amount = 20;
+    public float initialPrepTime = 90f;
+    public float timeBetweenWaves = 45f;
+    public int numberOfWaves = 10;
+    [SerializeField] int enemiesPerWave = 20;
+    [SerializeField] int enemyMax = 40;
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] int WaveSpawnAmmount = 10;
-    [SerializeField] int enemyMax = 20; 
-    [SerializeField] string winScreen = "Victory"; 
-    [SerializeField] string playerLossScreen = "PlayerDied"; 
+    [SerializeField] string winScreen = "Victory";
+    [SerializeField] string playerLossScreen = "PlayerDied";
     [SerializeField] string drillLossScreen = "OilDrillDied";
 
     GridController grid = null;
@@ -28,8 +23,7 @@ public class LevelManager : MonoBehaviour
     GridController flowField;
     PlayerMovement player;
     Player playerStats;
-
-    public Phase currentPhase = Phase.Prep;
+    
     public int waveCount = 0;
     public int enemyCount = 0;
 
@@ -43,11 +37,11 @@ public class LevelManager : MonoBehaviour
         player          = GameObject.FindObjectOfType<PlayerMovement>();
         playerStats     = GameObject.FindObjectOfType<Player>();
 
-        StartCoroutine(spawnEnemyTimer(prepTime));
+        StartCoroutine(spawnEnemyTimer(initialPrepTime));
     }
 
     void Update(){
-        if (enemyCount == 0 && WaveSpawnAmmount <= 0){
+        if (enemyCount == 0 && waveCount >= numberOfWaves){
             //win
             playerStats.CleanUp(); // ToDo: only if last level
             SceneManager.LoadScene(winScreen);
@@ -65,22 +59,18 @@ public class LevelManager : MonoBehaviour
     }
 
     IEnumerator spawnEnemyTimer(float time){
-        // ToDo: fix
-        //currentPhase = Phase.Prep;
         yield return new WaitForSeconds(time);
+
         waveCount = waveCount + 1;
-        currentPhase = Phase.Wave;
-        
         SpawnEnemies();
 
-        if (WaveSpawnAmmount > 0) StartCoroutine(spawnEnemyTimer(timer));
+        if (waveCount < numberOfWaves) StartCoroutine(spawnEnemyTimer(timeBetweenWaves));
     }
 
     void SpawnEnemies(){
         if (enemyCount > enemyMax) return;
 
-        WaveSpawnAmmount--;
-        for (int i = 0; i < amount; ++i){
+        for (int i = 0; i < enemiesPerWave; ++i){
             var inst = Instantiate(enemyPrefab);
             inst.transform.parent = null;
 
