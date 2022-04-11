@@ -9,6 +9,8 @@ TagManager:
   - Pistol
   - Crosshair
   - SniperScope
+  - EnemyProjectile
+  - GroundItem
   layers:
   - Default
   - TransparentFX
