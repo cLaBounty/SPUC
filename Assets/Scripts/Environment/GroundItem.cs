@@ -7,7 +7,7 @@ public class GroundItem : MonoBehaviour
     public ItemObject item;
     public int amount = 1;
 
-    [SerializeField] private float pickupDistance = 25f;
+    private float pickupDistance = 25f;
     public GameObject infoPrefab;
     private Player player;
     private GameObject currentInfo = null;
