@@ -6794,7 +6794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1967e54f032802488012809281af6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPrepTime: 10
+  initialPrepTime: 90
   timeBetweenWaves: 45
   numberOfWaves: 5
   enemiesPerWave: 20

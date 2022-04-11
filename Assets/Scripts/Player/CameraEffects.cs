@@ -14,7 +14,9 @@ public class CameraEffects : MonoBehaviour
 
     void Update()
     {
-        //FOV increase for sprinting
+        if (cam.fieldOfView < minFOV || cam.fieldOfView > maxFOV) return; // Fixes issue when Sniper is scoped
+
+        // FOV increase for sprinting
         if (Input.GetKey(KeyCode.LeftShift) && PlayerStatus.isMoving) 
         {
 			if (cam.fieldOfView < maxFOV)
