@@ -4,7 +4,6 @@ public class ResourceBeam : UsableItem
 {
 	private const float DAMAGE = 10f;
 	private const float RANGE = 50f;
-	private const float COLLECTION_RATE = 1f;
 
 	private InventoryObject inventory;
 	private Camera mainCamera;
