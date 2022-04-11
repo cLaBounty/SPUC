@@ -75,10 +75,10 @@ public class FlyingEnemy : Enemy
             state = STATE.AGRO_OIL;
         }
 
-        //if (target.GetComponent<DeployedEnemyAttractor>() != null) {
-        //    MoveTowardsAttractItem();
-        //    if (state == STATE.DEAD) { Stop(); }
-        //} else {
+        if (target.GetComponent<DeployedEnemyAttractor>() != null) {
+           MoveTowardsAttractItem();
+           if (state == STATE.DEAD) { Stop(); }
+        } else {
             switch(state){
                 case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
                 case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
@@ -86,7 +86,7 @@ public class FlyingEnemy : Enemy
                 case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
                 case STATE.DEAD:                Stop(); break;
             }
-        //}
+        }
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
@@ -179,7 +179,7 @@ public class FlyingEnemy : Enemy
             else{
                 navMeshAgent.speed = 0;
                 //moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
-                moveDirection = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+                moveDirection = new Vector3(target.transform.position.x - transform.position.x, transform.position.y, target.transform.position.z - transform.position.z);
             }
 
             acculmulatedSpeed *= damping;
@@ -243,6 +243,7 @@ public class FlyingEnemy : Enemy
         ep.moveDirection = (ep.target.transform.position - ep.transform.position).normalized;
         ep.steeringSpeed = steeringSpeed;
         ep.projectileSpeed = projectileSpeed;
+        ep.damage = attackPower;
 
         coolDown = coolDownMax;
 
