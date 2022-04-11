@@ -5,42 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] float prepTime = 90f;
-    [SerializeField] float timer = 60f;
-    [SerializeField] int amount = 20;
+    public float initialPrepTime = 90f;
+    public float timeBetweenWaves = 45f;
+    public int numberOfWaves = 10;
+    [SerializeField] int enemiesPerWave = 20;
+    [SerializeField] int enemyMax = 40;
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] int WaveSpawnAmmount = 10;
-    [SerializeField] int enemyMax = 20; 
-    [SerializeField] string winScreen = "Victory"; 
-    [SerializeField] string playerLossScreen = "PlayerDied"; 
-    [SerializeField] string drillLossScreen = "OilDrillDied"; 
+    [SerializeField] string winScreen = "Victory";
+    [SerializeField] string playerLossScreen = "PlayerDied";
+    [SerializeField] string drillLossScreen = "OilDrillDied";
 
     GridController grid = null;
     Vector2 centerPos = Vector2.zero;
 
     //enemy variables
-    OilDrill target;
+    OilDrill oilDrill;
     GridController flowField;
     PlayerMovement player;
     Player playerStats;
-
-    int enemyCount = 0; 
+    
+    public int waveCount = 0;
+    public int enemyCount = 0;
 
     // Start is called before the first frame update
     void Start(){
         grid = GameObject.FindObjectOfType<GridController>();
         centerPos = (Vector2) grid.gridSize * grid.cellRadius;
 
-        target          = GameObject.FindObjectOfType<OilDrill>();
+        oilDrill        = GameObject.FindObjectOfType<OilDrill>();
         flowField       = GameObject.FindObjectOfType<GridController>();
         player          = GameObject.FindObjectOfType<PlayerMovement>();
         playerStats     = GameObject.FindObjectOfType<Player>();
 
-        StartCoroutine(spawnEnemyTimer(prepTime));
+        StartCoroutine(spawnEnemyTimer(initialPrepTime));
     }
 
     void Update(){
-        if (enemyCount == 0 && WaveSpawnAmmount <= 0){
+        if (enemyCount == 0 && waveCount >= numberOfWaves){
             //win
             playerStats.CleanUp(); // ToDo: only if last level
             SceneManager.LoadScene(winScreen);
@@ -50,36 +51,32 @@ public class LevelManager : MonoBehaviour
             playerStats.CleanUp();
             SceneManager.LoadScene(playerLossScreen);
         }
-        else if (target.currentHealth <= 0){
+        else if (oilDrill.currentHealth <= 0){
             //lose
             playerStats.CleanUp();
             SceneManager.LoadScene(drillLossScreen);
         }
-
-        //Debug.Log("enemyCount: " + enemyCount);
-        //Debug.Log("WaveSpawnAmmount: " + WaveSpawnAmmount);
     }
 
     IEnumerator spawnEnemyTimer(float time){
         yield return new WaitForSeconds(time);
-        
+
+        waveCount = waveCount + 1;
         SpawnEnemies();
 
-        if (WaveSpawnAmmount > 0) StartCoroutine(spawnEnemyTimer(timer));
+        if (waveCount < numberOfWaves) StartCoroutine(spawnEnemyTimer(timeBetweenWaves));
     }
 
     void SpawnEnemies(){
         if (enemyCount > enemyMax) return;
 
-        WaveSpawnAmmount--;
-        for (int i = 0; i < amount; ++i){
+        for (int i = 0; i < enemiesPerWave; ++i){
             var inst = Instantiate(enemyPrefab);
             inst.transform.parent = null;
 
             //adjust values
-            //inst.target = target;
             Enemy enemy         = inst.GetComponent<Enemy>();
-            enemy.target        = target;
+            enemy.target        = oilDrill.transform.gameObject;
             enemy.flowField     = flowField;
             enemy.playerStats   = playerStats;
             enemy.player        = player;
