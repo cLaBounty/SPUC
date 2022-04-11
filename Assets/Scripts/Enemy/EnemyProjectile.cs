@@ -7,7 +7,7 @@ public class EnemyProjectile : MonoBehaviour
     public float projectileSpeed;
     public GameObject target;
     public Vector3 moveDirection;
-    [SerializeField] float steeringSpeed = 1f;
+    public float steeringSpeed = 1f;
 
     Rigidbody rb;
 

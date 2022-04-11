@@ -16,8 +16,19 @@ public class FlyingEnemy : Enemy
     [SerializeField]float startUpwardDist = 20f;
     [SerializeField]float useNavMeshDist = 3f;
 
+    [SerializeField] LayerMask groundMask;
+    [SerializeField] Vector3 flyUpOffset = Vector3.up;
+
+    public float currentTargetDist = 0;
+
+    [Header("Projectile")]
+    [SerializeField]float projectileSpeed = 3f;
+    [SerializeField]float steeringSpeed = 1f;
+    [SerializeField]Vector2 randomSpawnTimerRange = Vector2.one;
+
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
+    BoxCollider bc;
     //GridController flowField = null;
     //PlayerMovement player = null;
     //Player playerStats = null;
@@ -30,9 +41,6 @@ public class FlyingEnemy : Enemy
     float coolDownMax = 2f;
     
     int impassableMask;
-    [SerializeField] LayerMask groundMask;
-
-    public float currentTargetDist = 0;
     float currentPlayerDist = 0;
     bool isOil;
 
@@ -48,13 +56,16 @@ public class FlyingEnemy : Enemy
         navMeshAgent.speed = moveSpeed;
         navMeshAgent.enabled = false;
 
+        bc = GetComponent<BoxCollider>();
+
         //impassable mask
         impassableMask = LayerMask.GetMask("Impassible Terrain");
         attackDistanceOilSqr = attackDistanceOil * attackDistanceOil;
+        StartCoroutine(RandomShot(Random.Range(randomSpawnTimerRange.x, randomSpawnTimerRange.y)));
     }
 
     // Update is called once per frame
-    private void Update() {
+    private new void Update() {
         base.Update();
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
@@ -64,10 +75,10 @@ public class FlyingEnemy : Enemy
             state = STATE.AGRO_OIL;
         }
 
-        if (target.GetComponent<DeployedEnemyAttractor>() != null) {
-            MoveTowardsAttractItem();
-            if (state == STATE.DEAD) { Stop(); }
-        } else {
+        //if (target.GetComponent<DeployedEnemyAttractor>() != null) {
+        //    MoveTowardsAttractItem();
+        //    if (state == STATE.DEAD) { Stop(); }
+        //} else {
             switch(state){
                 case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
                 case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
@@ -75,7 +86,7 @@ public class FlyingEnemy : Enemy
                 case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
                 case STATE.DEAD:                Stop(); break;
             }
-        }
+        //}
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
@@ -128,9 +139,13 @@ public class FlyingEnemy : Enemy
             Vector3 dir =  (target.transform.position - transform.position).normalized;
             RaycastHit hit;
             Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
+            bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 2.5f, Quaternion.identity, impassableMask);
 
-            if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight){
+            if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
                 dir.y = 1f;
+
+                if (toClosetoSolid) transform.position += flyUpOffset * Time.deltaTime;
+
                 Debug.Log("Flying Up");
             }
             else if (hit.distance > maxFlyHeight){
@@ -193,8 +208,11 @@ public class FlyingEnemy : Enemy
             RaycastHit hit;
 
             Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
+            bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 2.5f, Quaternion.identity, impassableMask);
 
-            if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight){
+            if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
+
+                if (toClosetoSolid) transform.position += flyUpOffset * Time.deltaTime;
                 dir.y = 1f;
                 Debug.Log("Flying Up");
             }
@@ -212,20 +230,46 @@ public class FlyingEnemy : Enemy
         }
     }
 
-    public void DealDamage(){
+    public void DealDamage(GameObject projectile){
+        EnemyProjectile ep = projectile.GetComponent<EnemyProjectile>();
+
         if (isOil && target != null){
-            target.GetComponent<OilDrill>()?.TakeDamage(attackPower);
+            ep.target = target;
         }
         else if (!isOil && player != null){
-            
+            ep.target = player.gameObject;
         }
 
+        ep.moveDirection = (ep.target.transform.position - ep.transform.position).normalized;
+        ep.steeringSpeed = steeringSpeed;
+        ep.projectileSpeed = projectileSpeed;
+
         coolDown = coolDownMax;
+
+        //change state
+        if (currentPlayerDist > attackRangeSqr && currentPlayerDist < agroRangeSqr)
+            state = STATE.AGRO_PLAYER;
+        else if (currentPlayerDist > agroRangeSqr)
+            state = STATE.AGRO_OIL;
     }
 
     void Stop(){
         rb.velocity = Vector3.zero;
         acculmulatedSpeed = Vector3.zero;
         navMeshAgent.speed = 0;
+    }
+
+    IEnumerator RandomShot(float time){
+        yield return new WaitForSeconds(time);
+
+        if (state == STATE.AGRO_PLAYER && player != null){
+            Vector3 dir = player.transform.position - transform.position;
+            if (!Physics.Raycast(transform.position, dir, dir.magnitude, impassableMask)){
+                state = STATE.ATTACKING_PLAYER;
+                coolDown = coolDownMax * 2;
+            }
+        }
+
+        StartCoroutine(RandomShot(Random.Range(randomSpawnTimerRange.x, randomSpawnTimerRange.y)));
     }
 }
