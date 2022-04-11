@@ -8,7 +8,7 @@ public class CameraEffects : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] CharacterController controller;
     [Header("FOV")]
-    [SerializeField] float rateOfIncrease = 60.0f;
+    [SerializeField] float rateOfIncrease = 45.0f;
     private float maxFOV = 70f;
 	private float minFOV = 60f;
 
@@ -17,19 +17,25 @@ public class CameraEffects : MonoBehaviour
         if (cam.fieldOfView < minFOV || cam.fieldOfView > maxFOV) return; // Fixes issue when Sniper is scoped
 
         // FOV increase for sprinting
-        if (Input.GetKey(KeyCode.LeftShift) && PlayerStatus.isMoving) 
+        if (Input.GetKey(KeyCode.LeftShift) || !PlayerStatus.isMoving)
         {
-			if (cam.fieldOfView < maxFOV)
-			{
-				cam.fieldOfView += rateOfIncrease * Time.deltaTime;
-			}
+            float newFOV = cam.fieldOfView - rateOfIncrease * Time.deltaTime;
+            if (newFOV > minFOV) {
+                cam.fieldOfView = newFOV;
+            } else {
+                cam.fieldOfView = minFOV;
+            }
         }
         else
         {
-            if (cam.fieldOfView > minFOV)
-			{
-				cam.fieldOfView -= rateOfIncrease * Time.deltaTime;
-			}
+            float newFOV = cam.fieldOfView + rateOfIncrease * Time.deltaTime;
+            if (newFOV < maxFOV) {
+                cam.fieldOfView = newFOV;
+            } else {
+                cam.fieldOfView = maxFOV;
+            }
         }
+
+
     }
 }
