@@ -40,4 +40,10 @@ public class OilDrill : MonoBehaviour
         billboardHealthBar.SetHealth(currentHealth);
         hudHealthBar.SetHealth(currentHealth);
     }
+
+    public void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "EnemyProjectile") {
+            TakeDamage(other.GetComponent<EnemyProjectile>().damage);
+        }
+    }
 }

@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
 
     public enum STATE {
         AGRO_OIL = 0,
+        AGRO_DISTRACTION,
         AGRO_PLAYER,
         ATTACKING_OIL,
         ATTACKING_PLAYER,
