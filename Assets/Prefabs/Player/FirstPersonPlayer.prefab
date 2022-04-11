@@ -99,7 +99,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4087
+    m_Bits: 12279
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -133,7 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBody: {fileID: 4248214650345464471}
   cam: {fileID: 4248214650303288789}
-  mouseSensitivity: 420
 --- !u!114 &2031628629478467406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +160,6 @@ GameObject:
   - component: {fileID: 4248214650345464470}
   - component: {fileID: 4248214650345464468}
   - component: {fileID: 5862226166126504024}
-  - component: {fileID: 1248899512}
   m_Layer: 11
   m_Name: FirstPersonPlayer
   m_TagString: Player
@@ -248,19 +246,6 @@ MonoBehaviour:
   hotBar: {fileID: 0}
   inventory: {fileID: 11400000, guid: a5e9cecb9c354224a862093b2c27e37a, type: 2}
   crafting: {fileID: 11400000, guid: a91d1872c531e524e915748f14703a53, type: 2}
---- !u!114 &1248899512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248214650345464465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb1457946b35034eb1b39ba8016611e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryCanvas: {fileID: 0}
 --- !u!1 &6606268005737706884
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3977787135888220400}
   - component: {fileID: 8535300480867285787}
+  - component: {fileID: 142098838}
   m_Layer: 11
   m_Name: ItemHolder
   m_TagString: Untagged
@@ -286,7 +272,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6606268005737706884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.28900146, y: -0.4130001, z: 0.6740036}
+  m_LocalPosition: {x: 0.2890015, y: -0.4130001, z: 0.6740036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -305,6 +291,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537744cf03a4f404094d36d74590de11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &142098838
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606268005737706884}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47b17de11585b1b4d82965804342bb43, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8777305031802533938
 GameObject:
   m_ObjectHideFlags: 0

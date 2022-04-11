@@ -32,7 +32,10 @@ public class EnemyFlyerAnimation1 : MonoBehaviour
     }
 
     public void AttackKeyFrame(){
-        enemy.DealDamage();
+        var inst = Instantiate(projectile);
+        inst.transform.parent = null;
+        inst.transform.position = projectileSpawnPoint.transform.position;
+        enemy.DealDamage(inst);
     }
 
     public void EndAttackKeyFrame(){

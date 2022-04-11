@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3039580595520195444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.019, y: 0.899, z: 0.7619}
+  m_LocalPosition: {x: -0.019, y: 1.211, z: 0.7619}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3039580595520195444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -200,7 +200,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   state: 0
   agroDistance: 30
-  attackDistance: 17.5
+  attackDistance: 6
   attackDistanceOil: 8
   damping: 0.98
   maxFlyHeight: 10
@@ -211,6 +211,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2945
   currentTargetDist: 0
+  projectileSpeed: 12
+  steeringSpeed: 2
+  randomSpawnTimerRange: {x: 1.5, y: 4}
 --- !u!54 &7279199722365421926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -238,8 +241,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.320192, y: 1.7912531, z: 1.380268}
+  m_Center: {x: -0.03171903, y: 0.9474344, z: -0.0048641562}
 --- !u!195 &-4595244155659723721
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -329,12 +332,36 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 1403999f8f6dde74f8fd120ed65acd19, type: 2}
+    - target: {fileID: 795296565531675362, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5195356529275013850, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
       propertyPath: m_Name
       value: DragonSoulEaterBlueHP
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
+--- !u!1 &996298188191070211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5195356529275013850, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
+  m_PrefabInstance: {fileID: 5028852622058058457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &196000105085741737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996298188191070211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d725cef97f284594f81c1aa97b981353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: -1541237323979864926}
+  projectile: {fileID: 1872905880166391263, guid: b36d2c9c29b2a0b4db415b231d1de4a0, type: 3}
+  projectileSpawnPoint: {fileID: 3039580595520195444}
 --- !u!4 &5504770157139069028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 697721053865966269, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
