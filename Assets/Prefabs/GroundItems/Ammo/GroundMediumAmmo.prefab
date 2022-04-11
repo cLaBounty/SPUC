@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6573688572695703078}
   m_Layer: 0
   m_Name: GroundMediumAmmo
-  m_TagString: Untagged
+  m_TagString: GroundItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,5 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 21f0753102f5fd344a9598f040aa14d3, type: 2}
   amount: 1
-  pickupDistance: 25
   infoPrefab: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
