@@ -29,11 +29,5 @@ public class CameraEffects : MonoBehaviour
 				cam.fieldOfView -= rateOfIncrease * Time.deltaTime;
 			}
         }
-
-		if (cam.fieldOfView < minFOV) {
-            cam.fieldOfView = minFOV;
-        } else if (cam.fieldOfView > maxFOV) {
-            cam.fieldOfView = maxFOV;
-        }
     }
 }

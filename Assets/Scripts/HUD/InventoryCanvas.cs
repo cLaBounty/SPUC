@@ -9,9 +9,10 @@ public class InventoryCanvas : MonoBehaviour
     [SerializeField] private GameObject InventoryCanvasUI;
     [SerializeField] private DisplayInventory InventoryDisplay;
     [SerializeField] private DisplayCrafting CraftingDisplay;
+    [SerializeField] private GameObject Scope;
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetKeyDown(KeyCode.C) && Scope.activeInHierarchy == false) {
             Toggle();
         }
     }
