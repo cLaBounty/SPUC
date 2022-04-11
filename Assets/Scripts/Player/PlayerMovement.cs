@@ -15,8 +15,9 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float gravity = -9.81f * 2;
 	[SerializeField] float jumpHeight = 3f;
 	[SerializeField] float spritMultiplier = 1.75f;
-	private bool isSprinting;
+	private bool isSprinting = true;
 	Vector3 velocity;
+	Vector3 previousPosition;
 
 	// Ground Check
 	public Transform groundCheck;
@@ -29,12 +30,19 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float crouchMultiplier = 0.75f;
 	[SerializeField] float crouchSpeed;
 
+	void Start() {
+		previousPosition = transform.position;
+	}
+
     // Update is called once per frame
     void Update()
     {
 		if (PauseMenu.GameIsPaused) return;
 		
 		isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+		PlayerStatus.isMoving = (previousPosition != transform.position);
+		previousPosition = transform.position;
 
 		if(isGrounded && velocity.y < 0)
 		{
@@ -50,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 			speed = baseSpeed;
 			isSprinting = false;
 		} 
-		else if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+		else if (!Input.GetKey(KeyCode.LeftShift) && !isCrouching)
 		{
 			sprintSpeed = baseSpeed * spritMultiplier;
 			speed = sprintSpeed;

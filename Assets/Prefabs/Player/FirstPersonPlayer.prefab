@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 4248214650303288789}
   controller: {fileID: 4248214650345464470}
-  rateOfIncrease: 60
+  rateOfIncrease: 45
 --- !u!1 &4248214650345464465
 GameObject:
   m_ObjectHideFlags: 0
