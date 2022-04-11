@@ -31,12 +31,6 @@ public class Enemy : MonoBehaviour
 
     public STATE state = STATE.AGRO_OIL;
 
-    protected void Update() {
-        if (target == null) {
-            target = GameObject.FindObjectOfType<OilDrill>().transform.gameObject;
-        }
-    }
-
     public void TakeDamage (float damage) {
         hp -= Mathf.CeilToInt(damage - defense);
         KillEnemy();
