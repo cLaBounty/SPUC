@@ -65,8 +65,7 @@ public class FlyingEnemy : Enemy
     }
 
     // Update is called once per frame
-    private new void Update() {
-        base.Update();
+    private void Update() {
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
         currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
@@ -75,17 +74,13 @@ public class FlyingEnemy : Enemy
             state = STATE.AGRO_OIL;
         }
 
-        if (target.GetComponent<DeployedEnemyAttractor>() != null) {
-           MoveTowardsAttractItem();
-           if (state == STATE.DEAD) { Stop(); }
-        } else {
-            switch(state){
-                case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
-                case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
-                case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
-                case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
-                case STATE.DEAD:                Stop(); break;
-            }
+        switch(state){
+            case STATE.AGRO_DISTRACTION:    MoveTowardsAttractItem(); break;
+            case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
+            case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
+            case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
+            case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
+            case STATE.DEAD:                Stop(); break;
         }
 
         if (coolDown >= 0)
@@ -164,35 +159,33 @@ public class FlyingEnemy : Enemy
     }
 
     void MoveTowardsAttractItem() {
-        if (flowField != null && flowField.initialized){
-            //Debug.Log("Target");
-            Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
-            Vector3 moveDirection;
 
-            if (occupideCell.cost == 255){
-                navMeshAgent.speed = moveSpeed;
-                navMeshAgent.destination = target.transform.position;
-                rb.velocity = Vector3.zero;
-                acculmulatedSpeed = Vector3.zero;
-                return;
-            }
-            else{
-                navMeshAgent.speed = 0;
-                //moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
-                moveDirection = new Vector3(target.transform.position.x - transform.position.x, transform.position.y, target.transform.position.z - transform.position.z);
-            }
+        // TODO
+        Vector3 dir =  (target.transform.position - transform.position).normalized;
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
+        bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 2.5f, Quaternion.identity, impassableMask);
 
-            acculmulatedSpeed *= damping;
-            acculmulatedSpeed += moveDirection * moveSpeed * Time.fixedDeltaTime;
-            acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
-            rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
+        if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
+            dir.y = 1f;
 
-            Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+            if (toClosetoSolid) transform.position += flyUpOffset * Time.deltaTime;
+
+            Debug.Log("Flying Up");
         }
-        else{
-            Debug.Log("Flow Field not Initialized");
+        else if (hit.distance > maxFlyHeight){
+            dir.y = -1f;
         }
+
+        navMeshAgent.speed = 0;
+        acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
+        acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
+        Debug.Log(acculmulatedSpeed);
+        rb.velocity = acculmulatedSpeed;
+
+        Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+
     }
 
     void MoveTowardsPlayer(){
