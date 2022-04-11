@@ -60,10 +60,11 @@ public class Player : MonoBehaviour
     }
 
     public void OnTriggerEnter(Collider other) {
-        GroundItem groundItem = other.GetComponent<GroundItem>();
-        if (groundItem != null) {
-            PickUpItem(groundItem);
+        if (other.gameObject.tag == "GroundItem") {
+            PickUpItem(other.GetComponent<GroundItem>());
             Destroy(other.gameObject);
+        } else if (other.gameObject.tag == "EnemyProjectile") {
+            TakeDamage(other.GetComponent<EnemyProjectile>().damage);
         }
     }
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7525457710395568996}
   m_Layer: 0
   m_Name: GroundGold
-  m_TagString: Untagged
+  m_TagString: GroundItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8084d9a381b724990a0d5fef802d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoPrefab: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
   item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
   amount: 1
+  infoPrefab: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}

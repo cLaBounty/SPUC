@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -5866145489857690102}
   m_Layer: 13
   m_Name: HomingProjectile
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1872905880166391263}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.818, y: 0.724, z: 0.577}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,7 +115,8 @@ MonoBehaviour:
   projectileSpeed: 0
   target: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
-  steeringSpeed: 1
+  steeringSpeed: 0.5
+  damage: 10
 --- !u!114 &5574526741823110514
 MonoBehaviour:
   m_ObjectHideFlags: 0
