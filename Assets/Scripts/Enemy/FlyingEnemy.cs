@@ -6,8 +6,10 @@ using UnityEngine.AI;
 //[RequireComponent(typeof(Rigidbody))] 
 public class FlyingEnemy : Enemy
 {
+    [Header("Flying Vars")]
     [SerializeField]float agroDistance = 0f;
     [SerializeField]float attackDistance = 1f;
+    [SerializeField]float attackDistanceOil = 8f;
     [SerializeField]float damping = 0.98f;
     [SerializeField]float maxFlyHeight = 10f;
     [SerializeField]float minFlyHeight = 3f;
@@ -23,6 +25,7 @@ public class FlyingEnemy : Enemy
 
     float agroRangeSqr = 0;
     float attackRangeSqr = 0;
+    float attackDistanceOilSqr = 0;
     float coolDown = 0;
     float coolDownMax = 2f;
     
@@ -47,6 +50,7 @@ public class FlyingEnemy : Enemy
 
         //impassable mask
         impassableMask = LayerMask.GetMask("Impassible Terrain");
+        attackDistanceOilSqr = attackDistanceOil * attackDistanceOil;
     }
 
     // Update is called once per frame
@@ -99,7 +103,9 @@ public class FlyingEnemy : Enemy
 
         if (coolDown < 0) {
             //exit condition first
-            if (currentTargetDist > agroRangeSqr)
+            if (currentPlayerDist < agroRangeSqr)
+                state = STATE.AGRO_PLAYER;
+            else if (currentTargetDist > agroRangeSqr)
                 state = STATE.AGRO_OIL;
         }
 
@@ -108,57 +114,75 @@ public class FlyingEnemy : Enemy
     }
 
     void MoveTowardsTarget(){
-        Vector3 dir =  (target.transform.position - transform.position).normalized;
-        RaycastHit hit;
-        Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
+        //state change
+        if (currentPlayerDist < agroRangeSqr)
+            state = STATE.AGRO_PLAYER;
 
-        if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight){
-            dir.y = 1f;
-            Debug.Log("Flying Up");
+        else if (target != null && currentTargetDist < attackRangeSqr)
+            state = STATE.ATTACKING_OIL;
+
+        else{
+            Vector3 dir =  (target.transform.position - transform.position).normalized;
+            RaycastHit hit;
+            Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
+
+            if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight){
+                dir.y = 1f;
+                Debug.Log("Flying Up");
+            }
+            else if (hit.distance > maxFlyHeight){
+                dir.y = -1f;
+            }
+
+            navMeshAgent.speed = 0;
+            acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
+            acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
+            Debug.Log(acculmulatedSpeed);
+            rb.velocity = acculmulatedSpeed;
+
+            Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
         }
-        else if (hit.distance > maxFlyHeight){
-            dir.y = -1f;
-        }
-
-        navMeshAgent.speed = 0;
-        acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
-        acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
-        Debug.Log(acculmulatedSpeed);
-        rb.velocity = acculmulatedSpeed;
-
-        Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void MoveTowardsPlayer(){
-        Vector3 dir =  (player.transform.position - transform.position).normalized;
-        RaycastHit hit;
+        //state change
+        if (currentPlayerDist > agroRangeSqr)
+            state = STATE.AGRO_OIL;
 
-        Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
+        else if (currentPlayerDist < attackRangeSqr)
+            state = STATE.ATTACKING_PLAYER;
 
-        if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight){
-            dir.y = 1f;
-            Debug.Log("Flying Up");
+        else{
+            Vector3 dir =  (player.transform.position - transform.position).normalized;
+            RaycastHit hit;
+
+            Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
+
+            if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight){
+                dir.y = 1f;
+                Debug.Log("Flying Up");
+            }
+            else if (hit.distance > maxFlyHeight){
+                dir.y = -1f;
+            }
+
+            navMeshAgent.speed = 0;
+            acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
+            acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
+            rb.velocity = acculmulatedSpeed;
+
+            Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
+            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
         }
-        else if (hit.distance > maxFlyHeight){
-            dir.y = -1f;
-        }
-
-        navMeshAgent.speed = 0;
-        acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
-        acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
-        rb.velocity = acculmulatedSpeed;
-
-        Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
-        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     public void DealDamage(){
         if (isOil && target != null){
-            target.TakeDamage(attackPower);
+            
         }
-        else if (!isOil && player != null && currentPlayerDist < attackRangeSqr){
-            playerStats.TakeDamage(attackPower);
+        else if (!isOil && player != null){
+            
         }
 
         coolDown = coolDownMax;
