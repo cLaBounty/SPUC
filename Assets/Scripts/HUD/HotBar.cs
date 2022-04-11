@@ -22,7 +22,7 @@ public class HotBar : MonoBehaviour
     }
 
     private void ButtonOnButtonClicked(int index) {
-        if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) return;
+        if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused || activeIndex == index) return;
         SelectSlot(index);
     }
 
