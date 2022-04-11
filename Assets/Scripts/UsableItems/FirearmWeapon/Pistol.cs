@@ -10,12 +10,12 @@ public class Pistol : UsableItem
 	public ItemObject ammo;
 
 	private HotBar hotBar;
-	private Camera fpsCam;
+	private Camera mainCamera;
 	private int layers;
 
 	protected override void Init() {
 		hotBar = GameObject.FindObjectOfType<HotBar>();
-        fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
+        mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 		ShowCrosshair();
     }
@@ -31,7 +31,7 @@ public class Pistol : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
 		{
 			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();

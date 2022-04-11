@@ -15,21 +15,24 @@ public class Campfire : UsableItem
 
     private void Update() {
         base.Update();
-        if (deployedPreview != null) { UpdatePosition(deployedPreview); }
+        if (deployedPreview == null) { InitPreview(); }
+        else { UpdatePosition(deployedPreview); }
     }
 
     protected override void Init() {
         player = GameObject.FindObjectOfType<Player>();
         hotBar = GameObject.FindObjectOfType<HotBar>();
         fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
+        InitPreview();
+        HideCrosshair();
+    }
 
+    private void InitPreview() {
         deployedPreview = Instantiate(deployedPrefab);
         foreach (MeshRenderer renderer in deployedPreview.GetComponentsInChildren<MeshRenderer>()) {
             renderer.material.color = new Color(1f, 1f, 1f, 0.5f);
         }
         UpdatePosition(deployedPreview);
-        
-        HideCrosshair();
     }
 
     protected override void Use() {

@@ -7,12 +7,12 @@ public class ResourceBeam : UsableItem
 	private const float COLLECTION_RATE = 1f;
 
 	private InventoryObject inventory;
-	private Camera fpsCam;
+	private Camera mainCamera;
 	private int layers;
 
 	protected override void Init() {
 		inventory = Resources.Load<InventoryObject>("Inventory/PlayerInventory");
-		fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
+		mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 		ShowCrosshair();
 	}
@@ -23,7 +23,7 @@ public class ResourceBeam : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
 		{
 			ResourceNode rNode = hit.transform.GetComponent<ResourceNode>();
 			if (rNode == null) return;

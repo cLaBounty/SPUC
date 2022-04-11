@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
 
     //[Header("Debuging")]
     //[SerializeField] 
-    public OilDrill target;
+    public GameObject target;
     public GridController flowField = null;
     public PlayerMovement player = null;
     public Player playerStats = null;
@@ -29,6 +29,12 @@ public class Enemy : MonoBehaviour
     }
 
     public STATE state = STATE.AGRO_OIL;
+
+    protected void Update() {
+        if (target == null) {
+            target = GameObject.FindObjectOfType<OilDrill>().transform.gameObject;
+        }
+    }
 
     public void TakeDamage (float damage) {
         hp -= Mathf.CeilToInt(damage - defense);

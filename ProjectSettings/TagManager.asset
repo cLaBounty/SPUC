@@ -8,6 +8,7 @@ TagManager:
   - Resource Beam
   - Pistol
   - Crosshair
+  - SniperScope
   layers:
   - Default
   - TransparentFX
