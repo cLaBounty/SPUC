@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
     Vector2 centerPos = Vector2.zero;
 
     //enemy variables
-    OilDrill target;
+    OilDrill oilDrill;
     GridController flowField;
     PlayerMovement player;
     Player playerStats;
@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
         grid = GameObject.FindObjectOfType<GridController>();
         centerPos = (Vector2) grid.gridSize * grid.cellRadius;
 
-        target          = GameObject.FindObjectOfType<OilDrill>();
+        oilDrill        = GameObject.FindObjectOfType<OilDrill>();
         flowField       = GameObject.FindObjectOfType<GridController>();
         player          = GameObject.FindObjectOfType<PlayerMovement>();
         playerStats     = GameObject.FindObjectOfType<Player>();
@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
             playerStats.CleanUp();
             SceneManager.LoadScene(playerLossScreen);
         }
-        else if (target.currentHealth <= 0){
+        else if (oilDrill.currentHealth <= 0){
             //lose
             playerStats.CleanUp();
             SceneManager.LoadScene(drillLossScreen);
@@ -75,9 +75,8 @@ public class LevelManager : MonoBehaviour
             inst.transform.parent = null;
 
             //adjust values
-            //inst.target = target;
             Enemy enemy         = inst.GetComponent<Enemy>();
-            enemy.target        = target;
+            enemy.target        = oilDrill.transform.gameObject;
             enemy.flowField     = flowField;
             enemy.playerStats   = playerStats;
             enemy.player        = player;
