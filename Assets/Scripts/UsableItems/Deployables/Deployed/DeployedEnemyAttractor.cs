@@ -36,7 +36,10 @@ public class DeployedEnemyAttractor : MonoBehaviour
     private void AttractEnemies() {
         Enemy[] allEnemies = GameObject.FindObjectsOfType<Enemy>();
         foreach(Enemy enemy in allEnemies) {
-            float distance = (enemy.transform.position - transform.position).sqrMagnitude;
+            Vector3 enemyPositionAtSameHeight = enemy.transform.position;
+            enemyPositionAtSameHeight.y = transform.position.y;
+            
+            float distance = (enemyPositionAtSameHeight - transform.position).sqrMagnitude;
             if (distance <= RANGE) {
                 if (enemy.state != Enemy.STATE.AGRO_DISTRACTION) {
                     enemy.target = transform.gameObject;
