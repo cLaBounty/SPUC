@@ -11,15 +11,17 @@ public class EnemyProjectile : MonoBehaviour
     public float damage = 10f;
 
     Rigidbody rb;
+    Vector3 directionToPlayer;
 
     void Start(){
         rb = GetComponent<Rigidbody>();
+        directionToPlayer = target.transform.position - transform.position;
     }
 
     void Update()
     {
         if (target != null){
-            Vector3 directionToPlayer = target.transform.position - transform.position;
+            //Vector3 directionToPlayer = target.transform.position - transform.position;
             moveDirection = Vector3.RotateTowards(moveDirection, directionToPlayer, steeringSpeed * Time.deltaTime, 1f);
             moveDirection.Normalize();
         }
