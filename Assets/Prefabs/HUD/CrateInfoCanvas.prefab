@@ -305,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.0000047683707}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3810527826354946622
@@ -336,8 +336,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 0d250b8a9348f5e4fb8112beff3add16, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -588,9 +588,9 @@ GameObject:
   - component: {fileID: 7540945013849109299}
   - component: {fileID: 7540945013849109298}
   - component: {fileID: 7540945013849109309}
-  - component: {fileID: 2065028179151429024}
+  - component: {fileID: 4555668218145605025}
   m_Layer: 0
-  m_Name: GroundItemInfoCanvas
+  m_Name: CrateInfoCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7540945013849109298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
---- !u!114 &2065028179151429024
+--- !u!114 &4555668218145605025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -700,8 +700,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7540945013849109311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac8c062c95ebbc489bf7fe8329a1bcd, type: 3}
+  m_Script: {fileID: 11500000, guid: c4f251094d3d65244920a63c82607985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconObject: {fileID: 4001374901878963358}
   nameText: {fileID: 100643082893478203}
