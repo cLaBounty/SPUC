@@ -65,8 +65,7 @@ public class FlyingEnemy : Enemy
     }
 
     // Update is called once per frame
-    private new void Update() {
-        base.Update();
+    private void Update() {
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
         currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
@@ -76,6 +75,7 @@ public class FlyingEnemy : Enemy
         }
 
         switch(state){
+            case STATE.AGRO_DISTRACTION:    MoveTowardsTargetNoStateCheck(); break;
             case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
             case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
             case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
@@ -131,32 +131,34 @@ public class FlyingEnemy : Enemy
             state = STATE.ATTACKING_OIL;
 
         else{
-            Vector3 dir =  (target.transform.position - transform.position).normalized;
-            RaycastHit hit;
-            Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
-            bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 2.5f, Quaternion.identity, impassableMask);
-
-            if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
-                dir.y = 1f;
-
-                if (toClosetoSolid) transform.position += flyUpOffset * Time.deltaTime;
-
-                Debug.Log("Flying Up");
-            }
-            else if (hit.distance > maxFlyHeight){
-                dir.y = -1f;
-            }
-
-            navMeshAgent.speed = 0;
-            acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
-            acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
-            Debug.Log(acculmulatedSpeed);
-            rb.velocity = acculmulatedSpeed;
-
-            Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+            MoveTowardsTargetNoStateCheck();
         }
     }
+
+
+    void MoveTowardsTargetNoStateCheck(){
+        Vector3 dir =  (target.transform.position - transform.position).normalized;
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
+        bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 2.5f, Quaternion.identity, impassableMask);
+
+        if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
+            dir.y = 1f;
+            if (toClosetoSolid) transform.position += flyUpOffset * Time.deltaTime;
+        }
+        else if (hit.distance > maxFlyHeight){
+            dir.y = -1f;
+        }
+
+        navMeshAgent.speed = 0;
+        acculmulatedSpeed += dir * moveSpeed * Time.deltaTime;
+        acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
+        rb.velocity = acculmulatedSpeed;
+
+        Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+    }
+
 
     void MoveTowardsPlayer(){
         //state change

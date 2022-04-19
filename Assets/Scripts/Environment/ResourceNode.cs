@@ -4,6 +4,8 @@ using System;
 public class ResourceNode : MonoBehaviour
 {
     public ItemObject item;
+	public ParticleSystem harvestEffect;
+	public GameObject node;
 	[SerializeField] float health = 50f;
 	[SerializeField] int resources = 10;
 

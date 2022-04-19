@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3d46271139c9d4a919b0baf65d25f8, type: 3}
+  m_Name: RareKey
+  m_EditorClassIdentifier: 
+  type: 9
+  name: Rare Key
+  description: 
+  uiDisplay: {fileID: 21300000, guid: e3a92d40f07072b4d8a7bd82488ef9a5, type: 3}
+  isMoveable: 1
+  recipe:
+  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
+    amount: 20
+  groundPrefab: {fileID: 6573688572695703079, guid: 849b92d8fd2d9a94ea377206a6447fd0, type: 3}
+  holdPrefab: {fileID: 4413477487601138616, guid: 6b4159d4e0da7a443a2fa7728562c54e, type: 3}
