@@ -75,17 +75,12 @@ public class FlyingEnemy : Enemy
             state = STATE.AGRO_OIL;
         }
 
-        if (target.GetComponent<DeployedEnemyAttractor>() != null) {
-           MoveTowardsAttractItem();
-           if (state == STATE.DEAD) { Stop(); }
-        } else {
-            switch(state){
-                case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
-                case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
-                case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
-                case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
-                case STATE.DEAD:                Stop(); break;
-            }
+        switch(state){
+            case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
+            case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
+            case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
+            case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
+            case STATE.DEAD:                rb.useGravity = true; break;
         }
 
         if (coolDown >= 0)
@@ -160,38 +155,6 @@ public class FlyingEnemy : Enemy
 
             Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
             transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
-        }
-    }
-
-    void MoveTowardsAttractItem() {
-        if (flowField != null && flowField.initialized){
-            //Debug.Log("Target");
-            Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
-            Vector3 moveDirection;
-
-            if (occupideCell.cost == 255){
-                navMeshAgent.speed = moveSpeed;
-                navMeshAgent.destination = target.transform.position;
-                rb.velocity = Vector3.zero;
-                acculmulatedSpeed = Vector3.zero;
-                return;
-            }
-            else{
-                navMeshAgent.speed = 0;
-                //moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
-                moveDirection = new Vector3(target.transform.position.x - transform.position.x, transform.position.y, target.transform.position.z - transform.position.z);
-            }
-
-            acculmulatedSpeed *= damping;
-            acculmulatedSpeed += moveDirection * moveSpeed * Time.fixedDeltaTime;
-            acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
-            rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
-
-            Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
-        }
-        else{
-            Debug.Log("Flow Field not Initialized");
         }
     }
 
