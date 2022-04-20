@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     public STATE state = STATE.AGRO_OIL;
 
     public HealthBar healthBar;
-    public float currentHealth;
+    public float currentHealth = 100;
 
     protected void Start() {
         SetHealth(100f); // ToDo: remove when health is set in level manager
