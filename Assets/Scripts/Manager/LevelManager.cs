@@ -120,9 +120,9 @@ public class LevelManager : MonoBehaviour
         enemy.playerStats   = playerStats;
         enemy.player        = player;
         enemy.levelManager  = this;
-        //enemy.SetHealth(enemy.currentHealth * currentHpIncrease);
-        //enemy.attackPower   *= attackIncreaseIncrease;
-        //enemy.defense       *= defenseIncrease;
+        enemy.SetHealth(enemy.currentHealth * currentHpIncrease);
+        enemy.attackPower   *= attackIncreaseIncrease;
+        enemy.defense       *= defenseIncrease;
 
         enemyCount++;
 

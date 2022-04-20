@@ -6924,6 +6924,7 @@ MonoBehaviour:
   winScreen: Victory
   playerLossScreen: PlayerDied
   drillLossScreen: OilDrillDied
+  enemyLevel: 1
   waveIncreasePerLevel: 1.2
   hpIncreasePerLevel: 1.1
   defenseIncreasePerLevel: 1.05
