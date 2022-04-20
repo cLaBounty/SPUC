@@ -32,9 +32,11 @@ public class Enemy : MonoBehaviour
 
     public HealthBar healthBar;
     public float currentHealth = 100;
+    float maxHealth = 0f;
+    bool firstSetHealth = false; 
 
     protected void Start() {
-        SetHealth(100f); // ToDo: remove when health is set in level manager
+        //SetHealth(currentHealth); // ToDo: remove when health is set in level manager
         healthBar.transform.gameObject.SetActive(false);
     }
 
@@ -54,8 +56,13 @@ public class Enemy : MonoBehaviour
     }
 
     public void SetHealth(float value) {
+        if (firstSetHealth){
+            maxHealth = value;
+            firstSetHealth = false;
+        }
+
         currentHealth = value;
-        healthBar.SetMaxHealth(value);
+        healthBar.SetMaxHealth(value/maxHealth * 100);
     }
 
     private void OnDestroy() {
