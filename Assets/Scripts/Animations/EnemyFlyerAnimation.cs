@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFlyerAnimation1 : MonoBehaviour
+public class EnemyFlyerAnimation : MonoBehaviour
 {
     Animator animator;
     [SerializeField] FlyingEnemy enemy;
