@@ -21,21 +21,23 @@ public class EnemyCrawlerAnimation : MonoBehaviour
     void LateUpdate() {
         state = (int)enemy.state;
 
-        animator.SetInteger("State", state);
+        //animator.SetInteger("State", state);
         if (enemy.state == Enemy.STATE.DEAD){
             int ran = Random.Range(0, 2);
             animator.SetInteger("Variation", ran);
             animator.SetInteger("State", 4);
         }
 
-        else if (state < 2){
+        else if (state < 3){
             int ran = Random.Range(0, 2);
             animator.SetInteger("Variation", ran);
+            animator.SetInteger("State", 1);
         }
 
-        else if (state < 4 && enemy.coolDown < 0){
+        else if (state < 5 && enemy.coolDown < 0){
             int ran = Random.Range(0, 2);
             animator.SetInteger("Variation", ran);
+            animator.SetInteger("State", 3);
         }
     }
 
