@@ -16807,6 +16807,7 @@ MonoBehaviour:
   InventoryCanvasUI: {fileID: 1220036506}
   InventoryDisplay: {fileID: 397977383}
   CraftingDisplay: {fileID: 967975776}
+  Scope: {fileID: 0}
 --- !u!1001 &1758637348
 PrefabInstance:
   m_ObjectHideFlags: 0

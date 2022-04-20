@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
+  harvestEffect: {fileID: 0}
+  node: {fileID: 0}
   health: 50
   resources: 10
 --- !u!1001 &461827978567383558

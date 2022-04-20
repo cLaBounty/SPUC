@@ -18,12 +18,19 @@ public class GroundItem : MonoBehaviour
     private float startingZ;
     private float time = 0;
 
+    //moving away from other objects
+    [Header("Seperations")]
+    public float stayAwayDist = 1f;
+    public float moveAwaySpeed = 1f;
+    Collider colliderr;
+
     void Start() {
         player = GameObject.FindObjectOfType<Player>();
 
         // Bounce Effect
         startingZ = transform.position.y;
         time = Random.Range(0f, 1f);
+        colliderr = GetComponent<Collider>();
     }
 
     void Update() {
@@ -45,9 +52,35 @@ public class GroundItem : MonoBehaviour
             if (currentInfo != null) { Destroy(currentInfo.gameObject); }
         }
 
+        colliderr.isTrigger = false;
+    }
+
+    void LateUpdate() {
         // Bounce Effect
         time += hoverRate * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, startingZ + Mathf.Lerp(0, highestOffset, Mathf.Cos(time * Mathf.PI) * 0.5f + 0.5f), transform.position.z);
+        //transform.position = new Vector3(transform.position.x, startingZ + Mathf.Lerp(0, highestOffset, Mathf.Cos(time * Mathf.PI) * 0.5f + 0.5f), transform.position.z);
+
+        //move away from other objects
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, stayAwayDist);
+        Vector2 totalForce = Vector2.zero;
+        int i = 0;
+
+        foreach(Collider col in hitColliders){
+            if (col.gameObject.tag == "GroundItem" && col.gameObject != gameObject){
+                totalForce += new Vector2(transform.position.x, transform.position.z) - new Vector2(col.gameObject.transform.position.x, col.gameObject.transform.position.z);
+                if (totalForce.sqrMagnitude == 0f) totalForce.x += 0.5f;
+                i++;
+            }
+        }
+
+        if (i > 1)
+        Debug.Log(i);
+
+        if (totalForce.x != 0) totalForce.x = 1f/totalForce.x * moveAwaySpeed * Time.deltaTime;
+        if (totalForce.y != 0) totalForce.y = 1f/totalForce.y * moveAwaySpeed * Time.deltaTime;
+
+        transform.position = new Vector3(transform.position.x + totalForce.x, startingZ + Mathf.Lerp(0, highestOffset, Mathf.Cos(time * Mathf.PI) * 0.5f + 0.5f), transform.position.z + totalForce.y);
+        colliderr.isTrigger = true;
     }
 
     private void OnDestroy() {
