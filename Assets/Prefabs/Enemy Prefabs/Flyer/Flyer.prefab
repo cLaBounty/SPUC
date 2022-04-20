@@ -353,7 +353,7 @@ MonoBehaviour:
   maxMoveSpeed: 4
   attackSpeed: 1
   attackPower: 5
-  defense: 0
+  defense: 1
   target: {fileID: 0}
   flowField: {fileID: 0}
   player: {fileID: 0}
@@ -361,7 +361,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   state: 0
   healthBar: {fileID: 7053554087940692124}
-  currentHealth: 100
+  currentHealth: 50
   agroDistance: 30
   attackDistance: 6
   attackDistanceOil: 8
@@ -376,7 +376,7 @@ MonoBehaviour:
   flyUpOffset: {x: 0, y: 1, z: 0}
   currentTargetDist: 0
   projectileSpeed: 12
-  steeringSpeed: 2
+  steeringSpeed: 3
   randomSpawnTimerRange: {x: 1.5, y: 4}
 --- !u!54 &7279199722365421926
 Rigidbody:
@@ -504,6 +504,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DragonSoulEaterBlueHP
       objectReference: {fileID: 0}
+    - target: {fileID: 8176628330750853183, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 378b1863f9b87ec46a0086912f6e8fc4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
 --- !u!1 &996298188191070211 stripped
