@@ -18,11 +18,10 @@ public class EnemyFlyerAnimation : MonoBehaviour
     }
 
     void LateUpdate() {
-
         if (enemy.state == Enemy.STATE.DEAD )
             animator.SetInteger("State", 2);
 
-        else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER)//state < 4 && enemy.coolDown < 0){
+        else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER || enemy.state == Enemy.STATE.AGRO_DISTRACTION)//state < 4 && enemy.coolDown < 0){
             animator.SetInteger("State", 0);
         
 
@@ -40,6 +39,7 @@ public class EnemyFlyerAnimation : MonoBehaviour
 
     public void EndAttackKeyFrame(){
         attacking = false;
+        enemy.state = Enemy.STATE.AGRO_OIL;
     }
 
     public void Disapear(){

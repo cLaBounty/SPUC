@@ -131,7 +131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8653543923140239029
 Transform:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   maxMoveSpeed: 8
   attackSpeed: 1
   attackPower: 4
-  defense: 0
+  defense: 1
   target: {fileID: 0}
   flowField: {fileID: 0}
   player: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   state: 0
   healthBar: {fileID: 5010555039000298530}
-  currentHealth: 100
+  currentHealth: 20
   agroDistance: 30
   attackDistance: 5
   damping: 0.98
