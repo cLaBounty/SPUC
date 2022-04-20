@@ -6,6 +6,7 @@ public class GroundItem : MonoBehaviour
 {
     public ItemObject item;
     public int amount = 1;
+    public float spawnRate = 1f;
 
     private float pickupDistance = 25f;
     public GameObject infoPrefab;
@@ -31,6 +32,8 @@ public class GroundItem : MonoBehaviour
         startingZ = transform.position.y;
         time = Random.Range(0f, 1f);
         colliderr = GetComponent<Collider>();
+
+        if (UnityEngine.Random.Range(0f, 1f) > spawnRate) { Destroy(transform.gameObject); }
     }
 
     void Update() {
@@ -58,7 +61,6 @@ public class GroundItem : MonoBehaviour
     void LateUpdate() {
         // Bounce Effect
         time += hoverRate * Time.deltaTime;
-        //transform.position = new Vector3(transform.position.x, startingZ + Mathf.Lerp(0, highestOffset, Mathf.Cos(time * Mathf.PI) * 0.5f + 0.5f), transform.position.z);
 
         //move away from other objects
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, stayAwayDist);
@@ -72,9 +74,6 @@ public class GroundItem : MonoBehaviour
                 i++;
             }
         }
-
-        if (i > 1)
-        Debug.Log(i);
 
         if (totalForce.x != 0) totalForce.x = 1f/totalForce.x * moveAwaySpeed * Time.deltaTime;
         if (totalForce.y != 0) totalForce.y = 1f/totalForce.y * moveAwaySpeed * Time.deltaTime;
