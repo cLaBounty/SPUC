@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pistol : UsableItem
 {
-	private const float DAMAGE = 10f;
+	private const float DAMAGE = 20f;
 	private const float RANGE = 100f;
 
 	public ItemObject ammo;

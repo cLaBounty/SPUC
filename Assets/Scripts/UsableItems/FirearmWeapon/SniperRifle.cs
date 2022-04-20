@@ -6,6 +6,7 @@ public class SniperRifle : UsableItem
 {
 	private const float DAMAGE = 100f;
     private const float RANGE = 150f;
+	private const float COOL_DOWN = 1f;
 	private const float SCOPED_FOV = 15f;
 	private float defaultFOV;
 
@@ -18,6 +19,8 @@ public class SniperRifle : UsableItem
 	private Animator animator;
 	private GameObject scopeOverlay;
 
+	private float coolDownTime = COOL_DOWN;
+
 	protected override void Init() {
 		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
@@ -29,6 +32,11 @@ public class SniperRifle : UsableItem
 		HideCrosshair();
     }
 
+	private void Update() {
+		base.Update();
+		coolDownTime += Time.deltaTime;
+	}
+
 	protected override void Focus() {
 		bool previousValue = animator.GetBool("IsSniperScoped");
 		animator.SetBool("IsSniperScoped", !previousValue);
@@ -37,6 +45,9 @@ public class SniperRifle : UsableItem
 	}
     
     protected override void Use() {
+		if (coolDownTime >= COOL_DOWN) { coolDownTime = 0; }
+		else { return; }
+
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			hotBar.HandleItemUse(ammo);

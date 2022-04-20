@@ -5,12 +5,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    [SerializeField] protected int hp = 1;
     [SerializeField] protected float moveSpeed = 1f;
     [SerializeField] protected float maxMoveSpeed = 1f;
-    [SerializeField] protected float attackSpeed = 1;
-    [SerializeField] protected float attackPower = 1;
-    [SerializeField] protected float defense = 0;
+    [SerializeField] protected float attackSpeed = 1f;
+    public float attackPower = 1f;
+    public float defense = 0;
 
     //[Header("Debuging")]
     //[SerializeField] 
@@ -31,18 +30,32 @@ public class Enemy : MonoBehaviour
 
     public STATE state = STATE.AGRO_OIL;
 
-    public void TakeDamage (float damage) {
-        hp -= Mathf.CeilToInt(damage - defense);
-        KillEnemy();
+    public HealthBar healthBar;
+    public float currentHealth;
+
+    protected void Start() {
+        SetHealth(100f); // ToDo: remove when health is set in level manager
+        healthBar.transform.gameObject.SetActive(false);
     }
 
-    void KillEnemy(){
-        if (hp <= 0){
+    public void TakeDamage (float damage) {
+        currentHealth -= damage - defense;
+        healthBar.transform.gameObject.SetActive(true);
+        healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0) {
+            healthBar.transform.gameObject.SetActive(false);
+
+            // Kill Enemy
             Collider collider = GetComponent<Collider>();
             if (collider != null ) collider.enabled = false;
-
-            state = STATE.DEAD;//Destroy(gameObject);
+            state = STATE.DEAD;
         }
+    }
+
+    public void SetHealth(float value) {
+        currentHealth = value;
+        healthBar.SetMaxHealth(value);
     }
 
     private void OnDestroy() {
