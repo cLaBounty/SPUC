@@ -117,12 +117,12 @@ public class DisplayInventory : MonoBehaviour
         InventorySlot slot = inventoryItems[obj];
 
         if (mouseItem.hoverObj != null) { // Swap Item
-            if (slot.item?.isMoveable != false && inventoryItems[mouseItem.hoverObj].item?.isMoveable != false) { // Cannot move an immovable item
+            if (slot.item?.isMoveable == true && inventoryItems[mouseItem.hoverObj].item?.isMoveable != false) { // Cannot move an immovable item
                 inventory.SwapItems(slot, inventoryItems[mouseItem.hoverObj]);
                 player.hotBar.NotifySwap(slot.item, inventoryItems[mouseItem.hoverObj].item);
             }
         } else { // Drop Item
-            if (slot.item?.isMoveable != false) { // Cannot drop an immovable item
+            if (slot.item?.isMoveable == true) { // Cannot drop an immovable item
                 ItemObject temp = slot.item;
                 player.DropItem(slot);
                 inventory.Remove(slot);

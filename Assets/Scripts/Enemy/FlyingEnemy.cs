@@ -45,8 +45,10 @@ public class FlyingEnemy : Enemy
     bool isOil;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
+        
         rb              = GetComponent<Rigidbody>();
         agroRangeSqr    = agroDistance * agroDistance;
         attackRangeSqr  = attackDistance * attackDistance;
@@ -80,7 +82,7 @@ public class FlyingEnemy : Enemy
             case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
             case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
             case STATE.ATTACKING_PLAYER:    AttackPlayer(); break;
-            case STATE.DEAD:                Stop(); break;
+            case STATE.DEAD:                rb.useGravity = true; break;
         }
 
         if (coolDown >= 0)
@@ -135,6 +137,7 @@ public class FlyingEnemy : Enemy
         }
     }
 
+
     void MoveTowardsTargetNoStateCheck(){
         Vector3 dir =  (target.transform.position - transform.position).normalized;
         RaycastHit hit;
@@ -157,6 +160,7 @@ public class FlyingEnemy : Enemy
         Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
         transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
+
 
     void MoveTowardsPlayer(){
         //state change

@@ -15,13 +15,13 @@ public class EnemyProjectile : MonoBehaviour
 
     void Start(){
         rb = GetComponent<Rigidbody>();
-        directionToPlayer = target.transform.position - transform.position;
+        //directionToPlayer = target.transform.position - transform.position;
     }
 
     void Update()
     {
         if (target != null){
-            //Vector3 directionToPlayer = target.transform.position - transform.position;
+            Vector3 directionToPlayer = target.transform.position - transform.position;
             moveDirection = Vector3.RotateTowards(moveDirection, directionToPlayer, steeringSpeed * Time.deltaTime, 1f);
             moveDirection.Normalize();
         }

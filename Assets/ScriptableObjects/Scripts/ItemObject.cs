@@ -13,7 +13,8 @@ public enum ItemType
     Barricade,
     MeleeWeapon,
     FirearmWeapon,
-    StatUpgrade
+    StatUpgrade,
+    Key
 }
 
 [CreateAssetMenu(fileName = "NewItemObject", menuName = "InventorySystem/Item")]
