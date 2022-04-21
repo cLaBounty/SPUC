@@ -271,7 +271,7 @@ MonoBehaviour:
   coolDownMax: 2
   currentTargetDist: 0
   projectileSpeed: 16
-  steeringSpeed: 0.5
+  steeringSpeed: 0.1
   randomSpawnTimerRange: {x: 1.5, y: 3}
 --- !u!54 &7279199722365421926
 Rigidbody:
@@ -311,7 +311,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7279199722365421932}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.44
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
