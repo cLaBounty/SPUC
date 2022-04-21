@@ -5,9 +5,15 @@ public class ResourceNode : MonoBehaviour
 {
     public ItemObject item;
 	public ParticleSystem harvestEffect;
-	public GameObject node;
 	[SerializeField] float health = 50f;
 	[SerializeField] int resources = 10;
+	private bool particleTriggered = false;
+
+	void Update()
+	{
+		if (particleTriggered && !harvestEffect.isPlaying)
+			Destroy(gameObject);
+	}
 
 	public int harvest(float damage)
 	{
@@ -24,9 +30,17 @@ public class ResourceNode : MonoBehaviour
 
 		if (health < 1f)
 		{
-			Destroy(gameObject);
+			foreach(Transform child in transform)
+			{
+				if (child.name != harvestEffect.name)
+					Destroy(child.gameObject);
+			}
+			harvestEffect.Play();
+			particleTriggered = true;
+			GetComponent<Collider>().enabled = false;
 		}
 		resources -= amount;
 		return amount;
 	}
+
 }

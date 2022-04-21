@@ -30,19 +30,12 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float crouchMultiplier = 0.75f;
 	[SerializeField] float crouchSpeed;
 
-	void Start() {
-		previousPosition = transform.position;
-	}
-
     // Update is called once per frame
     void Update()
     {
 		if (PauseMenu.GameIsPaused) return;
 		
 		isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-		PlayerStatus.isMoving = (previousPosition != transform.position);
-		previousPosition = transform.position;
 
 		if(isGrounded && velocity.y < 0)
 		{
@@ -66,10 +59,6 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		Vector3 move = transform.right * x + transform.forward * z;
-		if (Mathf.Abs(move.x) > 0 || Mathf.Abs(move.y) > 0 || Mathf.Abs(move.z) > 0)
-			PlayerStatus.isMoving = true;
-		else
-			PlayerStatus.isMoving = false;
 
 		controller.Move(move * speed * Time.deltaTime);
 
