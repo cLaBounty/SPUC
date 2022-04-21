@@ -6873,15 +6873,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1967e54f032802488012809281af6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPrepTime: 90000
+  initialPrepTime: 5
   timeBetweenWaves: 45
   numberOfWaves: 5
+  enemyData:
+  - enemyPrefab: {fileID: 7279199722365421932, guid: 38f2cf4a67fa0834e89765a207027214, type: 3}
+    spawnWeight: 14
+    trueSpawnWeight: 0
+  - enemyPrefab: {fileID: 7279199722365421932, guid: 1445b81c3415a5943b4e7f3cfb644af0, type: 3}
+    spawnWeight: 16
+    trueSpawnWeight: 0
+  - enemyPrefab: {fileID: 7279199722365421932, guid: 1d5448d463762c24b8d817429d108e2f, type: 3}
+    spawnWeight: 18
+    trueSpawnWeight: 0
+  - enemyPrefab: {fileID: 7279199722365421932, guid: 280eda436695a75458830a83a982a81d, type: 3}
+    spawnWeight: 20
+    trueSpawnWeight: 0
   enemiesPerWave: 20
   enemyMax: 40
-  enemyPrefab: {fileID: 7279199722365421932, guid: 280eda436695a75458830a83a982a81d, type: 3}
   winScreen: Victory
   playerLossScreen: PlayerDied
   drillLossScreen: OilDrillDied
+  enemyLevel: 1
+  waveIncreasePerLevel: 1.2
+  hpIncreasePerLevel: 1.1
+  defenseIncreasePerLevel: 1.05
+  attackIncreasePerLevel: 1.2
   waveCount: 0
   enemyCount: 0
 --- !u!1001 &717786640
@@ -8671,6 +8688,10 @@ PrefabInstance:
     - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
       propertyPath: hoverRate
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+      propertyPath: spawnRate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1462424722524937663, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
       propertyPath: infoPrefab
