@@ -5427,6 +5427,10 @@ PrefabInstance:
       propertyPath: health
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 7601831305522186710, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: m_Name
+      value: BlueBreaking
+      objectReference: {fileID: 0}
     - target: {fileID: 8247802598866928133, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5458,6 +5462,10 @@ PrefabInstance:
     - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
       propertyPath: CollisionModule.collisionMessages
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
       propertyPath: CollisionModule.collidesWith.m_Bits
