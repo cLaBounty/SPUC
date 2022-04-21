@@ -5363,6 +5363,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1041191736013368854, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041191736013368854, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041191736013368854, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.038
+      objectReference: {fileID: 0}
     - target: {fileID: 2713695552561824166, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -5410,6 +5422,54 @@ PrefabInstance:
     - target: {fileID: 2713695552561824167, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
       propertyPath: m_Name
       value: Diamond Resource
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452173560977462708, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: health
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247802598866928133, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: afa932a3e30341d4f92007795c2c93d1, type: 3}
+    - target: {fileID: 8247802598866928133, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: m_ApplyActiveColorSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: CollisionModule.quality
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: CollisionModule.colliderForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: CollisionModule.collisionMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: CollisionModule.m_Planes.Array.data[0]
+      value: 
+      objectReference: {fileID: 1327842135}
+    - target: {fileID: 9011151070866569199, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
+      propertyPath: CollisionModule.multiplyColliderForceByParticleSize
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30b8f910104a45944bf9e88e35f63dc4, type: 3}
@@ -12067,6 +12127,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.512
       objectReference: {fileID: 0}
+    - target: {fileID: 7162103421439139837, guid: 9194db54cdb6e05468a9eebd037fbb3a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9194db54cdb6e05468a9eebd037fbb3a, type: 3}
 --- !u!1001 &1266882224
@@ -16807,6 +16871,7 @@ MonoBehaviour:
   InventoryCanvasUI: {fileID: 1220036506}
   InventoryDisplay: {fileID: 397977383}
   CraftingDisplay: {fileID: 967975776}
+  Scope: {fileID: 0}
 --- !u!1001 &1758637348
 PrefabInstance:
   m_ObjectHideFlags: 0
