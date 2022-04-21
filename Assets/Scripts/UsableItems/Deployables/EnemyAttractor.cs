@@ -37,6 +37,7 @@ public class EnemyAttractor : UsableItem
 
     protected override void Use() {
         Deploy();
+        SFXManager.instance.Play("Food Deploy", 0.9f, 1.1f);
         hotBar.HandleItemUse(itemObject);
     }
 

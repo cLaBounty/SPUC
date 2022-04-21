@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float gravity = -9.81f * 2;
 	[SerializeField] float jumpHeight = 3f;
 	[SerializeField] float spritMultiplier = 1.75f;
+	[SerializeField] string[] stepSounds;
+	[SerializeField] float stepSoundsTime = 0.15f;
 	private bool isSprinting = true;
 	Vector3 velocity;
 	Vector3 previousPosition;
@@ -24,11 +26,14 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask groundMask;
 	private float groundDistance = 0.4f;
 	private bool isGrounded;
+	bool movedLastFrame = false;
 
 	// Crouching
 	private bool isCrouching = false;
 	[SerializeField] float crouchMultiplier = 0.75f;
 	[SerializeField] float crouchSpeed;
+
+	int currentStepIndex = 0;
 
     // Update is called once per frame
     void Update()
@@ -45,6 +50,11 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 
+		if (!movedLastFrame && x + z >= 1 && isGrounded){
+			movedLastFrame = true;
+			StartCoroutine(PlaySound());
+		}
+		else if (x + z < 1 || !isGrounded) movedLastFrame = false;
 
 		if (isSprinting && !isCrouching)
 		{
@@ -64,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if(Input.GetButtonDown("Jump") && isGrounded)
 		{
+			SFXManager.instance?.Play("Jump", 0.95f, 1.05f);
 			velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 		}
 		
@@ -83,6 +94,22 @@ public class PlayerMovement : MonoBehaviour
 
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move(velocity * Time.deltaTime);
+	}
+
+	IEnumerator PlaySound(){
+		if (!isCrouching)
+			SFXManager.instance.Play(stepSounds[currentStepIndex], 0.7f, 0.9f);
+		else 
+			SFXManager.instance.Play(stepSounds[currentStepIndex], 0.9f, 1.1f);
+		
+		currentStepIndex++;
+		if (currentStepIndex >= stepSounds.Length) currentStepIndex = 0;
+
+		yield return new WaitForSeconds(stepSoundsTime);
+
+		float x = Input.GetAxis("Horizontal");
+		float z = Input.GetAxis("Vertical");
+		if (isGrounded && x + z >= 1f) StartCoroutine(PlaySound());
 	}
 }
 

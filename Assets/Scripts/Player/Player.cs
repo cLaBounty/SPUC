@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     {
         currentHealth -= amount;
 
+        SFXManager.instance?.Play("Hurt");
+
         if (currentHealth < 0) {
             currentHealth = 0;
         }
@@ -61,7 +63,9 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "GroundItem") {
-            PickUpItem(other.GetComponent<GroundItem>());
+            GroundItem gi = other.GetComponent<GroundItem>();
+            SFXManager.instance?.Play(gi.sfx, 0.9f, 1.1f);
+            PickUpItem(gi);
             Destroy(other.gameObject);
         } else if (other.gameObject.tag == "EnemyProjectile") {
             TakeDamage(other.GetComponent<EnemyProjectile>().damage);
