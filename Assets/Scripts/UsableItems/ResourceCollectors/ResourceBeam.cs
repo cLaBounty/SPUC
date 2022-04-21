@@ -15,6 +15,7 @@ public class ResourceBeam : UsableItem
 	public ParticleSystem impactEffect;
 	private float coolDownTime = 0;
 	public float frequency = 1f;
+	bool playingSound = false;
 
 	protected override void Init() {
 		inventory = Resources.Load<InventoryObject>("Inventory/PlayerInventory");
@@ -27,12 +28,19 @@ public class ResourceBeam : UsableItem
 		coolDownTime += Time.deltaTime;
 		if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) { return; }
 			if (Input.GetButtonDown("Fire2")) { Focus(); }
-				if (Input.GetButton("Fire1")) 
+				if (Input.GetButton("Fire1")){
 					Use();
+					if (!playingSound){
+						SFXManager.instance.Play("Beam", 0.95f, 1.05f, true);
+						playingSound = true;
+					}
+				}
 				else
 				{
 					if (lineRenderer.enabled)
 					{
+						SFXManager.instance.Stop("Beam");
+						playingSound = false;
 						lineRenderer.enabled = false;
 						impactEffect.Stop();
 					}

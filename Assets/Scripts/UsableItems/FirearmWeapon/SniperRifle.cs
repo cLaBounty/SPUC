@@ -51,8 +51,10 @@ public class SniperRifle : UsableItem
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			hotBar.HandleItemUse(ammo);
+			SFXManager.instance.Play("Sniper Shot", 0.9f, 1.1f);
 		} else {
 			Debug.Log("No Sniper Ammo");
+			SFXManager.instance.Play("Gun Empty");
 		}
     }
 

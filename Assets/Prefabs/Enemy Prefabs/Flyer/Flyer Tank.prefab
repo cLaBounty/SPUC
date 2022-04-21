@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: -1541237323979864926}
-  projectile: {fileID: 1872905880166391263, guid: b36d2c9c29b2a0b4db415b231d1de4a0, type: 3}
+  projectile: {fileID: 1872905880166391263, guid: c62ee0ef5993e15468d1be7a34ed5d88, type: 3}
   projectileSpawnPoint: {fileID: 3039580595520195444}
 --- !u!4 &5504770157139069028 stripped
 Transform:

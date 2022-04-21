@@ -18,5 +18,6 @@ public class Water : UsableItem
     protected override void Use() {
         player.GainHealth(HEALTH_INCREASE);
         hotBar.HandleItemUse(itemObject);
+        SFXManager.instance.Play("Drink", 0.95f, 1.05f);
     }
 }

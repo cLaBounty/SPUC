@@ -37,6 +37,7 @@ public class Campfire : UsableItem
 
     protected override void Use() {
         Deploy();
+        SFXManager.instance.Play("Fire Deploy", 0.9f, 1.1f);
         hotBar.HandleItemUse(itemObject);
     }
 
@@ -45,6 +46,7 @@ public class Campfire : UsableItem
         GameObject inst = Instantiate(deployedPrefab);
         UpdatePosition(inst);
         inst.GetComponent<DeployedCampfire>().isActive = true;
+        inst.GetComponent<AudioSource>()?.Play();
     }
 
     private void UpdatePosition(GameObject inst) {

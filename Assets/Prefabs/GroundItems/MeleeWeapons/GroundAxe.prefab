@@ -48,7 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 9a9c7725b2f4d9746b6d503972ab7951, type: 2}
   amount: 1
+  spawnRate: 1
+  sfx: Normal Pickup
   infoPrefab: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+  stayAwayDist: 1
+  moveAwaySpeed: 1
 --- !u!135 &-7609582053056138892
 SphereCollider:
   m_ObjectHideFlags: 0

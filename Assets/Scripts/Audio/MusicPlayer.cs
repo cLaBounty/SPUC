@@ -72,4 +72,9 @@ public class MusicPlayer : MonoBehaviour
 
         //transform.position = playerTrans.position;
     }
+
+    void OnDestroy(){
+        passiveMusic.Stop();
+        combatMusic.Stop();
+    }
 }

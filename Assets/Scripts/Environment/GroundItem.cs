@@ -7,6 +7,7 @@ public class GroundItem : MonoBehaviour
     public ItemObject item;
     public int amount = 1;
     public float spawnRate = 1f;
+    public string sfx = "Gun Pickup";
 
     private float pickupDistance = 25f;
     public GameObject infoPrefab;
@@ -50,6 +51,7 @@ public class GroundItem : MonoBehaviour
                 if (PauseMenu.GameIsPaused) return;
                 player.PickUpItem(this);
                 Destroy(transform.gameObject);
+                SFXManager.instance?.Play(sfx, 0.9f, 1.1f);
             }
         } else {
             if (currentInfo != null) { Destroy(currentInfo.gameObject); }
