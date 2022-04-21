@@ -6,6 +6,7 @@ using UnityEngine.AI;
 //[RequireComponent(typeof(Rigidbody))] 
 public class CrawlerEnemy : Enemy
 {
+    [Header("Agro Vars")]
     [SerializeField]float agroDistance = 10f;
     [SerializeField]float attackDistance = 1f;
     [SerializeField]float damping = 0.98f;
@@ -24,8 +25,10 @@ public class CrawlerEnemy : Enemy
     bool isOil;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
+        
         rb              = GetComponent<Rigidbody>();
         agroRangeSqr    = agroDistance * agroDistance;
         attackRangeSqr  = attackDistance * attackDistance;
@@ -109,20 +112,21 @@ public class CrawlerEnemy : Enemy
                 navMeshAgent.destination = target.transform.position;
                 rb.velocity = Vector3.zero;
                 acculmulatedSpeed = Vector3.zero;
+                Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+                transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
                 return;
             }
             else{
                 navMeshAgent.speed = 0;
                 moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
+                Vector3 lookVector = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
             }
 
             acculmulatedSpeed *= damping;
             acculmulatedSpeed += moveDirection * moveSpeed * Time.fixedDeltaTime;
             acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
             rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
-
-            Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
         }
         else{
             Debug.Log("Flow Field not Initialized");

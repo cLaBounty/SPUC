@@ -100,7 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: a3b2f09df6d8a5948b8daf11899ccf81, type: 2}
   amount: 1
+  spawnRate: 1
   infoPrefab: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+  stayAwayDist: 1
+  moveAwaySpeed: 1
 --- !u!135 &-2150292933466304806
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -124,6 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8785971940232428623}
   - component: {fileID: 5700921846129169186}
+  - component: {fileID: 2113635199874919102}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -208,6 +212,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2113635199874919102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251240177770210437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &9103335467606595019
 GameObject:
   m_ObjectHideFlags: 0
@@ -5028,7 +5052,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
