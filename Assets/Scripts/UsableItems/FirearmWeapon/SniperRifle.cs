@@ -6,7 +6,8 @@ public class SniperRifle : UsableItem
 {
 	private const float DAMAGE = 100f;
     private const float RANGE = 150f;
-	private const float COOL_DOWN = 1f;
+	private const float COOL_DOWN = 1.5f;
+
 	private const float SCOPED_FOV = 15f;
 	private float defaultFOV;
 	public ItemObject ammo;
@@ -34,6 +35,11 @@ public class SniperRifle : UsableItem
 	private void Update() {
 		base.Update();
 		coolDownTime += Time.deltaTime;
+
+		// Empty effect should only play without having to wait for cooldown
+		if (Input.GetButtonDown("Fire1") && !hotBar.inventory.Has(ammo, 1)) {
+			SFXManager.instance.Play("Gun Empty");
+		}
 	}
 
 	protected override void Focus() {
@@ -52,7 +58,6 @@ public class SniperRifle : UsableItem
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Sniper Shot", 0.9f, 1.1f);
 		} else {
-			Debug.Log("No Sniper Ammo");
 			SFXManager.instance.Play("Gun Empty");
 		}
     }

@@ -12,6 +12,7 @@ public enum CrateRarity {
 public class Crate : MonoBehaviour
 {
     public CrateRarity rarity;
+    public Material material;
     public float spawnRate = 1f;
 
     public GameObject infoPrefab;
@@ -25,7 +26,7 @@ public class Crate : MonoBehaviour
     private void Start() {
         player = GameObject.FindObjectOfType<Player>();
         hotBar = GameObject.FindObjectOfType<HotBar>();
-        SetColor();
+        SetMaterial();
         SetKey();
         if (UnityEngine.Random.Range(0f, 1f) > spawnRate) { Destroy(transform.gameObject); }
     }
@@ -35,7 +36,7 @@ public class Crate : MonoBehaviour
         if (currentPlayerDist <= openDistance) {
             // Info Popup
             if (currentInfo == null) {
-                currentInfo = Instantiate(infoPrefab, new Vector3(transform.position.x, 0 + 2f, transform.position.z), Quaternion.identity);
+                currentInfo = Instantiate(infoPrefab, new Vector3(transform.position.x, 0 + 3f, transform.position.z), Quaternion.identity);
                 currentInfo.GetComponent<DisplayCrateInfo>().SetUp(rarity);
             }
 
@@ -51,20 +52,10 @@ public class Crate : MonoBehaviour
         }
     }
 
-    public void SetColor() {
-        Color color = new Color();
-        switch (rarity) {
-            case CrateRarity.Common:
-                color = new Color32(150, 150, 150, 255); // Gray
-                break;
-            case CrateRarity.Rare:
-                color = new Color32(46, 109, 225, 255); // Blue
-                break;
-            case CrateRarity.Epic:
-                color = new Color32(234, 170, 25, 255); // Gold
-                break;
+    public void SetMaterial() {
+        foreach(Transform child in transform) {
+            child.GetComponent<MeshRenderer>().material = material;
         }
-        GetComponent<MeshRenderer>().material.color = color;
     }
 
     public void SetKey() {

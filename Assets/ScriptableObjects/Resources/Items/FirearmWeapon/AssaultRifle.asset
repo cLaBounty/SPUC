@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3d46271139c9d4a919b0baf65d25f8, type: 3}
+  m_Name: AssaultRifle
+  m_EditorClassIdentifier: 
+  type: 7
+  name: Assault Rifle
+  description: 
+  uiDisplay: {fileID: 21300000, guid: b7a18182cb008c6449a0a941974d07d5, type: 3}
+  isMoveable: 1
+  recipe:
+  - item: {fileID: 11400000, guid: a3b2f09df6d8a5948b8daf11899ccf81, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
+    amount: 2
+  groundPrefab: {fileID: 101050, guid: d175b29f71991b8448718df0b5fc9743, type: 3}
+  holdPrefab: {fileID: 101050, guid: 7f6b55bd180154847a4a92a856a71fea, type: 3}

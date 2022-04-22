@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Pistol : UsableItem
 {
+	[SerializeField] string shootAnimation = "PistolFire";
+
 	private const float DAMAGE = 20f;
 	private const float RANGE = 100f;
-	[SerializeField] string shootAnimation = "PistolFire";
-	
+	private const float RANGE = 75f;
+
 	public ItemObject ammo;
 
 	private HotBar hotBar;
@@ -29,7 +31,6 @@ public class Pistol : UsableItem
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Pistol Shot", 0.9f, 1.1f);
 		} else {
-			Debug.Log("No Pistol Ammo");
 			SFXManager.instance.Play("Gun Empty");
 		}
     }
