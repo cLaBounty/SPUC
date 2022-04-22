@@ -6,13 +6,15 @@ public class Player : MonoBehaviour
 {
     public float maxHealth = 100f;
     public float currentHealth;
-
+	[SerializeField] float vignetteTime = 0.25f;
     public HealthBar healthBar;
     public HotBar hotBar;
+	[SerializeField] GameObject damageVignette;
     
     public InventoryObject inventory;
     public CraftingObject crafting;
     private CameraSystem cameraSystem;
+
 
     const float ITEM_DROP_DISTANCE = 5f;
 
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
+
+		StartCoroutine(HitVignette());
 
         SFXManager.instance?.Play("Hurt");
 
@@ -80,4 +84,10 @@ public class Player : MonoBehaviour
     private void OnApplicationQuit() {
         CleanUp();
     }
+
+	IEnumerator HitVignette() {
+		damageVignette.SetActive(true);
+		yield return new WaitForSeconds(vignetteTime);
+		damageVignette.SetActive(false);
+	}
 }
