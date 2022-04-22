@@ -78,13 +78,8 @@ public class Enemy : MonoBehaviour
     }
 
     public void SetHealth(float value) {
-        if (firstSetHealth){
-            maxHealth = value;
-            firstSetHealth = false;
-        }
-
         currentHealth = value;
-        healthBar.SetMaxHealth(value/maxHealth * 100);
+        healthBar.SetMaxHealth(currentHealth);
     }
 
     private void OnDestroy() {

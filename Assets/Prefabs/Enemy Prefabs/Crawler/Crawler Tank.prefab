@@ -689,7 +689,7 @@ MonoBehaviour:
   currentHealth: 40
   itemDrops:
   - item: {fileID: 6573688572695703079, guid: 1aa74d549ea2fb04296467312136a098, type: 3}
-    chance: 10
+    chance: 5
   - item: {fileID: 8211953478565733400, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
     chance: 30
   - item: {fileID: 2653555064806350094, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}

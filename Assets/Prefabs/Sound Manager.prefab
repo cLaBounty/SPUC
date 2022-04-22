@@ -178,3 +178,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Move Item
+    clip: {fileID: 8300000, guid: a4945971fc6b6ba47acc732965147ae4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Craft
+    clip: {fileID: 8300000, guid: 840e5b0a4a419484f905e72fda0cacdf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
