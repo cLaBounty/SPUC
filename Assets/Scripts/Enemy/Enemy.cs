@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+     public enum STATE {
+        AGRO_OIL = 0,
+        AGRO_DISTRACTION,
+        AGRO_PLAYER,
+        ATTACKING_OIL,
+        ATTACKING_PLAYER,
+        DEAD,
+    }
+
+    [System.Serializable]
+    public struct ItemDrop{
+        public GameObject item;
+        public float chance;
+    }
+
     [Header("Enemy Stats")]
     [SerializeField] protected float moveSpeed = 1f;
     [SerializeField] protected float maxMoveSpeed = 1f;
@@ -13,25 +28,20 @@ public class Enemy : MonoBehaviour
 
     //[Header("Debuging")]
     //[SerializeField] 
-    public GameObject target;
-    public GridController flowField = null;
-    public PlayerMovement player = null;
-    public Player playerStats = null;
-    public LevelManager levelManager = null;
-
-    public enum STATE {
-        AGRO_OIL = 0,
-        AGRO_DISTRACTION,
-        AGRO_PLAYER,
-        ATTACKING_OIL,
-        ATTACKING_PLAYER,
-        DEAD,
-    }
+    [HideInInspector]public GameObject target;
+    [HideInInspector]public GridController flowField = null;
+    [HideInInspector]public PlayerMovement player = null;
+    [HideInInspector]public Player playerStats = null;
+    [HideInInspector]public LevelManager levelManager = null;
 
     public STATE state = STATE.AGRO_OIL;
 
     public HealthBar healthBar;
     public float currentHealth = 100;
+
+    [Header("Drops (Organize in Order Please)")]
+    [SerializeField] ItemDrop[] itemDrops;
+
     float maxHealth = 0f;
     bool firstSetHealth = false; 
 
@@ -54,6 +64,16 @@ public class Enemy : MonoBehaviour
             Collider collider = GetComponent<Collider>();
             if (collider != null ) collider.enabled = false;
             state = STATE.DEAD;
+
+            float ran = Random.Range(0f, 100f);
+            foreach (ItemDrop item in itemDrops){
+                if (ran < item.chance){
+                    var inst = Instantiate(item.item);
+                    inst.transform.parent = null;
+                    inst.transform.position = transform.position;
+                    break;
+                }
+            }
         }
     }
 

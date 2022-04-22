@@ -687,8 +687,20 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 5010555039000298530}
   currentHealth: 40
+  itemDrops:
+  - item: {fileID: 6573688572695703079, guid: 1aa74d549ea2fb04296467312136a098, type: 3}
+    chance: 10
+  - item: {fileID: 8211953478565733400, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
+    chance: 30
+  - item: {fileID: 2653555064806350094, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+    chance: 50
+  - item: {fileID: 7100413993455072174, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+    chance: 70
+  - item: {fileID: 6573688572695703079, guid: b3f4a4d358df0e1458bbc2b6788abacc, type: 3}
+    chance: 101
   agroDistance: 30
   attackDistance: 5
+  attackOilDistance: 6
   damping: 0.98
   coolDown: 0
   coolDownMax: 0.5

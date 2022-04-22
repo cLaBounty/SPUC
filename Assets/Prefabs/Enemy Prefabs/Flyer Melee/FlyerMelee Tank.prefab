@@ -617,8 +617,16 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 7053554087940692124}
   currentHealth: 160
+  itemDrops:
+  - item: {fileID: 6573688572695703079, guid: f45bdad71f60de84f8dc6879ad47c985, type: 3}
+    chance: 20
+  - item: {fileID: 6573688572695703079, guid: 398d0e0b838f1914c99193bace954b20, type: 3}
+    chance: 50
+  - item: {fileID: 6573688572695703079, guid: b3f4a4d358df0e1458bbc2b6788abacc, type: 3}
+    chance: 101
   agroDistance: 25
   attackDistance: 4
+  attackDistanceOil: 6
   damping: 0.98
   maxFlyHeight: 10
   minFlyHeight: 3
