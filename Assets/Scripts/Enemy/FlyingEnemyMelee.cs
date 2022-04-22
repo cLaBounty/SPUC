@@ -137,7 +137,6 @@ public class FlyingEnemyMelee : Enemy
         RaycastHit hit;
         Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
         bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 1.1f, Quaternion.identity, impassableMask);
-        Debug.Log(hit.distance);
 
         if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
             dir.y = 1f;
