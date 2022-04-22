@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -8,15 +9,21 @@ public class Player : MonoBehaviour
     public float currentHealth;
     [SerializeField] float itemGrav = 1f;
     [SerializeField] float itemRange = 2f;
-
+	[SerializeField] float vignetteTime = 0.25f;
     public HealthBar healthBar;
     public HotBar hotBar;
+	[SerializeField] Volume damageVignette;
+    [SerializeField] float vignetteSpeed = 10f;
     
     public InventoryObject inventory;
     public CraftingObject crafting;
     private CameraSystem cameraSystem;
 
+
     const float ITEM_DROP_DISTANCE = 5f;
+
+    bool hurtEffect = false;
+    float hurtEffectLerp = 0;
 
     LayerMask itemMask;
 
@@ -29,18 +36,35 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
-        //move away from other objects
+        //move objects towards player
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, itemRange, itemMask);
         Vector2 totalForce = Vector2.zero;
 
         foreach(Collider col in hitColliders){
             col.transform.parent.position += (transform.position - col.transform.parent.position).normalized * itemGrav * Time.deltaTime;
         }
+
+        //hurt effect
+        if (hurtEffect){
+            hurtEffectLerp += Time.deltaTime * vignetteSpeed;
+            hurtEffectLerp = Mathf.Clamp(hurtEffectLerp, 0, 1);
+            damageVignette.weight = Mathf.Cos(hurtEffectLerp * Mathf.PI * 2 + Mathf.PI) * 0.5f + 0.5f;
+
+            if (hurtEffectLerp == 1){
+                hurtEffect = false;
+                damageVignette.gameObject.SetActive(false);
+            }
+        }
+
     }
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
+
+        hurtEffect = true;
+		hurtEffectLerp = 0;
+        damageVignette.gameObject.SetActive(true);
 
         SFXManager.instance?.Play("Hurt");
 

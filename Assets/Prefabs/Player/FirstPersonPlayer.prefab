@@ -283,8 +283,10 @@ MonoBehaviour:
   currentHealth: 100
   itemGrav: 20
   itemRange: 5
+  vignetteTime: 0.25
   healthBar: {fileID: 0}
   hotBar: {fileID: 0}
+  damageVignette: {fileID: 0}
   inventory: {fileID: 11400000, guid: a5e9cecb9c354224a862093b2c27e37a, type: 2}
   crafting: {fileID: 11400000, guid: a91d1872c531e524e915748f14703a53, type: 2}
 --- !u!1 &6606268005737706884
