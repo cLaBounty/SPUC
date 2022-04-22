@@ -50,7 +50,10 @@ public class HotBarButton : MonoBehaviour
     }
 
     private void HandleClick() {
-        if (IsAssigned()) { OnButtonClicked?.Invoke(keyNumber - 1); }
+        if (IsAssigned()) {
+            OnButtonClicked?.Invoke(keyNumber - 1);
+            SFXManager.instance.Stop("Beam");
+        }
     }
 
     private bool IsAssigned() {
