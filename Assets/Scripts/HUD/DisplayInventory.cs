@@ -14,7 +14,7 @@ public class DisplayInventory : MonoBehaviour
     [SerializeField] private int Y_SPACE_BETWEEN_ITEMS;
     [SerializeField] private int NUMBER_OF_COLUMNS;
     
-    public GameObject inventoryPrefab;
+    public GameObject itemPrefab;
     public GameObject itemInfoPrefab;
     private GameObject currentItemInfo = null;
     public InventoryObject inventory;
@@ -36,7 +36,7 @@ public class DisplayInventory : MonoBehaviour
 
     private void CreateSlots() {
         for (int i = 0; i < inventory.container.items.Length; i++) {
-            GameObject obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+            GameObject obj = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
 
             AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
