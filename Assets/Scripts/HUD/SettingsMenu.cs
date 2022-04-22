@@ -9,19 +9,29 @@ public class SettingsMenu : MonoBehaviour
 {
     private string settingsScene = "SettingsMenu";
 
-    public Slider volumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider sfxVolumeSlider;
     public Slider sensitivitySlider;
     public AudioMixer audioMixer;
 
     private void Start() {
-        float volume = 0f;
-        audioMixer.GetFloat("Volume", out volume);
-        volumeSlider.value = volume;
+        float musicVolume = 0f;
+        audioMixer.GetFloat("MusicVolume", out musicVolume);
+        musicVolumeSlider.value = musicVolume;
+
+        float sfxVolume = 0f;
+        audioMixer.GetFloat("SFXVolume", out sfxVolume);
+        sfxVolumeSlider.value = sfxVolume;
+
         sensitivitySlider.value = MouseLook.Sensitivity;
     }
 
-    public void SetVolume(float value) {
-        audioMixer.SetFloat("Volume", value);
+    public void SetMusicVolume(float value) {
+        audioMixer.SetFloat("MusicVolume", value);
+    }
+
+    public void SetSFXVolume(float value) {
+        audioMixer.SetFloat("SFXVolume", value);
     }
 
     public void SetSensitivity(float value) {
