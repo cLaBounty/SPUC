@@ -20506,6 +20506,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1294154698635509076, guid: 7f47c03046cb6114c82f628773d2f504, type: 3}
+      propertyPath: sounds.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294154698635509076, guid: 7f47c03046cb6114c82f628773d2f504, type: 3}
+      propertyPath: sounds.Array.data[24].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c68fb6e905e41e44c84f30497dcb85bb, type: 3}
+    - target: {fileID: 1294154698635509076, guid: 7f47c03046cb6114c82f628773d2f504, type: 3}
+      propertyPath: sounds.Array.data[24].name
+      value: Woosh
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294154698635509076, guid: 7f47c03046cb6114c82f628773d2f504, type: 3}
+      propertyPath: sounds.Array.data[24].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294154698635509076, guid: 7f47c03046cb6114c82f628773d2f504, type: 3}
+      propertyPath: sounds.Array.data[24].volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1294154698635509077, guid: 7f47c03046cb6114c82f628773d2f504, type: 3}
       propertyPath: m_RootOrder
       value: 0

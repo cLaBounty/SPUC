@@ -17,6 +17,7 @@ public class Knife : UsableItem
     }
     
     protected override void Use() {
+		SFXManager.instance.Play("Woosh", 0.8f, 1.2f);
         Melee();
     }
 
