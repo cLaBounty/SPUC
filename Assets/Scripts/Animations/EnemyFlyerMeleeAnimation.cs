@@ -6,6 +6,10 @@ public class EnemyFlyerMeleeAnimation : MonoBehaviour
 {
     Animator animator;
     [SerializeField] FlyingEnemyMelee enemy;
+    [SerializeField] AudioSource FlapSFX;
+    [SerializeField] AudioSource SpewSFX;
+    [SerializeField] AudioSource DeathSFX;
+
     int state;
 
     bool attacking = false;
@@ -17,9 +21,14 @@ public class EnemyFlyerMeleeAnimation : MonoBehaviour
 
     void LateUpdate() {
 
-        if (enemy.state == Enemy.STATE.DEAD )
+        if (enemy.state == Enemy.STATE.DEAD ){
             animator.SetInteger("State", 2);
-
+            if (!dying){
+                dying = true;
+                DeathSFX.pitch = Random.Range(1.9f, 2.1f);
+                DeathSFX.Play();
+            }
+        }
         else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER || enemy.state == Enemy.STATE.AGRO_DISTRACTION)//state < 4 && enemy.coolDown < 0){
             animator.SetInteger("State", 0);
         
@@ -30,7 +39,14 @@ public class EnemyFlyerMeleeAnimation : MonoBehaviour
     }
 
     public void AttackKeyFrame(){
+        SpewSFX.pitch = Random.Range(0.9f, 1.1f);
+        SpewSFX.Play();
         enemy.DealDamage();
+    }
+
+    public void Flap(){
+        FlapSFX.pitch = Random.Range(0.9f, 1.1f);
+        FlapSFX.Play();
     }
 
     public void EndAttackKeyFrame(){

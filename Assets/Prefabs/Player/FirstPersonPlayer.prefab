@@ -257,6 +257,10 @@ MonoBehaviour:
   gravity: -19.62
   jumpHeight: 3
   spritMultiplier: 1.75
+  stepSounds:
+  - Step 1
+  - Step 3
+  stepSoundsTime: 0.15
   groundCheck: {fileID: 4248214650240945314}
   groundMask:
     serializedVersion: 2
@@ -445,7 +449,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
