@@ -5,7 +5,7 @@ public class CameraSystem : MonoBehaviour
 {
     Dictionary<string, Camera> cameras = new Dictionary<string, Camera>();
 
-    void Start()
+    void Awake()
     {
         Camera[] camArr = GameObject.FindObjectsOfType<Camera>();
         

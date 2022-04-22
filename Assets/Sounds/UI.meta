@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sounds/UI.meta
 guid: 6beadba5dd1505c4db3131e251c61953
 folderAsset: yes
 DefaultImporter:
+========
+guid: 188a0da1ffe35eb4785b5a2531ff4e80
+NativeFormatImporter:
+>>>>>>>> refs/remotes/origin/main:Assets/Animations/MeleeSwing.anim.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

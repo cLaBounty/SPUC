@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
 		hurtEffectLerp = 0;
         damageVignette.gameObject.SetActive(true);
 
+
         SFXManager.instance?.Play("Hurt");
 
         if (currentHealth < 0) {
