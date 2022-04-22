@@ -6,6 +6,8 @@ public class EnemyCrawlerAnimation : MonoBehaviour
 {
     Animator animator;
     [SerializeField] CrawlerEnemy enemy;
+    [SerializeField] AudioSource SpewSFX;
+    [SerializeField] AudioSource DeathSFX;
     int state;
 
     bool attacking = false;
@@ -26,6 +28,11 @@ public class EnemyCrawlerAnimation : MonoBehaviour
             int ran = Random.Range(0, 2);
             animator.SetInteger("Variation", ran);
             animator.SetInteger("State", 4);
+            if (!dying){
+                dying = true;
+                DeathSFX.pitch = Random.Range(0.9f, 1.1f);
+                DeathSFX.Play();
+            }
         }
 
         else if (state < 3){
@@ -42,6 +49,8 @@ public class EnemyCrawlerAnimation : MonoBehaviour
     }
 
     public void AttackKeyFrame(){
+        SpewSFX.pitch = Random.Range(0.9f, 1.1f);
+        SpewSFX.Play();
         enemy.DealDamage();
     }
 
