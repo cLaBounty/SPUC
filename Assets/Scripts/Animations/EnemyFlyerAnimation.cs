@@ -8,6 +8,10 @@ public class EnemyFlyerAnimation : MonoBehaviour
     [SerializeField] FlyingEnemy enemy;
     [SerializeField] GameObject projectile;
     [SerializeField] GameObject projectileSpawnPoint;
+    [SerializeField] AudioSource FlapSFX;
+    [SerializeField] AudioSource SpewSFX;
+    [SerializeField] AudioSource DeathSFX;
+
     int state;
 
     bool attacking = false;
@@ -18,9 +22,15 @@ public class EnemyFlyerAnimation : MonoBehaviour
     }
 
     void LateUpdate() {
-        if (enemy.state == Enemy.STATE.DEAD )
+        if (enemy.state == Enemy.STATE.DEAD){
             animator.SetInteger("State", 2);
+            if (!dying){
+                dying = true;
+                DeathSFX.pitch = Random.Range(1.9f, 2.1f);
+                DeathSFX.Play();
+            }
 
+        }
         else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER || enemy.state == Enemy.STATE.AGRO_DISTRACTION)//state < 4 && enemy.coolDown < 0){
             animator.SetInteger("State", 0);
         
@@ -38,8 +48,15 @@ public class EnemyFlyerAnimation : MonoBehaviour
     }
 
     public void EndAttackKeyFrame(){
+        SpewSFX.Play();
+        SpewSFX.pitch = Random.Range(0.9f, 1.1f);
         attacking = false;
         enemy.state = Enemy.STATE.AGRO_OIL;
+    }
+
+    public void Flap(){
+        FlapSFX.pitch = Random.Range(0.9f, 1.1f);
+        FlapSFX.Play();
     }
 
     public void Disapear(){

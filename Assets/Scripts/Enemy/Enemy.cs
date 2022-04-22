@@ -45,6 +45,8 @@ public class Enemy : MonoBehaviour
         healthBar.transform.gameObject.SetActive(true);
         healthBar.SetHealth(currentHealth);
 
+        SFXManager.instance.Play("Enemy Hurt", 1.4f, 1.7f);
+
         if (currentHealth <= 0) {
             healthBar.transform.gameObject.SetActive(false);
 

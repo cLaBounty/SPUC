@@ -6978,18 +6978,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1967e54f032802488012809281af6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPrepTime: 90
+  initialPrepTime: 10
   timeBetweenWaves: 45
   numberOfWaves: 5
   enemyData:
+  - enemyPrefab: {fileID: 7279199722365421932, guid: 1445b81c3415a5943b4e7f3cfb644af0, type: 3}
+    spawnWeight: 16
+    trueSpawnWeight: 0
   - enemyPrefab: {fileID: 7279199722365421932, guid: 280eda436695a75458830a83a982a81d, type: 3}
     spawnWeight: 20
     trueSpawnWeight: 0
   - enemyPrefab: {fileID: 7279199722365421932, guid: 1d5448d463762c24b8d817429d108e2f, type: 3}
     spawnWeight: 18
-    trueSpawnWeight: 0
-  - enemyPrefab: {fileID: 7279199722365421932, guid: 1445b81c3415a5943b4e7f3cfb644af0, type: 3}
-    spawnWeight: 16
     trueSpawnWeight: 0
   - enemyPrefab: {fileID: 7279199722365421932, guid: 38f2cf4a67fa0834e89765a207027214, type: 3}
     spawnWeight: 14
@@ -9758,8 +9758,8 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Beam
-    clip: {fileID: 8300000, guid: 03f7bf9330bb41b47b954921aea6e52f, type: 3}
-    volume: 0.144
+    clip: {fileID: 8300000, guid: 26d5eb5e4b6aad540847c3b5f47fc70a, type: 3}
+    volume: 0.198
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -9807,6 +9807,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Fire Deploy
     clip: {fileID: 8300000, guid: 02c29a50a4997094897eab02ec49dcbb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy Hurt
+    clip: {fileID: 8300000, guid: 4c3cdb64a26baff40bc7c88101f07fb8, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -18964,7 +18970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 463e9d66ec2b7ad428d27c80a2b2d1db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.419464
+      value: -39.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 463e9d66ec2b7ad428d27c80a2b2d1db, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18972,7 +18978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 463e9d66ec2b7ad428d27c80a2b2d1db, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 189.65704
+      value: 179.6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 463e9d66ec2b7ad428d27c80a2b2d1db, type: 3}
       propertyPath: m_LocalRotation.w

@@ -8,6 +8,8 @@ public class EnemyCrawlerRangedAnimation : MonoBehaviour
     [SerializeField] CrawlerEnemyRanged enemy;
     [SerializeField] GameObject projectile;
     [SerializeField] GameObject projectileSpawnPoint;
+    [SerializeField] AudioSource SpewSFX;
+    [SerializeField] AudioSource DeathSFX;
     int state;
 
     bool attacking = false;
@@ -19,9 +21,15 @@ public class EnemyCrawlerRangedAnimation : MonoBehaviour
 
     void LateUpdate() {
 
-        if (enemy.state == Enemy.STATE.DEAD )
+        if (enemy.state == Enemy.STATE.DEAD ){
             animator.SetInteger("State", 2);
+            if (!dying){
+                dying = true;
+                DeathSFX.pitch = Random.Range(0.9f, 1.1f);
+                DeathSFX.Play();
+            }
 
+        }
         else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER || enemy.state == Enemy.STATE.AGRO_DISTRACTION)//state < 4 && enemy.coolDown < 0){
             animator.SetInteger("State", 0);
 
@@ -34,6 +42,10 @@ public class EnemyCrawlerRangedAnimation : MonoBehaviour
         var inst = Instantiate(projectile);
         inst.transform.parent = null;
         inst.transform.position = projectileSpawnPoint.transform.position;
+
+        SpewSFX.pitch = Random.Range(0.9f, 1.1f);
+        SpewSFX.Play();
+
         enemy.DealDamage(inst);
     }
 
