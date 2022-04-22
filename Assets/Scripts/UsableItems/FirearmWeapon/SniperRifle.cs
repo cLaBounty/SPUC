@@ -9,13 +9,12 @@ public class SniperRifle : UsableItem
 	private const float COOL_DOWN = 1f;
 	private const float SCOPED_FOV = 15f;
 	private float defaultFOV;
-
 	public ItemObject ammo;
-
 	private HotBar hotBar;
 	private Camera mainCamera;
 	private Camera fpsCamera;
 	private int layers;
+	[SerializeField] string shootAnimation = "SniperFire";
 	private Animator animator;
 	private GameObject scopeOverlay;
 
@@ -60,6 +59,7 @@ public class SniperRifle : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
+		animator.Play(shootAnimation);
 		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
 		{
 			Target target = hit.transform.GetComponent<Target>();

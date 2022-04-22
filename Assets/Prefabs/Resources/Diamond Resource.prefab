@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
   harvestEffect: {fileID: 7600720829533248786}
-  health: 10
+  health: 50
   resources: 10
 --- !u!1 &2713695552569951414
 GameObject:
