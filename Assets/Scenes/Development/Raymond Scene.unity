@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6840,12 +6840,17 @@ MonoBehaviour:
   initialPrepTime: 9000
   timeBetweenWaves: 45
   numberOfWaves: 10
+  enemyData: []
   enemiesPerWave: 20
   enemyMax: 40
-  enemyPrefab: {fileID: 7279199722365421932, guid: 280eda436695a75458830a83a982a81d, type: 3}
   winScreen: Victory
   playerLossScreen: PlayerDied
   drillLossScreen: OilDrillDied
+  enemyLevel: 1
+  waveIncreasePerLevel: 1.2
+  hpIncreasePerLevel: 1.1
+  defenseIncreasePerLevel: 1.05
+  attackIncreasePerLevel: 1.2
   waveCount: 0
   enemyCount: 0
 --- !u!1001 &717786640
