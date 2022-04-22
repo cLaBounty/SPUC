@@ -4,31 +4,36 @@ using UnityEngine;
 
 public class SniperRifle : UsableItem
 {
+	[SerializeField] string shootAnimation = "SniperFire";
+
 	private const float DAMAGE = 100f;
     private const float RANGE = 150f;
 	private const float COOL_DOWN = 1.5f;
-
 	private const float SCOPED_FOV = 15f;
+
 	private float defaultFOV;
+	private float coolDownTime;
+
 	public ItemObject ammo;
+
 	private HotBar hotBar;
 	private Camera mainCamera;
 	private Camera fpsCamera;
 	private int layers;
-	[SerializeField] string shootAnimation = "SniperFire";
 	private Animator animator;
 	private GameObject scopeOverlay;
-
-	private float coolDownTime = COOL_DOWN;
 
 	protected override void Init() {
 		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
-		defaultFOV = mainCamera.fieldOfView;
 		fpsCamera = GameObject.FindObjectOfType<CameraSystem>().getCamera("FPSCam");
 		layers = LayerMask.GetMask("Player");
 		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
 		scopeOverlay = GameObject.FindWithTag("SniperScope").transform.GetChild(0).gameObject;
+
+		defaultFOV = mainCamera.fieldOfView;
+		coolDownTime = COOL_DOWN;
+		
 		HideCrosshair();
     }
 
@@ -55,6 +60,7 @@ public class SniperRifle : UsableItem
 
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
+			animator.Play(shootAnimation);
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Sniper Shot", 0.9f, 1.1f);
 		} else {
@@ -64,7 +70,6 @@ public class SniperRifle : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		animator.Play(shootAnimation);
 		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
 		{
 			Target target = hit.transform.GetComponent<Target>();

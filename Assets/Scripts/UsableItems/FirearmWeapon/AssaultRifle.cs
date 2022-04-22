@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AssaultRifle : UsableItem
 {
+	[SerializeField] string shootAnimation = "PistolFire"; // ToDo: replace with AR animation
+
 	private const float DAMAGE = 35f;
 	private const float RANGE = 100f;
 	private const float COOL_DOWN = 0.25f;
@@ -12,6 +14,7 @@ public class AssaultRifle : UsableItem
 
 	private HotBar hotBar;
 	private Camera mainCamera;
+	private Animator animator;
 	private int layers;
 
 	private float coolDownTime = COOL_DOWN;
@@ -20,6 +23,7 @@ public class AssaultRifle : UsableItem
 		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
+		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
 		ShowCrosshair();
     }
 
@@ -43,6 +47,7 @@ public class AssaultRifle : UsableItem
     protected override void Use() {
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
+			animator.Play(shootAnimation);
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Pistol Shot", 0.9f, 1.1f); // ToDo: replace with AR sound effect
 		}
