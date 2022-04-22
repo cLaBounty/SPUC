@@ -7,7 +7,9 @@ public class ItemSwitching : MonoBehaviour
 {
     public void SwitchToItem(ItemObject item) {
         if (transform.childCount > 0) {
-            Destroy(transform.GetChild(0).gameObject);
+            foreach(Transform child in transform) {
+                Destroy(child.gameObject);
+            }
         }
         var inst = Instantiate(item.holdPrefab, transform, false);
         if (inst.transform.GetComponent<UsableItem>() == null) {

@@ -9,6 +9,7 @@ public class FlyingEnemyMelee : Enemy
     [Header("Flying Vars")]
     [SerializeField]float agroDistance = 0f;
     [SerializeField]float attackDistance = 4f;
+    [SerializeField]float attackDistanceOil = 7f;
     [SerializeField]float damping = 0.98f;
     [SerializeField]float maxFlyHeight = 10f;
     [SerializeField]float minFlyHeight = 3f;
@@ -32,6 +33,7 @@ public class FlyingEnemyMelee : Enemy
     float attackRangeSqr = 0;
     float coolDown = 0;
     float coolDownMax = 1f;
+    float attackRangeOilSqr = 0;
     
     int impassableMask;
     float currentPlayerDist = 0;
@@ -50,6 +52,7 @@ public class FlyingEnemyMelee : Enemy
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         navMeshAgent.speed = moveSpeed;
         navMeshAgent.enabled = false;
+        attackRangeOilSqr = attackDistanceOil * attackDistanceOil;
 
         bc = GetComponent<BoxCollider>();
 
@@ -120,7 +123,7 @@ public class FlyingEnemyMelee : Enemy
         if (currentPlayerDist < agroRangeSqr)
             state = STATE.AGRO_PLAYER;
 
-        else if (target != null && currentTargetDist < attackRangeSqr && coolDown < 0)
+        else if (target != null && currentTargetDist < attackRangeOilSqr && coolDown < 0)
             state = STATE.ATTACKING_OIL;
 
         else{

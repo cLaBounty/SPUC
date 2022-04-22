@@ -790,6 +790,15 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 7053554087940692124}
   currentHealth: 120
+  itemDrops:
+  - item: {fileID: 6573688572695703079, guid: 1aa74d549ea2fb04296467312136a098, type: 3}
+    chance: 5
+  - item: {fileID: 8211953478565733400, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
+    chance: 30
+  - item: {fileID: 2653555064806350094, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+    chance: 80
+  - item: {fileID: 7100413993455072174, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
+    chance: 101
   agroDistance: 30
   attackDistance: 6
   attackDistanceOil: 8
@@ -932,6 +941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DragonSoulEaterBlueHP
       objectReference: {fileID: 0}
+    - target: {fileID: 8176628330750853183, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 063e65bf9ea59ea44bb459f4b7490fd3, type: 3}
     - target: {fileID: 8176628330750853183, guid: 46f5c004c20094c49889487b4f6d72c6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

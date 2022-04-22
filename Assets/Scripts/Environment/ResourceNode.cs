@@ -30,6 +30,8 @@ public class ResourceNode : MonoBehaviour
 
 		if (health < 1f)
 		{
+			SFXManager.instance.Play("Rock Break", 0.9f, 1.1f);
+
 			foreach(Transform child in transform)
 			{
 				if (child.name != harvestEffect.name)
@@ -38,6 +40,9 @@ public class ResourceNode : MonoBehaviour
 			harvestEffect.Play();
 			particleTriggered = true;
 			GetComponent<Collider>().enabled = false;
+		}
+		else{
+			SFXManager.instance.Play("Rock Crack", 0.9f, 1.1f);
 		}
 		resources -= amount;
 		return amount;

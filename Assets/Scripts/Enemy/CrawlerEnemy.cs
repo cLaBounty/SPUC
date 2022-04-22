@@ -9,6 +9,7 @@ public class CrawlerEnemy : Enemy
     [Header("Agro Vars")]
     [SerializeField]float agroDistance = 10f;
     [SerializeField]float attackDistance = 1f;
+    [SerializeField]float attackOilDistance = 7f;
     [SerializeField]float damping = 0.98f;
 
     NavMeshAgent navMeshAgent;
@@ -17,6 +18,7 @@ public class CrawlerEnemy : Enemy
 
     float agroRangeSqr = 0;
     float attackRangeSqr = 0;
+     float attackRangeOilSqr = 0;
     public float coolDown = 0;
     public float coolDownMax = 2f;
 
@@ -32,6 +34,7 @@ public class CrawlerEnemy : Enemy
         rb              = GetComponent<Rigidbody>();
         agroRangeSqr    = agroDistance * agroDistance;
         attackRangeSqr  = attackDistance * attackDistance;
+        attackRangeOilSqr = attackOilDistance * attackOilDistance;
         
         //set navmeshagent
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
@@ -99,7 +102,7 @@ public class CrawlerEnemy : Enemy
         if (currentPlayerDist < agroRangeSqr)
             state = STATE.AGRO_PLAYER;
 
-        else if (target != null && currentTargetDist < attackRangeSqr)
+        else if (target != null && currentTargetDist < attackRangeOilSqr)
             state = STATE.ATTACKING_OIL;
 
         else if (flowField != null && flowField.initialized){

@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1294154698635509079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1294154698635509077}
+  - component: {fileID: 1294154698635509076}
+  m_Layer: 0
+  m_Name: Sound Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1294154698635509077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294154698635509079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 55.908325, y: 3.7236118, z: 73.94953}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1294154698635509076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294154698635509079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8af4ece09ad9149846b6ac873afbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixerGroup: {fileID: 1805307267294801224, guid: a318538eb4cec6e40961fa2da4e9e5c3, type: 2}
+  sounds:
+  - name: Jump
+    clip: {fileID: 8300000, guid: ba7707876a3fb6748b7918ac1a853c70, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt
+    clip: {fileID: 8300000, guid: a97aaf2c59d56214c89febb48ed84e0a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Gun Pickup
+    clip: {fileID: 8300000, guid: 972f82265b5c63d4f9e4381abd38a303, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Key Pickup
+    clip: {fileID: 8300000, guid: ef3ae15afcf8b7a4e9806b4699cf5fb0, type: 3}
+    volume: 0.536
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Knife Pickup
+    clip: {fileID: 8300000, guid: b85a3e77dc35e0e4ba6191b67a819ead, type: 3}
+    volume: 0.335
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Food Pickup
+    clip: {fileID: 8300000, guid: 2d0391c8709bb4140974332bd6f3877c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Normal Pickup
+    clip: {fileID: 8300000, guid: 5c2579da03ed11c449f09c7588ca49bd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step 1
+    clip: {fileID: 8300000, guid: c1081df27c404604b9a2283790fb10ed, type: 3}
+    volume: 0.544
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step 2
+    clip: {fileID: 8300000, guid: cd73eb0249769f74595a1a807cfa9b71, type: 3}
+    volume: 0.506
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step 3
+    clip: {fileID: 8300000, guid: baa8973de6f3407479ad09f1a3509c96, type: 3}
+    volume: 0.506
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Beam
+    clip: {fileID: 8300000, guid: 26d5eb5e4b6aad540847c3b5f47fc70a, type: 3}
+    volume: 0.198
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Drink
+    clip: {fileID: 8300000, guid: b5899e469552dfa4f92f52aeaf921b22, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Eat
+    clip: {fileID: 8300000, guid: 63a95c5ef5453d2498a9e320702d2779, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Gun Empty
+    clip: {fileID: 8300000, guid: 8a9fed6a01e5afb40a8ddb08339107c5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pistol Shot
+    clip: {fileID: 8300000, guid: 65935f5fdfe7d634693ed491760d844b, type: 3}
+    volume: 0.391
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Sniper Shot
+    clip: {fileID: 8300000, guid: b6d64aaa5f80ac3499c1d892986634a8, type: 3}
+    volume: 0.379
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Food Deploy
+    clip: {fileID: 8300000, guid: c03a61e55b6455f48b5461084c773958, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Food Deploy
+    clip: {fileID: 8300000, guid: c03a61e55b6455f48b5461084c773958, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fire Deploy
+    clip: {fileID: 8300000, guid: 02c29a50a4997094897eab02ec49dcbb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy Hurt
+    clip: {fileID: 8300000, guid: 4c3cdb64a26baff40bc7c88101f07fb8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rock Break
+    clip: {fileID: 8300000, guid: d69a6687512fc464f86555e5cbfe65a9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rock Crack
+    clip: {fileID: 8300000, guid: 1a8f202e184506147b86f2b5bec4a81d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
