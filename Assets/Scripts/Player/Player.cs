@@ -5,22 +5,22 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    public float currentHealth;
     [SerializeField] float itemGrav = 1f;
     [SerializeField] float itemRange = 2f;
 	[SerializeField] float vignetteTime = 0.25f;
+    [SerializeField] Volume damageVignette;
+    [SerializeField] float vignetteSpeed = 10f;
+
+    public float maxHealth = 100f;
+    public float currentHealth;
+
     public HealthBar healthBar;
     public HotBar hotBar;
-	[SerializeField] Volume damageVignette;
-    [SerializeField] float vignetteSpeed = 10f;
-    
     public InventoryObject inventory;
     public CraftingObject crafting;
     private CameraSystem cameraSystem;
 
-
-    const float ITEM_DROP_DISTANCE = 5f;
+    const float ITEM_DROP_DISTANCE = 8f;
 
     bool hurtEffect = false;
     float hurtEffectLerp = 0;

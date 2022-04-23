@@ -26,6 +26,7 @@ public class ItemObject : ScriptableObject
     public Sprite uiDisplay;
     public bool isMoveable = true;
     public Ingredient[] recipe;
+    public int craftAmount = 1;
     public GameObject groundPrefab;
     public GameObject holdPrefab;
 }

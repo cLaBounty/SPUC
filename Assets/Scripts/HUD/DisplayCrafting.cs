@@ -14,7 +14,7 @@ public class DisplayCrafting : MonoBehaviour
     [SerializeField] private int Y_SPACE_BETWEEN_ITEMS;
     [SerializeField] private int NUMBER_OF_COLUMNS;
     
-    public GameObject craftingPrefab;
+    public GameObject itemPrefab;
     public GameObject itemInfoPrefab;
     private GameObject currentItemInfo = null;
 
@@ -33,7 +33,7 @@ public class DisplayCrafting : MonoBehaviour
 
     private void CreateSlots() {
         for (int i = 0; i < crafting.container.items.Length; i++) {
-            GameObject obj = Instantiate(craftingPrefab, Vector3.zero, Quaternion.identity, transform);
+            GameObject obj = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
 
             AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
@@ -49,10 +49,12 @@ public class DisplayCrafting : MonoBehaviour
             if (slot.Value.item != null) {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.Value.item.uiDisplay;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = slot.Value.item.craftAmount == 1 ? "" : slot.Value.item.craftAmount.ToString("n0");
                 slot.Key.transform.GetChild(2).gameObject.SetActive(!crafting.IsCraftable(slot.Value.item)); // overlay if not craftable
             } else {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
                 slot.Key.transform.GetChild(2).gameObject.SetActive(false);
             }
         }

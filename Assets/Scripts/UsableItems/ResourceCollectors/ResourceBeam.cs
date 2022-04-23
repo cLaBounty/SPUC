@@ -27,25 +27,24 @@ public class ResourceBeam : UsableItem
 	private void Update() {
 		coolDownTime += Time.deltaTime;
 		if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) { return; }
-			if (Input.GetButtonDown("Fire2")) { Focus(); }
-				if (Input.GetButton("Fire1")){
-					Use();
-					if (!playingSound){
-						SFXManager.instance.Play("Beam", 0.95f, 1.05f, true);
-						playingSound = true;
-					}
-				}
-				else
-				{
-					if (lineRenderer.enabled)
-					{
-						SFXManager.instance.Stop("Beam");
-						playingSound = false;
-						lineRenderer.enabled = false;
-						impactEffect.Stop();
-					}
-				}
+		if (Input.GetButtonDown("Fire2")) { Focus(); }
+		if (Input.GetButton("Fire1")) {
+			Use();
+			if (!playingSound){
+				SFXManager.instance.Play("Beam", 0.95f, 1.05f, true);
+				playingSound = true;
+			}
 		}
+		else {
+			if (lineRenderer.enabled)
+			{
+				SFXManager.instance.Stop("Beam");
+				playingSound = false;
+				lineRenderer.enabled = false;
+				impactEffect.Stop();
+			}
+		}
+	}
 
     protected override void Use() {
 		Shoot();

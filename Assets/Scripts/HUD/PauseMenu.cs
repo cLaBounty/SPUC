@@ -28,6 +28,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        SFXManager.instance.Stop("Beam");
     }
 
     public void Resume() {

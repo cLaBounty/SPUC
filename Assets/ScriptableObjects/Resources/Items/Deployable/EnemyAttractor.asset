@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyAttractor
   m_EditorClassIdentifier: 
   type: 4
-  name: Enemy Attractor
+  name: Chicken Distraction
   description: 
   uiDisplay: {fileID: 21300000, guid: 1143fe88ac964c548b7d3037092de3fd, type: 3}
   isMoveable: 1
@@ -23,4 +23,4 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
     amount: 3
   groundPrefab: {fileID: 6573688572695703079, guid: cfb2394d2bcc3c54781a80358e14a4c6, type: 3}
-  holdPrefab: {fileID: 4413477487601138616, guid: 66cbdbf2ed0f5e24a9135801f37ad02f, type: 3}
+  holdPrefab: {fileID: 6573688572695703079, guid: 6960b3560bd5f084da3c7cfaca9fa482, type: 3}

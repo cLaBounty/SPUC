@@ -43,7 +43,7 @@ public class CraftingObject : ScriptableObject
         if (!IsCraftable(slot.item)) return;
         ItemObject newItem = slot.item;
         playerInventory.RemoveItems(slot.item.recipe);
-        playerInventory.AddItem(newItem, 1);
+        playerInventory.AddItem(newItem, newItem.craftAmount);
         slot.Update(null, 0);
         Update();
     }
