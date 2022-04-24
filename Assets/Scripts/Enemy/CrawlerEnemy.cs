@@ -110,21 +110,10 @@ public class CrawlerEnemy : Enemy
             Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
             Vector3 moveDirection;
 
-            if (occupideCell.cost == 255){
-                navMeshAgent.speed = moveSpeed;
-                navMeshAgent.destination = target.transform.position;
-                rb.velocity = Vector3.zero;
-                acculmulatedSpeed = Vector3.zero;
-                Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-                transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
-                return;
-            }
-            else{
-                navMeshAgent.speed = 0;
-                moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
-                Vector3 lookVector = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
-            }
+            navMeshAgent.speed = 0;
+            moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
+            Vector3 lookVector = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
 
             acculmulatedSpeed *= damping;
             acculmulatedSpeed += moveDirection * moveSpeed * Time.fixedDeltaTime;

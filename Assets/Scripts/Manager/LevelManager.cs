@@ -110,7 +110,11 @@ public class LevelManager : MonoBehaviour
 
         GameObject enemyPrefab = enemyQue.Dequeue();
 
-        var inst = Instantiate(enemyPrefab);
+        float randomDirection = Random.Range(0, 2 * Mathf.PI);
+        Vector3 newPos =  new Vector3(Mathf.Cos(randomDirection) * centerPos.x, 0, Mathf.Sin(randomDirection) * centerPos.y) +
+                                    new Vector3(centerPos.x, 5, centerPos.y);
+
+        var inst = Instantiate(enemyPrefab, newPos, Quaternion.identity);
         inst.transform.parent = null;
 
         //adjust values
@@ -126,9 +130,8 @@ public class LevelManager : MonoBehaviour
 
         enemyCount++;
 
-        float randomDirection = Random.Range(0, 2 * Mathf.PI);
-        inst.transform.position =   new Vector3(Mathf.Cos(randomDirection) * centerPos.x, 0, Mathf.Sin(randomDirection) * centerPos.y) +
-                                    new Vector3(centerPos.x, 5, centerPos.y);
+        //float randomDirection = Random.Range(0, 2 * Mathf.PI);
+        inst.transform.position =   newPos;
 
         if (firstEnemyOfWave){
             waveCount++;

@@ -709,8 +709,8 @@ MonoBehaviour:
   moveSpeed: 5
   maxMoveSpeed: 5
   attackSpeed: 1
-  attackPower: 16
-  defense: 2
+  attackPower: 8
+  defense: 1
   isEnemy: 1
   isFlying: 0
   target: {fileID: 0}
@@ -720,7 +720,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   state: 0
   healthBar: {fileID: 5010555039000298530}
-  currentHealth: 70
+  currentHealth: 35
   itemDrops:
   - item: {fileID: 8211953478565733400, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
     chance: 10

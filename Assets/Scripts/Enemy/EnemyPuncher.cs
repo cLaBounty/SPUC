@@ -45,6 +45,7 @@ public class EnemyPuncher : Enemy
     private void Update() {
         if (target == null){
             FindFoe();
+            Stop();
             return;
         }
 

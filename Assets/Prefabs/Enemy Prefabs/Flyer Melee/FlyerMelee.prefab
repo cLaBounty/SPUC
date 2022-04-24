@@ -481,6 +481,8 @@ MonoBehaviour:
   attackSpeed: 2
   attackPower: 15
   defense: 1
+  isEnemy: 1
+  isFlying: 1
   target: {fileID: 0}
   flowField: {fileID: 0}
   player: {fileID: 0}
@@ -488,7 +490,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   state: 0
   healthBar: {fileID: 7053554087940692124}
-  currentHealth: 80
+  currentHealth: 60
   itemDrops:
   - item: {fileID: 2653555064806350094, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
     chance: 5
