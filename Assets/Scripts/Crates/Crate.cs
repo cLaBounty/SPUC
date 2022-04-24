@@ -22,6 +22,8 @@ public class Crate : MonoBehaviour
     private HotBar hotBar;
     private ItemObject key;
 
+    public bool IsGrounded = true;
+
     private void Start() {
         player = GameObject.FindObjectOfType<Player>();
         hotBar = GameObject.FindObjectOfType<HotBar>();
@@ -33,7 +35,7 @@ public class Crate : MonoBehaviour
         float currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
         if (currentPlayerDist <= openDistance) {
             // Info Popup
-            if (currentInfo == null && transform.position.y <= 0.01f) {
+            if (currentInfo == null && IsGrounded) {
                 currentInfo = Instantiate(infoPrefab, new Vector3(transform.position.x, 0 + 3f, transform.position.z), Quaternion.identity);
                 currentInfo.GetComponent<DisplayCrateInfo>().SetUp(rarity);
             }
