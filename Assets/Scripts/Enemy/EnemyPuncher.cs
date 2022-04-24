@@ -79,7 +79,7 @@ public class EnemyPuncher : Enemy
                 Enemy enemy = target.GetComponent<Enemy>();
 
                 if (enemy != null)
-                    enemy.TakeDamage(attackPower);
+                    enemy.TakeDamage(attackPower, true);
                 else 
                    state = STATE.AGRO_OIL; 
             }

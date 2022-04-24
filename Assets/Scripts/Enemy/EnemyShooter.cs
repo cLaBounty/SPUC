@@ -72,7 +72,7 @@ public class EnemyShooter : Enemy
             if (enemy == null)
                 return;
                 
-            enemy.TakeDamage(attackPower);
+            enemy.TakeDamage(attackPower, true);
 
             coolDown = coolDownMax;
         }

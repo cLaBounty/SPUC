@@ -54,14 +54,14 @@ public class Enemy : MonoBehaviour
         healthBar.transform.gameObject.SetActive(false);
     }
 
-    public void TakeDamage (float damage) {
+    public void TakeDamage (float damage, bool ignoreSound = false) {
         if (state == STATE.DEAD) return;
 
         currentHealth -= damage - defense;
         healthBar.transform.gameObject.SetActive(true);
         healthBar.SetHealth(currentHealth);
 
-        SFXManager.instance.Play("Enemy Hurt", 1.4f, 1.7f);
+        if (!ignoreSound) SFXManager.instance.Play("Enemy Hurt", 1.4f, 1.7f);
 
         if (currentHealth <= 0) {
             healthBar.transform.gameObject.SetActive(false);

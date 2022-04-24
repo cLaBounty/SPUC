@@ -42,7 +42,7 @@ public class DeployedEnemyAttractor : MonoBehaviour
             enemyPositionAtSameHeight.y = transform.position.y;
             
             float distance = (enemyPositionAtSameHeight - transform.position).sqrMagnitude;
-            if (distance <= RANGE) {
+            if (distance <= RANGE_SQR) {
                 if (enemy.state != Enemy.STATE.AGRO_DISTRACTION) {
                     enemy.target = transform.gameObject;
                     enemy.state = Enemy.STATE.AGRO_DISTRACTION;

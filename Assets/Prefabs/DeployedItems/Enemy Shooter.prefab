@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8834114374297442634}
   - component: {fileID: 6004826552352146587}
+  - component: {fileID: 519740986484801661}
   - component: {fileID: 8834114374297442639}
   - component: {fileID: 8834114374297442636}
   m_Layer: 0
@@ -181,6 +182,7 @@ MonoBehaviour:
   itemDrops:
   - item: {fileID: 6573688572695703079, guid: b3f4a4d358df0e1458bbc2b6788abacc, type: 3}
     chance: 101
+  isDistracted: 0
   attackEnemyDist: 20
   damping: 0.98
   searchRadius: 20
@@ -190,6 +192,26 @@ MonoBehaviour:
   coolDown: 0
   coolDownMax: 0.1
   currentTargetDist: 0
+--- !u!114 &519740986484801661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834114374297442635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcdb3097c48a34428baf337ffe2a591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 20
+  frequency: 1
+  enemyLimit: 3
+  excludeFlyer: 0
+  excludeCrawler: 1
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &8834114374297442639
 BoxCollider:
   m_ObjectHideFlags: 0
