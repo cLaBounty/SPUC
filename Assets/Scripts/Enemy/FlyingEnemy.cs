@@ -77,7 +77,7 @@ public class FlyingEnemy : Enemy
         }
 
         switch(state){
-            case STATE.AGRO_DISTRACTION:    MoveTowardsTargetNoStateCheck(); break;
+            case STATE.AGRO_DISTRACTION:    MoveTowardsTarget(); break;
             case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
             case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
             case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
@@ -113,10 +113,13 @@ public class FlyingEnemy : Enemy
         isOil = true;
 
         if (coolDown < 0) {
-            //exit condition first
-            if (currentPlayerDist < agroRangeSqr)
-                state = STATE.AGRO_PLAYER;
-            else if (currentTargetDist > agroRangeSqr)
+             //exit condition first
+            if (isDistracted && currentTargetDist > agroRangeSqr){
+                isDistracted = false;
+                state = STATE.AGRO_DISTRACTION;
+            }
+
+            if (currentTargetDist > agroRangeSqr)
                 state = STATE.AGRO_OIL;
         }
 
@@ -126,11 +129,13 @@ public class FlyingEnemy : Enemy
 
     void MoveTowardsTarget(){
         //state change
-        if (currentPlayerDist < agroRangeSqr)
+        if (currentPlayerDist < agroRangeSqr && state != STATE.AGRO_DISTRACTION && !isDistracted)
             state = STATE.AGRO_PLAYER;
 
-        else if (target != null && currentTargetDist < attackRangeSqr)
+        else if (target != null && currentTargetDist < attackRangeSqr){
+            if (state == STATE.AGRO_DISTRACTION) isDistracted = true;
             state = STATE.ATTACKING_OIL;
+        }
 
         else{
             MoveTowardsTargetNoStateCheck();
@@ -215,10 +220,10 @@ public class FlyingEnemy : Enemy
         coolDown = coolDownMax;
 
         //change state
-        if (currentPlayerDist > attackRangeSqr && currentPlayerDist < agroRangeSqr)
+        if (isDistracted && currentTargetDist < agroRangeSqr)
+            state = STATE.ATTACKING_OIL;
+        else if (currentPlayerDist < agroRangeSqr)
             state = STATE.AGRO_PLAYER;
-        else if (currentPlayerDist > agroRangeSqr)
-            state = STATE.AGRO_OIL;
     }
 
     void Stop(){

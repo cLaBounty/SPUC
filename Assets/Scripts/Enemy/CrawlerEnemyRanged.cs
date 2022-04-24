@@ -97,6 +97,11 @@ public class CrawlerEnemyRanged : Enemy
 
         if (coolDown < 0) {
             //exit condition first
+            if (isDistracted && currentTargetDist > agroRangeSqr){
+                isDistracted = false;
+                state = STATE.AGRO_DISTRACTION;
+            }
+
             if (currentTargetDist > agroRangeSqr)
                 state = STATE.AGRO_OIL;
         }
@@ -134,16 +139,19 @@ public class CrawlerEnemyRanged : Enemy
     }
     
     void MoveTowardsAttractItem() {
-        navMeshAgent.speed = 0;
-        
-        Vector3 moveDirection = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-        acculmulatedSpeed *= damping;
-        acculmulatedSpeed += moveDirection * moveSpeed * Time.fixedDeltaTime;
-        acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
-        rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
+        if (target != null && currentTargetDist < attackRangeSqr){
+            isDistracted = true;
+            state = STATE.ATTACKING_OIL;
+        }
+        else{
+            navMeshAgent.speed = moveSpeed;
+            navMeshAgent.destination = target.transform.position;
+            rb.velocity = Vector3.zero;
+            acculmulatedSpeed = Vector3.zero;
 
-        Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+            Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+            transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
+        }
     }
 
     void MoveTowardsPlayer(){
@@ -183,10 +191,10 @@ public class CrawlerEnemyRanged : Enemy
         coolDown = coolDownMax;
 
         //change state
-        if (currentPlayerDist > attackRangeSqr && currentPlayerDist < agroRangeSqr)
+        if (isDistracted && currentTargetDist < agroRangeSqr)
+            state = STATE.ATTACKING_OIL;
+        else if (currentPlayerDist < agroRangeSqr)
             state = STATE.AGRO_PLAYER;
-        else if (currentPlayerDist > agroRangeSqr)
-            state = STATE.AGRO_OIL;
     }
 
     void Stop(){

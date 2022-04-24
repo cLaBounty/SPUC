@@ -71,7 +71,7 @@ public class FlyingEnemyMelee : Enemy
         }
 
         switch(state){
-            case STATE.AGRO_DISTRACTION:    MoveTowardsTargetNoStateCheck(); break;
+            case STATE.AGRO_DISTRACTION:    MoveTowardsTarget(); break;
             case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
             case STATE.AGRO_PLAYER:         MoveTowardsPlayer(); break;
             case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
@@ -108,9 +108,12 @@ public class FlyingEnemyMelee : Enemy
 
         if (coolDown < 0) {
             //exit condition first
-            if (currentPlayerDist < agroRangeSqr)
-                state = STATE.AGRO_PLAYER;
-            else if (currentTargetDist > agroRangeSqr)
+            if (isDistracted && currentTargetDist > agroRangeSqr){
+                isDistracted = false;
+                state = STATE.AGRO_DISTRACTION;
+            }
+
+            if (currentTargetDist > agroRangeSqr)
                 state = STATE.AGRO_OIL;
         }
 
@@ -120,11 +123,14 @@ public class FlyingEnemyMelee : Enemy
 
     void MoveTowardsTarget(){
         //state change
-        if (currentPlayerDist < agroRangeSqr)
+        if (currentPlayerDist < agroRangeSqr && state != STATE.AGRO_DISTRACTION && !isDistracted)
             state = STATE.AGRO_PLAYER;
 
-        else if (target != null && currentTargetDist < attackRangeOilSqr && coolDown < 0)
+        else if (target != null && currentTargetDist < attackRangeSqr && coolDown < 0){
+            if (state == STATE.AGRO_DISTRACTION) isDistracted = true;
             state = STATE.ATTACKING_OIL;
+        }
+
 
         else{
             MoveTowardsTargetNoStateCheck();

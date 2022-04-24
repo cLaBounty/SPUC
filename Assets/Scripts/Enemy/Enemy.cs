@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
         AGRO_DISTRACTION,
         AGRO_PLAYER,
         ATTACKING_OIL,
+        //ATTACKING_DISTRACTION,
         ATTACKING_PLAYER,
         DEAD,
     }
@@ -46,6 +47,7 @@ public class Enemy : MonoBehaviour
 
     float maxHealth = 0f;
     bool firstSetHealth = false; 
+    protected bool isDistracted = false;
 
     protected void Start() {
         //SetHealth(currentHealth); // ToDo: remove when health is set in level manager

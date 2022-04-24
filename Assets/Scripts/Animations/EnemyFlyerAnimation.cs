@@ -48,8 +48,8 @@ public class EnemyFlyerAnimation : MonoBehaviour
     }
 
     public void EndAttackKeyFrame(){
-        SpewSFX.Play();
         SpewSFX.pitch = Random.Range(0.9f, 1.1f);
+        SpewSFX.Play();
         attacking = false;
         enemy.state = Enemy.STATE.AGRO_OIL;
     }

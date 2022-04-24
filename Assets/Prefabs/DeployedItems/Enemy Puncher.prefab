@@ -189,7 +189,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   coolDown: 0
-  coolDownMax: 0.2
+  coolDownMax: 0.1
   currentTargetDist: 0
 --- !u!65 &8834114374297442639
 BoxCollider:

@@ -30,7 +30,7 @@ public class EnemyPuncherAnimation : MonoBehaviour
             }
 
         }
-        
+
         else if (helper.target == null)
             animator.SetInteger("State", 3);
 

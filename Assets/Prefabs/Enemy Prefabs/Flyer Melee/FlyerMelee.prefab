@@ -502,7 +502,7 @@ MonoBehaviour:
     chance: 70
   agroDistance: 25
   attackDistance: 4
-  attackDistanceOil: 6
+  attackDistanceOil: 8
   damping: 0.98
   maxFlyHeight: 15
   minFlyHeight: 3
