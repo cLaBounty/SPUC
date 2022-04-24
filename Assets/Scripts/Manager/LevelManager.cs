@@ -63,6 +63,8 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]
     public int enemyCount = 0;
 
+    SupplyDropSpawner supplyDropSpawner;
+
     #endregion
 
     // Start is called before the first frame update
@@ -70,13 +72,15 @@ public class LevelManager : MonoBehaviour
         grid = GameObject.FindObjectOfType<GridController>();
         centerPos = (Vector2) grid.gridSize * grid.cellRadius;
 
-        oilDrill        = GameObject.FindObjectOfType<OilDrill>();
-        flowField       = GameObject.FindObjectOfType<GridController>();
-        player          = GameObject.FindObjectOfType<PlayerMovement>();
-        playerStats     = GameObject.FindObjectOfType<Player>();
+        oilDrill          = GameObject.FindObjectOfType<OilDrill>();
+        flowField         = GameObject.FindObjectOfType<GridController>();
+        player            = GameObject.FindObjectOfType<PlayerMovement>();
+        playerStats       = GameObject.FindObjectOfType<Player>();
+        supplyDropSpawner = GameObject.FindObjectOfType<SupplyDropSpawner>();
 
         //create enemy que
         enemyQue = new Queue<GameObject>();
+
         //get max weight
         UpdateMaxWeight();
 
@@ -143,6 +147,8 @@ public class LevelManager : MonoBehaviour
             attackIncreaseIncrease  *= attackIncreasePerLevel;
 
             firstEnemyOfWave = false;
+
+            supplyDropSpawner.SpawnBeforeWave();
         }
     }
 
@@ -199,5 +205,9 @@ public class LevelManager : MonoBehaviour
 
     public void EnemyKilled(){
         enemyCount--;
+
+        if (enemyCount <= 0) {
+            supplyDropSpawner.SpawnAfterWave();
+        }
     }
 }

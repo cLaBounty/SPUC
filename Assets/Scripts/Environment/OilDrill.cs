@@ -46,4 +46,10 @@ public class OilDrill : MonoBehaviour
             TakeDamage(other.GetComponent<EnemyProjectile>().damage);
         }
     }
+
+    // Supply Drop Distance
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 75f);
+    }
 }

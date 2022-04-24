@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7023401204078713577}
   - component: {fileID: 7023401204077943503}
   - component: {fileID: 7023401204076812303}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: crate_lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7023401204078713581}
   - component: {fileID: 6672581652420092473}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 7023401204078713583}
   - component: {fileID: 7023401204077943501}
   - component: {fileID: 7023401204076812301}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

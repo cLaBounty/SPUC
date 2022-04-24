@@ -5,7 +5,8 @@ using UnityEngine;
 public class DeployedEnemyAttractor : MonoBehaviour
 {
     private const float TIME_LIMIT = 15f;
-    private const float RANGE = 100f;
+    private const float RANGE = 12f;
+    private const float RANGE_SQR = RANGE * RANGE;
     private const float FREQUENCY = 1f;
 
     public bool isActive = false;
@@ -57,5 +58,10 @@ public class DeployedEnemyAttractor : MonoBehaviour
                 enemy.state = Enemy.STATE.AGRO_OIL;
             }
         }
+    }
+    
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, RANGE);
     }
 }

@@ -7262,6 +7262,7 @@ MonoBehaviour:
     trueSpawnWeight: 0
   enemiesPerWave: 1
   enemyMax: 40
+  supplyDropPrefab: {fileID: 0}
   winScreen: Victory
   playerLossScreen: PlayerDied
   drillLossScreen: OilDrillDied

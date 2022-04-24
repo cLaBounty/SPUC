@@ -6,7 +6,8 @@ public class DeployedCampfire : MonoBehaviour
 {
     private const float HEALTH_INCREASE_PER_SECOND = 5f;
     private const float TIME_LIMIT = 20f;
-    private const float RANGE = 25f;
+    private const float RANGE = 5f;
+    private const float RANGE_SQR = RANGE * RANGE;
     private const float FREQUENCY = 1f;
 
     public bool isActive = false;
@@ -38,5 +39,10 @@ public class DeployedCampfire : MonoBehaviour
         if (totalTime >= TIME_LIMIT) {
             Destroy(transform.gameObject);
         }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, RANGE);
     }
 }

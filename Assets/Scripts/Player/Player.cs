@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public float maxHealth = 100f;
     public float currentHealth;
+    public float defense = 0f;
 
     public HealthBar healthBar;
     public HotBar hotBar;
@@ -60,12 +61,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        currentHealth -= amount - defense;
 
         hurtEffect = true;
 		hurtEffectLerp = 0;
         damageVignette.gameObject.SetActive(true);
-
 
         SFXManager.instance?.Play("Hurt");
 

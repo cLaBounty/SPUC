@@ -11,6 +11,7 @@ TagManager:
   - SniperScope
   - EnemyProjectile
   - GroundItem
+  - Ground
   layers:
   - Default
   - TransparentFX
