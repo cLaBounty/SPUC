@@ -500,6 +500,7 @@ MonoBehaviour:
     chance: 35
   - item: {fileID: 4931435157338795573, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
     chance: 70
+  isDistracted: 0
   agroDistance: 25
   attackDistance: 4
   attackDistanceOil: 8

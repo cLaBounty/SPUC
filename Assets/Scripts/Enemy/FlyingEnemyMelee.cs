@@ -122,15 +122,15 @@ public class FlyingEnemyMelee : Enemy
     }
 
     void MoveTowardsTarget(){
-        //state change
         if (currentPlayerDist < agroRangeSqr && state != STATE.AGRO_DISTRACTION && !isDistracted)
             state = STATE.AGRO_PLAYER;
 
-        else if (target != null && currentTargetDist < attackRangeSqr && coolDown < 0){
+        else if (target != null && currentTargetDist < attackDistanceOil * attackDistanceOil && coolDown < 0){
             if (state == STATE.AGRO_DISTRACTION) isDistracted = true;
+            if (isDistracted && currentTargetDist > attackRangeSqr){MoveTowardsTargetNoStateCheck(); return;}
+            Debug.Log("Running");
             state = STATE.ATTACKING_OIL;
         }
-
 
         else{
             MoveTowardsTargetNoStateCheck();
@@ -142,7 +142,7 @@ public class FlyingEnemyMelee : Enemy
         Vector3 dir =  (target.transform.position - transform.position).normalized;
         RaycastHit hit;
         Physics.Raycast(transform.position, Vector3.down, out hit, 1000, groundMask);
-        bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 1.1f, Quaternion.identity, impassableMask);
+        bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 2.5f, Quaternion.identity, impassableMask);
 
         if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
             dir.y = 1f;
@@ -200,6 +200,7 @@ public class FlyingEnemyMelee : Enemy
     public void DealDamage(){
         if (isOil && target != null){
             target.GetComponent<OilDrill>()?.TakeDamage(attackPower);
+            target.GetComponent<Enemy>()?.TakeDamage(attackPower);
             state = STATE.AGRO_OIL;
         }
         else if (!isOil && player != null && currentPlayerDist < attackRangeSqr){

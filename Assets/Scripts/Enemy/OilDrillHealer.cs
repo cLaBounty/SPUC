@@ -11,6 +11,11 @@ public class OilDrillHealer : Enemy
     [SerializeField] float damping = 0.98f;
     [SerializeField] float healAmmount = 1;
 
+    [Header("Collisions")]
+    [SerializeField] Vector3 BoxColldierDimensions;
+    [SerializeField] Vector3 BoxColldierCenter;
+    [SerializeField] LayerMask ProjecileLayer;
+
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
     Vector3 acculmulatedSpeed = Vector3.zero;
@@ -18,6 +23,8 @@ public class OilDrillHealer : Enemy
 
     float agroRangeSqr = 0;
     float attackRangeOilSqr = 0;
+
+    [Header("Attack Vars")]
     public float coolDown = 0;
     public float coolDownMax = 0.05f;
 
@@ -59,6 +66,8 @@ public class OilDrillHealer : Enemy
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
+        
+        CheckForProjectiles();
     }
 
 
@@ -129,5 +138,23 @@ public class OilDrillHealer : Enemy
 
     new void OnDestroy() {
         //do nothing
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + BoxColldierCenter, BoxColldierDimensions);
+    }
+
+    void CheckForProjectiles(){
+        Collider[] col = Physics.OverlapBox(transform.position, BoxColldierDimensions, Quaternion.identity, ProjecileLayer);
+
+        if (col.Length > 0){
+            EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
+
+            if (ep != null){
+                TakeDamage(ep.damage);
+                Destroy(col[0].gameObject);
+            }
+        }
     }
 }

@@ -13,11 +13,18 @@ public class EnemyPuncher : Enemy
     [SerializeField] float searchRadius = 6f;
     [SerializeField] LayerMask searchFields;
 
+    [Header("Collisions")]
+    [SerializeField] Vector3 BoxColldierDimensions;
+    [SerializeField] Vector3 BoxColldierCenter;
+    [SerializeField] LayerMask ProjecileLayer;
+
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
     float attackRangeEnemySqr = 0;
+    
+    [Header("Attacks")]
     public float coolDown = 0;
     public float coolDownMax = 0.05f;
 
@@ -63,6 +70,8 @@ public class EnemyPuncher : Enemy
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
+        
+        CheckForProjectiles();
     }
 
 
@@ -146,5 +155,21 @@ public class EnemyPuncher : Enemy
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, searchRadius);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + BoxColldierCenter, BoxColldierDimensions);
+    }
+
+    void CheckForProjectiles(){
+        Collider[] col = Physics.OverlapBox(transform.position, BoxColldierDimensions, Quaternion.identity, ProjecileLayer);
+
+        if (col.Length > 0){
+            EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
+
+            if (ep != null){
+                TakeDamage(ep.damage);
+                Destroy(col[0].gameObject);
+            }
+        }
     }
 }
