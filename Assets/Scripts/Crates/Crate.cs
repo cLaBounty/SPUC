@@ -11,9 +11,8 @@ public enum CrateRarity {
 
 public class Crate : MonoBehaviour
 {
-    public CrateRarity rarity;
-    public Material material;
-    public float spawnRate = 1f;
+    [SerializeField] private CrateRarity rarity;
+    [SerializeField] private float spawnRate = 1f;
 
     public GameObject infoPrefab;
     private GameObject currentInfo = null;
@@ -26,8 +25,7 @@ public class Crate : MonoBehaviour
     private void Start() {
         player = GameObject.FindObjectOfType<Player>();
         hotBar = GameObject.FindObjectOfType<HotBar>();
-        SetMaterial();
-        SetKey();
+        SetRarity(rarity);
         if (UnityEngine.Random.Range(0f, 1f) > spawnRate) { Destroy(transform.gameObject); }
     }
 
@@ -35,12 +33,12 @@ public class Crate : MonoBehaviour
         float currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
         if (currentPlayerDist <= openDistance) {
             // Info Popup
-            if (currentInfo == null) {
+            if (currentInfo == null && transform.position.y <= 0.01f) {
                 currentInfo = Instantiate(infoPrefab, new Vector3(transform.position.x, 0 + 3f, transform.position.z), Quaternion.identity);
                 currentInfo.GetComponent<DisplayCrateInfo>().SetUp(rarity);
             }
 
-            // E to Pickup
+            // E to Open
             if (Input.GetKeyDown(KeyCode.E) && player.inventory.Has(key, 1)) {
                 if (PauseMenu.GameIsPaused) return;
                 SpawnItems();
@@ -52,13 +50,20 @@ public class Crate : MonoBehaviour
         }
     }
 
-    public void SetMaterial() {
+    public void SetRarity(CrateRarity rarity) {
+        this.rarity = rarity;
+        SetMaterial();
+        SetKey();
+    }
+
+    private void SetMaterial() {
+        Material material = (Material)Resources.Load("M_" + rarity.ToString() + "Crate", typeof(Material));
         foreach(Transform child in transform) {
             child.GetComponent<MeshRenderer>().material = material;
         }
     }
 
-    public void SetKey() {
+    private void SetKey() {
         key = Resources.Load<ItemObject>("Items/Key/" + rarity.ToString() + "Key");
     }
 
