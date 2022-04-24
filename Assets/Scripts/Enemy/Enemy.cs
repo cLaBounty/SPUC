@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     float maxHealth = 0f;
     bool firstSetHealth = false; 
-    protected bool isDistracted = false;
+    public bool isDistracted = false;
 
     protected void Start() {
         //SetHealth(currentHealth); // ToDo: remove when health is set in level manager

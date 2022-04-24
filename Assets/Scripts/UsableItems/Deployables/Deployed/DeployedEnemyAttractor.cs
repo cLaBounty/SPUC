@@ -12,6 +12,7 @@ public class DeployedEnemyAttractor : MonoBehaviour
     public bool isActive = false;
     private float totalTime = 0;
     private float coolDownTime = FREQUENCY;
+    
 
     private GameObject oilDrill;
 
@@ -56,6 +57,7 @@ public class DeployedEnemyAttractor : MonoBehaviour
             if (enemy.target == transform.gameObject) {
                 enemy.target = oilDrill;
                 enemy.state = Enemy.STATE.AGRO_OIL;
+                enemy.isDistracted = false;
             }
         }
     }
