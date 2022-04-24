@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 //[RequireComponent(typeof(Rigidbody))] 
-public class OilDrillHealer : Enemy
+public class EnemyPuncher : Enemy
 {
     [Header("Agro Vars")]
-    [SerializeField] float attackOilDistance = 7f;
+    [SerializeField] float attackOilEnemyDist = 4f;
     [SerializeField] float damping = 0.98f;
-    [SerializeField] float healAmmount = 1;
+    [SerializeField] float searchRadius = 6f;
+    [SerializeField] LayerMask searchFields;
 
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
     Vector3 acculmulatedSpeed = Vector3.zero;
-    OilDrill oildDril;
 
-    float agroRangeSqr = 0;
-    float attackRangeOilSqr = 0;
+    float attackRangeEnemySqr = 0;
     public float coolDown = 0;
     public float coolDownMax = 0.05f;
 
@@ -29,22 +29,25 @@ public class OilDrillHealer : Enemy
     new void Start()
     {
         //base.Start();
-
         SetHealth(currentHealth);
         healthBar.transform.gameObject.SetActive(false);
         
         rb              = GetComponent<Rigidbody>();
-        attackRangeOilSqr = attackOilDistance * attackOilDistance;
+        attackRangeEnemySqr = attackOilEnemyDist * attackOilEnemyDist;
         
         //set navmeshagent
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         navMeshAgent.speed = moveSpeed;
-        target = GameObject.FindObjectOfType<OilDrill>().gameObject;
-        oildDril = target.GetComponent<OilDrill>();
+        StartCoroutine(FindNewFoe());
     }
 
     // Update is called once per frame
     private void Update() {
+        if (target == null){
+            FindFoe();
+            return;
+        }
+
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
 
@@ -69,12 +72,15 @@ public class OilDrillHealer : Enemy
 
         if (coolDown < 0) {
             //exit condition first
-            if (currentTargetDist > attackRangeOilSqr)
+            if (currentTargetDist > attackRangeEnemySqr)
                 state = STATE.AGRO_OIL;
             else{
-                if (oildDril == null) { oildDril = target.GetComponent<OilDrill>(); return;} 
+                Enemy enemy = target.GetComponent<Enemy>();
 
-                oildDril.GainHealth(healAmmount);
+                if (enemy != null)
+                    enemy.TakeDamage(attackPower);
+                else 
+                   state = STATE.AGRO_OIL; 
             }
 
             coolDown = coolDownMax;
@@ -86,39 +92,15 @@ public class OilDrillHealer : Enemy
 
     void MoveTowardsTarget(){
         //exit condition
-        if (target != null && currentTargetDist < attackRangeOilSqr)
+        if (target != null && currentTargetDist < attackRangeEnemySqr)
             state = STATE.ATTACKING_OIL;
 
-        else if (flowField != null && flowField.initialized){
-            //Debug.Log("Target");
-            Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
-            Vector3 moveDirection;
-
-            if (occupideCell.cost == 255){
-                navMeshAgent.speed = moveSpeed;
-                navMeshAgent.destination = target.transform.position;
-                rb.velocity = Vector3.zero;
-                acculmulatedSpeed = Vector3.zero;
-                Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
-                transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
-                return;
-            }
-            else{
-                navMeshAgent.speed = 0;
-                moveDirection = new Vector3(occupideCell.bestDirection.x, 0, occupideCell.bestDirection.y);
-                Vector3 lookVector = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
-            }
-
-            acculmulatedSpeed *= damping;
-            acculmulatedSpeed += moveDirection * moveSpeed * Time.fixedDeltaTime;
-            acculmulatedSpeed = Vector3.ClampMagnitude(acculmulatedSpeed, maxMoveSpeed);
-            rb.velocity = new Vector3(acculmulatedSpeed.x, rb.velocity.y, acculmulatedSpeed.z);
-        }
-        else{
-            Debug.Log("Flow Field not Initialized");
-            flowField = GameObject.FindObjectOfType<GridController>();
-        }
+        navMeshAgent.speed = moveSpeed;
+        navMeshAgent.destination = target.transform.position;
+        rb.velocity = Vector3.zero;
+        //acculmulatedSpeed = Vector3.zero;
+        Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void Stop(){
@@ -129,5 +111,39 @@ public class OilDrillHealer : Enemy
 
     new void OnDestroy() {
         //do nothing
+    }
+
+    void FindFoe(){
+        Collider[]colliders =  Physics.OverlapSphere(transform.position, searchRadius, searchFields);
+        if (colliders.Length > 0){
+            float smallestDist = (transform.position - colliders[0].transform.position).sqrMagnitude * 2;
+            int index = -1;
+
+            for (int i = 0; i < colliders.Length; ++i){
+                float tempDist = (transform.position - colliders[i].transform.position).sqrMagnitude;
+                Enemy enemy = colliders[i].GetComponent<Enemy>();
+                if (tempDist < smallestDist && enemy.isEnemy && !enemy.isFlying){
+                    smallestDist = tempDist;
+                    index = i;
+                }
+            }
+
+
+            if (index != -1)
+                target = colliders[index].gameObject;
+        }
+
+        state = STATE.AGRO_OIL;
+    }
+
+    IEnumerator FindNewFoe(){
+        yield return new WaitForSeconds(5f);
+        FindFoe();
+        StartCoroutine(FindNewFoe());
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, searchRadius);
     }
 }

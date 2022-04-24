@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float attackSpeed = 1f;
     public float attackPower = 1f;
     public float defense = 0;
+    public bool isEnemy = true;
+    public bool isFlying = true;
 
     //[Header("Debuging")]
     //[SerializeField] 
@@ -51,6 +53,8 @@ public class Enemy : MonoBehaviour
     }
 
     public void TakeDamage (float damage) {
+        if (state == STATE.DEAD) return;
+
         currentHealth -= damage - defense;
         healthBar.transform.gameObject.SetActive(true);
         healthBar.SetHealth(currentHealth);
@@ -82,7 +86,7 @@ public class Enemy : MonoBehaviour
         healthBar.SetMaxHealth(currentHealth);
     }
 
-    private void OnDestroy() {
+    protected void OnDestroy() {
         if (levelManager != null) levelManager.EnemyKilled();
     }
 }

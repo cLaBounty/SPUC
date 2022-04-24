@@ -711,6 +711,8 @@ MonoBehaviour:
   attackSpeed: 1
   attackPower: 16
   defense: 2
+  isEnemy: 1
+  isFlying: 0
   target: {fileID: 0}
   flowField: {fileID: 0}
   player: {fileID: 0}
