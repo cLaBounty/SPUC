@@ -130,7 +130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rarity: 0
-  material: {fileID: 2100000, guid: 5fc0e0476765409468d47f9148b54547, type: 2}
   spawnRate: 1
   infoPrefab: {fileID: 7540945013849109311, guid: 1bdde55dd145a5f41b042430e673f9f8, type: 3}
 --- !u!1 &7023401204079003343
