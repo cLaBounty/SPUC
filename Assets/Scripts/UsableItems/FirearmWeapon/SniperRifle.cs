@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SniperRifle : UsableItem
 {
-	[SerializeField] string shootAnimation = "SniperFire";
+	private string shootAnimation = "SniperFire";
 
 	private const float DAMAGE = 100f;
     private const float RANGE = 150f;

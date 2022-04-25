@@ -97,4 +97,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: ccafa806dcf46354588779471c227b51, type: 2}
+  shootAnimation: AssultRifleFire
   ammo: {fileID: 11400000, guid: 21f0753102f5fd344a9598f040aa14d3, type: 2}

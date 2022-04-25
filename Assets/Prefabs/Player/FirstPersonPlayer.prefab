@@ -262,7 +262,7 @@ MonoBehaviour:
   groundCheck: {fileID: 4248214650240945314}
   groundMask:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 100289
   crouchMultiplier: 0.75
   crouchSpeed: 0
 --- !u!114 &5862226166126504024
