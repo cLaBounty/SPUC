@@ -19,6 +19,11 @@ public class AssaultRifle : UsableItem
 
 	private float coolDownTime = COOL_DOWN;
 
+	[SerializeField] ParticleSystem impactEffect;
+	[SerializeField] Transform firePoint;
+	[SerializeField] ParticleSystem muzzleFlash;
+	[SerializeField] TrailRenderer bulletTrail;
+
 	protected override void Init() {
 		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
@@ -48,6 +53,7 @@ public class AssaultRifle : UsableItem
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			animator.Play(shootAnimation);
+			muzzleFlash.Play();
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Pistol Shot", 0.9f, 1.1f); // ToDo: replace with AR sound effect
 		}
@@ -57,10 +63,33 @@ public class AssaultRifle : UsableItem
 		RaycastHit hit;
 		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
 		{
-			Target target = hit.transform.GetComponent<Target>();
+			TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, Quaternion.identity);
+			StartCoroutine(SpawnTrail(trail, hit));
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			target?.TakeDamage(DAMAGE);
 			enemy?.TakeDamage(DAMAGE);
+			if (enemy == null)
+				return;
+			Vector3 dir = firePoint.position - enemy.transform.position;
+			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
+			impactEffect.transform.position = enemy.transform.position + dir.normalized * .5f;
+			impactEffect.Play();
 		}
+
+		
+	}
+
+	private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit) {
+		float time = 0;
+		Vector3 startPos = firePoint.transform.position;
+		while (time < 1)
+		{
+			trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
+			time += Time.deltaTime / trail.time;
+
+			yield return null;
+		}
+		trail.transform.position = hit.point;
+
+		Destroy(trail.gameObject, trail.time);
 	}
 }
