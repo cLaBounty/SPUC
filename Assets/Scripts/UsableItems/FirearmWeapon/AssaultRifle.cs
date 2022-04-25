@@ -4,26 +4,24 @@ using UnityEngine;
 
 public class AssaultRifle : UsableItem
 {
-	[SerializeField] string shootAnimation = "PistolFire"; // ToDo: replace with AR animation
-
-	private const float DAMAGE = 35f;
-	private const float RANGE = 100f;
-	private const float COOL_DOWN = 0.25f;
+	[SerializeField] private string shootAnimation = "PistolFire"; // ToDo: replace with AR animation
+	[SerializeField] private float damage = 35f;
+    [SerializeField] private float range = 100f;
+    [SerializeField] private float coolDown = 0.25f;
 
 	public ItemObject ammo;
 
-	private HotBar hotBar;
 	private Camera mainCamera;
 	private Animator animator;
 	private int layers;
 
-	private float coolDownTime = COOL_DOWN;
+	private float coolDownTime;
 
 	protected override void Init() {
-		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
+		coolDownTime = coolDown;
 		ShowCrosshair();
     }
 
@@ -32,7 +30,7 @@ public class AssaultRifle : UsableItem
 		if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) { return; }
 		if (Input.GetButtonDown("Fire2")) { Focus(); }
 		if (Input.GetButton("Fire1")) {
-			if (coolDownTime >= COOL_DOWN) {
+			if (coolDownTime >= coolDown) {
 				coolDownTime = 0;
 				Use();
 			}
@@ -55,12 +53,10 @@ public class AssaultRifle : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
-			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			target?.TakeDamage(DAMAGE);
-			enemy?.TakeDamage(DAMAGE);
+			enemy?.TakeDamage(player.damageMultiplier * damage);
 		}
 	}
 }

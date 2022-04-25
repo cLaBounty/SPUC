@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Knife : UsableItem
 {
-    private const float DAMAGE = 15f;
-	private const float RANGE = 3f;
+	[SerializeField] private float damage = 15f;
+    [SerializeField] private float range = 3f;
 
     private Camera mainCamera;
 	private int layers;
@@ -24,12 +24,10 @@ public class Knife : UsableItem
     // ToDo: implement melee attack, not raycast hit
     private void Melee() {
 		RaycastHit hit;
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
-			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			target?.TakeDamage(DAMAGE);
-			enemy?.TakeDamage(DAMAGE);
+			enemy?.TakeDamage(player.damageMultiplier * damage);
 		}
 	}
 }

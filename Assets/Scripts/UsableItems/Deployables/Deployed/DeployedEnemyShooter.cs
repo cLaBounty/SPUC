@@ -31,15 +31,16 @@ public class DeployedEnemyShooter : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
+    Player player;
     DeployedStatus status;
 
     // Start is called before the first frame update
     new void Start()
     {
-        //base.Start();
+        player = GameObject.FindObjectOfType<Player>();
         status = GetComponent<DeployedStatus>();
 
-        SetHealth(currentHealth);
+        SetHealth(maxHealth + (player.maxHealth - player.initialHealth));
         healthBar.transform.gameObject.SetActive(false);
         
         rb              = GetComponent<Rigidbody>();
@@ -87,7 +88,7 @@ public class DeployedEnemyShooter : Enemy
             if (enemy == null)
                 return;
                 
-            enemy.TakeDamage(attackPower, true);
+            enemy.TakeDamage(player.damageMultiplier * attackPower, true);
 
             coolDown = coolDownMax;
         }
@@ -161,7 +162,8 @@ public class DeployedEnemyShooter : Enemy
             EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
 
             if (ep != null){
-                TakeDamage(ep.damage);
+                float damage = Mathf.Max(1f, ep.damage - player.defense);
+                TakeDamage(damage);
                 Destroy(col[0].gameObject);
             }
         }

@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Apple : UsableItem
 {
-	private const float HEALTH_INCREASE = 10f;
-
-    private Player player;
-    private HotBar hotBar;
+    [SerializeField] private float healthIncrease = 10f;
 
     protected override void Init() {
-        player = GameObject.FindObjectOfType<Player>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
         HideCrosshair();
     }
 
     protected override void Use() {
-        player.GainHealth(HEALTH_INCREASE);
+        player.GainHealth(healthIncrease);
         hotBar.HandleItemUse(itemObject);
         SFXManager.instance.Play("Eat", 0.95f, 1.05f);
     }

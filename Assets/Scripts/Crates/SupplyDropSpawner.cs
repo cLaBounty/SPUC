@@ -8,10 +8,10 @@ public class SupplyDropSpawner : MonoBehaviour
     [SerializeField] float startHeight = 100f;
 
     [SerializeField] int spawnBeforeCount = 1;
-    [SerializeField] float spawnBeforeRate = 0.5f;
+    [Range(0,1)][SerializeField] float spawnBeforeRate = 0.5f;
 
     [SerializeField] int spawnAfterCount = 3;
-    [SerializeField] float spawnAfterRate = 0.75f;
+    [Range(0,1)][SerializeField] float spawnAfterRate = 0.75f;
 
     public void SpawnBeforeWave() {
         for (int i = 0; i < spawnBeforeCount; i++) {

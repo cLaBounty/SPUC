@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class MaxHealthIncrease : UsableItem
 {
-	private const float MaxHealthMultiplier = 1.2f;
-    
-    private Player player;
-    private HotBar hotBar;
+    [SerializeField] private float maxHealthIncreaseValue = 20f;
 
     protected override void Init() {
-        player = GameObject.FindObjectOfType<Player>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
         HideCrosshair();
     }
 
     protected override void Use() {
-        player.MaxHealthIncrease(MaxHealthMultiplier);
+        player.IncreaseMaxHealth(maxHealthIncreaseValue);
+        IncreaseLivingRobotHealth();
         hotBar.HandleItemUse(itemObject);
         SFXManager.instance.Play("Eat", 0.95f, 1.05f); // ToDo: find powerup sound effect
+    }
+
+    private void IncreaseLivingRobotHealth() {
+        DeployedEnemyPuncher[] punchers = GameObject.FindObjectsOfType<DeployedEnemyPuncher>();
+        foreach(DeployedEnemyPuncher puncher in punchers) {
+            puncher.GainHealth(maxHealthIncreaseValue);
+        }
+        DeployedEnemyShooter[] shooters = GameObject.FindObjectsOfType<DeployedEnemyShooter>();
+        foreach(DeployedEnemyShooter shooter in shooters) {
+            shooter.GainHealth(maxHealthIncreaseValue);
+        }
+        DeployedOilHealer[] healers = GameObject.FindObjectsOfType<DeployedOilHealer>();
+        foreach(DeployedOilHealer healer in healers) {
+            healer.GainHealth(maxHealthIncreaseValue);
+        }
     }
 }

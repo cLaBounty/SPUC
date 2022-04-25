@@ -181,6 +181,7 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 5857862155765646953}
   currentHealth: 50
+  maxHealth: 50
   itemDrops: []
   isDistracted: 0
   attackOilDistance: 8

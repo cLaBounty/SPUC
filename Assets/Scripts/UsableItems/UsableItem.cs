@@ -6,13 +6,18 @@ using UnityEngine.UI;
 public abstract class UsableItem : MonoBehaviour
 {
     [SerializeField] protected ItemObject itemObject;
-    protected GameObject crosshair;
+
+    protected Player player;
+    protected HotBar hotBar;
+    private GameObject crosshair;
 
     protected virtual void Init() {}
     protected virtual void Focus() {}
     protected abstract void Use();
 
     protected void Start() {
+        player = GameObject.FindObjectOfType<Player>();
+        hotBar = GameObject.FindObjectOfType<HotBar>();
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
         Init();
     }

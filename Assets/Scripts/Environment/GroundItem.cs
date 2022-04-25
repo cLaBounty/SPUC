@@ -12,7 +12,7 @@ public class GroundItem : MonoBehaviour
     private float pickupDistance = 25f;
     public GameObject infoPrefab;
     private Player player;
-    private GameObject currentInfo = null;
+    public GameObject currentInfo = null;
 
     // Bounce Effect
     private float hoverRate = 0.5f;
@@ -52,6 +52,7 @@ public class GroundItem : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E)) {
                 if (PauseMenu.GameIsPaused) return;
                 player.PickUpItem(this);
+                if (currentInfo != null) { Destroy(currentInfo.gameObject); }
                 Destroy(transform.gameObject);
                 SFXManager.instance?.Play(sfx, 0.9f, 1.1f);
             }
@@ -86,7 +87,5 @@ public class GroundItem : MonoBehaviour
         //colliderr.isTrigger = true;
     }
 
-    private void OnDestroy() {
-        if (currentInfo != null) { Destroy(currentInfo.gameObject); }
-    }
+    
 }

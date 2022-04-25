@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class DefenseBoost : UsableItem
 {
-	private const float MaxHealthMultiplier = 3f;
-    
-    private Player player;
-    private HotBar hotBar;
+	[SerializeField] private float defenseBoostValue = 1f;
 
     protected override void Init() {
-        player = GameObject.FindObjectOfType<Player>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
         HideCrosshair();
     }
 
     protected override void Use() {
-        // ToDo: implement
-        
+        player.defense += defenseBoostValue;
         hotBar.HandleItemUse(itemObject);
         SFXManager.instance.Play("Eat", 0.95f, 1.05f); // ToDo: find powerup sound effect
     }

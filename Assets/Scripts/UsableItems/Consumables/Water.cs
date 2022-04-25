@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Water : UsableItem
 {
-	private const float HEALTH_INCREASE = 15f;
-    
-    private Player player;
-    private HotBar hotBar;
+    [SerializeField] private float healthIncrease = 15f;
 
     protected override void Init() {
-        player = GameObject.FindObjectOfType<Player>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
         HideCrosshair();
     }
 
     protected override void Use() {
-        player.GainHealth(HEALTH_INCREASE);
+        player.GainHealth(healthIncrease);
         hotBar.HandleItemUse(itemObject);
         SFXManager.instance.Play("Drink", 0.95f, 1.05f);
     }

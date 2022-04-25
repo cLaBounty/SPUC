@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Axe : UsableItem
 {
-    private const float DAMAGE = 10f;
-	private const float RANGE = 4f;
+	[SerializeField] private float damage = 10f;
+    [SerializeField] private float range = 4f;
 
     private Camera mainCamera;
 	private int layers;
@@ -24,12 +24,10 @@ public class Axe : UsableItem
     // ToDo: implement melee attack, not raycast hit
     private void Melee() {
 		RaycastHit hit;
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
-			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			target?.TakeDamage(DAMAGE);
-			enemy?.TakeDamage(DAMAGE);
+			enemy?.TakeDamage(player.damageMultiplier * damage);
 		}
 	}
 }

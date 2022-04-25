@@ -5,19 +5,16 @@ using UnityEngine;
 public class Pistol : UsableItem
 {
 	[SerializeField] string shootAnimation = "PistolFire";
-
-	private const float DAMAGE = 20f;
-	private const float RANGE = 75f;
+	[SerializeField] private float damage = 20f;
+    [SerializeField] private float range = 75f;
 
 	public ItemObject ammo;
 
-	private HotBar hotBar;
 	private Camera mainCamera;
 	private Animator animator;
 	private int layers;
 
 	protected override void Init() {
-		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
@@ -37,12 +34,10 @@ public class Pistol : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
-			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			target?.TakeDamage(DAMAGE);
-			enemy?.TakeDamage(DAMAGE);
+			enemy?.TakeDamage(player.damageMultiplier * damage);
 		}
 	}
 }
