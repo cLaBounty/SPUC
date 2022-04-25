@@ -6,7 +6,7 @@ public class Machete : UsableItem
 {
     private const float DAMAGE = 20f;
 	private const float RANGE = 6f;
-	[SerializeField] string swingAnimation = "MeleeSwing";
+	private string swingAnimation = "MeleeSwing";
 
 	private Animator animator;
     private Camera mainCamera;

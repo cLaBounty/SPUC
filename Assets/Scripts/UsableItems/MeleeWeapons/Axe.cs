@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Axe : UsableItem
 {
+	private string swingAnimation = "MeleeSwing";
+	
     private const float DAMAGE = 10f;
 	private const float RANGE = 4f;
 
     private Camera mainCamera;
+	private Animator animator;
 	private int layers;
 
     protected override void Init() {
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
+		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
 		ShowCrosshair();
     }
     
@@ -24,6 +28,7 @@ public class Axe : UsableItem
     // ToDo: implement melee attack, not raycast hit
     private void Melee() {
 		RaycastHit hit;
+		animator.Play(swingAnimation);
 		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
 		{
 			Target target = hit.transform.GetComponent<Target>();
