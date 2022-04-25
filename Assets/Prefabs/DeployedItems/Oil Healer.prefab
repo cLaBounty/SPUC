@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 8834114374297442634}
   - component: {fileID: 8834114374297442638}
   - component: {fileID: 5471983391968164702}
+  - component: {fileID: 1401287763251203200}
   - component: {fileID: 8834114374297442639}
   - component: {fileID: 8834114374297442636}
   - component: {fileID: 8834114374297442637}
@@ -213,6 +214,19 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1401287763251203200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834114374297442635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210579b90289ad54799047755a68b550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
 --- !u!65 &8834114374297442639
 BoxCollider:
   m_ObjectHideFlags: 0

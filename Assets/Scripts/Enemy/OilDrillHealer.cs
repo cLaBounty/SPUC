@@ -32,10 +32,13 @@ public class OilDrillHealer : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
+    DeployedStatus deployedStatus;
+
     // Start is called before the first frame update
     new void Start()
     {
         //base.Start();
+        deployedStatus = GetComponent<DeployedStatus>();
 
         SetHealth(currentHealth);
         healthBar.transform.gameObject.SetActive(false);
@@ -52,6 +55,8 @@ public class OilDrillHealer : Enemy
 
     // Update is called once per frame
     private void Update() {
+        if (!deployedStatus.isActive) return;
+
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
 
@@ -69,7 +74,6 @@ public class OilDrillHealer : Enemy
         
         CheckForProjectiles();
     }
-
 
     void AttackOilDrill(){
         Stop();

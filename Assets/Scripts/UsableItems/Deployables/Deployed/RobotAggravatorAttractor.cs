@@ -20,14 +20,18 @@ public class RobotAggravatorAttractor : MonoBehaviour
     private GameObject oilDrill;
     private List<Enemy> enemyList;
 
+    DeployedStatus deployedStatus;
+
     private void Start() {
         oilDrill = GameObject.FindObjectOfType<OilDrill>().transform.gameObject;
         rangeSqr = range * range;
         coolDownTime = frequency;
         enemyList = new List<Enemy>();
+        deployedStatus = GetComponent<DeployedStatus>();
     }
 
     private void Update() {
+        if (!deployedStatus.isActive) return;
         
         coolDownTime += Time.deltaTime;
         if (coolDownTime >= frequency) {
