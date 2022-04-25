@@ -6,7 +6,7 @@ public class Sickle : UsableItem
 {
     private const float DAMAGE = 25f;
 	private const float RANGE = 4f;
-	[SerializeField] string swingAnimation = "MeleeSwing";
+	private string swingAnimation = "MeleeSwing";
 
 	private Animator animator;
     private Camera mainCamera;

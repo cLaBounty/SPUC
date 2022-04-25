@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pistol : UsableItem
 {
-	[SerializeField] string shootAnimation = "PistolFire";
+	private string shootAnimation = "PistolFire";
 
 	private const float DAMAGE = 20f;
 	private const float RANGE = 75f;
