@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 //[RequireComponent(typeof(Rigidbody))] 
-public class EnemyShooter : Enemy
+public class DeployedEnemyShooter : Enemy
 {
     [Header("Agro Vars")]
     [SerializeField] float attackEnemyDist = 4f;
@@ -31,10 +31,14 @@ public class EnemyShooter : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
+    DeployedStatus status;
+
     // Start is called before the first frame update
     new void Start()
     {
         //base.Start();
+        status = GetComponent<DeployedStatus>();
+
         SetHealth(currentHealth);
         healthBar.transform.gameObject.SetActive(false);
         
@@ -49,6 +53,8 @@ public class EnemyShooter : Enemy
 
     // Update is called once per frame
     private void Update() {
+        if (!status.isActive) return;
+        
         if (target == null){
             FindFoe();
             return;

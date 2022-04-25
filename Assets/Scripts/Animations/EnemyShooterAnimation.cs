@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyShooterAnimation : MonoBehaviour
 {
     Animator animator;
-    [SerializeField] EnemyShooter helper;
+    [SerializeField] DeployedEnemyShooter helper;
     [SerializeField] float deathTimer = 2f;
     //[SerializeField] AudioSource SpewSFX;
     //[SerializeField] AudioSource DeathSFX;

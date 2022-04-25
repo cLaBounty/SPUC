@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1603735791878693033}
   - component: {fileID: 7700488519324875723}
   - component: {fileID: 8266414155512669415}
+  - component: {fileID: -4249216671361033497}
   m_Layer: 0
   m_Name: DeployedCampfire
   m_TagString: Untagged
@@ -46,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7df582633550346adc34208219dfbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!82 &8266414155512669415
 AudioSource:
   m_ObjectHideFlags: 0
@@ -143,6 +143,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4249216671361033497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092570293006645779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210579b90289ad54799047755a68b550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
 --- !u!1 &2253608011224255793
 GameObject:
   m_ObjectHideFlags: 0

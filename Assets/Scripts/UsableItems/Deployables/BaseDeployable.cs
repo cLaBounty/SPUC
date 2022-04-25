@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttractor : UsableItem
+public class BaseDeployable : UsableItem
 {
-    private const float PLACE_DISTANCE = 6f;
+    protected const float PLACE_DISTANCE = 6f;
 
-    private Player player;
-    private HotBar hotBar;
-    private Camera fpsCam;
+    protected Player player;
+    protected HotBar hotBar;
+    protected Camera fpsCam;
 
+    public string deploySoundEffect = "Default Deploy";
     public GameObject deployedPrefab;
-    private GameObject deployedPreview = null;
+    protected GameObject deployedPreview = null;
 
-    private void Update() {
+    protected void Update() {
         base.Update();
         if (deployedPreview == null) { InitPreview(); }
         else { UpdatePosition(deployedPreview); }
@@ -27,7 +28,7 @@ public class EnemyAttractor : UsableItem
         HideCrosshair();
     }
 
-    private void InitPreview() {
+    protected void InitPreview() {
         deployedPreview = Instantiate(deployedPrefab);
         foreach (MeshRenderer renderer in deployedPreview.GetComponentsInChildren<MeshRenderer>()) {
             renderer.material.color = new Color(1f, 1f, 1f, 0.5f);
@@ -37,24 +38,24 @@ public class EnemyAttractor : UsableItem
 
     protected override void Use() {
         Deploy();
-        SFXManager.instance.Play("Food Deploy", 0.9f, 1.1f);
+        SFXManager.instance.Play(deploySoundEffect, 0.9f, 1.1f);
         hotBar.HandleItemUse(itemObject);
     }
 
-    private void Deploy() {
+    protected virtual void Deploy() {
         if (deployedPreview != null) { Destroy(deployedPreview); }
         GameObject inst = Instantiate(deployedPrefab);
         UpdatePosition(inst);
-        inst.GetComponent<DeployedEnemyAttractor>().isActive = true;
+        inst.GetComponent<DeployedStatus>().isActive = true;
     }
 
-    private void UpdatePosition(GameObject inst) {
+    protected void UpdatePosition(GameObject inst) {
         Vector3 placePosition = player.transform.position + (PLACE_DISTANCE * fpsCam.transform.forward);
         placePosition.y = 0.2f;
         inst.transform.position = placePosition;
     }
 
-    private void OnDestroy() {
+    protected void OnDestroy() {
         if (deployedPreview != null) { Destroy(deployedPreview); }
     }
 }

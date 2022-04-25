@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 //[RequireComponent(typeof(Rigidbody))] 
-public class EnemyPuncher : Enemy
+public class DeployedEnemyPuncher : Enemy
 {
     [Header("Agro Vars")]
     [SerializeField] float attackOilEnemyDist = 4f;
@@ -32,10 +31,13 @@ public class EnemyPuncher : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
+    DeployedStatus status;
+
     // Start is called before the first frame update
     new void Start()
     {
         //base.Start();
+        status = GetComponent<DeployedStatus>();
         SetHealth(currentHealth);
         healthBar.transform.gameObject.SetActive(false);
         
@@ -50,6 +52,8 @@ public class EnemyPuncher : Enemy
 
     // Update is called once per frame
     private void Update() {
+        if (!status.isActive) return;
+
         if (target == null){
             FindFoe();
             Stop();
@@ -73,7 +77,6 @@ public class EnemyPuncher : Enemy
         
         CheckForProjectiles();
     }
-
 
     void AttackOilDrill(){
         Stop();

@@ -9,19 +9,20 @@ public class DeployedEnemyAttractor : MonoBehaviour
     private const float RANGE_SQR = RANGE * RANGE;
     private const float FREQUENCY = 1f;
 
-    public bool isActive = false;
+    private DeployedStatus status;
+
     private float totalTime = 0;
     private float coolDownTime = FREQUENCY;
-    
 
     private GameObject oilDrill;
 
     private void Start() {
+        status = GetComponent<DeployedStatus>();
         oilDrill = GameObject.FindObjectOfType<OilDrill>().transform.gameObject;
     }
 
     private void Update() {
-        if (!isActive) { return; }
+        if (!status.isActive) return;
         
         coolDownTime += Time.deltaTime;
         if (coolDownTime >= FREQUENCY) {
