@@ -39,8 +39,11 @@ public class BaseDeployable : UsableItem
     }
 
     protected virtual void Deploy() {
+        Vector3 placePosition = player.transform.position + (placeDistance * fpsCam.transform.forward);
+        placePosition.y = 0.2f;
+        GameObject inst = Instantiate(deployedPrefab, placePosition, deployedPreview.transform.rotation);
         if (deployedPreview != null) { Destroy(deployedPreview); }
-        GameObject inst = Instantiate(deployedPrefab);
+        inst.transform.parent = null;
         UpdatePosition(inst);
         inst.GetComponent<DeployedStatus>().isActive = true;
     }

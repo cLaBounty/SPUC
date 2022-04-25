@@ -122,6 +122,7 @@ public class DeployedEnemyPuncher : Enemy
         rb.velocity = Vector3.zero;
         acculmulatedSpeed = Vector3.zero;
         navMeshAgent.speed = 0;
+        navMeshAgent.destination = transform.position;
     }
 
     new void OnDestroy() {
