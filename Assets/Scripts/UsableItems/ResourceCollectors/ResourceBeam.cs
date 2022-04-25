@@ -26,7 +26,14 @@ public class ResourceBeam : UsableItem
 
 	private void Update() {
 		coolDownTime += Time.deltaTime;
-		if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) { return; }
+		if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) 
+		{	
+			SFXManager.instance.Stop("Beam");
+			playingSound = false;
+			lineRenderer.enabled = false;
+			impactEffect.Stop();
+			return; 
+		}
 		if (Input.GetButtonDown("Fire2")) { Focus(); }
 		if (Input.GetButton("Fire1")) {
 			Use();

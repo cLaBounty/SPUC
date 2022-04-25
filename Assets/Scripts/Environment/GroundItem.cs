@@ -26,6 +26,8 @@ public class GroundItem : MonoBehaviour
     public float moveAwaySpeed = 1f;
     //Collider colliderr;
     LayerMask mask;
+    LayerMask ground;
+    bool grounded = false;
 
     void Start() {
         player = GameObject.FindObjectOfType<Player>();
@@ -35,8 +37,10 @@ public class GroundItem : MonoBehaviour
         time = Random.Range(0f, 1f);
         //colliderr = GetComponent<Collider>();
         mask = LayerMask.GetMask("Ground Item");
+        ground = LayerMask.GetMask("Ground");
 
         if (UnityEngine.Random.Range(0f, 1f) > spawnRate) { Destroy(transform.gameObject); }
+        grounded = false;
     }
 
     void Update() {
@@ -60,7 +64,17 @@ public class GroundItem : MonoBehaviour
             if (currentInfo != null) { Destroy(currentInfo.gameObject); }
         }
 
-        //colliderr.isTrigger = false;
+        //lower to the ground
+        if (!grounded){
+            RaycastHit ray;
+            Physics.Raycast(transform.position, Vector3.down, out ray, 1000f, ground);
+            if (ray.distance > 2){
+                startingZ -= Time.deltaTime;
+                transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime * 10, transform.position.z);
+            }
+            else
+            grounded = true;
+        }
     }
 
     void LateUpdate() {
@@ -84,7 +98,6 @@ public class GroundItem : MonoBehaviour
         if (totalForce.y != 0) totalForce.y = 1f/totalForce.y * moveAwaySpeed * Time.deltaTime;
 
         transform.position = new Vector3(transform.position.x + totalForce.x, startingZ + Mathf.Lerp(0, highestOffset, Mathf.Cos(time * Mathf.PI) * 0.5f + 0.5f), transform.position.z + totalForce.y);
-        //colliderr.isTrigger = true;
     }
 
     

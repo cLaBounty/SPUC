@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AssaultRifle : UsableItem
 {
-	[SerializeField] private string shootAnimation = "PistolFire"; // ToDo: replace with AR animation
+	[SerializeField] private string shootAnimation = "AssultRifleFire";
 	[SerializeField] private float damage = 35f;
     [SerializeField] private float range = 100f;
     [SerializeField] private float coolDown = 0.25f;

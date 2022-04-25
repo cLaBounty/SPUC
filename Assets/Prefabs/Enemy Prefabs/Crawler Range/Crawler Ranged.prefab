@@ -723,11 +723,12 @@ MonoBehaviour:
   currentHealth: 35
   itemDrops:
   - item: {fileID: 8211953478565733400, guid: 489c807e7fce7f9448b3bf28db5879bd, type: 3}
-    chance: 10
+    chance: 5
   - item: {fileID: 7525457710395568995, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
-    chance: 40
+    chance: 10
   - item: {fileID: 4931435157338795573, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
-    chance: 70
+    chance: 15
+  isDistracted: 0
   agroDistance: 30
   attackDistance: 8
   damping: 0.98

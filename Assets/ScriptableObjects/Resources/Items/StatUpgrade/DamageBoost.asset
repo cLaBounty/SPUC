@@ -15,10 +15,12 @@ MonoBehaviour:
   type: 8
   name: Damage Boost
   description: 
-  uiDisplay: {fileID: 21300000, guid: 06a95a21c36cfc24fa203a1ea148982e, type: 3}
+  uiDisplay: {fileID: 21300000, guid: 0942ed7c6efd0ef4891253bd3be6683e, type: 3}
   isMoveable: 1
   recipe:
-  - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
+  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: fbd003a6a7065c24cbd325ef2ad84d78, type: 2}
     amount: 1
   craftAmount: 1
   groundPrefab: {fileID: 7100413993455072174, guid: ac76e11015694a2418bb064a6d9828cf, type: 3}

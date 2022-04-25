@@ -6,18 +6,22 @@ public class Knife : UsableItem
 {
 	[SerializeField] private float damage = 15f;
     [SerializeField] private float range = 3f;
+	private string swingAnimation = "MeleeSwing";
 
+	private Animator animator;
     private Camera mainCamera;
 	private int layers;
 
     protected override void Init() {
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
+		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
 		ShowCrosshair();
     }
     
     protected override void Use() {
 		SFXManager.instance.Play("Woosh", 0.8f, 1.2f);
+    animator.Play(swingAnimation);
         Melee();
     }
 

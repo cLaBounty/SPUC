@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   name: Medium Ammo
   description: 
-  uiDisplay: {fileID: 21300000, guid: 06a95a21c36cfc24fa203a1ea148982e, type: 3}
+  uiDisplay: {fileID: 21300000, guid: 8b453302f10877b4597b502f26f2df2b, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}

@@ -15,10 +15,11 @@ MonoBehaviour:
   type: 9
   name: Epic Key
   description: 
-  uiDisplay: {fileID: 21300000, guid: e3a92d40f07072b4d8a7bd82488ef9a5, type: 3}
+  uiDisplay: {fileID: 21300000, guid: dc7e066a681bf934fb95d8dfbda30c2a, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
     amount: 20
+  craftAmount: 1
   groundPrefab: {fileID: 6573688572695703079, guid: 78b20c3b418796248a5b1cb264610eb7, type: 3}
   holdPrefab: {fileID: 6573688572695703079, guid: e175decdab1d21e4fa81c3d560f3a181, type: 3}

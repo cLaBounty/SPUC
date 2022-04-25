@@ -6,18 +6,22 @@ public class Axe : UsableItem
 {
 	[SerializeField] private float damage = 10f;
     [SerializeField] private float range = 4f;
+	private string swingAnimation = "MeleeSwing";
 
     private Camera mainCamera;
+	private Animator animator;
 	private int layers;
 
     protected override void Init() {
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
+		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
 		ShowCrosshair();
     }
     
     protected override void Use() {
 		SFXManager.instance.Play("Woosh", 0.8f, 1.2f);
+    animator.Play(swingAnimation);
         Melee();
     }
 

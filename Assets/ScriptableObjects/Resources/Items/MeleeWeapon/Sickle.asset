@@ -15,10 +15,11 @@ MonoBehaviour:
   type: 6
   name: Sickle
   description: 
-  uiDisplay: {fileID: 21300000, guid: 3fe12be232eb2b94e88810c2bab11434, type: 3}
+  uiDisplay: {fileID: 21300000, guid: ce7a623818dfced44979b464dc89c731, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: fbd003a6a7065c24cbd325ef2ad84d78, type: 2}
     amount: 1
+  craftAmount: 1
   groundPrefab: {fileID: 1998027704579497061, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
   holdPrefab: {fileID: 4068300616983952392, guid: 083808eda3b3f024089c33a380fcb75d, type: 3}

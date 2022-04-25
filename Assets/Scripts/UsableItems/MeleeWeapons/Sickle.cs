@@ -21,13 +21,13 @@ public class Sickle : UsableItem
     
     protected override void Use() {
 		SFXManager.instance.Play("Woosh", 0.8f, 1.2f);
+    animator.Play(swingAnimation, -1, 0f);
         Melee();
     }
 
     // ToDo: implement melee attack, not raycast hit
     private void Melee() {
 		RaycastHit hit;
-		animator.Play(swingAnimation, -1, 0f);
 		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
 			Enemy enemy = hit.transform.GetComponent<Enemy>();

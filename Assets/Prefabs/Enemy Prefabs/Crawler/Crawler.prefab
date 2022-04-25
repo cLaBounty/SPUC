@@ -657,13 +657,14 @@ MonoBehaviour:
   currentHealth: 20
   itemDrops:
   - item: {fileID: 6573688572695703079, guid: 3ff3351d249f31e408d91aef84d96d6c, type: 3}
-    chance: 2
+    chance: 1
   - item: {fileID: 4489102962437715982, guid: 14ae1d1edf13bf54dbb26b964e2ea030, type: 3}
-    chance: 15
+    chance: 5
   - item: {fileID: 4931435157338795573, guid: 7ec8515c2f453e148b7dd23ec08cb007, type: 3}
-    chance: 30
+    chance: 10
   - item: {fileID: 7525457710395568995, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
-    chance: 70
+    chance: 15
+  isDistracted: 0
   agroDistance: 30
   attackDistance: 5
   attackOilDistance: 6
