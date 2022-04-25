@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OilDrillHealerAnimation : MonoBehaviour
+public class OilHealerAnimation : MonoBehaviour
 {
     Animator animator;
-    [SerializeField] OilDrillHealer enemy;
+    [SerializeField] DeployedOilHealer enemy;
     [SerializeField] float deathTimer = 2f;
     //[SerializeField] AudioSource SpewSFX;
     //[SerializeField] AudioSource DeathSFX;

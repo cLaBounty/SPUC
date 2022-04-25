@@ -142,13 +142,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Food Deploy
-    clip: {fileID: 8300000, guid: c03a61e55b6455f48b5461084c773958, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Food Deploy
+  - name: Default Deploy
     clip: {fileID: 8300000, guid: c03a61e55b6455f48b5461084c773958, type: 3}
     volume: 1
     pitch: 1
@@ -186,6 +180,18 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Craft
     clip: {fileID: 8300000, guid: 840e5b0a4a419484f905e72fda0cacdf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Woosh
+    clip: {fileID: 8300000, guid: c68fb6e905e41e44c84f30497dcb85bb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Robot Pickup
+    clip: {fileID: 8300000, guid: 1b14fd77106770d40b3de9408a17d49b, type: 3}
     volume: 1
     pitch: 1
     loop: 0

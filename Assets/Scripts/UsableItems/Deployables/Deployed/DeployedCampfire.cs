@@ -10,7 +10,8 @@ public class DeployedCampfire : MonoBehaviour
     private const float RANGE_SQR = RANGE * RANGE;
     private const float FREQUENCY = 1f;
 
-    public bool isActive = false;
+    private DeployedStatus status;
+
     private float totalTime = 0;
     private float coolDownTime = FREQUENCY;
 
@@ -18,12 +19,13 @@ public class DeployedCampfire : MonoBehaviour
 
     void Start()
     {
+        status = GetComponent<DeployedStatus>();
         player = GameObject.FindObjectOfType<Player>();
     }
 
     void Update()
     {
-        if (!isActive) { return; }
+        if (!IsActive()) { return; }
 
         coolDownTime += Time.deltaTime;
         if (coolDownTime >= FREQUENCY) {
@@ -39,6 +41,10 @@ public class DeployedCampfire : MonoBehaviour
         if (totalTime >= TIME_LIMIT) {
             Destroy(transform.gameObject);
         }
+    }
+
+    private bool IsActive() {
+        return status.isActive;
     }
 
     private void OnDrawGizmos() {

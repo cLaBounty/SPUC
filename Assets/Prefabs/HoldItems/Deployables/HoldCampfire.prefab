@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6573688572695703074}
-  - component: {fileID: 1047945894817008035}
+  - component: {fileID: -6445193412174605207}
   m_Layer: 12
   m_Name: HoldCampfire
   m_TagString: Untagged
@@ -65,7 +65,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 65, z: 0}
---- !u!114 &1047945894817008035
+--- !u!114 &-6445193412174605207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: 382bb484b79cd78488873cd47ee162c5, type: 2}
+  deploySoundEffect: Fire Deploy
   deployedPrefab: {fileID: 2092570293006645779, guid: 08164107055392440af31129f4118856, type: 3}
 --- !u!1 &8334060233163178121
 GameObject:

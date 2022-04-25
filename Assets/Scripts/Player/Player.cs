@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        healthBar?.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
         cameraSystem = GameObject.FindObjectOfType<CameraSystem>();
         itemMask = LayerMask.GetMask("Ground Item");
     }
@@ -59,6 +59,11 @@ public class Player : MonoBehaviour
 
     }
 
+    public void MaxHealthIncrease(float multiplier) {
+        maxHealth *= multiplier;
+        healthBar.UpdateMaxHealth(maxHealth);
+    }
+
     public void TakeDamage(float amount)
     {
         currentHealth -= amount - defense;
@@ -73,7 +78,7 @@ public class Player : MonoBehaviour
             currentHealth = 0;
         }
 
-        healthBar?.SetHealth(currentHealth);
+        healthBar.SetHealth(currentHealth);
     }
 
     public void GainHealth(float amount)
@@ -84,7 +89,7 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
         }
         
-        healthBar?.SetHealth(currentHealth);
+        healthBar.SetHealth(currentHealth);
     }
 
     // Inventory
