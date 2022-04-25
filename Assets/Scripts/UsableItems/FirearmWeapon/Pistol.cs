@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Pistol : UsableItem
 {
-	private string shootAnimation = "PistolFire";
-
-	private const float DAMAGE = 20f;
-	private const float RANGE = 75f;
+	[SerializeField] string shootAnimation = "PistolFire";
+	[SerializeField] private float damage = 20f;
+    [SerializeField] private float range = 75f;
 
 	public ItemObject ammo;
 
-	private HotBar hotBar;
 	private Camera mainCamera;
 	private Animator animator;
 	private int layers;
@@ -22,7 +20,6 @@ public class Pistol : UsableItem
 	[SerializeField] TrailRenderer bulletTrail;
 
 	protected override void Init() {
-		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
@@ -43,14 +40,16 @@ public class Pistol : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
 			TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, Quaternion.identity);
 			StartCoroutine(SpawnTrail(trail, hit));
+
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			enemy?.TakeDamage(DAMAGE);
-			if (enemy == null)
-				return;
+			enemy?.TakeDamage(player.damageMultiplier * damage);
+
+			if (enemy == null) return;
+
 			Vector3 dir = firePoint.position - enemy.transform.position;
 			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
 			impactEffect.transform.position = enemy.transform.position + dir.normalized * .5f;

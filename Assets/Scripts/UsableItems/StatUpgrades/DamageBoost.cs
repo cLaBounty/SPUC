@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class DamageBoost : UsableItem
 {
-	private const float MaxHealthMultiplier = 1.2f;
-    
-    private Player player;
-    private HotBar hotBar;
+	[SerializeField] private float damageBoostValue = 0.2f;
 
     protected override void Init() {
-        player = GameObject.FindObjectOfType<Player>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
         HideCrosshair();
     }
 
     protected override void Use() {
-        // ToDo: implement
-        
+        player.damageMultiplier += damageBoostValue;
         hotBar.HandleItemUse(itemObject);
         SFXManager.instance.Play("Eat", 0.95f, 1.05f); // ToDo: find powerup sound effect
     }

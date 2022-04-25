@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Axe : UsableItem
 {
-	private string swingAnimation = "MeleeSwing";
-	
-    private const float DAMAGE = 10f;
-	private const float RANGE = 4f;
+	[SerializeField] private string swingAnimation = "MeleeSwing";
+	[SerializeField] private float damage = 10f;
+    [SerializeField] private float range = 4f;
 
     private Camera mainCamera;
 	private Animator animator;
@@ -21,20 +20,18 @@ public class Axe : UsableItem
     }
     
     protected override void Use() {
+		Melee();
 		SFXManager.instance.Play("Woosh", 0.8f, 1.2f);
-        Melee();
+    	animator.Play(swingAnimation);
     }
 
     // ToDo: implement melee attack, not raycast hit
     private void Melee() {
 		RaycastHit hit;
-		animator.Play(swingAnimation);
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
-			Target target = hit.transform.GetComponent<Target>();
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			target?.TakeDamage(DAMAGE);
-			enemy?.TakeDamage(DAMAGE);
+			enemy?.TakeDamage(player.damageMultiplier * damage);
 		}
 	}
 }

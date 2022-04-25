@@ -45,6 +45,7 @@ public class Crate : MonoBehaviour
                 if (PauseMenu.GameIsPaused) return;
                 SpawnItems();
                 hotBar.HandleItemUse(key);
+                if (currentInfo != null) { Destroy(currentInfo.gameObject); }
                 Destroy(transform.gameObject);
             }
         } else {
@@ -135,9 +136,5 @@ public class Crate : MonoBehaviour
         Array.Copy(items2, 0, mixedItems, items1.Length, items2.Length);
 
         return mixedItems[UnityEngine.Random.Range(0, mixedItems.Length)];
-    }
-
-    private void OnDestroy() {
-        if (currentInfo != null) { Destroy(currentInfo.gameObject); }
     }
 }

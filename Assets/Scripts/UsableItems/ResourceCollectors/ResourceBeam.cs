@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ResourceBeam : UsableItem
 {
-	private const float DAMAGE = 10f;
-	private const float RANGE = 50f;
+	[SerializeField] private float damage = 10f;
+    [SerializeField] private float range = 50f;
 
 	private InventoryObject inventory;
 	private Camera mainCamera;
@@ -59,7 +59,7 @@ public class ResourceBeam : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
 			Laser(hit.point);
 			if (coolDownTime >= frequency) 
@@ -71,7 +71,7 @@ public class ResourceBeam : UsableItem
 					impactEffect.Stop();
 					return;
 				}
-				int amount = rNode.harvest(DAMAGE);
+				int amount = rNode.harvest(damage);
 				if (amount > 0)
 				{
 					impactEffect.Play();
@@ -83,7 +83,7 @@ public class ResourceBeam : UsableItem
 		} 
 		else
 		{
-			Vector3 target = firePoint.position + firePoint.forward * RANGE;
+			Vector3 target = firePoint.position + firePoint.forward * range;
 			Laser(target);
 			impactEffect.Stop();
 		}

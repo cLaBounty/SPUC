@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
     [SerializeField] Volume damageVignette;
     [SerializeField] float vignetteSpeed = 10f;
 
-    public float maxHealth = 100f;
+    public float initialHealth = 100f;
     public float currentHealth;
+    public float maxHealth;
     public float defense = 0f;
+    public float damageMultiplier = 1f;
 
     public HealthBar healthBar;
     public HotBar hotBar;
@@ -30,8 +32,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        currentHealth = initialHealth;
+        maxHealth = initialHealth;
+        healthBar.SetMaxHealth(initialHealth);
         cameraSystem = GameObject.FindObjectOfType<CameraSystem>();
         itemMask = LayerMask.GetMask("Ground Item");
     }
@@ -59,14 +62,15 @@ public class Player : MonoBehaviour
 
     }
 
-    public void MaxHealthIncrease(float multiplier) {
-        maxHealth *= multiplier;
+    public void IncreaseMaxHealth(float value) {
+        maxHealth += value;
         healthBar.UpdateMaxHealth(maxHealth);
     }
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount - defense;
+        float damage = Mathf.Max(1f, amount - defense);
+        currentHealth -= damage;
 
         hurtEffect = true;
 		hurtEffectLerp = 0;
@@ -111,6 +115,7 @@ public class Player : MonoBehaviour
             GroundItem gi = other.gameObject.GetComponent<GroundItem>();
             SFXManager.instance?.Play(gi.sfx, 0.9f, 1.1f);
             PickUpItem(gi);
+            if (gi.currentInfo != null) { Destroy(gi.currentInfo.gameObject); }
             Destroy(other.gameObject);
         } else if (other.gameObject.tag == "EnemyProjectile") {
             TakeDamage(other.gameObject.GetComponent<EnemyProjectile>().damage);

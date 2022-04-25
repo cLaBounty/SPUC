@@ -180,6 +180,7 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 5857862155765646953}
   currentHealth: 70
+  maxHealth: 70
   itemDrops: []
   isDistracted: 0
   attackEnemyDist: 20

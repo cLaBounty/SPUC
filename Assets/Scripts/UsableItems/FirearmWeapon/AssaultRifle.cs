@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class AssaultRifle : UsableItem
 {
-	private string shootAnimation = "AssultRifleFire";
-
-	private const float DAMAGE = 35f;
-	private const float RANGE = 100f;
-	private const float COOL_DOWN = 0.25f;
+	[SerializeField] private string shootAnimation = "AssultRifleFire";
+	[SerializeField] private float damage = 35f;
+    [SerializeField] private float range = 100f;
+    [SerializeField] private float coolDown = 0.25f;
 
 	public ItemObject ammo;
 
-	private HotBar hotBar;
 	private Camera mainCamera;
 	private Animator animator;
 	private int layers;
 
-	private float coolDownTime = COOL_DOWN;
+	private float coolDownTime;
 
 	[SerializeField] ParticleSystem impactEffect;
 	[SerializeField] Transform firePoint;
@@ -25,10 +23,10 @@ public class AssaultRifle : UsableItem
 	[SerializeField] TrailRenderer bulletTrail;
 
 	protected override void Init() {
-		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
 		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
+		coolDownTime = coolDown;
 		ShowCrosshair();
     }
 
@@ -37,7 +35,7 @@ public class AssaultRifle : UsableItem
 		if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) { return; }
 		if (Input.GetButtonDown("Fire2")) { Focus(); }
 		if (Input.GetButton("Fire1")) {
-			if (coolDownTime >= COOL_DOWN) {
+			if (coolDownTime >= coolDown) {
 				coolDownTime = 0;
 				Use();
 			}
@@ -61,21 +59,21 @@ public class AssaultRifle : UsableItem
 
     private void Shoot() {
 		RaycastHit hit;
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
 			TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, Quaternion.identity);
 			StartCoroutine(SpawnTrail(trail, hit));
+
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			enemy?.TakeDamage(DAMAGE);
-			if (enemy == null)
-				return;
+			enemy?.TakeDamage(player.damageMultiplier * damage);
+
+			if (enemy == null) return;
+			
 			Vector3 dir = firePoint.position - enemy.transform.position;
 			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
 			impactEffect.transform.position = enemy.transform.position + dir.normalized * .5f;
 			impactEffect.Play();
 		}
-
-		
 	}
 
 	private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit) {

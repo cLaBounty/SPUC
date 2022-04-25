@@ -40,24 +40,26 @@ public class Enemy : MonoBehaviour
     public STATE state = STATE.AGRO_OIL;
 
     public HealthBar healthBar;
-    public float currentHealth = 100;
+    public float currentHealth;
+    public float maxHealth = 100f;
 
     [Header("Drops (Organize in Order Please)")]
     [SerializeField] ItemDrop[] itemDrops;
 
-    float maxHealth = 0f;
+    
     bool firstSetHealth = false; 
     public bool isDistracted = false;
 
     protected void Start() {
-        //SetHealth(currentHealth); // ToDo: remove when health is set in level manager
+        SetHealth(maxHealth);
         healthBar.transform.gameObject.SetActive(false);
     }
 
-    public void TakeDamage (float damage, bool ignoreSound = false) {
+    public void TakeDamage (float amount, bool ignoreSound = false) {
         if (state == STATE.DEAD) return;
 
-        currentHealth -= damage - defense;
+        float damage = Mathf.Max(1f, amount - defense);
+        currentHealth -= damage;
         healthBar.transform.gameObject.SetActive(true);
         healthBar.SetHealth(currentHealth);
 
@@ -83,9 +85,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void GainHealth(float amount) {
+        currentHealth += amount;
+
+        if (currentHealth > maxHealth) {
+            currentHealth = maxHealth;
+        }
+        
+        healthBar.SetHealth(currentHealth);
+    }
+
     public void SetHealth(float value) {
         currentHealth = value;
-        healthBar.SetMaxHealth(currentHealth);
+        healthBar.SetMaxHealth(value);
     }
 
     protected void OnDestroy() {

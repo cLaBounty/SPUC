@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class BaseDeployable : UsableItem
 {
-    protected const float PLACE_DISTANCE = 6f;
+    [SerializeField] private float placeDistance = 6f;
 
-    protected Player player;
-    protected HotBar hotBar;
     protected Camera fpsCam;
 
     public string deploySoundEffect = "Default Deploy";
@@ -21,8 +19,6 @@ public class BaseDeployable : UsableItem
     }
 
     protected override void Init() {
-        player = GameObject.FindObjectOfType<Player>();
-        hotBar = GameObject.FindObjectOfType<HotBar>();
         fpsCam = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
         InitPreview();
         HideCrosshair();
@@ -50,7 +46,7 @@ public class BaseDeployable : UsableItem
     }
 
     protected void UpdatePosition(GameObject inst) {
-        Vector3 placePosition = player.transform.position + (PLACE_DISTANCE * fpsCam.transform.forward);
+        Vector3 placePosition = player.transform.position + (placeDistance * fpsCam.transform.forward);
         placePosition.y = 0.2f;
         inst.transform.position = placePosition;
     }

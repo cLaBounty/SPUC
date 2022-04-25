@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class SniperRifle : UsableItem
 {
-	private string shootAnimation = "SniperFire";
-
-	private const float DAMAGE = 100f;
-    private const float RANGE = 150f;
-	private const float COOL_DOWN = 1.5f;
-	private const float SCOPED_FOV = 15f;
-
-	private float defaultFOV;
-	private float coolDownTime;
+	[SerializeField] private string shootAnimation = "SniperFire";
+	[SerializeField] private float damage = 35f;
+    [SerializeField] private float range = 100f;
+    [SerializeField] private float coolDown = 0.25f;
+	[SerializeField] private float scopedFOV = 15f;
 
 	public ItemObject ammo;
-	
-	private HotBar hotBar;
+
 	private Camera mainCamera;
 	private Camera fpsCamera;
 	private int layers;
@@ -31,8 +26,10 @@ public class SniperRifle : UsableItem
 
 	private GameObject scopeOverlay;
 
+	private float defaultFOV;
+	private float coolDownTime;
+
 	protected override void Init() {
-		hotBar = GameObject.FindObjectOfType<HotBar>();
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		fpsCamera = GameObject.FindObjectOfType<CameraSystem>().getCamera("FPSCam");
 		layers = LayerMask.GetMask("Player");
@@ -43,7 +40,7 @@ public class SniperRifle : UsableItem
 		layerFPSCam = LayerMask.NameToLayer("FPSCam");
 
 		defaultFOV = mainCamera.fieldOfView;
-		coolDownTime = COOL_DOWN;
+		coolDownTime = coolDown;
 		
 		HideCrosshair();
     }
@@ -56,7 +53,6 @@ public class SniperRifle : UsableItem
 		if (Input.GetButtonDown("Fire1") && !hotBar.inventory.Has(ammo, 1)) {
 			SFXManager.instance.Play("Gun Empty");
 		}
-
 	}
 
 	protected override void Focus() {
@@ -67,7 +63,7 @@ public class SniperRifle : UsableItem
 	}
     
     protected override void Use() {
-		if (coolDownTime >= COOL_DOWN) { coolDownTime = 0; }
+		if (coolDownTime >= coolDown) { coolDownTime = 0; }
 		else { return; }
 
 		if (hotBar.inventory.Has(ammo, 1)) {
@@ -84,14 +80,16 @@ public class SniperRifle : UsableItem
     private void Shoot() {
 		RaycastHit hit;
 		muzzleFlash.Play();
-		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, RANGE, ~layers))
+		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
 			TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, Quaternion.identity);
 			StartCoroutine(SpawnTrail(trail, hit));
+			
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			enemy?.TakeDamage(DAMAGE);
-			if (enemy == null)
-				return;
+			enemy?.TakeDamage(player.damageMultiplier * damage);
+
+			if (enemy == null) return;
+
 			Vector3 dir = firePoint.position - enemy.transform.position;
 			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
 			impactEffect.transform.position = enemy.transform.position + dir.normalized * .5f;
@@ -101,10 +99,9 @@ public class SniperRifle : UsableItem
 
 	private IEnumerator OnScoped() {
 		yield return new WaitForSeconds(0.15f);
-		
 		scopeOverlay.SetActive(true);
 		gameObject.layer = layerIgnore;
-		mainCamera.fieldOfView = SCOPED_FOV;
+		mainCamera.fieldOfView = scopedFOV;
 		MouseLook.SensitivityMultiplier = 0.5f;
 	}
 

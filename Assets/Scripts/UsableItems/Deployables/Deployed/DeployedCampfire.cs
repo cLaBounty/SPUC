@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class DeployedCampfire : MonoBehaviour
 {
-    private const float HEALTH_INCREASE_PER_SECOND = 5f;
-    private const float TIME_LIMIT = 20f;
-    private const float RANGE = 5f;
-    private const float RANGE_SQR = RANGE * RANGE;
-    private const float FREQUENCY = 1f;
+    [SerializeField] private float healthIncreasePerSecond = 5f;
+    [SerializeField] private float timeLimit = 20f;
+    [SerializeField] private float range = 5f;
+    [SerializeField] private float frequency = 1f;
 
     private DeployedStatus status;
-
-    private float totalTime = 0;
-    private float coolDownTime = FREQUENCY;
-
     private Player player;
+
+    private float rangeSqr;
+    private float coolDownTime;
+    private float totalTime = 0;
 
     void Start()
     {
         status = GetComponent<DeployedStatus>();
         player = GameObject.FindObjectOfType<Player>();
+        rangeSqr = range * range;
+        coolDownTime = frequency;
     }
 
     void Update()
@@ -28,23 +29,23 @@ public class DeployedCampfire : MonoBehaviour
         if (!status.isActive) return;
 
         coolDownTime += Time.deltaTime;
-        if (coolDownTime >= FREQUENCY) {
+        if (coolDownTime >= frequency) {
             coolDownTime = 0;
 
             float distance = (player.transform.position - transform.position).sqrMagnitude;
-            if (distance <= RANGE) {
-                player.GainHealth(HEALTH_INCREASE_PER_SECOND);
+            if (distance <= rangeSqr) {
+                player.GainHealth(healthIncreasePerSecond);
             }
         }
 
         totalTime += Time.deltaTime;
-        if (totalTime >= TIME_LIMIT) {
+        if (totalTime >= timeLimit) {
             Destroy(transform.gameObject);
         }
     }
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, RANGE);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

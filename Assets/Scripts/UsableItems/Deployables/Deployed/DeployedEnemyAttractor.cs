@@ -4,34 +4,35 @@ using UnityEngine;
 
 public class DeployedEnemyAttractor : MonoBehaviour
 {
-    private const float TIME_LIMIT = 15f;
-    private const float RANGE = 12f;
-    private const float RANGE_SQR = RANGE * RANGE;
-    private const float FREQUENCY = 1f;
+    [SerializeField] private float timeLimit = 15f;
+    [SerializeField] private float range = 12f;
+    [SerializeField] private float frequency = 1f;
 
     private DeployedStatus status;
-
-    private float totalTime = 0;
-    private float coolDownTime = FREQUENCY;
-
     private GameObject oilDrill;
 
+    private float rangeSqr;
+    private float coolDownTime;
+    private float totalTime = 0;
+    
     private void Start() {
         status = GetComponent<DeployedStatus>();
         oilDrill = GameObject.FindObjectOfType<OilDrill>().transform.gameObject;
+        rangeSqr = range * range;
+        coolDownTime = frequency;
     }
 
     private void Update() {
         if (!status.isActive) return;
         
         coolDownTime += Time.deltaTime;
-        if (coolDownTime >= FREQUENCY) {
+        if (coolDownTime >= frequency) {
             coolDownTime = 0;
             AttractEnemies();
         }
 
         totalTime += Time.deltaTime;
-        if (totalTime >= TIME_LIMIT) {
+        if (totalTime >= timeLimit) {
             Destroy(transform.gameObject);
         }
     }
@@ -43,7 +44,7 @@ public class DeployedEnemyAttractor : MonoBehaviour
             enemyPositionAtSameHeight.y = transform.position.y;
             
             float distance = (enemyPositionAtSameHeight - transform.position).sqrMagnitude;
-            if (distance <= RANGE_SQR) {
+            if (distance <= rangeSqr) {
                 if (enemy.state != Enemy.STATE.AGRO_DISTRACTION && enemy.state != Enemy.STATE.DEAD) {
                     enemy.target = transform.gameObject;
                     enemy.state = Enemy.STATE.AGRO_DISTRACTION;
@@ -65,6 +66,6 @@ public class DeployedEnemyAttractor : MonoBehaviour
     
     private void OnDrawGizmos() {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, RANGE);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
