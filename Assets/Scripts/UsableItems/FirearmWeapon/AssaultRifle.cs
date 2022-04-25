@@ -63,17 +63,17 @@ public class AssaultRifle : UsableItem
 		{
 			TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, Quaternion.identity);
 			StartCoroutine(SpawnTrail(trail, hit));
+
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
 			enemy?.TakeDamage(player.damageMultiplier * damage);
-			if (enemy == null)
-				return;
+
+			if (enemy == null) return;
+			
 			Vector3 dir = firePoint.position - enemy.transform.position;
 			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
 			impactEffect.transform.position = enemy.transform.position + dir.normalized * .5f;
 			impactEffect.Play();
 		}
-
-		
 	}
 
 	private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit) {
