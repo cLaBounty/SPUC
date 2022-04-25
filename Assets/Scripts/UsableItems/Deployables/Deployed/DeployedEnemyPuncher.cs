@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 //[RequireComponent(typeof(Rigidbody))] 
 public class DeployedEnemyPuncher : Enemy
 {
@@ -13,13 +12,18 @@ public class DeployedEnemyPuncher : Enemy
     [SerializeField] float searchRadius = 6f;
     [SerializeField] LayerMask searchFields;
 
-    private DeployedStatus status;
+    [Header("Collisions")]
+    [SerializeField] Vector3 BoxColldierDimensions;
+    [SerializeField] Vector3 BoxColldierCenter;
+    [SerializeField] LayerMask ProjecileLayer;
 
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
     float attackRangeEnemySqr = 0;
+    
+    [Header("Attacks")]
     public float coolDown = 0;
     public float coolDownMax = 0.05f;
 
@@ -27,11 +31,13 @@ public class DeployedEnemyPuncher : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
+    DeployedStatus status;
+
     // Start is called before the first frame update
     new void Start()
     {
+        //base.Start();
         status = GetComponent<DeployedStatus>();
-        
         SetHealth(currentHealth);
         healthBar.transform.gameObject.SetActive(false);
         
@@ -46,7 +52,7 @@ public class DeployedEnemyPuncher : Enemy
 
     // Update is called once per frame
     private void Update() {
-        if (!IsActive()) { return; }
+        if (!status.isActive) return;
 
         if (target == null){
             FindFoe();
@@ -68,10 +74,8 @@ public class DeployedEnemyPuncher : Enemy
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
-    }
-
-    private bool IsActive() {
-        return status.isActive;
+        
+        CheckForProjectiles();
     }
 
     void AttackOilDrill(){
@@ -87,7 +91,7 @@ public class DeployedEnemyPuncher : Enemy
                 Enemy enemy = target.GetComponent<Enemy>();
 
                 if (enemy != null)
-                    enemy.TakeDamage(attackPower);
+                    enemy.TakeDamage(attackPower, true);
                 else 
                    state = STATE.AGRO_OIL; 
             }
@@ -154,5 +158,21 @@ public class DeployedEnemyPuncher : Enemy
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, searchRadius);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + BoxColldierCenter, BoxColldierDimensions);
+    }
+
+    void CheckForProjectiles(){
+        Collider[] col = Physics.OverlapBox(transform.position, BoxColldierDimensions, Quaternion.identity, ProjecileLayer);
+
+        if (col.Length > 0){
+            EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
+
+            if (ep != null){
+                TakeDamage(ep.damage);
+                Destroy(col[0].gameObject);
+            }
+        }
     }
 }

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: 6db4b2032fae12640a567b94de52a047, type: 2}
   deploySoundEffect: Default Deploy
-  deployedPrefab: {fileID: 8834114374297442635, guid: 80625415895ecd3429813550b82de132, type: 3}
+  deployedPrefab: {fileID: 8834114374297442635, guid: 0704eb41a837430428a5096be5e16885, type: 3}
 --- !u!1 &6983604526694602213
 GameObject:
   m_ObjectHideFlags: 0

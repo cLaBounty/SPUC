@@ -11,7 +11,10 @@ public class DeployedOilHealer : Enemy
     [SerializeField] float damping = 0.98f;
     [SerializeField] float healAmmount = 1;
 
-    private DeployedStatus status;
+    [Header("Collisions")]
+    [SerializeField] Vector3 BoxColldierDimensions;
+    [SerializeField] Vector3 BoxColldierCenter;
+    [SerializeField] LayerMask ProjecileLayer;
 
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
@@ -20,6 +23,8 @@ public class DeployedOilHealer : Enemy
 
     float agroRangeSqr = 0;
     float attackRangeOilSqr = 0;
+
+    [Header("Attack Vars")]
     public float coolDown = 0;
     public float coolDownMax = 0.05f;
 
@@ -27,9 +32,12 @@ public class DeployedOilHealer : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
+    DeployedStatus status;
+
     // Start is called before the first frame update
     new void Start()
     {
+        //base.Start();
         status = GetComponent<DeployedStatus>();
 
         SetHealth(currentHealth);
@@ -47,7 +55,7 @@ public class DeployedOilHealer : Enemy
 
     // Update is called once per frame
     private void Update() {
-        if (!IsActive()) { return; }
+        if (!status.isActive) return;
 
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
@@ -63,10 +71,8 @@ public class DeployedOilHealer : Enemy
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
-    }
-
-    private bool IsActive() {
-        return status.isActive;
+        
+        CheckForProjectiles();
     }
 
     void AttackOilDrill(){
@@ -136,5 +142,23 @@ public class DeployedOilHealer : Enemy
 
     new void OnDestroy() {
         //do nothing
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + BoxColldierCenter, BoxColldierDimensions);
+    }
+
+    void CheckForProjectiles(){
+        Collider[] col = Physics.OverlapBox(transform.position, BoxColldierDimensions, Quaternion.identity, ProjecileLayer);
+
+        if (col.Length > 0){
+            EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
+
+            if (ep != null){
+                TakeDamage(ep.damage);
+                Destroy(col[0].gameObject);
+            }
+        }
     }
 }

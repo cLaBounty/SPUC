@@ -25,7 +25,7 @@ public class DeployedCampfire : MonoBehaviour
 
     void Update()
     {
-        if (!IsActive()) { return; }
+        if (!status.isActive) return;
 
         coolDownTime += Time.deltaTime;
         if (coolDownTime >= FREQUENCY) {
@@ -41,10 +41,6 @@ public class DeployedCampfire : MonoBehaviour
         if (totalTime >= TIME_LIMIT) {
             Destroy(transform.gameObject);
         }
-    }
-
-    private bool IsActive() {
-        return status.isActive;
     }
 
     private void OnDrawGizmos() {

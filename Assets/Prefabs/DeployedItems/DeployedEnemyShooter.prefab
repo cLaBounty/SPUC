@@ -125,9 +125,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8834114374297442634}
   - component: {fileID: 6004826552352146587}
+  - component: {fileID: 519740986484801661}
   - component: {fileID: 8834114374297442639}
   - component: {fileID: 8834114374297442636}
-  - component: {fileID: 8682349082070114595}
+  - component: {fileID: 7708738282809968731}
   m_Layer: 0
   m_Name: DeployedEnemyShooter
   m_TagString: Untagged
@@ -143,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8834114374297442635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65.913734, y: -0.04, z: 91.67212}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8834114374297442635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 336f6012b2a1a5946b491730c11d41a0, type: 3}
+  m_Script: {fileID: 11500000, guid: b348c688d38bec04095a81eaaa8606d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
@@ -179,9 +180,7 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 5857862155765646953}
   currentHealth: 70
-  itemDrops:
-  - item: {fileID: 6573688572695703079, guid: b3f4a4d358df0e1458bbc2b6788abacc, type: 3}
-    chance: 101
+  itemDrops: []
   isDistracted: 0
   attackEnemyDist: 20
   damping: 0.98
@@ -189,9 +188,34 @@ MonoBehaviour:
   searchFields:
     serializedVersion: 2
     m_Bits: 64
+  BoxColldierDimensions: {x: 1.2, y: 3.13, z: 1.2}
+  BoxColldierCenter: {x: 0, y: 1.64, z: 0}
+  ProjecileLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   coolDown: 0
   coolDownMax: 0.1
   currentTargetDist: 0
+--- !u!114 &519740986484801661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834114374297442635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcdb3097c48a34428baf337ffe2a591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 20
+  frequency: 1
+  enemyLimit: 3
+  excludeFlyer: 0
+  excludeCrawler: 1
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &8834114374297442639
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -221,7 +245,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
---- !u!114 &8682349082070114595
+--- !u!114 &7708738282809968731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,7 +254,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8834114374297442635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c75320c13a5a167448e702070b732c41, type: 3}
+  m_Script: {fileID: 11500000, guid: 210579b90289ad54799047755a68b550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0

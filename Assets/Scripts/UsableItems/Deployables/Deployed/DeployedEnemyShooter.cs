@@ -12,13 +12,18 @@ public class DeployedEnemyShooter : Enemy
     [SerializeField] float searchRadius = 6f;
     [SerializeField] LayerMask searchFields;
 
-    private DeployedStatus status;
+    [Header("Collisions")]
+    [SerializeField] Vector3 BoxColldierDimensions;
+    [SerializeField] Vector3 BoxColldierCenter;
+    [SerializeField] LayerMask ProjecileLayer;
 
     //NavMeshAgent navMeshAgent;
     Rigidbody rb;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
     float attackRangeEnemySqr = 0;
+
+    [Header("Attacks")]
     public float coolDown = 0;
     public float coolDownMax = 0.05f;
 
@@ -26,11 +31,14 @@ public class DeployedEnemyShooter : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
+    DeployedStatus status;
+
     // Start is called before the first frame update
     new void Start()
     {
+        //base.Start();
         status = GetComponent<DeployedStatus>();
-        
+
         SetHealth(currentHealth);
         healthBar.transform.gameObject.SetActive(false);
         
@@ -45,7 +53,7 @@ public class DeployedEnemyShooter : Enemy
 
     // Update is called once per frame
     private void Update() {
-        if (!IsActive()) { return; }
+        if (!status.isActive) return;
         
         if (target == null){
             FindFoe();
@@ -60,16 +68,15 @@ public class DeployedEnemyShooter : Enemy
 
         switch(state){
             case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
-            case STATE.DEAD:                Stop(); break;
+            case STATE.DEAD:                rb.useGravity = true; break;
         }
 
         if (coolDown >= 0)
             coolDown -= Time.deltaTime;
+        
+        CheckForProjectiles();
     }
 
-    private bool IsActive() {
-        return status.isActive;
-    }
 
     void AttackOilDrill(){
         //Stop();
@@ -80,7 +87,7 @@ public class DeployedEnemyShooter : Enemy
             if (enemy == null)
                 return;
                 
-            enemy.TakeDamage(attackPower);
+            enemy.TakeDamage(attackPower, true);
 
             coolDown = coolDownMax;
         }
@@ -142,5 +149,21 @@ public class DeployedEnemyShooter : Enemy
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, searchRadius);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + BoxColldierCenter, BoxColldierDimensions);
+    }
+
+    void CheckForProjectiles(){
+        Collider[] col = Physics.OverlapBox(transform.position, BoxColldierDimensions, Quaternion.identity, ProjecileLayer);
+
+        if (col.Length > 0){
+            EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
+
+            if (ep != null){
+                TakeDamage(ep.damage);
+                Destroy(col[0].gameObject);
+            }
+        }
     }
 }
