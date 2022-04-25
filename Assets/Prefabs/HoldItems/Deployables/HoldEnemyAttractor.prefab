@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6573688572695703074}
-  - component: {fileID: -2496651830374604520}
+  - component: {fileID: 6637434962744123930}
   m_Layer: 12
   m_Name: HoldEnemyAttractor
   m_TagString: Untagged
@@ -148,7 +148,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -22.5, z: 0}
---- !u!114 &-2496651830374604520
+--- !u!114 &6637434962744123930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,10 +157,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6573688572695703079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06298a9253802844a62daa96a2df31e, type: 3}
+  m_Script: {fileID: 11500000, guid: a5995e4b02b36f64eb6d98ee115b2d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: 84b41642dcdd5d44c97007c83ba21caa, type: 2}
+  deploySoundEffect: Default Deploy
   deployedPrefab: {fileID: 2092570293006645779, guid: 1456a0948ad2b4c4cae23ae406b5790c, type: 3}
 --- !u!1 &6983604526694602213
 GameObject:
