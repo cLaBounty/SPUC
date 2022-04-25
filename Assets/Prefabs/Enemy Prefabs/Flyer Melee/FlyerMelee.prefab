@@ -479,7 +479,7 @@ MonoBehaviour:
   moveSpeed: 8
   maxMoveSpeed: 8
   attackSpeed: 2
-  attackPower: 15
+  attackPower: 10
   defense: 1
   isEnemy: 1
   isFlying: 1
@@ -491,6 +491,7 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 7053554087940692124}
   currentHealth: 60
+  maxHealth: 60
   itemDrops:
   - item: {fileID: 2653555064806350094, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
     chance: 5

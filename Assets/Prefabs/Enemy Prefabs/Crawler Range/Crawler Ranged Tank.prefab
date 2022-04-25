@@ -721,6 +721,7 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 5010555039000298530}
   currentHealth: 70
+  maxHealth: 70
   itemDrops:
   - item: {fileID: 6573688572695703079, guid: 56c8115005acc4a4ebeac4026b586fd6, type: 3}
     chance: 10

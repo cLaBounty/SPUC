@@ -32,6 +32,8 @@ public class Crate : MonoBehaviour
     }
 
     private void Update() {
+        if (player == null) return;
+
         float currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
         if (currentPlayerDist <= openDistance) {
             // Info Popup

@@ -55,6 +55,7 @@ public class RobotAggravatorAttractor : MonoBehaviour
             for (int i = 0; i < getNum; ++i){
                 Enemy currentEnemy = colliders[i].gameObject.GetComponent<Enemy>();
                 if (currentEnemy == null) continue;
+                if (currentEnemy.state != Enemy.STATE.AGRO_DISTRACTION && currentEnemy.state != Enemy.STATE.DEAD) continue;
 
                 if (currentEnemy.isFlying && !excludeFlyer) enemyList.Add(currentEnemy);
                 else if (!currentEnemy.isFlying && !excludeCrawler) enemyList.Add(currentEnemy);
@@ -62,10 +63,8 @@ public class RobotAggravatorAttractor : MonoBehaviour
         }
 
         foreach(Enemy enemy in enemyList){
-            if (enemy.state != Enemy.STATE.AGRO_DISTRACTION) {
-                enemy.target = transform.gameObject;
-                enemy.state = Enemy.STATE.AGRO_DISTRACTION;
-            }
+            enemy.target = transform.gameObject;
+            enemy.state = Enemy.STATE.AGRO_DISTRACTION;
         }
     }
 

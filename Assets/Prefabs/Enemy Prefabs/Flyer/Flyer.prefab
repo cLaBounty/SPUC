@@ -792,15 +792,16 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 7053554087940692124}
   currentHealth: 50
+  maxHealth: 50
   itemDrops:
   - item: {fileID: 6573688572695703079, guid: f45bdad71f60de84f8dc6879ad47c985, type: 3}
     chance: 2
   - item: {fileID: 6573688572695703079, guid: b3f4a4d358df0e1458bbc2b6788abacc, type: 3}
     chance: 5
-  - item: {fileID: 2653555064806350094, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
-    chance: 10
   - item: {fileID: 7525457710395568995, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
-    chance: 15
+    chance: 10
+  - item: {fileID: 2653555064806350094, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
+    chance: 25
   isDistracted: 0
   agroDistance: 30
   attackDistance: 6

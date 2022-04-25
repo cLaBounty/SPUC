@@ -36,7 +36,7 @@ public class HotBarButton : MonoBehaviour
     private void UpdateDisplay() {
         InventorySlot slot = inventory.container.items[keyNumber - 1];
 
-        if (slot.item != null) {
+        if (slot?.item != null) {
             image.GetComponent<Image>().sprite = slot.item.uiDisplay;
             amountText.text = slot.amount == 1 ? "" : slot.amount.ToString("n0");
         } else {

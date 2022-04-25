@@ -10,7 +10,7 @@ public class BaseDeployable : UsableItem
 
     public string deploySoundEffect = "Default Deploy";
     public GameObject deployedPrefab;
-    protected GameObject deployedPreview = null;
+    public GameObject deployedPreview = null;
 
     protected void Update() {
         base.Update();
@@ -49,9 +49,5 @@ public class BaseDeployable : UsableItem
         Vector3 placePosition = player.transform.position + (placeDistance * fpsCam.transform.forward);
         placePosition.y = 0.2f;
         inst.transform.position = placePosition;
-    }
-
-    protected void OnDestroy() {
-        if (deployedPreview != null) { Destroy(deployedPreview); }
     }
 }

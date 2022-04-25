@@ -100,6 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: ccafa806dcf46354588779471c227b51, type: 2}
+  shootAnimation: AssultRifleFire
+  damage: 35
+  range: 100
+  coolDown: 0.25
   ammo: {fileID: 11400000, guid: 21f0753102f5fd344a9598f040aa14d3, type: 2}
   impactEffect: {fileID: 7679437961049862082, guid: 15bca01026a681e48877cbeb751a6a25, type: 3}
   firePoint: {fileID: 4347884107421900535}

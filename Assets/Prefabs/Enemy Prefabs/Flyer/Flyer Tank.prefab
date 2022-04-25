@@ -780,8 +780,10 @@ MonoBehaviour:
   moveSpeed: 4
   maxMoveSpeed: 4
   attackSpeed: 1
-  attackPower: 15
+  attackPower: 10
   defense: 5
+  isEnemy: 1
+  isFlying: 1
   target: {fileID: 0}
   flowField: {fileID: 0}
   player: {fileID: 0}
@@ -790,6 +792,7 @@ MonoBehaviour:
   state: 0
   healthBar: {fileID: 7053554087940692124}
   currentHealth: 120
+  maxHealth: 120
   itemDrops:
   - item: {fileID: 6573688572695703079, guid: 1aa74d549ea2fb04296467312136a098, type: 3}
     chance: 5
@@ -799,6 +802,7 @@ MonoBehaviour:
     chance: 80
   - item: {fileID: 7100413993455072174, guid: 846a6a4806c3674459b6c5a5cb47b65e, type: 3}
     chance: 101
+  isDistracted: 0
   agroDistance: 30
   attackDistance: 6
   attackDistanceOil: 8

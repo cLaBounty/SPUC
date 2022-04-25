@@ -15,6 +15,11 @@ public class ItemSwitching : MonoBehaviour
     public void SwitchToItem(ItemObject item) {
         if (transform.childCount > 0) {
             foreach(Transform child in transform) {
+                BaseDeployable baseDeployable = child.gameObject.GetComponent<BaseDeployable>();
+                if (baseDeployable != null)
+                    if (baseDeployable.deployedPreview != null) { Destroy(baseDeployable.deployedPreview); }
+
+  
                 Destroy(child.gameObject);
             }
         }
@@ -22,6 +27,6 @@ public class ItemSwitching : MonoBehaviour
         if (inst.transform.GetComponent<UsableItem>() == null) {
             GameObject.FindGameObjectWithTag("Crosshair").transform.GetComponent<Image>().color = new Color(0, 0, 0, 0);
         }
-		animator.Play(idleAnimation);
+		animator?.Play(idleAnimation);
     }
 }

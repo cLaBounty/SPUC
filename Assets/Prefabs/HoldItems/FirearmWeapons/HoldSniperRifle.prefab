@@ -99,6 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: d6f15441cefa87342a21dfb182f1a2f0, type: 2}
+  shootAnimation: SniperFire
+  damage: 100
+  range: 1000
+  coolDown: 1.5
+  scopedFOV: 15
   ammo: {fileID: 11400000, guid: 4c1fbbedb693d624594b7b30d42e9066, type: 2}
   impactEffect: {fileID: 1895095655523613309}
   firePoint: {fileID: 1039104664204877861}
