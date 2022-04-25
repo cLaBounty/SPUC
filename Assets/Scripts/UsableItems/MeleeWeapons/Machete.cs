@@ -20,9 +20,9 @@ public class Machete : UsableItem
     }
     
     protected override void Use() {
+		Melee();
 		SFXManager.instance.Play("Woosh", 0.8f, 1.2f);
-    animator.Play(swingAnimation);
-        Melee();
+    	animator.Play(swingAnimation);
     }
 
     // ToDo: implement melee attack, not raycast hit

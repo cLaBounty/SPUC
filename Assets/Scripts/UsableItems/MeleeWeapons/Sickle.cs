@@ -20,9 +20,9 @@ public class Sickle : UsableItem
     }
     
     protected override void Use() {
+		Melee();
 		SFXManager.instance.Play("Woosh", 0.8f, 1.2f);
-    animator.Play(swingAnimation, -1, 0f);
-        Melee();
+		animator.Play(swingAnimation);
     }
 
     // ToDo: implement melee attack, not raycast hit

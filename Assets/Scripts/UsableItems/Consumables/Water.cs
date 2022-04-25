@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Water : UsableItem
 {
-	private string useAnimation = "Consume";
-
-	private const float HEALTH_INCREASE = 15f;
-	private const float USE_TIME = .5f;
+	[SerializeField] private string useAnimation = "Consume";
+	[SerializeField] private float healthIncrease = 15f;
+    [SerializeField] private float useTime = 0.5f;
 
     private float coolDownTime;
 	private Animator animator;
 
     protected override void Init() {
 		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
-		coolDownTime = USE_TIME;
+		coolDownTime = useTime;
         HideCrosshair();
     }
 
@@ -24,7 +23,7 @@ public class Water : UsableItem
 	}
 
     protected override void Use() {
-		if (coolDownTime >= USE_TIME) { coolDownTime = 0; }
+		if (coolDownTime >= useTime) { coolDownTime = 0; }
 		else { return; }
 		animator.Play(useAnimation);
 		SFXManager.instance.Play("Drink", 0.95f, 1.05f);
@@ -32,8 +31,8 @@ public class Water : UsableItem
     }
 
 	IEnumerator UseTimer() {
-		yield return new WaitForSeconds(USE_TIME);
-		player.GainHealth(HEALTH_INCREASE);
+		yield return new WaitForSeconds(useTime);
+		player.GainHealth(healthIncrease);
         hotBar.HandleItemUse(itemObject);
 	}
 }

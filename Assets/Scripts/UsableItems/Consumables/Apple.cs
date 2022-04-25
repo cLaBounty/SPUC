@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Apple : UsableItem
 {
-	private string useAnimation = "Consume";
-
-	private const float HEALTH_INCREASE = 10f;
-	private const float USE_TIME = .5f;
-
-	private float coolDownTime;
+	[SerializeField] private string useAnimation = "Consume";
+	[SerializeField] private float healthIncrease = 10f;
+    [SerializeField] private float useTime = 0.5f;
 
 	private Animator animator;
+	private float coolDownTime;
 
     protected override void Init() {
 		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();
-		coolDownTime = USE_TIME;
+		coolDownTime = useTime;
         HideCrosshair();
     }
 
@@ -25,16 +23,17 @@ public class Apple : UsableItem
 	}
 
     protected override void Use() {
-		if (coolDownTime >= USE_TIME) { coolDownTime = 0; }
+		if (coolDownTime >= useTime) { coolDownTime = 0; }
 		else { return; }
+
 		animator.Play(useAnimation);
 		SFXManager.instance.Play("Eat", 0.95f, 1.05f);
         StartCoroutine(UseTimer()); 
     }
 
 	IEnumerator UseTimer() {
-		yield return new WaitForSeconds(USE_TIME);
-		player.GainHealth(HEALTH_INCREASE);
+		yield return new WaitForSeconds(useTime);
+		player.GainHealth(healthIncrease);
         hotBar.HandleItemUse(itemObject);
 	}
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Knife : UsableItem
 {
+	[SerializeField] private string swingAnimation = "MeleeSwing";
 	[SerializeField] private float damage = 15f;
     [SerializeField] private float range = 3f;
-	private string swingAnimation = "MeleeSwing";
 
 	private Animator animator;
     private Camera mainCamera;
@@ -20,9 +20,9 @@ public class Knife : UsableItem
     }
     
     protected override void Use() {
+		Melee();
 		SFXManager.instance.Play("Woosh", 0.8f, 1.2f);
-    animator.Play(swingAnimation);
-        Melee();
+    	animator.Play(swingAnimation);
     }
 
     // ToDo: implement melee attack, not raycast hit

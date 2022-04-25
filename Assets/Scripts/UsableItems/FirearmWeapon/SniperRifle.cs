@@ -10,9 +10,6 @@ public class SniperRifle : UsableItem
     [SerializeField] private float coolDown = 0.25f;
 	[SerializeField] private float scopedFOV = 15f;
 
-	private float defaultFOV;
-	private float coolDownTime;
-
 	public ItemObject ammo;
 
 	private Camera mainCamera;
