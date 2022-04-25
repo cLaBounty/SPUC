@@ -15,12 +15,13 @@ MonoBehaviour:
   type: 4
   name: Chicken Distraction
   description: 
-  uiDisplay: {fileID: 21300000, guid: 1143fe88ac964c548b7d3037092de3fd, type: 3}
+  uiDisplay: {fileID: 21300000, guid: a3318bbf74f98af47b1c302a4df67532, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: 382bb484b79cd78488873cd47ee162c5, type: 2}
     amount: 1
   - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
     amount: 3
+  craftAmount: 1
   groundPrefab: {fileID: 6573688572695703079, guid: cfb2394d2bcc3c54781a80358e14a4c6, type: 3}
   holdPrefab: {fileID: 6573688572695703079, guid: 6960b3560bd5f084da3c7cfaca9fa482, type: 3}

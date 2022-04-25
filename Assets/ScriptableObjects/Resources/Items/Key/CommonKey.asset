@@ -15,10 +15,11 @@ MonoBehaviour:
   type: 9
   name: Common Key
   description: 
-  uiDisplay: {fileID: 21300000, guid: e3a92d40f07072b4d8a7bd82488ef9a5, type: 3}
+  uiDisplay: {fileID: 21300000, guid: c7332507dba9f62478b3a65829900bb5, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
     amount: 20
+  craftAmount: 1
   groundPrefab: {fileID: 6573688572695703079, guid: 3ff3351d249f31e408d91aef84d96d6c, type: 3}
   holdPrefab: {fileID: 6573688572695703079, guid: f92787f3786392f44935cda353ec3775, type: 3}

@@ -15,11 +15,13 @@ MonoBehaviour:
   type: 4
   name: Oil Healer
   description: 
-  uiDisplay: {fileID: 21300000, guid: 1143fe88ac964c548b7d3037092de3fd, type: 3}
+  uiDisplay: {fileID: 21300000, guid: 1625de12392e59c439d3eff410a58a96, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
     amount: 2
+  - item: {fileID: 11400000, guid: 382bb484b79cd78488873cd47ee162c5, type: 2}
+    amount: 1
   craftAmount: 1
   groundPrefab: {fileID: 8834114374297442635, guid: 6570ae4ea3f8bb743a659ff05acb2af4, type: 3}
   holdPrefab: {fileID: 6573688572695703079, guid: 530f2cd089e7f28478172b987bc33c18, type: 3}

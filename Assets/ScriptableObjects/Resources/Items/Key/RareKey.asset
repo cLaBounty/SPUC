@@ -15,10 +15,11 @@ MonoBehaviour:
   type: 9
   name: Rare Key
   description: 
-  uiDisplay: {fileID: 21300000, guid: e3a92d40f07072b4d8a7bd82488ef9a5, type: 3}
+  uiDisplay: {fileID: 21300000, guid: 33b02f2cd23ba05489a2f40766d32a93, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
     amount: 20
+  craftAmount: 1
   groundPrefab: {fileID: 6573688572695703079, guid: 1aa74d549ea2fb04296467312136a098, type: 3}
   holdPrefab: {fileID: 6573688572695703079, guid: 26f675b804b30f0428ee25e837426838, type: 3}
