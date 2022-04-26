@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     #region overhead
-    //stucts
+
     [System.Serializable]
     public struct EnemyData{
         public GameObject enemyPrefab;
@@ -115,27 +115,25 @@ public class LevelManager : MonoBehaviour
         GameObject enemyPrefab = enemyQue.Dequeue();
 
         float randomDirection = Random.Range(0, 2 * Mathf.PI);
-        Vector3 newPos =  new Vector3(Mathf.Cos(randomDirection) * centerPos.x, 0, Mathf.Sin(randomDirection) * centerPos.y) +
-                                    new Vector3(centerPos.x, 5, centerPos.y);
+        Vector3 newPos = new Vector3(Mathf.Cos(randomDirection) * centerPos.x, 0, Mathf.Sin(randomDirection) * centerPos.y) + new Vector3(centerPos.x, 5, centerPos.y);
 
         var inst = Instantiate(enemyPrefab, newPos, Quaternion.identity);
         inst.transform.parent = null;
 
         //adjust values
-        Enemy enemy         = inst.GetComponent<Enemy>();
-        enemy.target        = oilDrill.transform.gameObject;
-        enemy.flowField     = flowField;
-        enemy.playerStats   = playerStats;
-        enemy.player        = player;
-        enemy.levelManager  = this;
+        Enemy enemy        = inst.GetComponent<Enemy>();
+        enemy.target       = oilDrill.transform.gameObject;
+        enemy.flowField    = flowField;
+        enemy.playerStats  = playerStats;
+        enemy.player       = player;
+        enemy.levelManager = this;
         enemy.SetHealth(enemy.currentHealth * currentHpIncrease);
-        enemy.attackPower   *= attackIncreaseIncrease;
-        enemy.defense       *= defenseIncrease;
+        enemy.attackPower  *= attackIncreaseIncrease;
+        enemy.defense      *= defenseIncrease;
 
         enemyCount++;
 
-        //float randomDirection = Random.Range(0, 2 * Mathf.PI);
-        inst.transform.position =   newPos;
+        inst.transform.position = newPos;
 
         if (firstEnemyOfWave){
             waveCount++;
@@ -179,17 +177,17 @@ public class LevelManager : MonoBehaviour
 
     void CheckGameStates(){
         if (enemyCount == 0 && waveCount >= numberOfWaves && !spawningNewEnemies){
-            //win
+            // Win
             playerStats.CleanUp(); // ToDo: only if last level
             SceneManager.LoadScene(winScreen);
         }
         else if (playerStats.currentHealth <= 0){
-            //lose
+            // Lose via Player Health
             playerStats.CleanUp();
             SceneManager.LoadScene(playerLossScreen);
         }
         else if (oilDrill.currentHealth <= 0){
-            //lose
+            // Lose via Oil Drill
             playerStats.CleanUp();
             SceneManager.LoadScene(drillLossScreen);
         }

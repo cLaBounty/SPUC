@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3d46271139c9d4a919b0baf65d25f8, type: 3}
   m_Name: MaxHealthIncrease
   m_EditorClassIdentifier: 
-  type: 8
+  type: 7
   name: Max Health Increase
   description: 
   uiDisplay: {fileID: 21300000, guid: aca84934bfda05544b16d969c0ff851d, type: 3}

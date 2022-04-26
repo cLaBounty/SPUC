@@ -59,7 +59,6 @@ public class Player : MonoBehaviour
                 damageVignette.gameObject.SetActive(false);
             }
         }
-
     }
 
     public void IncreaseMaxHealth(float value) {

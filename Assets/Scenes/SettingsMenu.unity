@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -648,6 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5100784687d339542b520838cb8b1ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsScene: SettingsMenu
   musicVolumeSlider: {fileID: 1344568054}
   sfxVolumeSlider: {fileID: 1389547985}
   sensitivitySlider: {fileID: 82863077}
@@ -1606,10 +1607,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 797341620}
   m_HandleRect: {fileID: 1748900616}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 10
+  m_MinValue: -70
+  m_MaxValue: -10
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: -40
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1824,10 +1825,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1906481894}
   m_HandleRect: {fileID: 1847780476}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 10
+  m_MinValue: -40
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: -20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

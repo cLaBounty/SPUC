@@ -5,21 +5,20 @@ using UnityEngine;
 // Source: https://www.youtube.com/watch?v=_QajrabyTJc
 public class MouseLook : MonoBehaviour
 {
+    public static float Sensitivity = 250f;
+    public static float SensitivityMultiplier = 1f;
+
 	[SerializeField] Transform playerBody;
     [SerializeField] Camera cam;
-	public static float Sensitivity = 250f;
-    public static float SensitivityMultiplier = 1f;
 
 	private float xRotation = 0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         cam.fieldOfView = 60.0f;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (Cursor.lockState == CursorLockMode.Locked)

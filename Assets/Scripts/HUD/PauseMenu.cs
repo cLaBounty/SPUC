@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
-    private string settingsScene = "SettingsMenu";
+    [SerializeField] private string settingsScene = "SettingsMenu";
 
     public GameObject pauseMenuUI;
 

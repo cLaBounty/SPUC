@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SupplyDropLocation : MonoBehaviour
 {
-    private const float RADIUS = 0.5f;
+    [SerializeField] private float radius = 0.5f;
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, RADIUS);
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

@@ -8,15 +8,13 @@ public class Target : MonoBehaviour
 	public void TakeDamage(float amount)
 	{
 		health -= amount;
+		
 		if (health < 1f)
-		{
 			die();
-		}
 	}
 
 	void die()
 	{
 		Destroy(gameObject);
 	}
-
 }

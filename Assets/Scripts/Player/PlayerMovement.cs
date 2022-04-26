@@ -17,9 +17,16 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float spritMultiplier = 1.75f;
 	[SerializeField] string[] stepSounds;
 	[SerializeField] float stepSoundsTime = 0.15f;
+
+	// Sprinting
 	private bool isSprinting = true;
-	Vector3 velocity;
-	Vector3 previousPosition;
+	private Vector3 velocity;
+	private Vector3 previousPosition;
+
+	// Crouching
+	private bool isCrouching = false;
+	[SerializeField] float crouchMultiplier = 0.75f;
+	[SerializeField] float crouchSpeed;
 
 	// Ground Check
 	public Transform groundCheck;
@@ -28,14 +35,8 @@ public class PlayerMovement : MonoBehaviour
 	private bool isGrounded;
 	bool movedLastFrame = false;
 
-	// Crouching
-	private bool isCrouching = false;
-	[SerializeField] float crouchMultiplier = 0.75f;
-	[SerializeField] float crouchSpeed;
-
 	int currentStepIndex = 0;
 
-    // Update is called once per frame
     void Update()
     {
 		if (PauseMenu.GameIsPaused) return;
@@ -54,7 +55,9 @@ public class PlayerMovement : MonoBehaviour
 			movedLastFrame = true;
 			StartCoroutine(PlaySound());
 		}
-		else if (x + z < 1 || !isGrounded) movedLastFrame = false;
+		else if (x + z < 1 || !isGrounded) {
+			movedLastFrame = false;
+		}
 
 		if (isSprinting && !isCrouching)
 		{
@@ -69,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		Vector3 move = transform.right * x + transform.forward * z;
-
 		controller.Move(move * speed * Time.deltaTime);
 
 		if(Input.GetButtonDown("Jump") && isGrounded)
@@ -112,4 +114,3 @@ public class PlayerMovement : MonoBehaviour
 		if (isGrounded && x + z >= 1f) StartCoroutine(PlaySound());
 	}
 }
-

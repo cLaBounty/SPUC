@@ -6,6 +6,7 @@ using UnityEngine;
 public class CraftingObject : ScriptableObject
 {
     public bool displayAvailableOnly = false;
+    
     public InventoryObject playerInventory;
     public Inventory container;
 

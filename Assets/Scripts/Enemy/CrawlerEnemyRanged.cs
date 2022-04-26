@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//[RequireComponent(typeof(Rigidbody))] 
 public class CrawlerEnemyRanged : Enemy
 {
     [Header("Agro Vars")]
@@ -31,7 +30,6 @@ public class CrawlerEnemyRanged : Enemy
 
     LayerMask impassableMask;
 
-    // Start is called before the first frame update
     new void Start()
     {
         base.Start();
@@ -49,7 +47,6 @@ public class CrawlerEnemyRanged : Enemy
         StartCoroutine(RandomShot(Random.Range(randomSpawnTimerRange.x, randomSpawnTimerRange.y)));
     }
 
-    // Update is called once per frame
     private void Update() {
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
@@ -73,7 +70,6 @@ public class CrawlerEnemyRanged : Enemy
     }
 
     void AttackPlayer(){
-        //stop
         Stop();
         isOil = false;
 
@@ -84,15 +80,13 @@ public class CrawlerEnemyRanged : Enemy
             else if (currentPlayerDist > agroRangeSqr)
                 state = STATE.AGRO_OIL;
         }
-        
-        
+
         Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
         transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void AttackOilDrill(){
         Stop();
-
         isOil = true;
 
         if (coolDown < 0) {
@@ -114,12 +108,9 @@ public class CrawlerEnemyRanged : Enemy
         //exit condition
         if (currentPlayerDist < agroRangeSqr)
             state = STATE.AGRO_PLAYER;
-
         else if (target != null && currentTargetDist < attackRangeSqr)
             state = STATE.ATTACKING_OIL;
-
         else if (flowField != null && flowField.initialized){
-            //Debug.Log("Target");
             Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
             Vector3 moveDirection;
 
@@ -158,10 +149,8 @@ public class CrawlerEnemyRanged : Enemy
         //exit condition
         if (currentPlayerDist > agroRangeSqr)
             state = STATE.AGRO_OIL;
-        
         else if (currentPlayerDist < attackRangeSqr)
             state = STATE.ATTACKING_PLAYER;
-
         else{
             navMeshAgent.speed = moveSpeed;
             navMeshAgent.destination = player.transform.position;
@@ -176,12 +165,10 @@ public class CrawlerEnemyRanged : Enemy
     public void DealDamage(GameObject projectile){
         EnemyProjectile ep = projectile.GetComponent<EnemyProjectile>();
 
-        if (isOil && target != null){
+        if (isOil && target != null)
             ep.target = target;
-        }
-        else if (!isOil && player != null){
+        else if (!isOil && player != null)
             ep.target = player.gameObject;
-        }
 
         ep.moveDirection = (ep.target.transform.position - ep.transform.position).normalized;
         ep.steeringSpeed = steeringSpeed;

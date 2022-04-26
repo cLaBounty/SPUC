@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//[RequireComponent(typeof(Rigidbody))] 
 public class FlyingEnemy : Enemy
 {
     [Header("Flying Vars")]
@@ -29,9 +28,6 @@ public class FlyingEnemy : Enemy
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
     BoxCollider bc;
-    //GridController flowField = null;
-    //PlayerMovement player = null;
-    //Player playerStats = null;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
     float agroRangeSqr = 0;
@@ -44,7 +40,6 @@ public class FlyingEnemy : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
-    // Start is called before the first frame update
     new void Start()
     {
         base.Start();
@@ -66,7 +61,6 @@ public class FlyingEnemy : Enemy
         StartCoroutine(RandomShot(Random.Range(randomSpawnTimerRange.x, randomSpawnTimerRange.y)));
     }
 
-    // Update is called once per frame
     private void Update() {
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
@@ -90,7 +84,6 @@ public class FlyingEnemy : Enemy
     }
 
     void AttackPlayer(){
-        //stop
         Stop();
         isOil = false;
 
@@ -101,15 +94,13 @@ public class FlyingEnemy : Enemy
             else if (currentPlayerDist > agroRangeSqr)
                 state = STATE.AGRO_OIL;
         }
-        
-        
+
         Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
         transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void AttackOilDrill(){
         Stop();
-
         isOil = true;
 
         if (coolDown < 0) {
@@ -131,17 +122,14 @@ public class FlyingEnemy : Enemy
         //state change
         if (currentPlayerDist < agroRangeSqr && state != STATE.AGRO_DISTRACTION && !isDistracted)
             state = STATE.AGRO_PLAYER;
-
         else if (target != null && currentTargetDist < attackRangeSqr){
             if (state == STATE.AGRO_DISTRACTION) isDistracted = true;
             state = STATE.ATTACKING_OIL;
         }
-
         else{
             MoveTowardsTargetNoStateCheck();
         }
     }
-
 
     void MoveTowardsTargetNoStateCheck(){
         Vector3 dir =  (target.transform.position - transform.position).normalized;
@@ -166,15 +154,12 @@ public class FlyingEnemy : Enemy
         transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
-
     void MoveTowardsPlayer(){
         //state change
         if (currentPlayerDist > agroRangeSqr)
             state = STATE.AGRO_OIL;
-
         else if (currentPlayerDist < attackRangeSqr)
             state = STATE.ATTACKING_PLAYER;
-
         else{
             Vector3 dir =  (player.transform.position - transform.position).normalized;
             RaycastHit hit;
@@ -183,8 +168,7 @@ public class FlyingEnemy : Enemy
             bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 2.5f, Quaternion.identity, impassableMask);
 
             if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
-
-                if (toClosetoSolid) transform.position += flyUpOffset * Time.deltaTime;
+                if (toClosetoSolid) { transform.position += flyUpOffset * Time.deltaTime; }
                 dir.y = 1f;
                 Debug.Log("Flying Up");
             }
@@ -205,13 +189,11 @@ public class FlyingEnemy : Enemy
     public void DealDamage(GameObject projectile){
         EnemyProjectile ep = projectile.GetComponent<EnemyProjectile>();
 
-        if (isOil && target != null){
+        if (isOil && target != null)
             ep.target = target;
-        }
-        else if (!isOil && player != null){
+        else if (!isOil && player != null)
             ep.target = player.gameObject;
-        }
-
+        
         ep.moveDirection = (ep.target.transform.position - ep.transform.position).normalized;
         ep.steeringSpeed = steeringSpeed;
         ep.projectileSpeed = projectileSpeed;

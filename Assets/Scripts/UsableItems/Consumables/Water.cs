@@ -25,6 +25,7 @@ public class Water : UsableItem
     protected override void Use() {
 		if (coolDownTime >= useTime) { coolDownTime = 0; }
 		else { return; }
+		
 		animator.Play(useAnimation);
 		SFXManager.instance.Play("Drink", 0.95f, 1.05f);
 		StartCoroutine(UseTimer());        

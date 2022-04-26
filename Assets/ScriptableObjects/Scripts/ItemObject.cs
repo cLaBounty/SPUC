@@ -5,12 +5,11 @@ using System;
 
 public enum ItemType
 {
-    Ammo,
     ResourceCollector,
+    Ammo,
     Material,
     Consumable,
     Deployable,
-    Barricade,
     MeleeWeapon,
     FirearmWeapon,
     StatUpgrade,

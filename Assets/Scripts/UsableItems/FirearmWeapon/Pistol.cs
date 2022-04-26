@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Pistol : UsableItem
 {
-	[SerializeField] string shootAnimation = "PistolFire";
+	[Header("Mechanics")]
 	[SerializeField] private float damage = 20f;
     [SerializeField] private float range = 75f;
+
+	[Header("Effects")]
+	[SerializeField] string shootAnimation = "PistolFire";
+	[SerializeField] ParticleSystem impactEffect;
+	[SerializeField] Transform firePoint;
+	[SerializeField] ParticleSystem muzzleFlash;
+	[SerializeField] TrailRenderer bulletTrail;
+
 
 	public ItemObject ammo;
 
@@ -14,11 +22,7 @@ public class Pistol : UsableItem
 	private Animator animator;
 	private int layers;
 
-	[SerializeField] ParticleSystem impactEffect;
-	[SerializeField] Transform firePoint;
-	[SerializeField] ParticleSystem muzzleFlash;
-	[SerializeField] TrailRenderer bulletTrail;
-
+	
 	protected override void Init() {
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");

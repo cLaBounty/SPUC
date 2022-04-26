@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
-    private string settingsScene = "SettingsMenu";
+    [SerializeField] private string settingsScene = "SettingsMenu";
 
     public Slider musicVolumeSlider;
     public Slider sfxVolumeSlider;
@@ -27,11 +27,17 @@ public class SettingsMenu : MonoBehaviour
     }
 
     public void SetMusicVolume(float value) {
-        audioMixer.SetFloat("MusicVolume", value);
+        if (value == musicVolumeSlider.minValue)
+            audioMixer.SetFloat("MusicVolume", -80f);
+        else
+            audioMixer.SetFloat("MusicVolume", value);
     }
 
     public void SetSFXVolume(float value) {
-        audioMixer.SetFloat("SFXVolume", value);
+        if (value == sfxVolumeSlider.minValue)
+            audioMixer.SetFloat("SFXVolume", -80f);
+        else
+            audioMixer.SetFloat("SFXVolume", value);
     }
 
     public void SetSensitivity(float value) {

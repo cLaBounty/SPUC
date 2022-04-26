@@ -5,6 +5,8 @@ using UnityEngine;
 public class Sickle : UsableItem
 {
 	[SerializeField] string swingAnimation = "MeleeSwing";
+
+	[Header("Mechanics")]
 	[SerializeField] private float damage = 25f;
     [SerializeField] private float range = 4f;
 

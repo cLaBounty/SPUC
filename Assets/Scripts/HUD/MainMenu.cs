@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private string mainScene = "Main Scene";
-    private string settingsScene = "SettingsMenu";
+    [SerializeField] private string mainScene = "MainScene";
+    [SerializeField] private string settingsScene = "SettingsMenu";
 
     public void Play() {
         SceneManager.LoadScene(mainScene);

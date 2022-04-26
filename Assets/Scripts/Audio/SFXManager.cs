@@ -5,11 +5,12 @@ using UnityEngine;
 public class SFXManager : MonoBehaviour
 {
     [SerializeField] AudioMixerGroup audioMixerGroup;
-    public Sound[] sounds;
-    Dictionary <string, Sound> soundDictionary;
-    public static SFXManager instance;
 
-    // Start is called before the first frame update
+    public static SFXManager instance;
+    public Sound[] sounds;
+
+    Dictionary <string, Sound> soundDictionary;
+
     void Awake(){
         if (instance == null)
             instance = this;

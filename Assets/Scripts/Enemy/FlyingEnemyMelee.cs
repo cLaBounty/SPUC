@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//[RequireComponent(typeof(Rigidbody))] 
 public class FlyingEnemyMelee : Enemy
 {
     [Header("Flying Vars")]
@@ -24,9 +23,6 @@ public class FlyingEnemyMelee : Enemy
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
     BoxCollider bc;
-    //GridController flowField = null;
-    //PlayerMovement player = null;
-    //Player playerStats = null;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
     float agroRangeSqr = 0;
@@ -39,7 +35,6 @@ public class FlyingEnemyMelee : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
-    // Start is called before the first frame update
     new void Start()
     {
         base.Start();
@@ -60,7 +55,6 @@ public class FlyingEnemyMelee : Enemy
         impassableMask = LayerMask.GetMask("Impassible Terrain");
     }
 
-    // Update is called once per frame
     private void Update() {
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
@@ -84,7 +78,6 @@ public class FlyingEnemyMelee : Enemy
     }
 
     void AttackPlayer(){
-        //stop
         Stop();
         isOil = false;
 
@@ -95,15 +88,13 @@ public class FlyingEnemyMelee : Enemy
             else if (currentPlayerDist > agroRangeSqr)
                 state = STATE.AGRO_OIL;
         }
-        
-        
+
         Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
         transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void AttackOilDrill(){
         Stop();
-
         isOil = true;
 
         if (coolDown < 0) {
@@ -124,19 +115,15 @@ public class FlyingEnemyMelee : Enemy
     void MoveTowardsTarget(){
         if (currentPlayerDist < agroRangeSqr && state != STATE.AGRO_DISTRACTION && !isDistracted)
             state = STATE.AGRO_PLAYER;
-
         else if (target != null && currentTargetDist < attackDistanceOil * attackDistanceOil && coolDown < 0){
             if (state == STATE.AGRO_DISTRACTION) isDistracted = true;
             if (isDistracted && currentTargetDist > attackRangeSqr){MoveTowardsTargetNoStateCheck(); return;}
-            Debug.Log("Running");
             state = STATE.ATTACKING_OIL;
         }
-
         else{
             MoveTowardsTargetNoStateCheck();
         }
     }
-
 
     void MoveTowardsTargetNoStateCheck(){
         Vector3 dir =  (target.transform.position - transform.position).normalized;
@@ -166,10 +153,8 @@ public class FlyingEnemyMelee : Enemy
         //state change
         if (currentPlayerDist > agroRangeSqr)
             state = STATE.AGRO_OIL;
-
         else if (currentPlayerDist < attackRangeSqr && coolDown < 0)
             state = STATE.ATTACKING_PLAYER;
-
         else{
             Vector3 dir =  (player.transform.position - transform.position).normalized;
             RaycastHit hit;
@@ -178,10 +163,8 @@ public class FlyingEnemyMelee : Enemy
             bool toClosetoSolid = Physics.CheckBox(transform.position + bc.center, bc.size * 2.5f, Quaternion.identity, impassableMask);
 
             if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
-
                 if (toClosetoSolid) transform.position += flyUpOffset * Time.deltaTime;
                 dir.y = 1f;
-                Debug.Log("Flying Up");
             }
             else if (hit.distance > maxFlyHeight){
                 dir.y = -1f;
