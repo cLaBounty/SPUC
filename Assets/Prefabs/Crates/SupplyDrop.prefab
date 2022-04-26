@@ -137,7 +137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rarity: 0
   spawnRate: 1
+  openRange: 5
   infoPrefab: {fileID: 7540945013849109311, guid: 1bdde55dd145a5f41b042430e673f9f8, type: 3}
+  IsGrounded: 0
 --- !u!114 &2059462485619004910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20494896fd393a428aa70fd1b1f967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropSpeed: 4
   thrusterOne: {fileID: 5461251399077973313}
   thrusterTwo: {fileID: 6697298984569611171}
 --- !u!54 &7774108692788136087

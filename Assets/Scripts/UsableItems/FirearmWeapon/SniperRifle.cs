@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class SniperRifle : UsableItem
 {
-	[SerializeField] private string shootAnimation = "SniperFire";
-	[SerializeField] private float damage = 35f;
-    [SerializeField] private float range = 100f;
+	[Header("Mechanics")]
+	[SerializeField] private float damage = 100f;
+    [SerializeField] private float range = 150f;
     [SerializeField] private float coolDown = 0.25f;
 	[SerializeField] private float scopedFOV = 15f;
+
+	[Header("Effects")]
+	[SerializeField] private string shootAnimation = "SniperFire";
+	[SerializeField] ParticleSystem impactEffect;
+	[SerializeField] Transform firePoint;
+	[SerializeField] ParticleSystem muzzleFlash;
+	[SerializeField] TrailRenderer bulletTrail;
 
 	public ItemObject ammo;
 
 	private Camera mainCamera;
 	private Camera fpsCamera;
 	private int layers;
+	private Animator animator;
+	private GameObject scopeOverlay;
+
 	private int layerIgnore;
 	private int layerFPSCam;
-	private Animator animator;
-
-	[SerializeField] ParticleSystem impactEffect;
-	[SerializeField] Transform firePoint;
-	[SerializeField] ParticleSystem muzzleFlash;
-	[SerializeField] TrailRenderer bulletTrail;
-
-	private GameObject scopeOverlay;
 
 	private float defaultFOV;
 	private float coolDownTime;
@@ -48,11 +50,6 @@ public class SniperRifle : UsableItem
 	private void Update() {
 		base.Update();
 		coolDownTime += Time.deltaTime;
-
-		// Empty effect should only play without having to wait for cooldown
-		if (Input.GetButtonDown("Fire1") && !hotBar.inventory.Has(ammo, 1)) {
-			SFXManager.instance.Play("Gun Empty");
-		}
 	}
 
 	protected override void Focus() {
@@ -63,17 +60,18 @@ public class SniperRifle : UsableItem
 	}
     
     protected override void Use() {
+		if (Input.GetButtonDown("Fire1") && !hotBar.inventory.Has(ammo, 1)) {
+			SFXManager.instance.Play("Gun Empty");
+		}
+
 		if (coolDownTime >= coolDown) { coolDownTime = 0; }
 		else { return; }
 
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			animator.Play(shootAnimation);
-			
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Sniper Shot", 0.9f, 1.1f);
-		} else {
-			SFXManager.instance.Play("Gun Empty");
 		}
     }
 
@@ -124,11 +122,10 @@ public class SniperRifle : UsableItem
 		{
 			trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
 			time += Time.deltaTime / trail.time;
-
 			yield return null;
 		}
-		trail.transform.position = hit.point;
 
+		trail.transform.position = hit.point;
 		Destroy(trail.gameObject, trail.time);
 	}
 }

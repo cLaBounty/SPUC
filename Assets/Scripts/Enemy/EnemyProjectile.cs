@@ -15,7 +15,6 @@ public class EnemyProjectile : MonoBehaviour
 
     void Start(){
         rb = GetComponent<Rigidbody>();
-        //directionToPlayer = target.transform.position - transform.position;
     }
 
     void Update()

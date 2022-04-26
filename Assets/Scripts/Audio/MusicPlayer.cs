@@ -8,7 +8,6 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] AudioSource passiveMusic;
     [SerializeField] float changeRate = 0.5f;
 
-    //Transform playerTrans;
     LevelManager levelManager;
 
     float combatChangeRate = 0;
@@ -19,10 +18,8 @@ public class MusicPlayer : MonoBehaviour
         PASSIVE,
     } 
 
-    // Start is called before the first frame update
     void Start(){
         passiveMusic.Play();
-        //playerTrans  = GameObject.FindObjectOfType<PlayerMovement>().gameObject.GetComponent<Transform>();
         levelManager = GameObject.FindObjectOfType<LevelManager>();
     }
 
@@ -41,7 +38,6 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update(){
         if (combatChangeRate != 0f){
             combatMusic.volume += combatChangeRate * changeRate * Time.deltaTime;
@@ -67,10 +63,10 @@ public class MusicPlayer : MonoBehaviour
     }
 
     void LateUpdate(){
-        if      (levelManager.enemyCount == 0 && passiveMusic.volume == 0f) ChangeMusicState(MUSIC_STATE.PASSIVE);
-        else if (levelManager.enemyCount != 0 &&  combatMusic.volume == 0f) ChangeMusicState(MUSIC_STATE.COMBAT);
-
-        //transform.position = playerTrans.position;
+        if (levelManager.enemyCount == 0 && passiveMusic.volume == 0f)
+            ChangeMusicState(MUSIC_STATE.PASSIVE);
+        else if (levelManager.enemyCount != 0 && combatMusic.volume == 0f)
+            ChangeMusicState(MUSIC_STATE.COMBAT);
     }
 
     void OnDestroy(){

@@ -5,11 +5,12 @@ using UnityEngine;
 public class ProjectilDestroy : MonoBehaviour
 {
     [SerializeField] float destroyTimer;
+
     private void Start() {
         StartCoroutine(DestroyTimer());
     }
 
-    IEnumerator DestroyTimer(){
+    private IEnumerator DestroyTimer(){
         yield return new WaitForSeconds(destroyTimer);
         Destroy(gameObject);
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Machete : UsableItem
 {
 	[SerializeField] string swingAnimation = "MeleeSwing";
+
+	[Header("Mechanics")]
 	[SerializeField] private float damage = 20f;
     [SerializeField] private float range = 6f;
 

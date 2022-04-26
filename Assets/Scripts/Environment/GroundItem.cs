@@ -7,12 +7,20 @@ public class GroundItem : MonoBehaviour
     public ItemObject item;
     public int amount = 1;
     public float spawnRate = 1f;
-    public string sfx = "Gun Pickup";
+    public float pickupRange = 5f;
+    public string sfx = "Normal Pickup";
 
-    private float pickupDistance = 25f;
     public GameObject infoPrefab;
-    private Player player;
     public GameObject currentInfo = null;
+
+    //moving away from other objects
+    [Header("Seperations")]
+    public float stayAwayDist = 1f;
+    public float moveAwaySpeed = 1f;
+
+    private Player player;
+    private LayerMask mask;
+    private LayerMask ground;
 
     // Bounce Effect
     private float hoverRate = 0.5f;
@@ -20,32 +28,27 @@ public class GroundItem : MonoBehaviour
     private float startingZ;
     private float time = 0;
 
-    //moving away from other objects
-    [Header("Seperations")]
-    public float stayAwayDist = 1f;
-    public float moveAwaySpeed = 1f;
-    //Collider colliderr;
-    LayerMask mask;
-    LayerMask ground;
-    bool grounded = false;
+    private bool grounded = false;
+    private float pickupRangeSqr;
 
     void Start() {
         player = GameObject.FindObjectOfType<Player>();
+        mask = LayerMask.GetMask("Ground Item");
+        ground = LayerMask.GetMask("Ground");
 
         // Bounce Effect
         startingZ = transform.position.y;
         time = Random.Range(0f, 1f);
-        //colliderr = GetComponent<Collider>();
-        mask = LayerMask.GetMask("Ground Item");
-        ground = LayerMask.GetMask("Ground");
+
+        grounded = false;
+        pickupRangeSqr = pickupRange * pickupRange;
 
         if (UnityEngine.Random.Range(0f, 1f) > spawnRate) { Destroy(transform.gameObject); }
-        grounded = false;
     }
 
     void Update() {
         float currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
-        if (currentPlayerDist <= pickupDistance) {
+        if (currentPlayerDist <= pickupRangeSqr) {
             // Info Popup
             if (currentInfo == null) {
                 currentInfo = Instantiate(infoPrefab, new Vector3(transform.position.x, startingZ + 2f, transform.position.z), Quaternion.identity);
@@ -99,6 +102,4 @@ public class GroundItem : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x + totalForce.x, startingZ + Mathf.Lerp(0, highestOffset, Mathf.Cos(time * Mathf.PI) * 0.5f + 0.5f), transform.position.z + totalForce.y);
     }
-
-    
 }

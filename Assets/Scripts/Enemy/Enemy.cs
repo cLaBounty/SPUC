@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
         AGRO_DISTRACTION,
         AGRO_PLAYER,
         ATTACKING_OIL,
-        //ATTACKING_DISTRACTION,
         ATTACKING_PLAYER,
         DEAD,
     }
@@ -29,8 +28,6 @@ public class Enemy : MonoBehaviour
     public bool isEnemy = true;
     public bool isFlying = true;
 
-    //[Header("Debuging")]
-    //[SerializeField] 
     [HideInInspector]public GameObject target;
     [HideInInspector]public GridController flowField = null;
     [HideInInspector]public PlayerMovement player = null;
@@ -46,7 +43,6 @@ public class Enemy : MonoBehaviour
     [Header("Drops (Organize in Order Please)")]
     [SerializeField] ItemDrop[] itemDrops;
 
-    
     bool firstSetHealth = false; 
     public bool isDistracted = false;
 
@@ -55,7 +51,7 @@ public class Enemy : MonoBehaviour
         healthBar.transform.gameObject.SetActive(false);
     }
 
-    public void TakeDamage (float amount, bool ignoreSound = false) {
+    public void TakeDamage(float amount, bool ignoreSound = false) {
         if (state == STATE.DEAD) return;
 
         float damage = Mathf.Max(1f, amount - defense);

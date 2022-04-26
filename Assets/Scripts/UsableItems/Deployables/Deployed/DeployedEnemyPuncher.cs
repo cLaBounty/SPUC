@@ -31,19 +31,18 @@ public class DeployedEnemyPuncher : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
-    Player player;
-    DeployedStatus status;
+    private Player playerObj;
+    private DeployedStatus status;
 
-    // Start is called before the first frame update
     new void Start()
     {
-        player = GameObject.FindObjectOfType<Player>();
+        playerObj = GameObject.FindObjectOfType<Player>();
         status = GetComponent<DeployedStatus>();
 
-        SetHealth(maxHealth + (player.maxHealth - player.initialHealth));
+        SetHealth(maxHealth + (playerObj.maxHealth - playerObj.initialHealth));
         healthBar.transform.gameObject.SetActive(false);
         
-        rb              = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         attackRangeEnemySqr = attackOilEnemyDist * attackOilEnemyDist;
         
         //set navmeshagent
@@ -52,7 +51,6 @@ public class DeployedEnemyPuncher : Enemy
         StartCoroutine(FindNewFoe());
     }
 
-    // Update is called once per frame
     private void Update() {
         if (!status.isActive) return;
 
@@ -69,9 +67,9 @@ public class DeployedEnemyPuncher : Enemy
             state = STATE.AGRO_OIL;
 
         switch(state){
-            case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
-            case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
-            case STATE.DEAD:                Stop(); break;
+            case STATE.AGRO_OIL:      MoveTowardsTarget(); break;
+            case STATE.ATTACKING_OIL: AttackOilDrill(); break;
+            case STATE.DEAD:          Stop(); break;
         }
 
         if (coolDown >= 0)
@@ -82,7 +80,6 @@ public class DeployedEnemyPuncher : Enemy
 
     void AttackOilDrill(){
         Stop();
-
         isOil = true;
 
         if (coolDown < 0) {
@@ -93,7 +90,7 @@ public class DeployedEnemyPuncher : Enemy
                 Enemy enemy = target.GetComponent<Enemy>();
 
                 if (enemy != null)
-                    enemy.TakeDamage(player.damageMultiplier * attackPower, true);
+                    enemy.TakeDamage(playerObj.damageMultiplier * attackPower, true);
                 else 
                    state = STATE.AGRO_OIL; 
             }
@@ -113,7 +110,7 @@ public class DeployedEnemyPuncher : Enemy
         navMeshAgent.speed = moveSpeed;
         navMeshAgent.destination = target.transform.position;
         rb.velocity = Vector3.zero;
-        //acculmulatedSpeed = Vector3.zero;
+
         Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
         transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
@@ -143,7 +140,6 @@ public class DeployedEnemyPuncher : Enemy
                 }
             }
 
-
             if (index != -1)
                 target = colliders[index].gameObject;
         }
@@ -172,7 +168,7 @@ public class DeployedEnemyPuncher : Enemy
             EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
 
             if (ep != null) {
-                float damage = Mathf.Max(1f, ep.damage - player.defense);
+                float damage = Mathf.Max(1f, ep.damage - playerObj.defense);
                 TakeDamage(damage);
                 Destroy(col[0].gameObject);
             }

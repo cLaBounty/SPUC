@@ -8,21 +8,17 @@ public class AdjustFlowHitBox : MonoBehaviour
     Collider col = null;
     GridController grid = null;
 
-    // Start is called before the first frame update
     void Start()
     {
         col = GetComponent<Collider>();
         grid = GameObject.FindObjectOfType<GridController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!set){
             if (grid != null){
                 if (grid.initialized){
-                   // col
-
                     set = true;
                 }
             }

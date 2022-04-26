@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFlyerAnimation : MonoBehaviour
 {
-    Animator animator;
+    
     [SerializeField] FlyingEnemy enemy;
     [SerializeField] GameObject projectile;
     [SerializeField] GameObject projectileSpawnPoint;
@@ -12,8 +12,9 @@ public class EnemyFlyerAnimation : MonoBehaviour
     [SerializeField] AudioSource SpewSFX;
     [SerializeField] AudioSource DeathSFX;
 
-    int state;
+    Animator animator;
 
+    int state;
     bool attacking = false;
     bool dying = false;
     
@@ -24,20 +25,17 @@ public class EnemyFlyerAnimation : MonoBehaviour
     void LateUpdate() {
         if (enemy.state == Enemy.STATE.DEAD){
             animator.SetInteger("State", 2);
+
             if (!dying){
                 dying = true;
                 DeathSFX.pitch = Random.Range(1.9f, 2.1f);
                 DeathSFX.Play();
             }
-
         }
-        else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER || enemy.state == Enemy.STATE.AGRO_DISTRACTION)//state < 4 && enemy.coolDown < 0){
+        else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER || enemy.state == Enemy.STATE.AGRO_DISTRACTION)
             animator.SetInteger("State", 0);
-        
-
         else if (enemy.state == Enemy.STATE.ATTACKING_OIL || enemy.state == Enemy.STATE.ATTACKING_PLAYER)
             animator.SetInteger("State", 1);
-        
     }
 
     public void AttackKeyFrame(){

@@ -17,7 +17,6 @@ public class DeployedEnemyShooter : Enemy
     [SerializeField] Vector3 BoxColldierCenter;
     [SerializeField] LayerMask ProjecileLayer;
 
-    //NavMeshAgent navMeshAgent;
     Rigidbody rb;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
@@ -31,28 +30,22 @@ public class DeployedEnemyShooter : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
-    Player player;
-    DeployedStatus status;
+    private Player playerObj;
+    private DeployedStatus status;
 
-    // Start is called before the first frame update
     new void Start()
     {
-        player = GameObject.FindObjectOfType<Player>();
+        playerObj = GameObject.FindObjectOfType<Player>();
         status = GetComponent<DeployedStatus>();
 
-        SetHealth(maxHealth + (player.maxHealth - player.initialHealth));
+        SetHealth(maxHealth + (playerObj.maxHealth - playerObj.initialHealth));
         healthBar.transform.gameObject.SetActive(false);
         
-        rb              = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         attackRangeEnemySqr = attackEnemyDist * attackEnemyDist;
-        
-        //set navmeshagent
-        //navMeshAgent = GetComponentInChildren<NavMeshAgent>();
-        //navMeshAgent.speed = moveSpeed;
         StartCoroutine(FindNewFoe());
     }
 
-    // Update is called once per frame
     private void Update() {
         if (!status.isActive) return;
         
@@ -68,8 +61,8 @@ public class DeployedEnemyShooter : Enemy
             state = STATE.ATTACKING_OIL;
 
         switch(state){
-            case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
-            case STATE.DEAD:                rb.useGravity = true; break;
+            case STATE.ATTACKING_OIL: AttackOilDrill(); break;
+            case STATE.DEAD:          rb.useGravity = true; break;
         }
 
         if (coolDown >= 0)
@@ -80,25 +73,18 @@ public class DeployedEnemyShooter : Enemy
 
 
     void AttackOilDrill(){
-        //Stop();
-
         if (coolDown < 0) {
             Enemy enemy = target.GetComponent<Enemy>();
+            if (enemy == null) return;
 
-            if (enemy == null)
-                return;
-                
-            enemy.TakeDamage(player.damageMultiplier * attackPower, true);
-
+            enemy.TakeDamage(playerObj.damageMultiplier * attackPower, true);
             coolDown = coolDownMax;
         }
 
-        if (transform.position.y < target.transform.position.y){
+        if (transform.position.y < target.transform.position.y)
             acculmulatedSpeed += new Vector3(0, moveSpeed * Time.deltaTime, 0);
-        }
-        else{
+        else
             acculmulatedSpeed -= new Vector3(0, moveSpeed * Time.deltaTime, 0);
-        }
 
         if (acculmulatedSpeed.sqrMagnitude > maxMoveSpeed * maxMoveSpeed)
             acculmulatedSpeed = acculmulatedSpeed.normalized * maxMoveSpeed;
@@ -112,7 +98,6 @@ public class DeployedEnemyShooter : Enemy
     void Stop(){
         rb.velocity = Vector3.zero;
         acculmulatedSpeed = Vector3.zero;
-        //navMeshAgent.speed = 0;
     }
 
     new void OnDestroy() {
@@ -162,7 +147,7 @@ public class DeployedEnemyShooter : Enemy
             EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
 
             if (ep != null){
-                float damage = Mathf.Max(1f, ep.damage - player.defense);
+                float damage = Mathf.Max(1f, ep.damage - playerObj.defense);
                 TakeDamage(damage);
                 Destroy(col[0].gameObject);
             }

@@ -9,7 +9,7 @@ public class SupplyDropSpawner : MonoBehaviour
 
     [SerializeField] int spawnBeforeCount = 1;
     [Range(0,1)][SerializeField] float spawnBeforeRate = 0.5f;
-
+    
     [SerializeField] int spawnAfterCount = 3;
     [Range(0,1)][SerializeField] float spawnAfterRate = 0.75f;
 

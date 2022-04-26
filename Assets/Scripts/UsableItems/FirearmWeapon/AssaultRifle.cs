@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class AssaultRifle : UsableItem
 {
-	[SerializeField] private string shootAnimation = "AssultRifleFire";
+	[Header("Mechanics")]
 	[SerializeField] private float damage = 35f;
     [SerializeField] private float range = 100f;
     [SerializeField] private float coolDown = 0.25f;
+
+	[Header("Effects")]
+	[SerializeField] private string shootAnimation = "AssultRifleFire";
+	[SerializeField] ParticleSystem impactEffect;
+	[SerializeField] Transform firePoint;
+	[SerializeField] ParticleSystem muzzleFlash;
+	[SerializeField] TrailRenderer bulletTrail;
 
 	public ItemObject ammo;
 
@@ -16,11 +23,6 @@ public class AssaultRifle : UsableItem
 	private int layers;
 
 	private float coolDownTime;
-
-	[SerializeField] ParticleSystem impactEffect;
-	[SerializeField] Transform firePoint;
-	[SerializeField] ParticleSystem muzzleFlash;
-	[SerializeField] TrailRenderer bulletTrail;
 
 	protected override void Init() {
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
@@ -31,23 +33,20 @@ public class AssaultRifle : UsableItem
     }
 
 	private void Update() {
-		coolDownTime += Time.deltaTime;
 		if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) { return; }
 		if (Input.GetButtonDown("Fire2")) { Focus(); }
-		if (Input.GetButton("Fire1")) {
-			if (coolDownTime >= coolDown) {
-				coolDownTime = 0;
-				Use();
-			}
-		}
-
-		// Empty effect should only play once
-		if (Input.GetButtonDown("Fire1") && !hotBar.inventory.Has(ammo, 1)) {
-			SFXManager.instance.Play("Gun Empty");
-		}
+		if (Input.GetButton("Fire1")) { Use(); } // 
+		coolDownTime += Time.deltaTime;
 	}
     
     protected override void Use() {
+		if (Input.GetButtonDown("Fire1") && !hotBar.inventory.Has(ammo, 1)) {
+			SFXManager.instance.Play("Gun Empty");
+		}
+
+		if (coolDownTime >= coolDown) { coolDownTime = 0; }
+		else { return; }
+
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			animator.Play(shootAnimation);

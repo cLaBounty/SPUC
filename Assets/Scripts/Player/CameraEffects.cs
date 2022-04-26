@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CameraEffects : MonoBehaviour
 {
-    // camera tilt left and right
     [SerializeField] Camera cam;
     [SerializeField] CharacterController controller;
+
     [Header("FOV")]
     [SerializeField] float rateOfIncrease = 45.0f;
-    private float maxFOV = 70f;
-	private float minFOV = 60f;
+    [SerializeField] private float minFOV = 60f;
+    [SerializeField] private float maxFOV = 70f;
 
     void Update()
     {
@@ -35,7 +35,5 @@ public class CameraEffects : MonoBehaviour
                 cam.fieldOfView = maxFOV;
             }
         }
-
-
     }
 }

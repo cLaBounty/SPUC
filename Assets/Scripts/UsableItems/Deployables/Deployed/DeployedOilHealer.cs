@@ -32,19 +32,18 @@ public class DeployedOilHealer : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
-    Player player;
-    DeployedStatus status;
+    private Player playerObj;
+    private DeployedStatus status;
 
-    // Start is called before the first frame update
     new void Start()
     {
-        player = GameObject.FindObjectOfType<Player>();
+        playerObj = GameObject.FindObjectOfType<Player>();
         status = GetComponent<DeployedStatus>();
 
-        SetHealth(maxHealth + (player.maxHealth - player.initialHealth));
+        SetHealth(maxHealth + (playerObj.maxHealth - playerObj.initialHealth));
         healthBar.transform.gameObject.SetActive(false);
         
-        rb              = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         attackRangeOilSqr = attackOilDistance * attackOilDistance;
         
         //set navmeshagent
@@ -54,7 +53,6 @@ public class DeployedOilHealer : Enemy
         oildDril = target.GetComponent<OilDrill>();
     }
 
-    // Update is called once per frame
     private void Update() {
         if (!status.isActive) return;
 
@@ -65,9 +63,9 @@ public class DeployedOilHealer : Enemy
             state = STATE.AGRO_OIL;
 
         switch(state){
-            case STATE.AGRO_OIL:            MoveTowardsTarget(); break;
-            case STATE.ATTACKING_OIL:       AttackOilDrill(); break;
-            case STATE.DEAD:                Stop(); break;
+            case STATE.AGRO_OIL:      MoveTowardsTarget(); break;
+            case STATE.ATTACKING_OIL: AttackOilDrill(); break;
+            case STATE.DEAD:          Stop(); break;
         }
 
         if (coolDown >= 0)
@@ -78,7 +76,6 @@ public class DeployedOilHealer : Enemy
 
     void AttackOilDrill(){
         Stop();
-
         isOil = true;
 
         if (coolDown < 0) {
@@ -102,9 +99,7 @@ public class DeployedOilHealer : Enemy
         //exit condition
         if (target != null && currentTargetDist < attackRangeOilSqr)
             state = STATE.ATTACKING_OIL;
-
         else if (flowField != null && flowField.initialized){
-            //Debug.Log("Target");
             Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
             Vector3 moveDirection;
 
@@ -157,7 +152,7 @@ public class DeployedOilHealer : Enemy
             EnemyProjectile ep = col[0].gameObject.GetComponent<EnemyProjectile>();
 
             if (ep != null){
-                float damage = Mathf.Max(1f, ep.damage - player.defense);
+                float damage = Mathf.Max(1f, ep.damage - playerObj.defense);
                 TakeDamage(damage);
                 Destroy(col[0].gameObject);
             }
