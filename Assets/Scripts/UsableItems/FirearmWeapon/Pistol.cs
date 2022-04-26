@@ -34,7 +34,7 @@ public class Pistol : UsableItem
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			animator.Play(shootAnimation);
-			muzzleFlash.Play();
+			//muzzleFlash.Play();
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Pistol Shot", 0.9f, 1.1f);
 		} else {
@@ -56,7 +56,7 @@ public class Pistol : UsableItem
 
 			Vector3 dir = firePoint.position - enemy.transform.position;
 			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
-			impactEffect.transform.position = enemy.transform.position + dir.normalized * .5f;
+			impactEffect.transform.position = hit.point + dir.normalized;
 			impactEffect.Play();
 		}
 	}

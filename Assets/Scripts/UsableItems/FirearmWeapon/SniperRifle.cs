@@ -90,7 +90,7 @@ public class SniperRifle : UsableItem
 
 			Vector3 dir = firePoint.position - enemy.transform.position;
 			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
-			impactEffect.transform.position = enemy.transform.position + dir.normalized * .5f;
+			impactEffect.transform.position = hit.point + dir.normalized;
 			impactEffect.Play();
 		}
 	}

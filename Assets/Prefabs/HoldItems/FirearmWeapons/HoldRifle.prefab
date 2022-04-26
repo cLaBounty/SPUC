@@ -100,15 +100,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: ccafa806dcf46354588779471c227b51, type: 2}
-  shootAnimation: AssultRifleFire
   damage: 35
   range: 100
   coolDown: 0.25
-  ammo: {fileID: 11400000, guid: 21f0753102f5fd344a9598f040aa14d3, type: 2}
-  impactEffect: {fileID: 7679437961049862082, guid: 15bca01026a681e48877cbeb751a6a25, type: 3}
+  shootAnimation: AssultRifleFire
+  impactEffect: {fileID: 9043300705475781627}
   firePoint: {fileID: 4347884107421900535}
   muzzleFlash: {fileID: 4312991388470234459}
   bulletTrail: {fileID: 4835709126313127300, guid: 1dc9e43f52a1a904f8ca535eace2c061, type: 3}
+  ammo: {fileID: 11400000, guid: 21f0753102f5fd344a9598f040aa14d3, type: 2}
 --- !u!1 &6809518570746860790
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +147,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 457962}
     m_Modifications:
+    - target: {fileID: 7679437961049862082, guid: 15bca01026a681e48877cbeb751a6a25, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679437961049862082, guid: 15bca01026a681e48877cbeb751a6a25, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 7679437961049862083, guid: 15bca01026a681e48877cbeb751a6a25, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -200,6 +208,11 @@ PrefabInstance:
 --- !u!4 &9043300705475781626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7679437961049862083, guid: 15bca01026a681e48877cbeb751a6a25, type: 3}
+  m_PrefabInstance: {fileID: 1662560775042665529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &9043300705475781627 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7679437961049862082, guid: 15bca01026a681e48877cbeb751a6a25, type: 3}
   m_PrefabInstance: {fileID: 1662560775042665529}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5522331217707081300
