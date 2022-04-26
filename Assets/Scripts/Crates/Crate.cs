@@ -100,8 +100,8 @@ public class Crate : MonoBehaviour
 
     private List<InventorySlot> GetCommonItems() {
         List<InventorySlot> result = new List<InventorySlot>();
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 5));
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 5));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 10));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 10));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Consumable), 1));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.MeleeWeapon), 1));
         return result;
@@ -109,8 +109,8 @@ public class Crate : MonoBehaviour
 
     private List<InventorySlot> GetRareItems() {
         List<InventorySlot> result = new List<InventorySlot>();
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 15));
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 15));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 20));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 20));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Consumable), 3));
         result.Add(new InventorySlot(GetRandomItemOfTwoTypes(ItemType.Deployable, ItemType.MeleeWeapon), 1));
         return result;
@@ -118,8 +118,8 @@ public class Crate : MonoBehaviour
 
     private List<InventorySlot> GetEpicItems() {
         List<InventorySlot> result = new List<InventorySlot>();
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 30));
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 30));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 40));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 40));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Consumable), 5));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.FirearmWeapon), 1));
         result.Add(new InventorySlot(GetRandomItemOfTwoTypes(ItemType.Deployable, ItemType.StatUpgrade), 1));
