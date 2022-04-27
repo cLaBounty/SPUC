@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6573688572695703077}
   - component: {fileID: 6573688572695703078}
   m_Layer: 0
-  m_Name: GroundEpicKey
+  m_Name: GroundLegendaryKey
   m_TagString: GroundItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6573688572695703074}
   m_Layer: 12
-  m_Name: HoldEpicKey
+  m_Name: HoldLegendaryKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

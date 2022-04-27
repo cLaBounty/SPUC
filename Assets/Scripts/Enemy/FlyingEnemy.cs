@@ -170,7 +170,6 @@ public class FlyingEnemy : Enemy
             if (Physics.Raycast(transform.position, dir, startUpwardDist, impassableMask) || hit.distance < minFlyHeight || toClosetoSolid){
                 if (toClosetoSolid) { transform.position += flyUpOffset * Time.deltaTime; }
                 dir.y = 1f;
-                Debug.Log("Flying Up");
             }
             else if (hit.distance > maxFlyHeight){
                 dir.y = -1f;

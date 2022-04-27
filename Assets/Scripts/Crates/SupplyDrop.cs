@@ -14,8 +14,8 @@ public class SupplyDrop : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-		Destroy(thrusterOne);
-		Destroy(thrusterTwo);
-		transform.gameObject.GetComponent<Crate>().IsGrounded = true;
+        Destroy(thrusterOne);
+        Destroy(thrusterTwo);
+        transform.gameObject.GetComponent<Crate>().IsGrounded = true;
     }
 }

@@ -6,7 +6,7 @@ using System;
 public enum CrateRarity {
     Common,
     Rare,
-    Epic
+    Legendary
 }
 
 public class Crate : MonoBehaviour
@@ -83,8 +83,8 @@ public class Crate : MonoBehaviour
             case CrateRarity.Rare:
                 items = GetRareItems();
                 break;
-            case CrateRarity.Epic:
-                items = GetEpicItems();
+            case CrateRarity.Legendary:
+                items = GetLegendaryItems();
                 break;
         }
 
@@ -116,7 +116,7 @@ public class Crate : MonoBehaviour
         return result;
     }
 
-    private List<InventorySlot> GetEpicItems() {
+    private List<InventorySlot> GetLegendaryItems() {
         List<InventorySlot> result = new List<InventorySlot>();
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 40));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 40));
