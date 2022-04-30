@@ -31,16 +31,29 @@ public class DeployedCampfire : MonoBehaviour
         coolDownTime += Time.deltaTime;
         if (coolDownTime >= frequency) {
             coolDownTime = 0;
-
-            float distance = (player.transform.position - transform.position).sqrMagnitude;
-            if (distance <= rangeSqr) {
-                player.GainHealth(healthIncreasePerSecond);
-            }
+            Enable();
         }
 
         totalTime += Time.deltaTime;
         if (totalTime >= timeLimit) {
             Destroy(transform.gameObject);
+        }
+    }
+
+    private void Enable() {
+        // Player
+        float playerDistance = (player.transform.position - transform.position).sqrMagnitude;
+        if (playerDistance <= rangeSqr) {
+            player.GainHealth(healthIncreasePerSecond);
+        }
+
+        // Robots
+        List<Enemy> livingRobots = player.GetLivingRobots();
+        foreach(Enemy robot in livingRobots) {
+            float distance = (robot.transform.position - transform.position).sqrMagnitude;
+            if (distance <= rangeSqr) {
+                robot.GainHealth(healthIncreasePerSecond);
+            }
         }
     }
 

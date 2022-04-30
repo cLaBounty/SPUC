@@ -94,7 +94,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -149,6 +149,8 @@ MonoBehaviour:
   cam: {fileID: 4248214650303288789}
   controller: {fileID: 4248214650345464470}
   rateOfIncrease: 45
+  minFOV: 60
+  maxFOV: 70
 --- !u!114 &721264859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,14 +259,16 @@ MonoBehaviour:
   gravity: -19.62
   jumpHeight: 3
   spritMultiplier: 1.75
-  stepSounds: []
+  stepSounds:
+  - Step 1
+  - Step 3
   stepSoundsTime: 0.15
+  crouchMultiplier: 0.75
+  crouchSpeed: 0
   groundCheck: {fileID: 4248214650240945314}
   groundMask:
     serializedVersion: 2
     m_Bits: 100289
-  crouchMultiplier: 0.75
-  crouchSpeed: 0
 --- !u!114 &5862226166126504024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,13 +282,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemGrav: 20
-  itemRange: 5
+  itemRange: 3
   vignetteTime: 0.25
   damageVignette: {fileID: 0}
-  vignetteSpeed: 10
-  maxHealth: 100
+  vignetteSpeed: 3
+  initialHealth: 100
   currentHealth: 100
+  maxHealth: 100
   defense: 0
+  damageMultiplier: 1
   healthBar: {fileID: 0}
   hotBar: {fileID: 0}
   inventory: {fileID: 11400000, guid: a5e9cecb9c354224a862093b2c27e37a, type: 2}
@@ -334,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537744cf03a4f404094d36d74590de11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleAnimation: Idle
 --- !u!95 &142098838
 Animator:
   serializedVersion: 4

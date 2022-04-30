@@ -8,8 +8,8 @@ public class Water : UsableItem
 	[SerializeField] private float healthIncrease = 15f;
     [SerializeField] private float useTime = 0.5f;
 
-    private float coolDownTime;
 	private Animator animator;
+    private float coolDownTime;
 
     protected override void Init() {
 		animator = GameObject.FindObjectOfType<ItemSwitching>().transform.gameObject.GetComponent<Animator>();

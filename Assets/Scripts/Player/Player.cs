@@ -61,6 +61,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    public List<Enemy> GetLivingRobots() {
+        List<Enemy> livingRobots = new List<Enemy>();
+        DeployedEnemyPuncher[] punchers = GameObject.FindObjectsOfType<DeployedEnemyPuncher>();
+        foreach(DeployedEnemyPuncher puncher in punchers) {
+            livingRobots.Add(puncher);
+        }
+        DeployedEnemyShooter[] shooters = GameObject.FindObjectsOfType<DeployedEnemyShooter>();
+        foreach(DeployedEnemyShooter shooter in shooters) {
+            livingRobots.Add(shooter);
+        }
+        DeployedOilHealer[] healers = GameObject.FindObjectsOfType<DeployedOilHealer>();
+        foreach(DeployedOilHealer healer in healers) {
+            livingRobots.Add(healer);
+        }
+        return livingRobots;
+    }
+
     public void IncreaseMaxHealth(float value) {
         maxHealth += value;
         healthBar.UpdateMaxHealth(maxHealth);

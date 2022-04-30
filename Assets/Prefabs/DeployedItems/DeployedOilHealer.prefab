@@ -184,7 +184,7 @@ MonoBehaviour:
   maxHealth: 50
   itemDrops: []
   isDistracted: 0
-  attackOilDistance: 8
+  attackOilDistance: 6.5
   damping: 0.98
   healAmmount: 1
   BoxColldierDimensions: {x: 1.2, y: 3.13, z: 1.2}
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210579b90289ad54799047755a68b550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActive: 1
 --- !u!65 &8834114374297442639
 BoxCollider:
   m_ObjectHideFlags: 0

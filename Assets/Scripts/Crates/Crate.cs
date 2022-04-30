@@ -12,7 +12,7 @@ public enum CrateRarity {
 public class Crate : MonoBehaviour
 {
     [SerializeField] private CrateRarity rarity;
-    [SerializeField] private float spawnRate = 1f;
+    [Range(0,1)][SerializeField] private float spawnRate = 1f;
     [SerializeField] private float openRange = 5f;
 
     public GameObject infoPrefab;

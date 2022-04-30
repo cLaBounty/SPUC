@@ -6,12 +6,12 @@ public class GroundItem : MonoBehaviour
 {
     public ItemObject item;
     public int amount = 1;
-    public float spawnRate = 1f;
-    public float pickupRange = 5f;
     public string sfx = "Normal Pickup";
-
     public GameObject infoPrefab;
     public GameObject currentInfo = null;
+
+    [Range(0,1)][SerializeField] private float spawnRate = 1f;
+    [SerializeField] private float pickupRange = 5f;
 
     //moving away from other objects
     [Header("Seperations")]
