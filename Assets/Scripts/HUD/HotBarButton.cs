@@ -44,9 +44,9 @@ public class HotBarButton : MonoBehaviour
             amountText.text = "";
         }
         
-        image.SetActive(slot.item != null);
-        amountText.gameObject.SetActive(slot.item != null);
-        slotText.gameObject.SetActive(slot.item == null);
+        image.SetActive(slot?.item != null);
+        amountText.gameObject.SetActive(slot?.item != null);
+        slotText.gameObject.SetActive(slot?.item == null);
     }
 
     private void HandleClick() {

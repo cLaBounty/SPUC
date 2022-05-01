@@ -27,7 +27,6 @@ public class Machete : UsableItem
     	animator.Play(swingAnimation);
     }
 
-    // ToDo: implement melee attack, not raycast hit
     private void Melee() {
 		RaycastHit hit;
 		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
