@@ -3,8 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum EndCause {
+    Win,
+    PlayerLoss,
+    OilDrillLoss
+}
+
 public class LevelManager : MonoBehaviour
 {
+    public static EndCause endCause;
+
     #region overhead
 
     [System.Serializable]
@@ -25,10 +33,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int enemyMax = 60;
 
     [Header("Scene Managment")]
-    [SerializeField] string winScreen = "Victory";
-    [SerializeField] string playerLossScreen = "PlayerDied";
-    [SerializeField] string drillLossScreen = "OilDrillDied";
-
+    [SerializeField] string endScene = "EndScene";
 
     [Header("Enemy Level Scale")]
     public int enemyLevel = 1;
@@ -137,6 +142,7 @@ public class LevelManager : MonoBehaviour
 
         if (firstEnemyOfWave){
             waveCount++;
+            Player.WavesCompleted += 1;
             enemyLevel++;
 
             currentwaveIncrease     *= waveIncreasePerLevel;
@@ -176,20 +182,20 @@ public class LevelManager : MonoBehaviour
     }
 
     void CheckGameStates(){
-        if (enemyCount == 0 && waveCount >= numberOfWaves && !spawningNewEnemies){
-            // Win
+        if (enemyCount == 0 && waveCount >= numberOfWaves && !spawningNewEnemies) { // Win
             playerStats.CleanUp(); // ToDo: only if last level
-            SceneManager.LoadScene(winScreen);
+            endCause = EndCause.Win;
+            SceneManager.LoadScene(endScene);
         }
-        else if (playerStats.currentHealth <= 0){
-            // Lose via Player Health
+        else if (playerStats.currentHealth <= 0) { // Lose via Player Health
             playerStats.CleanUp();
-            SceneManager.LoadScene(playerLossScreen);
+            endCause = EndCause.PlayerLoss;
+            SceneManager.LoadScene(endScene);
         }
-        else if (oilDrill.currentHealth <= 0){
-            // Lose via Oil Drill
+        else if (oilDrill.currentHealth <= 0) { // Lose via Oil Drill
             playerStats.CleanUp();
-            SceneManager.LoadScene(drillLossScreen);
+            endCause = EndCause.OilDrillLoss;
+            SceneManager.LoadScene(endScene);
         }
     }
 

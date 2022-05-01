@@ -25,19 +25,25 @@ public class HotBar : MonoBehaviour
         if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) return;
 
         // Scroll Wheel Switching
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
-            int high = activeIndex + 1;
-            if (high < slots) {
-                if (inventory.container.items[high].item != null) {
-                    SelectSlot(high);
-                }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
+            for (int i = 1; i < slots; i++) {
+                int low = activeIndex - i;
+                if (low >= 0) {
+                    if (inventory.container.items[low].item != null) {
+                        SelectSlot(low);
+                        return;
+                    }
+                } else { return; }
             }
-        } else if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
-            int low = activeIndex - 1;
-            if (low >= 0) {
-                if (inventory.container.items[low].item != null) {
-                    SelectSlot(low);
-                }
+        } else if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
+            for (int i = 1; i < slots; i++) {
+                int high = activeIndex + i;
+                if (high < slots) {
+                    if (inventory.container.items[high].item != null) {
+                        SelectSlot(high);
+                        return;
+                    }
+                } else { return; }
             }
         }
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OilDrill : MonoBehaviour
 {
+    public static float DamageTaken = 0f;
+
     public float maxHealth = 500f;
     public float currentHealth = 500f;
 
@@ -19,10 +21,12 @@ public class OilDrill : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
-
-        if (currentHealth < 0) {
+        if (amount > currentHealth) {
+            DamageTaken += currentHealth;
             currentHealth = 0;
+        } else {
+            DamageTaken += amount;
+            currentHealth -= amount;
         }
 
         billboardHealthBar.SetHealth(currentHealth);

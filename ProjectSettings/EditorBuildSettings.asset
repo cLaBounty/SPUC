@@ -15,12 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 47da3b3658f11bd4c8133da288f1ccbc
   - enabled: 1
-    path: Assets/Scenes/OilDrillDied.unity
-    guid: ca5cd1bb28f3ec24c933e982bd0b2277
-  - enabled: 1
-    path: Assets/Scenes/PlayerDied.unity
-    guid: 2848bdb9decd24b4d8f38012009dd45e
-  - enabled: 1
-    path: Assets/Scenes/Victory.unity
-    guid: dd31b914144d7f8459f784681f914e75
+    path: Assets/Scenes/EndScene.unity
+    guid: 09929ac50bf8b224bb52efd8e5b4b2e3
   m_configObjects: {}

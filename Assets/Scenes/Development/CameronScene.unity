@@ -7309,8 +7309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1967e54f032802488012809281af6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPrepTime: 120
-  timeBetweenWaves: 90
+  initialPrepTime: 2
+  timeBetweenWaves: 10
   numberOfWaves: 8
   enemyData:
   - enemyPrefab: {fileID: 7279199722365421932, guid: 280eda436695a75458830a83a982a81d, type: 3}
@@ -7339,9 +7339,7 @@ MonoBehaviour:
     trueSpawnWeight: 0
   enemiesPerWave: 14
   enemyMax: 40
-  winScreen: Victory
-  playerLossScreen: PlayerDied
-  drillLossScreen: OilDrillDied
+  endScreen: Victory
   enemyLevel: 1
   waveIncreasePerLevel: 1.2
   hpIncreasePerLevel: 1.2

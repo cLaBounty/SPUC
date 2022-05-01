@@ -5,6 +5,11 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
+    public static int WavesCompleted = 0;
+    public static int EnemiesKilled = 0;
+    public static float DamageDealt = 0f;
+    public static float DamageTaken = 0f;
+
     [SerializeField] float itemGrav = 1f;
     [SerializeField] float itemRange = 2f;
 	[SerializeField] float vignetteTime = 0.25f;
@@ -86,19 +91,22 @@ public class Player : MonoBehaviour
     public void TakeDamage(float amount)
     {
         float damage = Mathf.Max(1f, amount - defense);
-        currentHealth -= damage;
+        if (damage > currentHealth) {
+            DamageTaken += currentHealth;
+            currentHealth = 0;
+        } else {
+            DamageTaken += damage;
+            currentHealth -= damage;
+        }
+        healthBar.SetHealth(currentHealth);
 
+        // Hurt Visual Effect
         hurtEffect = true;
 		hurtEffectLerp = 0;
         damageVignette.gameObject.SetActive(true);
 
+        // Hurt Sound Effect
         SFXManager.instance?.Play("Hurt");
-
-        if (currentHealth < 0) {
-            currentHealth = 0;
-        }
-
-        healthBar.SetHealth(currentHealth);
     }
 
     public void GainHealth(float amount)

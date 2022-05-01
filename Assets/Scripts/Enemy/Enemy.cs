@@ -55,7 +55,13 @@ public class Enemy : MonoBehaviour
         if (state == STATE.DEAD) return;
 
         float damage = Mathf.Max(1f, amount - defense);
-        currentHealth -= damage;
+        if (damage > currentHealth) {
+            Player.DamageDealt += currentHealth;
+            currentHealth = 0;
+        } else {
+            Player.DamageDealt += damage;
+            currentHealth -= damage;
+        }
         healthBar.transform.gameObject.SetActive(true);
         healthBar.SetHealth(currentHealth);
 
@@ -68,6 +74,7 @@ public class Enemy : MonoBehaviour
             Collider collider = GetComponent<Collider>();
             if (collider != null ) collider.enabled = false;
             state = STATE.DEAD;
+            Player.EnemiesKilled += 1;
 
             float ran = Random.Range(0f, 100f);
             foreach (ItemDrop item in itemDrops){
