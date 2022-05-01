@@ -6,6 +6,8 @@ public class EnemyPuncherAnimation : MonoBehaviour
 {
     [SerializeField] DeployedEnemyPuncher helper;
     [SerializeField] float deathTimer = 2f;
+    [SerializeField] AudioSource AttackSFX;
+    [SerializeField] AudioSource DeathSFX;
 
     Animator animator;
 
@@ -24,6 +26,8 @@ public class EnemyPuncherAnimation : MonoBehaviour
             if (!dying){
                 dying = true;
                 StartCoroutine(Disapear());
+                DeathSFX.pitch = Random.Range(1.9f, 2.1f);
+                DeathSFX.Play();
             }
         }
         else if (helper.target == null)
@@ -37,5 +41,10 @@ public class EnemyPuncherAnimation : MonoBehaviour
     IEnumerator Disapear(){
         yield return new WaitForSeconds(deathTimer);
         Destroy(helper.gameObject);
+    }
+
+    public void PunchFX(){
+        AttackSFX.pitch = Random.Range(1.9f, 2.1f);
+        AttackSFX.Play();
     }
 }

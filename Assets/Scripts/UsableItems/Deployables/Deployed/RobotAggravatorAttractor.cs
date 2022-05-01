@@ -68,9 +68,11 @@ public class RobotAggravatorAttractor : MonoBehaviour
     private void OnDestroy() {
         Enemy[] allEnemies = GameObject.FindObjectsOfType<Enemy>();
         foreach(Enemy enemy in allEnemies) {
+            if (enemy != null)
             if (enemy.target == transform.gameObject) {
                 enemy.target = oilDrill;
                 enemy.state = Enemy.STATE.AGRO_OIL;
+                enemy.CheckDeadState();
                 enemy.isDistracted = false;
             }
         }

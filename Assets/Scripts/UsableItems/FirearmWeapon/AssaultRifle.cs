@@ -52,7 +52,7 @@ public class AssaultRifle : UsableItem
 			animator.Play(shootAnimation);
 			//muzzleFlash.Play();
 			hotBar.HandleItemUse(ammo);
-			SFXManager.instance.Play("Pistol Shot", 0.9f, 1.1f); // ToDo: replace with AR sound effect
+			SFXManager.instance.Play("Machine Gun", 0.9f, 1.1f); // ToDo: replace with AR sound effect
 		}
     }
 

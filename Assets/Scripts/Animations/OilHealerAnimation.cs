@@ -6,6 +6,8 @@ public class OilHealerAnimation : MonoBehaviour
 {
     [SerializeField] DeployedOilHealer enemy;
     [SerializeField] float deathTimer = 2f;
+    [SerializeField] AudioSource HealSFX;
+    [SerializeField] AudioSource DeathSFX;
 
     Animator animator;
 
@@ -24,12 +26,22 @@ public class OilHealerAnimation : MonoBehaviour
             if (!dying){
                 dying = true;
                 StartCoroutine(Disapear());
+                DeathSFX.pitch = Random.Range(1.9f, 2.1f);
+                DeathSFX.Play();
             }
         }
-        else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER || enemy.state == Enemy.STATE.AGRO_DISTRACTION)
+        else if (enemy.state == Enemy.STATE.AGRO_OIL || enemy.state == Enemy.STATE.AGRO_PLAYER || enemy.state == Enemy.STATE.AGRO_DISTRACTION){
             animator.SetInteger("State", 0);
-        else if (enemy.state == Enemy.STATE.ATTACKING_OIL || enemy.state == Enemy.STATE.ATTACKING_PLAYER)
+            if (HealSFX.isPlaying) HealSFX.Stop();
+        }
+
+        else if (enemy.state == Enemy.STATE.ATTACKING_OIL || enemy.state == Enemy.STATE.ATTACKING_PLAYER){
             animator.SetInteger("State", 1);
+            if (!HealSFX.isPlaying){
+                HealSFX.pitch = Random.Range(0.9f, 1.1f);
+                HealSFX.Play();
+            }
+        }
     }
 
     IEnumerator Disapear(){

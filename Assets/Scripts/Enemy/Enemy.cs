@@ -81,6 +81,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void CheckDeadState(){
+        if (currentHealth <= 0) state = STATE.DEAD;
+    }
+
     public void GainHealth(float amount) {
         currentHealth += amount;
 

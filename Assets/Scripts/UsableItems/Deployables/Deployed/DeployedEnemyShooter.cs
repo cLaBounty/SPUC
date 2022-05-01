@@ -11,6 +11,7 @@ public class DeployedEnemyShooter : Enemy
     [SerializeField] float damping = 0.98f;
     [SerializeField] float searchRadius = 6f;
     [SerializeField] LayerMask searchFields;
+    [SerializeField] float maxHeight = 12f;
 
     [Header("Collisions")]
     [SerializeField] Vector3 BoxColldierDimensions;
@@ -90,6 +91,9 @@ public class DeployedEnemyShooter : Enemy
             acculmulatedSpeed = acculmulatedSpeed.normalized * maxMoveSpeed;
         
         rb.velocity = acculmulatedSpeed;
+
+        if (transform.position.y > maxHeight)
+            transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
 
         Vector3 lookVector = new Vector3(target.transform.position.x - transform.position.x, 0, target.transform.position.z - transform.position.z);
         transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
