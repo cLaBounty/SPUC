@@ -14,7 +14,7 @@ public class MaxHealthIncrease : UsableItem
         player.IncreaseMaxHealth(maxHealthIncreaseValue);
         IncreaseLivingRobotHealth();
         hotBar.HandleItemUse(itemObject);
-        SFXManager.instance.Play("Eat", 0.95f, 1.05f); // ToDo: find powerup sound effect
+        SFXManager.instance.Play("Drink", 0.95f, 1.05f); // ToDo: find powerup sound effect
     }
 
     private void IncreaseLivingRobotHealth() {

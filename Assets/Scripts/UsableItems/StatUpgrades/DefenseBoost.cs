@@ -13,6 +13,6 @@ public class DefenseBoost : UsableItem
     protected override void Use() {
         player.defense += defenseBoostValue;
         hotBar.HandleItemUse(itemObject);
-        SFXManager.instance.Play("Eat", 0.95f, 1.05f); // ToDo: find powerup sound effect
+        SFXManager.instance.Play("Drink", 0.95f, 1.05f); // ToDo: find powerup sound effect
     }
 }
