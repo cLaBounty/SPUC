@@ -11,16 +11,13 @@ public class RobotAggravatorAttractor : MonoBehaviour
     [SerializeField] bool excludeCrawler = false;
     [SerializeField] LayerMask enemyMask;
 
-    private float rangeSqr;
-
-    private float totalTime = 0;
-    private float coolDownTime;
-    
-
     private GameObject oilDrill;
     private List<Enemy> enemyList;
-
-    DeployedStatus deployedStatus;
+    private DeployedStatus deployedStatus;
+    
+    private float rangeSqr;
+    private float totalTime = 0;
+    private float coolDownTime;
 
     private void Start() {
         oilDrill = GameObject.FindObjectOfType<OilDrill>().transform.gameObject;

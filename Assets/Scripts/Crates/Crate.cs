@@ -6,28 +6,30 @@ using System;
 public enum CrateRarity {
     Common,
     Rare,
-    Epic
+    Legendary
 }
 
 public class Crate : MonoBehaviour
 {
     [SerializeField] private CrateRarity rarity;
-    [SerializeField] private float spawnRate = 1f;
+    [Range(0,1)][SerializeField] private float spawnRate = 1f;
+    [SerializeField] private float openRange = 5f;
 
     public GameObject infoPrefab;
     private GameObject currentInfo = null;
 
-    private float openDistance = 25f;
     private Player player;
     private HotBar hotBar;
     private ItemObject key;
 
+    private float openRangeSqr;
     public bool IsGrounded = true;
 
     private void Start() {
         player = GameObject.FindObjectOfType<Player>();
         hotBar = GameObject.FindObjectOfType<HotBar>();
         SetRarity(rarity);
+        openRangeSqr = openRange * openRange;
         if (UnityEngine.Random.Range(0f, 1f) > spawnRate) { Destroy(transform.gameObject); }
     }
 
@@ -35,7 +37,7 @@ public class Crate : MonoBehaviour
         if (player == null) return;
 
         float currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;
-        if (currentPlayerDist <= openDistance) {
+        if (currentPlayerDist <= openRangeSqr) {
             // Info Popup
             if (currentInfo == null && IsGrounded) {
                 currentInfo = Instantiate(infoPrefab, new Vector3(transform.position.x, 0 + 3f, transform.position.z), Quaternion.identity);
@@ -81,8 +83,8 @@ public class Crate : MonoBehaviour
             case CrateRarity.Rare:
                 items = GetRareItems();
                 break;
-            case CrateRarity.Epic:
-                items = GetEpicItems();
+            case CrateRarity.Legendary:
+                items = GetLegendaryItems();
                 break;
         }
 
@@ -107,20 +109,20 @@ public class Crate : MonoBehaviour
 
     private List<InventorySlot> GetRareItems() {
         List<InventorySlot> result = new List<InventorySlot>();
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 25));
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 25));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 20));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 20));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Consumable), 3));
-        result.Add(new InventorySlot(GetRandomItemOfTwoTypes(ItemType.MeleeWeapon, ItemType.Deployable), 1));
+        result.Add(new InventorySlot(GetRandomItemOfTwoTypes(ItemType.Deployable, ItemType.MeleeWeapon), 1));
         return result;
     }
 
-    private List<InventorySlot> GetEpicItems() {
+    private List<InventorySlot> GetLegendaryItems() {
         List<InventorySlot> result = new List<InventorySlot>();
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 50));
-        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 50));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Ammo), 40));
+        result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Material), 40));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.Consumable), 5));
         result.Add(new InventorySlot(GetRandomItemOfType(ItemType.FirearmWeapon), 1));
-        result.Add(new InventorySlot(GetRandomItemOfTwoTypes(ItemType.Barricade, ItemType.Deployable), 1));
+        result.Add(new InventorySlot(GetRandomItemOfTwoTypes(ItemType.Deployable, ItemType.StatUpgrade), 1));
         return result;
     }
 

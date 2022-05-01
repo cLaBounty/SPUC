@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
-//[RequireComponent(typeof(Rigidbody))] 
+ 
 public class CrawlerEnemy : Enemy
 {
     [Header("Agro Vars")]
@@ -18,7 +17,7 @@ public class CrawlerEnemy : Enemy
 
     float agroRangeSqr = 0;
     float attackRangeSqr = 0;
-     float attackRangeOilSqr = 0;
+    float attackRangeOilSqr = 0;
     public float coolDown = 0;
     public float coolDownMax = 2f;
 
@@ -26,14 +25,13 @@ public class CrawlerEnemy : Enemy
     float currentPlayerDist = 0;
     bool isOil;
 
-    // Start is called before the first frame update
     new void Start()
     {
         base.Start();
         
-        rb              = GetComponent<Rigidbody>();
-        agroRangeSqr    = agroDistance * agroDistance;
-        attackRangeSqr  = attackDistance * attackDistance;
+        rb                = GetComponent<Rigidbody>();
+        agroRangeSqr      = agroDistance * agroDistance;
+        attackRangeSqr    = attackDistance * attackDistance;
         attackRangeOilSqr = attackOilDistance * attackOilDistance;
         
         //set navmeshagent
@@ -41,7 +39,6 @@ public class CrawlerEnemy : Enemy
         navMeshAgent.speed = moveSpeed;
     }
 
-    // Update is called once per frame
     private void Update() {
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
@@ -65,7 +62,6 @@ public class CrawlerEnemy : Enemy
     }
 
     void AttackPlayer(){
-        //stop
         Stop();
         isOil = false;
 
@@ -76,15 +72,13 @@ public class CrawlerEnemy : Enemy
             else if (currentPlayerDist > agroRangeSqr)
                 state = STATE.AGRO_OIL;
         }
-        
-        
+
         Vector3 lookVector = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
         transform.rotation = Quaternion.LookRotation(lookVector, Vector3.up);
     }
 
     void AttackOilDrill(){
         Stop();
-
         isOil = true;
 
         if (coolDown < 0) {
@@ -106,12 +100,9 @@ public class CrawlerEnemy : Enemy
         //exit condition
         if (currentPlayerDist < agroRangeSqr)
             state = STATE.AGRO_PLAYER;
-
         else if (target != null && currentTargetDist < attackRangeOilSqr)
             state = STATE.ATTACKING_OIL;
-
         else if (flowField != null && flowField.initialized){
-            //Debug.Log("Target");
             Cell occupideCell = flowField.curFlowField.GetCellFromWorldPos(transform.position);
             Vector3 moveDirection;
 
@@ -150,10 +141,8 @@ public class CrawlerEnemy : Enemy
         //exit condition
         if (currentPlayerDist > agroRangeSqr)
             state = STATE.AGRO_OIL;
-        
         else if (currentPlayerDist < attackRangeSqr)
             state = STATE.ATTACKING_PLAYER;
-
         else{
             navMeshAgent.speed = moveSpeed;
             navMeshAgent.destination = player.transform.position;
@@ -173,7 +162,7 @@ public class CrawlerEnemy : Enemy
         else if (!isOil && player != null && currentPlayerDist < attackRangeSqr){
             playerStats.TakeDamage(attackPower);
         }
-
+        
         coolDown = coolDownMax;
     }
 

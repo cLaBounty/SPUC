@@ -5,10 +5,10 @@ using UnityEngine;
 // Credit: https://www.youtube.com/watch?v=kdckcSwPkrg
 public class HotBar : MonoBehaviour
 {
-    private int SLOTS = 7;
-    public InventoryObject inventory;
+    [SerializeField] private int slots = 7;
 
-    private int activeIndex;
+    public InventoryObject inventory;
+    public int activeIndex;
 
     private void Awake() {
         foreach(var button in GetComponentsInChildren<HotBarButton>()) {
@@ -19,6 +19,27 @@ public class HotBar : MonoBehaviour
     private void Start() {
         inventory.Init();
         SelectSlot(0); // Select Resource Beam
+    }
+
+    private void Update() {
+        if (InventoryCanvas.InventoryIsOpen || PauseMenu.GameIsPaused) return;
+
+        // Scroll Wheel Switching
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
+            int high = activeIndex + 1;
+            if (high < slots) {
+                if (inventory.container.items[high].item != null) {
+                    SelectSlot(high);
+                }
+            }
+        } else if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
+            int low = activeIndex - 1;
+            if (low >= 0) {
+                if (inventory.container.items[low].item != null) {
+                    SelectSlot(low);
+                }
+            }
+        }
     }
 
     private void ButtonOnButtonClicked(int index) {
@@ -38,14 +59,15 @@ public class HotBar : MonoBehaviour
         if (slot.amount <= 1) {
             inventory.Remove(slot);
             if (index == activeIndex) { SelectNewSlot(); }
+
         } else {
             slot.amount = slot.amount - 1;
         }
     }
 
     // Find closest filled slot
-    private void SelectNewSlot() {
-        for (int i = 1; i < SLOTS; i++) {
+    public void SelectNewSlot() {
+        for (int i = 1; i < slots; i++) {
             int low = activeIndex - i;
             int high = activeIndex + i;
             if (low >= 0) {
@@ -55,7 +77,7 @@ public class HotBar : MonoBehaviour
                 }
             }
 
-            if (high < SLOTS) {
+            if (high < slots) {
                 if (inventory.container.items[high].item != null) {
                     SelectSlot(high);
                     return;
@@ -69,7 +91,7 @@ public class HotBar : MonoBehaviour
         bool isItem2 = (item2 == ItemSelector.GetItem());
         if (isItem1 || isItem2) {
             int newIndex = inventory.GetIndex(ItemSelector.GetItem());
-            if (newIndex < SLOTS) {
+            if (newIndex < slots) {
                 activeIndex = newIndex;
             } else {
                 if ((isItem1 && item2 != null) || (isItem2 && item1 != null)) { activeIndex++; }

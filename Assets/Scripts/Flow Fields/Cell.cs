@@ -10,8 +10,7 @@ public class Cell
     public ushort bestCost;
     public byte cost; 
     public byte baseCost;
-
-
+    
     public Cell(Vector3 _worldPos, Vector2Int _gridIndex){
         worldPos = _worldPos;
         gridIndex = _gridIndex;

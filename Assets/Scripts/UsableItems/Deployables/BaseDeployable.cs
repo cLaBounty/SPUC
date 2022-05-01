@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BaseDeployable : UsableItem
 {
+    [SerializeField] private string deploySoundEffect = "Default Deploy";
     [SerializeField] private float placeDistance = 6f;
-
-    protected Camera fpsCam;
-
-    public string deploySoundEffect = "Default Deploy";
+    
     public GameObject deployedPrefab;
     public GameObject deployedPreview = null;
 
+    protected Camera fpsCam;
+    
     protected void Update() {
         base.Update();
         if (deployedPreview == null) { InitPreview(); }
@@ -26,9 +26,6 @@ public class BaseDeployable : UsableItem
 
     protected void InitPreview() {
         deployedPreview = Instantiate(deployedPrefab);
-        foreach (MeshRenderer renderer in deployedPreview.GetComponentsInChildren<MeshRenderer>()) {
-            renderer.material.color = new Color(1f, 1f, 1f, 0.5f);
-        }
         UpdatePosition(deployedPreview);
     }
 

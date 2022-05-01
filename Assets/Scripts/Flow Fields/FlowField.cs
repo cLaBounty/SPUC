@@ -6,16 +6,17 @@ public class FlowField
 {
     public Cell[,] grid {get; private set;}
     public Vector2Int gridSize {get; private set;}
-    public float cellRadius{get; private set;}
+    public float cellRadius {get; private set;}
+
+    private int roughCost = 3;
     private float cellDiameter;
     public Cell destinationCell;
-    int roughCost = 3;
 
     public FlowField(float _cellRadius, Vector2Int _gridSize, int _roughCost = 3){
-        cellRadius      = _cellRadius;
-        cellDiameter    = _cellRadius * 2f;
-        gridSize        = _gridSize;
-        roughCost       = _roughCost;
+        cellRadius   = _cellRadius;
+        cellDiameter = _cellRadius * 2f;
+        gridSize     = _gridSize;
+        roughCost    = _roughCost;
     }
 
     public void CreateGrid(){
@@ -24,7 +25,6 @@ public class FlowField
         for (int x = 0; x < gridSize.x; ++x){
             for(int y = 0; y < gridSize.y; ++y){
                 Vector3 worldPos = new Vector3(cellDiameter * x + cellRadius, 0, cellDiameter * y + cellRadius);
-                //worldPos += new Vector3(cellDiameter, 0, cellDiameter);
                 grid[x, y] = new Cell(worldPos, new Vector2Int(x, y));
             }
         }
@@ -81,13 +81,10 @@ public class FlowField
                 if (neighbor.bestCost < bestCost){
                     bestCost = neighbor.bestCost;
                     cell.bestDirection = neighbor.gridIndex - cell.gridIndex;
-                    //Debug.LogError(cell.bestDirection);
                 }
             }
         }
     }
-
-
 
     private List<Cell> GetNeighborCells(Vector2Int nodeIndex){
         List<Cell> neighborCells = new List<Cell>();
@@ -113,7 +110,6 @@ public class FlowField
 
         #endregion
 
-        //return cells
         return neighborCells;
     }
 
@@ -161,11 +157,6 @@ public class FlowField
 
         #endregion
 
-        // Self
-        //newNeighbor = GetNeighborCellSingular(nodeIndex, new Vector2Int(0, 0));
-        //if (newNeighbor != null) neighborCells.Add(newNeighbor);
-
-        //return cells
         return neighborCells;
     }
 
@@ -173,9 +164,9 @@ public class FlowField
         Vector2Int neighborPos = origin + direction;
 
         //error checking
-        if (neighborPos.x < 0 || neighborPos.x >= gridSize.x || neighborPos.y < 0 || neighborPos.y >= gridSize.y) return null;
+        if (neighborPos.x < 0 || neighborPos.x >= gridSize.x || neighborPos.y < 0 || neighborPos.y >= gridSize.y)
+            return null;
         return grid[neighborPos.x, neighborPos.y];
-
     }
 
     public Cell GetCellFromWorldPos(Vector3 worldPos)

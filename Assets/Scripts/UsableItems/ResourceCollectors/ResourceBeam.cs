@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class ResourceBeam : UsableItem
 {
+	[Header("Mechanics")]
 	[SerializeField] private float damage = 10f;
     [SerializeField] private float range = 50f;
+	[SerializeField] private float frequency = 1f;
 
+	[Header("Effects")]
+	[SerializeField] private LineRenderer lineRenderer;
+	[SerializeField] private Transform firePoint;
+	[SerializeField] private ParticleSystem impactEffect;
+	
 	private InventoryObject inventory;
 	private Camera mainCamera;
 	private int layers;
 
-	[Header("Laser")]
-	public LineRenderer lineRenderer;
-	public Transform firePoint;
-	public ParticleSystem impactEffect;
 	private float coolDownTime = 0;
-	public float frequency = 1f;
-	bool playingSound = false;
+	private bool playingSound = false;
 
 	protected override void Init() {
 		inventory = Resources.Load<InventoryObject>("Inventory/PlayerInventory");
@@ -34,6 +36,7 @@ public class ResourceBeam : UsableItem
 			impactEffect.Stop();
 			return; 
 		}
+		
 		if (Input.GetButtonDown("Fire2")) { Focus(); }
 		if (Input.GetButton("Fire1")) {
 			Use();

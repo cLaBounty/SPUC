@@ -3,10 +3,12 @@ using System;
 
 public class ResourceNode : MonoBehaviour
 {
+	[SerializeField] float health = 100f;
+	[SerializeField] int resources = 10;
+
     public ItemObject item;
 	public ParticleSystem harvestEffect;
-	[SerializeField] float health = 50f;
-	[SerializeField] int resources = 10;
+
 	private bool particleTriggered = false;
 
 	void Update()
@@ -18,6 +20,7 @@ public class ResourceNode : MonoBehaviour
 	public int harvest(float damage)
 	{
 		int amount;
+
 		// resources per health
 		float RPH = resources / health;
 		health -= damage;
@@ -44,8 +47,8 @@ public class ResourceNode : MonoBehaviour
 		else{
 			SFXManager.instance.Play("Rock Crack", 0.9f, 1.1f);
 		}
+
 		resources -= amount;
 		return amount;
 	}
-
 }

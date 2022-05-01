@@ -10,7 +10,10 @@ public class InventoryObject : ScriptableObject
     public List<ItemObject> startItems;
     public CraftingObject crafting;
 
+    private HotBar hotBar;
+
     public void Init() {
+        hotBar = GameObject.FindObjectOfType<HotBar>();
         for (int i = 0; i < startItems.Count; i++) {
             AddItem(startItems[i], 1);
         }
@@ -67,6 +70,7 @@ public class InventoryObject : ScriptableObject
                         Reduce(slot, ingredient.amount);
                     } else {
                         Remove(slot);
+                        if (GetIndex(slot.item) == hotBar.activeIndex) { hotBar.SelectNewSlot(); }
                     }
                     break;
                 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class OilDrill : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    public float currentHealth;
+    public float maxHealth = 500f;
+    public float currentHealth = 500f;
 
     public HealthBar billboardHealthBar;
     public HealthBar hudHealthBar;
@@ -47,7 +47,7 @@ public class OilDrill : MonoBehaviour
         }
     }
 
-    // Supply Drop Distance
+    // Supply Drop Distance Reference
     private void OnDrawGizmos() {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, 75f);

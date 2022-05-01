@@ -18,17 +18,9 @@ public class MaxHealthIncrease : UsableItem
     }
 
     private void IncreaseLivingRobotHealth() {
-        DeployedEnemyPuncher[] punchers = GameObject.FindObjectsOfType<DeployedEnemyPuncher>();
-        foreach(DeployedEnemyPuncher puncher in punchers) {
-            puncher.GainHealth(maxHealthIncreaseValue);
-        }
-        DeployedEnemyShooter[] shooters = GameObject.FindObjectsOfType<DeployedEnemyShooter>();
-        foreach(DeployedEnemyShooter shooter in shooters) {
-            shooter.GainHealth(maxHealthIncreaseValue);
-        }
-        DeployedOilHealer[] healers = GameObject.FindObjectsOfType<DeployedOilHealer>();
-        foreach(DeployedOilHealer healer in healers) {
-            healer.GainHealth(maxHealthIncreaseValue);
+        List<Enemy> livingRobots = player.GetLivingRobots();
+        foreach(Enemy robot in livingRobots) {
+            robot.GainHealth(maxHealthIncreaseValue);
         }
     }
 }

@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Pistol : UsableItem
 {
-	[SerializeField] string shootAnimation = "PistolFire";
+	[Header("Mechanics")]
 	[SerializeField] private float damage = 20f;
     [SerializeField] private float range = 75f;
+
+	[Header("Effects")]
+	[SerializeField] string shootAnimation = "PistolFire";
+	[SerializeField] ParticleSystem impactEffect;
+	[SerializeField] Transform firePoint;
+	[SerializeField] ParticleSystem muzzleFlash;
+	[SerializeField] TrailRenderer bulletTrail;
+
 
 	public ItemObject ammo;
 
@@ -14,11 +22,7 @@ public class Pistol : UsableItem
 	private Animator animator;
 	private int layers;
 
-	[SerializeField] ParticleSystem impactEffect;
-	[SerializeField] Transform firePoint;
-	[SerializeField] ParticleSystem muzzleFlash;
-	[SerializeField] TrailRenderer bulletTrail;
-
+	
 	protected override void Init() {
         mainCamera = GameObject.FindObjectOfType<CameraSystem>().getMainCamera();
 		layers = LayerMask.GetMask("Player");
@@ -30,7 +34,7 @@ public class Pistol : UsableItem
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			animator.Play(shootAnimation);
-			muzzleFlash.Play();
+			//muzzleFlash.Play();
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Pistol Shot", 0.9f, 1.1f);
 		} else {
@@ -43,7 +47,7 @@ public class Pistol : UsableItem
 		if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range, ~layers))
 		{
 			TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, Quaternion.identity);
-			StartCoroutine(SpawnTrail(trail, hit));
+			StartCoroutine(SpawnTrail(trail, hit.point));
 
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
 			enemy?.TakeDamage(player.damageMultiplier * damage);
@@ -52,22 +56,26 @@ public class Pistol : UsableItem
 
 			Vector3 dir = firePoint.position - enemy.transform.position;
 			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
-			impactEffect.transform.position = enemy.transform.position + dir.normalized * .5f;
+			impactEffect.transform.position = hit.point + dir.normalized;
 			impactEffect.Play();
+		} else
+		{
+			TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, Quaternion.identity);
+			StartCoroutine(SpawnTrail(trail, firePoint.position + mainCamera.transform.forward * 30));
 		}
 	}
 
-	private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit) {
+	private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hitPoint) {
 		float time = 0;
 		Vector3 startPos = trail.transform.position;
 		while (time < 1)
 		{
-			trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
+			trail.transform.position = Vector3.Lerp(startPos, hitPoint, time);
 			time += Time.deltaTime / trail.time;
 
 			yield return null;
 		}
-		trail.transform.position = hit.point;
+		trail.transform.position = hitPoint;
 
 		Destroy(trail.gameObject, trail.time);
 	}

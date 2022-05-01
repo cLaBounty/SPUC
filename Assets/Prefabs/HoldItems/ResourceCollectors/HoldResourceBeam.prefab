@@ -5598,10 +5598,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: 1bc7e27ed7c84b64c922fb08c501942c, type: 2}
+  damage: 10
+  range: 50
+  frequency: 0.5
   lineRenderer: {fileID: 7070086052971850118}
   firePoint: {fileID: 4706028995141353163}
   impactEffect: {fileID: 5710394780565094798}
-  frequency: 1
 --- !u!120 &7070086052971850118
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: edf41ea073a81064887b1ad92832f5e5
   - enabled: 1
     path: Assets/Scenes/SettingsMenu.unity
     guid: 4d609008a9ae06c4a8dbf2ad0efc1d54
   - enabled: 1
-    path: Assets/Scenes/Main Scene.unity
+    path: Assets/Scenes/MainScene.unity
     guid: 47da3b3658f11bd4c8133da288f1ccbc
   - enabled: 1
     path: Assets/Scenes/OilDrillDied.unity

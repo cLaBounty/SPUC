@@ -4,43 +4,41 @@ using UnityEngine;
 
 public class EnemyCrawlerAnimation : MonoBehaviour
 {
-    Animator animator;
     [SerializeField] CrawlerEnemy enemy;
     [SerializeField] AudioSource SpewSFX;
     [SerializeField] AudioSource DeathSFX;
-    int state;
 
+    Animator animator;
+
+    int state;
     bool attacking = false;
     bool dying = false;
     
     void Start()
     {
         animator = GetComponent<Animator>();
-
         state = (int)enemy.state;
     }
 
     void LateUpdate() {
         state = (int)enemy.state;
 
-        //animator.SetInteger("State", state);
         if (enemy.state == Enemy.STATE.DEAD){
             int ran = Random.Range(0, 2);
             animator.SetInteger("Variation", ran);
             animator.SetInteger("State", 4);
+
             if (!dying){
                 dying = true;
                 DeathSFX.pitch = Random.Range(0.9f, 1.1f);
                 DeathSFX.Play();
             }
         }
-
         else if (state < 3){
             int ran = Random.Range(0, 2);
             animator.SetInteger("Variation", ran);
             animator.SetInteger("State", 1);
         }
-
         else if (state < 5 && enemy.coolDown < 0){
             int ran = Random.Range(0, 2);
             animator.SetInteger("Variation", ran);
