@@ -105,6 +105,7 @@ public class DisplayInventory : MonoBehaviour
         mouseObject.transform.SetParent(transform.parent);
 
         if (inventoryItems[obj].item != null) {
+            SFXManager.instance.Play("Move Item", 0.9f, 1.1f);
             var img = mouseObject.AddComponent<Image>();
             img.sprite = inventoryItems[obj].item.uiDisplay;
             img.raycastTarget = false;
@@ -120,6 +121,7 @@ public class DisplayInventory : MonoBehaviour
             if (slot.item?.isMoveable == true && inventoryItems[mouseItem.hoverObj].item?.isMoveable != false) { // Cannot move an immovable item
                 inventory.SwapItems(slot, inventoryItems[mouseItem.hoverObj]);
                 player.hotBar.NotifySwap(slot.item, inventoryItems[mouseItem.hoverObj].item);
+                SFXManager.instance.Play("Move Item", 0.9f, 1.1f);
             }
         } else { // Drop Item
             if (slot.item?.isMoveable == true) { // Cannot drop an immovable item
@@ -127,6 +129,7 @@ public class DisplayInventory : MonoBehaviour
                 player.DropItem(slot);
                 inventory.Remove(slot);
                 player.hotBar.NotifyDrop(temp);
+                SFXManager.instance.Play("Move Item", 0.9f, 1.1f);
             }
         }
 

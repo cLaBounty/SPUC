@@ -75,6 +75,8 @@ public class Crate : MonoBehaviour
     }
 
     private void SpawnItems() {
+        SFXManager.instance.Play("Unlock", 0.9f, 1.1f);
+
         List<InventorySlot> items = new List<InventorySlot>();
         switch (rarity) {
             case CrateRarity.Common:

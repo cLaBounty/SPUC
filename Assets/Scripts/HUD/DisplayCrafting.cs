@@ -99,6 +99,8 @@ public class DisplayCrafting : MonoBehaviour
         if (craftingItems[obj].item == null) return; // Empty slot
         CleanUp();
 
+        if (crafting.IsCraftable(craftingItems[obj].item)) SFXManager.instance.Play("Craft", 0.9f, 1.1f);
+
         switch(data.button) {
             case PointerEventData.InputButton.Left:
                 CraftOnce(obj);

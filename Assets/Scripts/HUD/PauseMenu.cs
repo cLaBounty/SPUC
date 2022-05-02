@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        SFXManager.instance.Play("Accept");
     }
 
     public void LoadSettings() {
@@ -44,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Quit() {
+        SFXManager.instance.Play("Back");
         Application.Quit();
     }
 }

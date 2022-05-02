@@ -202,3 +202,27 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Unlock
+    clip: {fileID: 8300000, guid: c56297a18e9e74c4b9ba3d8424133ed6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hover
+    clip: {fileID: 8300000, guid: e5145a55b65282f40bf2dd250e718587, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Accept
+    clip: {fileID: 8300000, guid: 33349aced253b0247a3f064183d49984, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Back
+    clip: {fileID: 8300000, guid: ef2cd08ab2304dc4fb0c998a84dfdca3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

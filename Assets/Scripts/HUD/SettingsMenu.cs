@@ -45,6 +45,11 @@ public class SettingsMenu : MonoBehaviour
     }
 
     public void Back() {
+        SFXManager.instance.Play("Back");
         SceneManager.UnloadScene(settingsScene);
+    }
+
+    public void HoverSound() {
+        SFXManager.instance.Play("Hover");
     }
 }

@@ -9,14 +9,21 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private string settingsScene = "SettingsMenu";
 
     public void Play() {
+        SFXManager.instance.Play("Accept");
         SceneManager.LoadScene(mainScene);
     }
 
     public void LoadSettings() {
+        SFXManager.instance.Play("Accept");
         SceneManager.LoadScene(settingsScene, LoadSceneMode.Additive);
     }
 
     public void Quit() {
+        SFXManager.instance.Play("Back");
         Application.Quit();
+    }
+
+    public void HoverSound() {
+        SFXManager.instance.Play("Hover", 0.9f, 1.1f);
     }
 }
