@@ -42,10 +42,15 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadSettings() {
         SceneManager.LoadScene(settingsScene, LoadSceneMode.Additive);
+        SFXManager.instance.Play("Accept");
     }
 
     public void Quit() {
         SFXManager.instance.Play("Back");
         Application.Quit();
+    }
+
+    public void Hover() {
+        SFXManager.instance.Play("Hover", 0.9f, 1.1f);
     }
 }
