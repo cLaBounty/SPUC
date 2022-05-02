@@ -28,22 +28,19 @@ public class HotBar : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
             for (int i = 1; i < slots; i++) {
                 int low = activeIndex - i;
-                if (low >= 0) {
-                    if (inventory.container.items[low].item != null) {
-                        SelectSlot(low);
-                        return;
-                    }
-                } else { return; }
+                if (low < 0) { low += slots; }
+                if (inventory.container.items[low].item != null) {
+                    SelectSlot(low);
+                    return;
+                }
             }
         } else if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
             for (int i = 1; i < slots; i++) {
-                int high = activeIndex + i;
-                if (high < slots) {
-                    if (inventory.container.items[high].item != null) {
-                        SelectSlot(high);
-                        return;
-                    }
-                } else { return; }
+                int high = (activeIndex + i) % slots;
+                if (inventory.container.items[high].item != null) {
+                    SelectSlot(high);
+                    return;
+                }
             }
         }
     }

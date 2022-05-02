@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         currentHealth = initialHealth;
         maxHealth = initialHealth;
         healthBar.SetMaxHealth(initialHealth);
+        healthBar.valueText.gameObject.SetActive(true);
         cameraSystem = GameObject.FindObjectOfType<CameraSystem>();
         itemMask = LayerMask.GetMask("Ground Item");
     }
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
     public void IncreaseMaxHealth(float value) {
         maxHealth += value;
         healthBar.UpdateMaxHealth(maxHealth);
+        healthBar.valueText.text = currentHealth.ToString("n0") + "/" + maxHealth.ToString("n0");
     }
 
     public void TakeDamage(float amount)
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
             currentHealth -= damage;
         }
         healthBar.SetHealth(currentHealth);
+        healthBar.valueText.text = currentHealth.ToString("n0") + "/" + maxHealth.ToString("n0");
 
         // Hurt Visual Effect
         hurtEffect = true;
@@ -118,6 +121,7 @@ public class Player : MonoBehaviour
         }
         
         healthBar.SetHealth(currentHealth);
+        healthBar.valueText.text = currentHealth.ToString("n0") + "/" + maxHealth.ToString("n0");
     }
 
     // Inventory
