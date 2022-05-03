@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   name: Enemy Shooter
-  description: This is an example of an item description
+  description: A friendly robot that shoots flying enemies
   uiDisplay: {fileID: 21300000, guid: 9a85a88d191d9764f85b985b6e523436, type: 3}
   isMoveable: 1
   recipe:

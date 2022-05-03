@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   name: Light Ammo
-  description: This is an example of an item description
+  description: Ammo used for the Pistol
   uiDisplay: {fileID: 21300000, guid: fa223ba62fc726e41b3d9d6f46782510, type: 3}
   isMoveable: 1
   recipe:

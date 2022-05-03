@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   name: Assault Rifle
-  description: This is an example of an item description
+  description: An assault rifle that does 35 damage
   uiDisplay: {fileID: 21300000, guid: 83d831ecebfcaa64aa17b52bb209f31c, type: 3}
   isMoveable: 1
   recipe:

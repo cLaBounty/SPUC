@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   name: Sniper Rifle
-  description: This is an example of an item description
+  description: A sniper rifle that will one shot all enemies
   uiDisplay: {fileID: 21300000, guid: 6ac246ae5d043014090b192c3691079d, type: 3}
   isMoveable: 1
   recipe:

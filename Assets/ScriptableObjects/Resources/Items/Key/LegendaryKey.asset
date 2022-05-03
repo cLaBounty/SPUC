@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 8
   name: Legendary Key
-  description: This is an example of an item description
+  description: A key that can open Legendary crates
   uiDisplay: {fileID: 21300000, guid: dc7e066a681bf934fb95d8dfbda30c2a, type: 3}
   isMoveable: 1
   recipe:

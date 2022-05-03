@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   name: Chicken Distraction
-  description: This is an example of an item description
+  description: Distracts hungry enemies for 30 seconds
   uiDisplay: {fileID: 21300000, guid: a3318bbf74f98af47b1c302a4df67532, type: 3}
   isMoveable: 1
   recipe:

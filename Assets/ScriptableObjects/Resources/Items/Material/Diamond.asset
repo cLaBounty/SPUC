@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   name: Diamond
-  description: This is an example of an item description
+  description: It's diamond, the rarest material
   uiDisplay: {fileID: 21300000, guid: c0a21c2828f86c94991aa1d028382195, type: 3}
   isMoveable: 1
   recipe:

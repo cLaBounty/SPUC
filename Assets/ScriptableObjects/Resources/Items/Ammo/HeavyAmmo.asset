@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   name: Heavy Ammo
-  description: This is an example of an item description
+  description: Ammo used for the Sniper Rifle
   uiDisplay: {fileID: 21300000, guid: 569f0505d8d4136478b30e19f609f87e, type: 3}
   isMoveable: 1
   recipe:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   name: Ruby
-  description: This is an example of an item description
+  description: It's ruby, the most useful material
   uiDisplay: {fileID: 21300000, guid: 4232f0d7b274b5d4f963e06fd50d67ce, type: 3}
   isMoveable: 1
   recipe:

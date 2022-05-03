@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   name: Machete
-  description: This is an example of an item description
+  description: A machete that does 20 damage
   uiDisplay: {fileID: 21300000, guid: 8abfcc843022ba646920dbe91a705842, type: 3}
   isMoveable: 1
   recipe:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   name: Oil Healer
-  description: This is an example of an item description
+  description: A friendly robot that heals the oil drill
   uiDisplay: {fileID: 21300000, guid: 1625de12392e59c439d3eff410a58a96, type: 3}
   isMoveable: 1
   recipe:

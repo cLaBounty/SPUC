@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   name: Knife
-  description: This is an example of an item description
+  description: A knife that does 15 damage
   uiDisplay: {fileID: 21300000, guid: 3fe12be232eb2b94e88810c2bab11434, type: 3}
   isMoveable: 1
   recipe:

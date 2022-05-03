@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   name: Campfire
-  description: This is an example of an item description
+  description: Increases health by 5hp per second for 20 seconds
   uiDisplay: {fileID: 21300000, guid: 1143fe88ac964c548b7d3037092de3fd, type: 3}
   isMoveable: 1
   recipe:
