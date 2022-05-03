@@ -22,8 +22,8 @@ public class MainMenu : MonoBehaviour
         SFXManager.instance.Play("Back");
         Application.Quit();
     }
-
-    public void HoverSound() {
-        SFXManager.instance.Play("Hover", 0.9f, 1.1f);
+    
+    public void PlayHoverSound() {
+        SFXManager.instance.Play("Hover");
     }
 }
