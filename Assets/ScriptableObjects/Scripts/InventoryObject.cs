@@ -80,7 +80,7 @@ public class InventoryObject : ScriptableObject
 
     public bool Has(ItemObject item, int amount) {
         foreach (InventorySlot slot in container.items) {
-            if (slot.item == item && slot.amount >= amount) {
+            if (slot?.item == item && slot?.amount >= amount) {
                 return true;
             }
         }

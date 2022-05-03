@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   name: Sickle
-  description: 
+  description: This is an example of an item description
   uiDisplay: {fileID: 21300000, guid: ce7a623818dfced44979b464dc89c731, type: 3}
   isMoveable: 1
   recipe:

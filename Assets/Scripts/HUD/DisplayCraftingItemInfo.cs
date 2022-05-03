@@ -7,11 +7,13 @@ using TMPro;
 public class DisplayCraftingItemInfo : MonoBehaviour
 {
     [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private GameObject recipeObject;
     [SerializeField] private GameObject ingredientPrefab;
     
     public void SetUp(ItemObject item, InventoryObject playerInventory) {
         nameText.text = item.name;
+        descriptionText.text = item.description;
 
         foreach (Ingredient ingredient in item.recipe) {
             var obj = Instantiate(ingredientPrefab, Vector3.zero, Quaternion.identity, recipeObject.transform);

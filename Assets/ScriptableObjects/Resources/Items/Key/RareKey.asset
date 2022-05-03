@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 8
   name: Rare Key
-  description: 
+  description: This is an example of an item description
   uiDisplay: {fileID: 21300000, guid: 33b02f2cd23ba05489a2f40766d32a93, type: 3}
   isMoveable: 1
   recipe:

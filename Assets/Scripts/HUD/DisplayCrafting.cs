@@ -82,7 +82,7 @@ public class DisplayCrafting : MonoBehaviour
         CleanUp();
         
         float ratioX = 210f / 1920f;
-        float ratioY = -40f / 1080f;
+        float ratioY = -85f / 1080f;
         Vector3 offset = new Vector3(ratioX * Screen.width, ratioY * Screen.height, 0);
 
         if (crafting.GetIndex(craftingItems[obj].item) % NUMBER_OF_COLUMNS > 4) { offset.x *= -1; }

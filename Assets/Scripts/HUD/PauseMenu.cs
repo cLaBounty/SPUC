@@ -50,7 +50,7 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void Hover() {
-        SFXManager.instance.Play("Hover", 0.9f, 1.1f);
+    public void PlayHoverSound() {
+        SFXManager.instance.Play("Hover");
     }
 }
