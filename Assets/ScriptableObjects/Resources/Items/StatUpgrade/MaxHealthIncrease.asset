@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 7
   name: Max Health Increase
-  description: 
+  description: This is an example of an item description
   uiDisplay: {fileID: 21300000, guid: aca84934bfda05544b16d969c0ff851d, type: 3}
   isMoveable: 1
   recipe:

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   name: Gold
-  description: 
+  description: This is an example of an item description
   uiDisplay: {fileID: 21300000, guid: c30862273303a8a4094b66ed9a712189, type: 3}
   isMoveable: 1
   recipe: []
+  craftAmount: 1
   groundPrefab: {fileID: 7525457710395568995, guid: b4159a35915cecd42b426ee3138ccd03, type: 3}
   holdPrefab: {fileID: 7525457710395568995, guid: af7fbe1673621d44dba26afef9d54d09, type: 3}
