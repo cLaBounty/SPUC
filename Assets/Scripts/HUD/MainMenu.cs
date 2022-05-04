@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private string mainScene = "MainScene";
+    [SerializeField] private string howToPlayScene = "HowToPlayScene";
     [SerializeField] private string settingsScene = "SettingsMenu";
 
     public void Play() {
         SFXManager.instance.Play("Accept");
         SceneManager.LoadScene(mainScene);
+    }
+
+    public void LoadHowToPlay() {
+        SFXManager.instance.Play("Accept");
+        SceneManager.LoadScene(howToPlayScene, LoadSceneMode.Additive);
     }
 
     public void LoadSettings() {

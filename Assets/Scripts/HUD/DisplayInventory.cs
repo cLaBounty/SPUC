@@ -38,6 +38,7 @@ public class DisplayInventory : MonoBehaviour
         for (int i = 0; i < inventory.container.items.Length; i++) {
             GameObject obj = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
+            obj.transform.GetChild(2).transform.GetComponent<TextMeshProUGUI>().text = (i + 1).ToString();
 
             AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
             AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
@@ -50,16 +51,20 @@ public class DisplayInventory : MonoBehaviour
     }
 
     private void UpdateSlots() {
+        int index = 0;
         foreach (KeyValuePair<GameObject, InventorySlot> slot in inventoryItems) {
             if (slot.Value.item != null) {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.Value.item.uiDisplay;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
                 slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
+                slot.Key.transform.GetChild(2).gameObject.SetActive(false);
             } else {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
                 slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                if (index < 7) { slot.Key.transform.GetChild(2).gameObject.SetActive(true); }
             }
+            index++;
         }
     }
 
