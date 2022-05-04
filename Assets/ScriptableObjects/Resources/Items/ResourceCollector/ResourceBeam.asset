@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   name: Resource Beam
   description: A resource beam to collect resources
-  uiDisplay: {fileID: 21300000, guid: a744f0ee05e0eb043ba423adee95e5df, type: 3}
+  uiDisplay: {fileID: 21300000, guid: f5e3b4faf542503479ca8a37ddc49aa6, type: 3}
   isMoveable: 0
   recipe: []
   craftAmount: 1
