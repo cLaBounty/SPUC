@@ -15401,6 +15401,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4248214650345464468, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
+      propertyPath: bHopWindow
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248214650345464468, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
+      propertyPath: jumpBufferDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248214650345464468, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
       propertyPath: stepSounds.Array.size
       value: 2
       objectReference: {fileID: 0}

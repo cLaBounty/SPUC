@@ -39,10 +39,10 @@ public class PlayerMovement : MonoBehaviour
 	int currentStepIndex = 0;
 
 	// BHop
-	private float bHopWindow = 1.5f;
+	[SerializeField] private float bHopWindow = 1.5f;
 	private float bHopBonus = 0f;
 	private float bHopTimer = 0f;
-	private float jumpBufferDistance = 2f;
+	[SerializeField] private float jumpBufferDistance = 2f;
 	private bool jumpBuffer = false;
 
     void Update()
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
 			if((Input.GetButtonDown("Jump") || jumpBuffer) && bHopTimer < bHopWindow)
 			{
-				if (speed < maxSpeed) { bHopBonus += 0.5f; }
+				if (speed < maxSpeed) { bHopBonus += 2f; }
 			} 
 			else if (bHopTimer > bHopWindow && isGrounded) { bHopBonus = 0f; }
 		}
