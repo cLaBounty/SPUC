@@ -20,7 +20,7 @@ public class DisplayCraftingItemInfo : MonoBehaviour
             obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite = ingredient.item.uiDisplay;
             obj.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = ingredient.amount == 1 ? "" : ingredient.amount.ToString("n0");
-            obj.transform.GetChild(2).gameObject.SetActive(!playerInventory.Has(ingredient.item, ingredient.amount)); // overlay if still needed
+            obj.transform.GetChild(3).gameObject.SetActive(!playerInventory.Has(ingredient.item, ingredient.amount)); // overlay if still needed
         }
     }
 }
