@@ -50,9 +50,8 @@ public class AssaultRifle : UsableItem
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			animator.Play(shootAnimation);
-			//muzzleFlash.Play();
 			hotBar.HandleItemUse(ammo);
-			SFXManager.instance.Play("Machine Gun", 0.9f, 1.1f); // ToDo: replace with AR sound effect
+			SFXManager.instance.Play("Machine Gun", 0.9f, 1.1f);
 		}
     }
 

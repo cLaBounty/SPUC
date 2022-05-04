@@ -51,6 +51,10 @@ public class Enemy : MonoBehaviour
         healthBar.transform.gameObject.SetActive(false);
     }
 
+    protected void Update() {
+        CheckDeadState(); // Fixes issue of unkillable enemies
+    }
+
     public void TakeDamage(float amount, bool ignoreSound = false) {
         if (state == STATE.DEAD) return;
 

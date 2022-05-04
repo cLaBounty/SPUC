@@ -13,6 +13,6 @@ public class DamageBoost : UsableItem
     protected override void Use() {
         player.damageMultiplier += damageBoostValue;
         hotBar.HandleItemUse(itemObject);
-        SFXManager.instance.Play("Drink", 0.95f, 1.05f); // ToDo: find powerup sound effect
+        SFXManager.instance.Play("Drink", 0.95f, 1.05f);
     }
 }

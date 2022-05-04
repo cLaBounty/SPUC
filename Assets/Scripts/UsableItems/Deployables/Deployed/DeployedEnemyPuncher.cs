@@ -53,6 +53,7 @@ public class DeployedEnemyPuncher : Enemy
 
     private void Update() {
         if (!status.isActive) return;
+        base.Update();
 
         if (target == null){
             FindFoe();

@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   name: Apple
-  description: Increases player health by 10
+  description: Restores player health by 10
   uiDisplay: {fileID: 21300000, guid: a6ff6495f8c8af147ac6591a4d6460d0, type: 3}
   isMoveable: 1
-  recipe: []
+  recipe:
+  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
+    amount: 5
   craftAmount: 1
   groundPrefab: {fileID: 2653555064806350094, guid: 1c77b2be7e66e794e81104d816411c0d, type: 3}
   holdPrefab: {fileID: 4034937464797930276, guid: c4030b8813bc0284f9c78415e775413b, type: 3}

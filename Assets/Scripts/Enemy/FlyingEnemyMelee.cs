@@ -56,6 +56,8 @@ public class FlyingEnemyMelee : Enemy
     }
 
     private void Update() {
+        base.Update();
+        
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;
         currentPlayerDist = (player.transform.position - transform.position).sqrMagnitude;

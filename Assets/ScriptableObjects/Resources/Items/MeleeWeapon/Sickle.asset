@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   name: Sickle
-  description: A sickle that does 25 damage
+  description: A slick sickle that slices
   uiDisplay: {fileID: 21300000, guid: ce7a623818dfced44979b464dc89c731, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: fbd003a6a7065c24cbd325ef2ad84d78, type: 2}
     amount: 1
+  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
+    amount: 3
   craftAmount: 1
   groundPrefab: {fileID: 1998027704579497061, guid: 4dac017d2b655324fb52f26afce29063, type: 3}
   holdPrefab: {fileID: 4068300616983952392, guid: 083808eda3b3f024089c33a380fcb75d, type: 3}

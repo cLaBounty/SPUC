@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   name: Assault Rifle
-  description: An assault rifle that does 35 damage
+  description: A fully automatic assault rifle
   uiDisplay: {fileID: 21300000, guid: 83d831ecebfcaa64aa17b52bb209f31c, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: a3b2f09df6d8a5948b8daf11899ccf81, type: 2}
     amount: 1
-  - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
-    amount: 5
-  - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
+  - item: {fileID: 11400000, guid: b760c058ba0aaf644aa850dbf45d9858, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
     amount: 5
   craftAmount: 1
   groundPrefab: {fileID: 101050, guid: d175b29f71991b8448718df0b5fc9743, type: 3}

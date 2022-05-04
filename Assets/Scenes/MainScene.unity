@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19386274, g: 0.12906471, b: 0.22909787, a: 1}
+  m_IndirectSpecularColor: {r: 0.19386199, g: 0.12906468, b: 0.2290979, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7367,12 +7367,12 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 7279199722365421932, guid: 38f2cf4a67fa0834e89765a207027214, type: 3}
     spawnWeight: 6
     trueSpawnWeight: 0
-  enemiesPerWave: 14
-  enemyMax: 40
+  enemiesPerWave: 12
+  enemyMax: 35
   endScene: EndScene
   enemyLevel: 1
-  waveIncreasePerLevel: 1.2
-  hpIncreasePerLevel: 1.2
+  waveIncreasePerLevel: 1.15
+  hpIncreasePerLevel: 1.15
   defenseIncreasePerLevel: 1.05
   attackIncreasePerLevel: 1.1
   waveCount: 0

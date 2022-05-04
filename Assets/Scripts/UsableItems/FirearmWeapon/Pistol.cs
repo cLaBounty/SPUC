@@ -34,7 +34,6 @@ public class Pistol : UsableItem
 		if (hotBar.inventory.Has(ammo, 1)) {
 			Shoot();
 			animator.Play(shootAnimation);
-			//muzzleFlash.Play();
 			hotBar.HandleItemUse(ammo);
 			SFXManager.instance.Play("Pistol Shot", 0.9f, 1.1f);
 		} else {

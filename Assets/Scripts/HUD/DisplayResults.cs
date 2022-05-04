@@ -52,7 +52,7 @@ public class DisplayResults : MonoBehaviour
         }
 
         // Statistics Text
-        wavesCompletedText.text = wavesCompleted + Player.WavesCompleted.ToString("n0");
+        wavesCompletedText.text = wavesCompleted + (Player.WavesCompleted - 1).ToString("n0");
         enemiesKilledText.text = enemiesKilled + Player.EnemiesKilled.ToString("n0");
         damageDealtText.text = damageDealt + Player.DamageDealt.ToString("n0");
         damageTakenText.text = damageTaken + Player.DamageTaken.ToString("n0");

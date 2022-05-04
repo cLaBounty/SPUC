@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeployedEnemyAttractor : MonoBehaviour
 {
-    [SerializeField] private float timeLimit = 15f;
+    [SerializeField] private float timeLimit = 30f;
     [SerializeField] private float range = 12f;
     [SerializeField] private float frequency = 1f;
 

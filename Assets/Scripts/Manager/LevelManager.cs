@@ -183,8 +183,9 @@ public class LevelManager : MonoBehaviour
 
     void CheckGameStates(){
         if (enemyCount == 0 && waveCount >= numberOfWaves && !spawningNewEnemies) { // Win
-            playerStats.CleanUp(); // ToDo: only if last level
+            playerStats.CleanUp();
             endCause = EndCause.Win;
+            Player.WavesCompleted += 1;
             SceneManager.LoadScene(endScene);
         }
         else if (playerStats.currentHealth <= 0) { // Lose via Player Health

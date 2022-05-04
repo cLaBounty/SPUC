@@ -55,6 +55,7 @@ public class DeployedOilHealer : Enemy
 
     private void Update() {
         if (!status.isActive) return;
+        base.Update();
 
         //update distances
         currentTargetDist = (target.transform.position - transform.position).sqrMagnitude;

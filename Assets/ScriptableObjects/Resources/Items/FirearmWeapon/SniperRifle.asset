@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   name: Sniper Rifle
-  description: A sniper rifle that will one shot all enemies
+  description: A powerful sniper rifle that shoots slowly
   uiDisplay: {fileID: 21300000, guid: 6ac246ae5d043014090b192c3691079d, type: 3}
   isMoveable: 1
   recipe:
-  - item: {fileID: 11400000, guid: a3b2f09df6d8a5948b8daf11899ccf81, type: 2}
+  - item: {fileID: 11400000, guid: ccafa806dcf46354588779471c227b51, type: 2}
     amount: 1
-  - item: {fileID: 11400000, guid: f767f72024d3aba4c9d819300cbd32f8, type: 2}
-    amount: 4
+  - item: {fileID: 11400000, guid: cd6a982fa40f180408963ff0468ba6a9, type: 2}
+    amount: 1
   - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
-    amount: 2
+    amount: 5
   craftAmount: 1
   groundPrefab: {fileID: 3151089213126256789, guid: 5a4aac588200fde4289cde7edc87bc92, type: 3}
   holdPrefab: {fileID: 369423276789889695, guid: 2a325be4e5e0dda44a1cb5c70a663cd4, type: 3}

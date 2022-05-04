@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: 9a9c7725b2f4d9746b6d503972ab7951, type: 2}
+  swingAnimation: MeleeSwing
+  damage: 20
+  range: 5
 --- !u!1 &7710761452765953616
 GameObject:
   m_ObjectHideFlags: 0

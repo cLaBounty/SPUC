@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   name: Machete
-  description: A machete that does 20 damage
+  description: A powerful machete with a long blade
   uiDisplay: {fileID: 21300000, guid: 8abfcc843022ba646920dbe91a705842, type: 3}
   isMoveable: 1
   recipe:
   - item: {fileID: 11400000, guid: fbd003a6a7065c24cbd325ef2ad84d78, type: 2}
     amount: 1
-  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
-    amount: 1
+  - item: {fileID: 11400000, guid: 970fed303af32f84d8cf9d310dd6c61a, type: 2}
+    amount: 5
   craftAmount: 1
   groundPrefab: {fileID: 7977987414932671694, guid: e81642f4070fd73468f59f035abac0c8, type: 3}
   holdPrefab: {fileID: 2132946424960866241, guid: 810b9cbf4f35a9243aa937eaddb85d38, type: 3}

@@ -18,10 +18,10 @@ MonoBehaviour:
   uiDisplay: {fileID: 21300000, guid: aca84934bfda05544b16d969c0ff851d, type: 3}
   isMoveable: 1
   recipe:
-  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
-    amount: 5
   - item: {fileID: 11400000, guid: ed9e9b5f7225b8549927b40be9ab79ff, type: 2}
-    amount: 1
+    amount: 2
+  - item: {fileID: 11400000, guid: b6a3143ee0ed77b4dbdeb0c538a092f7, type: 2}
+    amount: 10
   craftAmount: 1
   groundPrefab: {fileID: 7100413993455072174, guid: 13e3080b01ad7894fa7f03e6d55cbece, type: 3}
   holdPrefab: {fileID: 1327631899784223376, guid: 4a93e8a6451fc114daee5440477a8f97, type: 3}
