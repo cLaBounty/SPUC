@@ -435,7 +435,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.386
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
