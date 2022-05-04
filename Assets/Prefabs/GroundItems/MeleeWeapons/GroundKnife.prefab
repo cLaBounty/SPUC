@@ -70,7 +70,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6396843402673147002}
-  m_LocalRotation: {x: 0.48448512, y: -0.2515696, z: -0.574292, w: 0.61006194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -79,7 +79,7 @@ Transform:
   - {fileID: 4115338395680884538}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 17.589, y: -64.926, z: -97.782}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &6396843402673146980
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -107,9 +107,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: fbd003a6a7065c24cbd325ef2ad84d78, type: 2}
   amount: 1
-  spawnRate: 1
   sfx: Knife Pickup
   infoPrefab: {fileID: 7540945013849109311, guid: 5c10dd818c0fa1c40baa1e69c5d1c496, type: 3}
+  currentInfo: {fileID: 0}
+  spawnRate: 1
+  pickupRange: 5
   stayAwayDist: 1
   moveAwaySpeed: 1
 --- !u!1001 &2263517370145630712

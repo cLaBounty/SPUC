@@ -5,11 +5,16 @@ public class ResourceNode : MonoBehaviour
 {
 	[SerializeField] float health = 100f;
 	[SerializeField] int resources = 10;
+	[Range(0,1)][SerializeField] private float spawnRate = 1f;
 
     public ItemObject item;
 	public ParticleSystem harvestEffect;
 
 	private bool particleTriggered = false;
+
+	private void Start() {
+		if (UnityEngine.Random.Range(0f, 1f) > spawnRate) { Destroy(transform.gameObject); }
+	}
 
 	void Update()
 	{
