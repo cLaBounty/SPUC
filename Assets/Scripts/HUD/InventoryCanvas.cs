@@ -12,22 +12,35 @@ public class InventoryCanvas : MonoBehaviour
     [SerializeField] private GameObject Scope;
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.C) && Scope.activeInHierarchy == false) {
-            Toggle();
+        if (PauseMenu.GameIsPaused) return;
+
+        if (InventoryIsOpen) {
+            if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyUp(KeyCode.Escape)) {
+                Close();
+            }
+        } else {
+            if (Input.GetKeyDown(KeyCode.C) && Scope.activeInHierarchy == false) {
+                Open();
+            }
         }
     }
 
-    private void Toggle() {
-        InventoryIsOpen = !InventoryIsOpen;
+    private void Open() {
+        InventoryIsOpen = true;
+        InventoryCanvasUI.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
-        // Remove info popups and drag sprites
-        if (!InventoryIsOpen) {
-            InventoryDisplay.CleanUp();
-            CraftingDisplay.CleanUp();
-        }
+    private void Close() {
+        InventoryIsOpen = false;
 
-        InventoryCanvasUI.SetActive(InventoryIsOpen);
-        Cursor.visible = InventoryIsOpen;
-        Cursor.lockState = InventoryIsOpen ? CursorLockMode.None : CursorLockMode.Locked;
+        // Remove Info Popups Drag Sprites
+        InventoryDisplay.CleanUp();
+        CraftingDisplay.CleanUp();
+        
+        InventoryCanvasUI.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

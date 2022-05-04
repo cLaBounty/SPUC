@@ -13,6 +13,8 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        if (InventoryCanvas.InventoryIsOpen) return;
+
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (GameIsPaused) {
                 Resume();
