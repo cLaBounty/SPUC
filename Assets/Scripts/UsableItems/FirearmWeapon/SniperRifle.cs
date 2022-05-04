@@ -104,7 +104,7 @@ public class SniperRifle : UsableItem
 		scopeOverlay.SetActive(true);
 		gameObject.layer = layerIgnore;
 		mainCamera.fieldOfView = scopedFOV;
-		MouseLook.SensitivityMultiplier = 0.5f;
+		MouseLook.SensitivityMultiplier = 0.25f;
 	}
 
 	private void OnUnscoped() {
