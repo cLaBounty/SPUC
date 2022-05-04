@@ -23,7 +23,7 @@ public class EnemyCrawlerAnimation : MonoBehaviour
     void LateUpdate() {
         state = (int)enemy.state;
 
-        if (enemy.state == Enemy.STATE.DEAD){
+        if (enemy.state == Enemy.STATE.DEAD || enemy.currentHealth <= 0){
             int ran = Random.Range(0, 2);
             animator.SetInteger("Variation", ran);
             animator.SetInteger("State", 4);

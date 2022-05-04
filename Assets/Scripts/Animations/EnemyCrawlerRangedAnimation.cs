@@ -21,7 +21,7 @@ public class EnemyCrawlerRangedAnimation : MonoBehaviour
     }
 
     void LateUpdate() {
-        if (enemy.state == Enemy.STATE.DEAD ){
+        if (enemy.state == Enemy.STATE.DEAD || enemy.currentHealth <= 0){
             animator.SetInteger("State", 2);
 
             if (!dying){
