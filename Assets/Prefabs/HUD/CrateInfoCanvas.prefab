@@ -305,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5}
+  m_AnchoredPosition: {x: 0, y: 0.2}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3810527826354946622
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0d250b8a9348f5e4fb8112beff3add16, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 224eaa1cb9a9b9545b9be998e81fcc1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 100643082893478203}
+  descriptionText: {fileID: 0}
 --- !u!1 &7540945013849109311
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,3 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 100643082893478203}
+  image: {fileID: 6614541702700710412}
+  commonSprite: {fileID: 21300000, guid: 224eaa1cb9a9b9545b9be998e81fcc1f, type: 3}
+  rareSprite: {fileID: 21300000, guid: cec551ca54719994680cc981d483fcf8, type: 3}
+  epicSprite: {fileID: 21300000, guid: e994e137388cf38478fde3afc4df2788, type: 3}
