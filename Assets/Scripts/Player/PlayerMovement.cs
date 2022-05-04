@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Player Stats")]
 	[SerializeField] float speed = 12f;
 	[SerializeField] float baseSpeed = 12f;
+	[SerializeField] float maxSpeed = 40f;
 	[SerializeField] float sprintSpeed;
 	[SerializeField] float gravity = -9.81f * 2;
 	[SerializeField] float jumpHeight = 3f;
@@ -37,11 +38,28 @@ public class PlayerMovement : MonoBehaviour
 
 	int currentStepIndex = 0;
 
+	// BHop
+	private float bHopWindow = 1.5f;
+	private float bHopBonus = 0f;
+	private float bHopTimer = 0f;
+	private float jumpBufferDistance = 2f;
+	private bool jumpBuffer = false;
+
     void Update()
     {
 		if (PauseMenu.GameIsPaused) return;
 		
 		isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+		if (Input.GetButtonDown("Jump"))
+		{
+			RaycastHit hit;
+			if (Physics.Raycast(transform.position, Vector3.down, out hit))
+			{
+				float distance = (groundCheck.transform.position.y - hit.transform.position.y);
+				if (distance < jumpBufferDistance) { jumpBuffer = true; }
+			}
+		} 
+
 
 		if(isGrounded && velocity.y < 0)
 		{
@@ -59,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 			movedLastFrame = false;
 		}
 
-		if (isSprinting && !isCrouching)
+		if (isSprinting && Input.GetKey(KeyCode.LeftShift))
 		{
 			speed = baseSpeed;
 			isSprinting = false;
@@ -67,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 		else if (!Input.GetKey(KeyCode.LeftShift) && !isCrouching)
 		{
 			sprintSpeed = baseSpeed * spritMultiplier;
-			speed = sprintSpeed;
+			speed = sprintSpeed + bHopBonus;
 			isSprinting = true;
 		}
 
@@ -76,10 +94,12 @@ public class PlayerMovement : MonoBehaviour
 
 		if(Input.GetButtonDown("Jump") && isGrounded)
 		{
+			bHopTimer = 0;
 			SFXManager.instance?.Play("Jump", 0.95f, 1.05f);
 			velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-		}
+		} 
 		
+
 		if(Input.GetKeyDown(KeyCode.LeftControl) & !isCrouching)
 		{
 			crouchSpeed = baseSpeed * crouchMultiplier;
@@ -92,6 +112,29 @@ public class PlayerMovement : MonoBehaviour
 			controller.height /= 0.75f;
 			speed = baseSpeed;
 			isCrouching = false;
+		}
+
+		bHopTimer += Time.deltaTime;
+		if (isGrounded)
+		{
+			if (!(bHopTimer > 0)) { bHopTimer = 0; }
+
+			bHopTimer += Time.deltaTime;
+
+			if((Input.GetButtonDown("Jump") || jumpBuffer) && bHopTimer < bHopWindow)
+			{
+				if (speed < maxSpeed) { bHopBonus += 0.5f; }
+			} 
+			else if (bHopTimer > bHopWindow && isGrounded) { bHopBonus = 0f; }
+		}
+
+		if (jumpBuffer && isGrounded)
+		{
+			Debug.Log("Did Buffer Jump");
+			bHopTimer = 0;
+			SFXManager.instance?.Play("Jump", 0.95f, 1.05f);
+			velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+			jumpBuffer = false;
 		}
 
 		velocity.y += gravity * Time.deltaTime;
