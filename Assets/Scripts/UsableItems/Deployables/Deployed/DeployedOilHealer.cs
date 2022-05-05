@@ -16,6 +16,8 @@ public class DeployedOilHealer : Enemy
     [SerializeField] Vector3 BoxColldierCenter;
     [SerializeField] LayerMask ProjecileLayer;
 
+	[SerializeField] ParticleSystem sparkEffect;
+
     NavMeshAgent navMeshAgent;
     Rigidbody rb;
     Vector3 acculmulatedSpeed = Vector3.zero;
@@ -87,6 +89,7 @@ public class DeployedOilHealer : Enemy
                 if (oildDril == null) { oildDril = target.GetComponent<OilDrill>(); return;} 
 
                 oildDril.GainHealth(healAmmount);
+				sparkEffect.Play();
             }
 
             coolDown = coolDownMax;

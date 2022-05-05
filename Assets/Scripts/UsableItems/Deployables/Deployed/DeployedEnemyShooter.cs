@@ -18,6 +18,9 @@ public class DeployedEnemyShooter : Enemy
     [SerializeField] Vector3 BoxColldierCenter;
     [SerializeField] LayerMask ProjecileLayer;
 
+	[SerializeField] ParticleSystem hitEffect;
+	[SerializeField] Transform firePoint;
+
     Rigidbody rb;
     Vector3 acculmulatedSpeed = Vector3.zero;
 
@@ -80,6 +83,10 @@ public class DeployedEnemyShooter : Enemy
             if (enemy == null) return;
 
             enemy.TakeDamage(playerObj.damageMultiplier * attackPower, true);
+			Vector3 dir = firePoint.position - enemy.transform.position;
+			hitEffect.transform.rotation = Quaternion.LookRotation(dir);
+			hitEffect.transform.position = enemy.transform.position + dir.normalized;
+			hitEffect.Play();
             coolDown = coolDownMax;
         }
 
