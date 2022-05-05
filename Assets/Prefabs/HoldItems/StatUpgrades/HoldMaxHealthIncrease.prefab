@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: c75c0c97429e40447bec9118372de636, type: 2}
+  maxHealthIncreaseValue: 20
 --- !u!1 &8012667698387730363
 GameObject:
   m_ObjectHideFlags: 0

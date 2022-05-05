@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 7
   name: Damage Boost
-  description: Increases damage by 20%
+  description: Increases damage by 10%
   uiDisplay: {fileID: 21300000, guid: 0942ed7c6efd0ef4891253bd3be6683e, type: 3}
   isMoveable: 1
   recipe:

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: e71872b64db2c044d91bf4e9cb23d2e0, type: 2}
+  damageBoostValue: 0.1
 --- !u!1 &8012667698387730363
 GameObject:
   m_ObjectHideFlags: 0

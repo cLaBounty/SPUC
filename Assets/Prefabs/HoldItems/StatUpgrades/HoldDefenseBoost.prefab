@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 11400000, guid: 8f4dc06bd88fdaa48b682b3062b89d12, type: 2}
+  defenseBoostValue: 1
 --- !u!1 &8012667698387730363
 GameObject:
   m_ObjectHideFlags: 0
