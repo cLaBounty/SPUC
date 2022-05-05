@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb397814c99d1db48aa74ce8ff8f5552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimer: 5
+  destroyTimer: 3
 --- !u!54 &-5866145489857690102
 Rigidbody:
   m_ObjectHideFlags: 0

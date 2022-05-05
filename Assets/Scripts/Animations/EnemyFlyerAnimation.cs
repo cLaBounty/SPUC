@@ -23,7 +23,7 @@ public class EnemyFlyerAnimation : MonoBehaviour
     }
 
     void LateUpdate() {
-        if (enemy.state == Enemy.STATE.DEAD  || enemy.currentHealth <= 0){
+        if (enemy.state == Enemy.STATE.DEAD || enemy.currentHealth <= 0){
             animator.SetInteger("State", 2);
 
             if (!dying){
@@ -58,6 +58,8 @@ public class EnemyFlyerAnimation : MonoBehaviour
     }
 
     public void Disapear(){
+        LevelManager levelManager = GameObject.FindObjectOfType<LevelManager>();
+        if (levelManager != null) levelManager.EnemyKilled();
         Destroy(enemy.gameObject);
     }
 }

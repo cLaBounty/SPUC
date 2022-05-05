@@ -110,8 +110,4 @@ public class Enemy : MonoBehaviour
         currentHealth = value;
         healthBar.SetMaxHealth(value);
     }
-
-    protected void OnDestroy() {
-        if (levelManager != null) levelManager.EnemyKilled();
-    }
 }

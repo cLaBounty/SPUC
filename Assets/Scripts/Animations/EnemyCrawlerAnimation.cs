@@ -58,6 +58,8 @@ public class EnemyCrawlerAnimation : MonoBehaviour
     }
 
     public void Disapear(){
+        LevelManager levelManager = GameObject.FindObjectOfType<LevelManager>();
+        if (levelManager != null) levelManager.EnemyKilled();
         Destroy(enemy.gameObject);
     }
 }

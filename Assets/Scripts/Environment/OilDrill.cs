@@ -23,6 +23,7 @@ public class OilDrill : MonoBehaviour
     {
         Player player = GameObject.FindObjectOfType<Player>();
         float damage = amount - player.defense;
+        damage *= 0.75f;
 
         if (damage > currentHealth) {
             DamageTaken += currentHealth;

@@ -817,7 +817,7 @@ MonoBehaviour:
   flyUpOffset: {x: 0, y: 1, z: 0}
   currentTargetDist: 0
   projectileSpeed: 12
-  steeringSpeed: 3
+  steeringSpeed: 2
   randomSpawnTimerRange: {x: 1.5, y: 4}
 --- !u!54 &7279199722365421926
 Rigidbody:
