@@ -656,7 +656,7 @@ MonoBehaviour:
   moveSpeed: 10
   maxMoveSpeed: 5
   attackSpeed: 1
-  attackPower: 3
+  attackPower: 5
   defense: 1
   isEnemy: 0
   isFlying: 0
@@ -667,8 +667,8 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   state: 0
   healthBar: {fileID: 5857862155765646953}
-  currentHealth: 70
-  maxHealth: 70
+  currentHealth: 140
+  maxHealth: 140
   itemDrops: []
   isDistracted: 0
   attackEnemyDist: 20

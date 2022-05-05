@@ -21,12 +21,15 @@ public class OilDrill : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (amount > currentHealth) {
+        Player player = GameObject.FindObjectOfType<Player>();
+        float damage = amount - player.defense;
+
+        if (damage > currentHealth) {
             DamageTaken += currentHealth;
             currentHealth = 0;
         } else {
-            DamageTaken += amount;
-            currentHealth -= amount;
+            DamageTaken += damage;
+            currentHealth -= damage;
         }
 
         billboardHealthBar.SetHealth(currentHealth);
