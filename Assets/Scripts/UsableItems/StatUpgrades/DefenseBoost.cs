@@ -28,7 +28,6 @@ public class DefenseBoost : UsableItem
 		animator.Play(useAnimation);
 
         player.defense += defenseBoostValue;
-        hotBar.HandleItemUse(itemObject);
         SFXManager.instance.Play("Drink", 0.95f, 1.05f);
 		StartCoroutine(UseTimer());  
     }

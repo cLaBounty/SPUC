@@ -28,7 +28,6 @@ public class DamageBoost : UsableItem
 		animator.Play(useAnimation);
 
         player.damageMultiplier += damageBoostValue;
-        hotBar.HandleItemUse(itemObject);
         SFXManager.instance.Play("Drink", 0.95f, 1.05f);
 		StartCoroutine(UseTimer());   
     }

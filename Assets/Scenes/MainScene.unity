@@ -15447,37 +15447,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4248214650303288789, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
-      propertyPath: field of view
-      value: 70
-      objectReference: {fileID: 0}
     - target: {fileID: 4248214650345464465, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
       propertyPath: m_Name
       value: FirstPersonPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248214650345464465, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248214650345464468, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
-      propertyPath: bHopWindow
-      value: 1.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248214650345464468, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
-      propertyPath: jumpBufferDistance
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248214650345464468, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
-      propertyPath: stepSounds.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248214650345464468, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
-      propertyPath: stepSounds.Array.data[0]
-      value: Step 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248214650345464468, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
-      propertyPath: stepSounds.Array.data[1]
-      value: Step 3
       objectReference: {fileID: 0}
     - target: {fileID: 4248214650345464471, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
       propertyPath: m_RootOrder
@@ -15531,10 +15503,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 491887194}
-    - target: {fileID: 5862226166126504024, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
-      propertyPath: vignetteSpeed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5862226166126504024, guid: 378e4b505d83b4743b49741e93e97bf0, type: 3}
       propertyPath: damageVignette
       value: 

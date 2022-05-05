@@ -29,7 +29,6 @@ public class MaxHealthIncrease : UsableItem
 		
         player.IncreaseMaxHealth(maxHealthIncreaseValue);
         IncreaseLivingRobotHealth();
-        hotBar.HandleItemUse(itemObject);
         SFXManager.instance.Play("Drink", 0.95f, 1.05f);
 		StartCoroutine(UseTimer());  
     }
