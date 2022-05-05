@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     [SerializeField] private string settingsScene = "SettingsMenu";
+    [SerializeField] private string howToPlayScene = "HowToPlayScene";
 
     public GameObject pauseMenuUI;
 
@@ -39,6 +40,11 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        SFXManager.instance.Play("Accept");
+    }
+
+    public void LoadHowToPlay() {
+        SceneManager.LoadScene(howToPlayScene, LoadSceneMode.Additive);
         SFXManager.instance.Play("Accept");
     }
 
