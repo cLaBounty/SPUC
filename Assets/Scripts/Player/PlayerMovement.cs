@@ -130,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
 
 		if (jumpBuffer && isGrounded)
 		{
-			Debug.Log("Did Buffer Jump");
 			bHopTimer = 0;
 			SFXManager.instance?.Play("Jump", 0.95f, 1.05f);
 			velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
