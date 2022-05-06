@@ -11,7 +11,6 @@ public class EnemyProjectile : MonoBehaviour
     public float damage = 10f;
 
     Rigidbody rb;
-    Vector3 directionToPlayer;
 
     void Start(){
         rb = GetComponent<Rigidbody>();
@@ -21,7 +20,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         Vector3 playerPosition = target.transform.position;
         playerPosition.y += 0.75f; // Target player waist, not feet
-        directionToPlayer = playerPosition - transform.position;
+        Vector3 directionToPlayer = playerPosition - transform.position;
 
         if (target != null){
             moveDirection = Vector3.RotateTowards(moveDirection, directionToPlayer, steeringSpeed * Time.deltaTime, 1f);
